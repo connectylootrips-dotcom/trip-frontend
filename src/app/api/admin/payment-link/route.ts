@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     const firstname = clientName.split(' ')[0] || clientName;
     const cleanPhone = phone.replace(/\D/g, '').slice(-10).padStart(10, '0');
     // Easebuzz rejects pipe chars (breaks hash), special chars in productinfo, and long UDF values
-    const sanitize = (s: string, max: number) => s.replace(/\|/g, '-').replace(/[^\w\s.,@#%:/()\-!?]/g, '').trim().slice(0, max);
+    const sanitize = (s: string, max: number) => s.replace(/[|/\\]/g, '-').replace(/[^\w\s.,@#%:()\-!?]/g, '').trim().slice(0, max);
     const productinfo = sanitize(description, 100);
     const safeNote = sanitize(note || '', 255);
     const safePdfUrl = (pdfUrl || '').replace(/\|/g, '%7C').slice(0, 255);
