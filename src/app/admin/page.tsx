@@ -98,6 +98,8 @@ export default function AdminDashboard() {
     const [payMsg, setPayMsg] = useState({ type: '', text: '' });
     const [payLink, setPayLink] = useState('');
     const [payCopied, setPayCopied] = useState(false);
+    const [payHistory, setPayHistory] = useState<Record<string, any>[]>([]);
+    const [payHistoryLoading, setPayHistoryLoading] = useState(false);
 
     // Custom Trip Creator
     const [itineraryMode, setItineraryMode] = useState<'builder' | 'paste'>('builder');
@@ -4223,6 +4225,52 @@ export default function AdminDashboard() {
                                             {paySaving ? <><RefreshCw className="w-3.5 h-3.5 animate-spin" />Generating…</> : <><CreditCard className="w-3.5 h-3.5" />Generate Payment Link</>}
                                         </button>
                                     </form>
+                                )}
+                            </div>
+
+                            {/* Payment Link History */}
+                            <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h3 className="font-semibold text-gray-900">Payment Link History</h3>
+                                    <button onClick={async () => {
+                                        setPayHistoryLoading(true);
+                                        const tok = localStorage.getItem('adminToken') || '';
+                                        const res = await fetch('/api/admin/payment-link', { headers: { 'x-admin-secret': tok } });
+                                        const data = await res.json();
+                                        setPayHistory(Array.isArray(data.links) ? data.links : []);
+                                        setPayHistoryLoading(false);
+                                    }} className="flex items-center gap-1.5 text-sm text-primary/60 hover:text-primary border border-gray-200 px-3 py-1.5 rounded-lg">
+                                        <RefreshCw className={`w-3.5 h-3.5 ${payHistoryLoading ? 'animate-spin' : ''}`} />Load
+                                    </button>
+                                </div>
+                                {payHistory.length === 0 ? (
+                                    <p className="text-center py-8 text-primary/40 text-sm">Click &quot;Load&quot; to fetch payment link history.</p>
+                                ) : (
+                                    <div className="space-y-3">
+                                        {payHistory.map((p: any) => (
+                                            <div key={p.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-xl hover:bg-gray-50">
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex items-center gap-2 mb-0.5">
+                                                        <p className="font-semibold text-gray-900 text-sm">{p.clientName}</p>
+                                                        {p.voucherCode && <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-medium">{p.voucherCode}</span>}
+                                                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${p.status === 'paid' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>{p.status}</span>
+                                                    </div>
+                                                    <p className="text-xs text-gray-500">{p.description} · ₹{Number(p.amount).toLocaleString('en-IN')} · {p.email}</p>
+                                                    <p className="text-xs text-gray-400 mt-0.5">{new Date(p.createdAt).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+                                                </div>
+                                                <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+                                                    <button onClick={() => { navigator.clipboard.writeText(p.paymentUrl); }}
+                                                        className="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-100 text-gray-500" title="Copy link">
+                                                        <Copy className="w-3.5 h-3.5" />
+                                                    </button>
+                                                    <a href={p.paymentUrl} target="_blank" rel="noopener noreferrer"
+                                                        className="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-100 text-gray-500" title="Open link">
+                                                        <ExternalLink className="w-3.5 h-3.5" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 )}
                             </div>
                         </div>

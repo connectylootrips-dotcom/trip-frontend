@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
+import { db } from '@/lib/firestore';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.ylootrips.com';
 const EASEBUZZ_KEY = (process.env.EASEBUZZ_KEY || '').trim();
@@ -62,11 +63,11 @@ export async function POST(req: NextRequest) {
     const surl = `${successUrl}${!voucherCode && pdfUrl ? `&pdf=${encodeURIComponent(pdfUrl)}` : ''}`;
     const furl = `${SITE_URL}/payment/receipt?txnid=${txnid}&error=1`;
 
-    // udf3 (note) is dropped from Easebuzz — Easebuzz rejects long/complex notes.
-    // Note is admin-internal only; udf1=txnid, udf2=pdfUrl are sufficient for callbacks.
+    // UDF2 (pdfUrl) and UDF3 (note) dropped — Easebuzz rejects URLs and complex text in UDF fields.
+    // The pdfUrl is embedded in surl instead. udf1=txnid is sufficient for callback tracking.
     const hashStr = [
       EASEBUZZ_KEY, txnid, amountStr, productinfo, firstname, email,
-      txnid, safePdfUrl, '', '', '',
+      txnid, '', '', '', '',
       '', '', '', '', '',
       EASEBUZZ_SALT,
     ].join('|');
@@ -85,8 +86,7 @@ export async function POST(req: NextRequest) {
       email,
       phone: cleanPhone,
       udf1: txnid,
-      udf2: safePdfUrl,
-      udf3: '', udf4: '', udf5: '',
+      udf2: '', udf3: '', udf4: '', udf5: '',
       hash,
       surl,
       furl,
@@ -133,6 +133,14 @@ export async function POST(req: NextRequest) {
         }).catch(() => {});
       }
 
+      // Save to payment-links history collection
+      db().collection('payment-links').doc(txnid).set({
+        txnid, paymentUrl, clientName, email, phone: cleanPhone,
+        amount: Number(amount), description, pdfUrl: pdfUrl || '',
+        note: note || '', voucherCode: voucherCode || '',
+        status: 'pending', createdAt: new Date().toISOString(),
+      }).catch(() => {});
+
       return NextResponse.json({ success: true, paymentUrl, txnid });
     }
 
@@ -140,5 +148,17 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error('[admin/payment-link]', err);
     return NextResponse.json({ error: 'Failed to generate payment link.' }, { status: 500 });
+  }
+}
+
+export async function GET(req: NextRequest) {
+  if (!isAdmin(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  try {
+    const snap = await db().collection('payment-links').orderBy('createdAt', 'desc').limit(100).get();
+    const links = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    return NextResponse.json({ links });
+  } catch (err) {
+    console.error('[admin/payment-link GET]', err);
+    return NextResponse.json({ error: 'Failed to fetch history' }, { status: 500 });
   }
 }
