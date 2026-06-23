@@ -62,9 +62,11 @@ export async function POST(req: NextRequest) {
     const surl = `${successUrl}${!voucherCode && pdfUrl ? `&pdf=${encodeURIComponent(pdfUrl)}` : ''}`;
     const furl = `${SITE_URL}/payment/receipt?txnid=${txnid}&error=1`;
 
+    // udf3 (note) is dropped from Easebuzz — Easebuzz rejects long/complex notes.
+    // Note is admin-internal only; udf1=txnid, udf2=pdfUrl are sufficient for callbacks.
     const hashStr = [
       EASEBUZZ_KEY, txnid, amountStr, productinfo, firstname, email,
-      txnid, safePdfUrl, safeNote, '', '',
+      txnid, safePdfUrl, '', '', '',
       '', '', '', '', '',
       EASEBUZZ_SALT,
     ].join('|');
@@ -84,8 +86,7 @@ export async function POST(req: NextRequest) {
       phone: cleanPhone,
       udf1: txnid,
       udf2: safePdfUrl,
-      udf3: safeNote,
-      udf4: '', udf5: '',
+      udf3: '', udf4: '', udf5: '',
       hash,
       surl,
       furl,
