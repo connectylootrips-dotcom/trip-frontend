@@ -43,7 +43,11 @@ export async function POST(req: NextRequest) {
     const amountStr = Number(amount).toFixed(2);
     const firstname = clientName.split(' ')[0] || clientName;
     const cleanPhone = phone.replace(/\D/g, '').slice(-10).padStart(10, '0');
-    const productinfo = description.slice(0, 100);
+    // Easebuzz rejects pipe chars (breaks hash), special chars in productinfo, and long UDF values
+    const sanitize = (s: string, max: number) => s.replace(/\|/g, '-').replace(/[^\w\s.,@#%:/()\-!?]/g, '').trim().slice(0, max);
+    const productinfo = sanitize(description, 100);
+    const safeNote = sanitize(note || '', 255);
+    const safePdfUrl = (pdfUrl || '').replace(/\|/g, '%7C').slice(0, 255);
 
     // Build success URL: if this payment is for a voucher, redirect to voucher success page
     const successUrl = voucherCode
@@ -60,7 +64,7 @@ export async function POST(req: NextRequest) {
 
     const hashStr = [
       EASEBUZZ_KEY, txnid, amountStr, productinfo, firstname, email,
-      txnid, pdfUrl || '', note || '', '', '',
+      txnid, safePdfUrl, safeNote, '', '',
       '', '', '', '', '',
       EASEBUZZ_SALT,
     ].join('|');
@@ -79,8 +83,8 @@ export async function POST(req: NextRequest) {
       email,
       phone: cleanPhone,
       udf1: txnid,
-      udf2: pdfUrl || '',
-      udf3: note || '',
+      udf2: safePdfUrl,
+      udf3: safeNote,
       udf4: '', udf5: '',
       hash,
       surl,
