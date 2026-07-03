@@ -75,7 +75,7 @@ function PDFContent() {
   const validDate = new Date(voucher.validUntil).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
   const issuedDate = new Date(voucher.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
   const inclList = voucher.inclusions ? voucher.inclusions.split(/,|\n/).map(s => s.trim()).filter(Boolean) : [];
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ylootrips.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.ylootrips.com';
 
   return (
     <>

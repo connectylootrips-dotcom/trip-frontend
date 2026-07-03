@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Turn any travel reel into a real trip — YlooTrips',
     description: 'Describe a travel Instagram reel and get a complete 5-day itinerary with costs in seconds.',
-    url: 'https://ylootrips.com/reel-to-trip',
+    url: 'https://www.ylootrips.com/reel-to-trip',
   },
 };
 

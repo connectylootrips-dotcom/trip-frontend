@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Offbeat & Hidden Gems of India — YlooTrips',
     description: 'Secret valleys, tribal frontiers, sacred coastlines. We take you to the India most people never find.',
-    url: 'https://ylootrips.com/offbeat',
+    url: 'https://www.ylootrips.com/offbeat',
   },
 };
 

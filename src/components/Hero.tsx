@@ -504,9 +504,9 @@ export default function Hero({ content, stats }: HeroProps) {
                             {content?.title
                                 ? <span className="text-white">{content.title}</span>
                                 : <>
-                                    <span className="text-white">Explore India &amp; Beyond</span>
+                                    <span className="text-white">India Tour Packages</span>
                                     <br />
-                                    <span className="text-gold-shimmer italic">Trips From ₹9,999</span>
+                                    <span className="text-gold-shimmer italic">Domestic &amp; International Trips From ₹9,999</span>
                                   </>
                             }
                         </h1>

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Travel Stories — Real Travelogues | YlooTrips',
     description: 'Read and share authentic travel stories from across India.',
-    url: 'https://ylootrips.com/stories',
+    url: 'https://www.ylootrips.com/stories',
   },
 };
 

@@ -1004,7 +1004,7 @@ function DomesticBookingDrawer({ trip, onClose, initialTab = 'pay' }: { trip: Do
         body: JSON.stringify({
           name: form.name, email: form.email, phone: form.phone, guests,
           packageTitle: trip.title, destination: trip.location,
-          sourceUrl: `https://ylootrips.com/destinations/domestic`,
+          sourceUrl: `https://www.ylootrips.com/destinations/domestic`,
           ourPrice: finalPrice, chargeNow: chargeNow ?? finalPrice,
           paymentMode, paymentMethod, marketPrice: totalPrice, priceDiff: 0,
         }),

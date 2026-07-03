@@ -40,6 +40,17 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   serverExternalPackages: ['@google-cloud/storage'],
 
+  async redirects() {
+    return [
+      {
+        source: '/(.*)',
+        has: [{ type: 'host', value: 'ylootrips.com' }],
+        destination: 'https://www.ylootrips.com/:path*',
+        permanent: true, // 301
+      },
+    ];
+  },
+
   async headers() {
     return [
       { source: '/(.*)', headers: securityHeaders },

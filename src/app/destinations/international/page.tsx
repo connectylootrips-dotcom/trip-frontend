@@ -285,7 +285,7 @@ function BookingDrawer({ d, onClose }: { d: IntlDestination; onClose: () => void
           guests,
           packageTitle: d.name,
           destination: d.name,
-          sourceUrl: `https://ylootrips.com${d.href}`,
+          sourceUrl: `https://www.ylootrips.com${d.href}`,
           ourPrice: finalPrice,
           chargeNow: chargeNow ?? finalPrice,
           paymentMode, paymentMethod, emiTenure,

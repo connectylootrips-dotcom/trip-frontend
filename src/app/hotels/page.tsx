@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Find Hotels in India — Live Rates | YlooTrips',
     description: 'Compare live hotel prices across India. Powered by Google Hotels.',
-    url: 'https://ylootrips.com/hotels',
+    url: 'https://www.ylootrips.com/hotels',
   },
 };
 
