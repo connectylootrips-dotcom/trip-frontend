@@ -10,6 +10,18 @@ import Image from 'next/image';
 const reviews = [
   // ── Indian travelers ──────────────────────────────────────────────────────
   {
+    name: 'Sagar',
+    flag: '🇮🇳',
+    country: 'Gurugram, Haryana',
+    rating: 5,
+    trip: 'Kashmir Tour Package',
+    date: 'May 2026',
+    platform: 'Google',
+    avatar: '/reviews/sagar-kashmir.jpg',
+    tripPhoto: '/reviews/sagar-kashmir.jpg',
+    text: 'Our Kashmir trip with YLOO Trips was absolutely wonderful. From the beautiful valleys of Gulmarg and Pahalgam to the peaceful Dal Lake in Srinagar, every moment was memorable. The hotels, transportation, and sightseeing were perfectly arranged. The entire journey was smooth and stress-free. Thank you, YLOO Trips, for giving us an unforgettable holiday. Highly recommended!',
+  },
+  {
     name: 'Prerna and Aditya',
     flag: '🇮🇳',
     country: 'Rohtak, Haryana',
