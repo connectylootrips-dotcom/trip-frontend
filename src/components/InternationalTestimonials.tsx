@@ -10,6 +10,18 @@ import Image from 'next/image';
 const reviews = [
   // ── Indian travelers ──────────────────────────────────────────────────────
   {
+    name: 'Prerna and Aditya',
+    flag: '🇮🇳',
+    country: 'Rohtak, Haryana',
+    rating: 5,
+    trip: 'Darjeeling Package',
+    date: 'July 2026',
+    platform: 'Google',
+    avatar: '/reviews/aditya-prerna-darjeeling.jpg',
+    tripPhoto: '/reviews/aditya-prerna-darjeeling.jpg',
+    text: 'I recently visited Darjeeling, and it was an amazing experience. The weather was pleasant, the scenery was beautiful, and the mountains were absolutely breathtaking. Every part of the trip was well planned and hassle-free. It was truly one of the best trips I have ever had. Thank you, YLOO Trips, for making this journey so memorable. Highly recommended!',
+  },
+  {
     name: 'Avnish and Shivani',
     flag: '🇮🇳',
     country: 'Gurugram, Haryana',
