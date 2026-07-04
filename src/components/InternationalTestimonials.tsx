@@ -628,39 +628,36 @@ export default function InternationalTestimonials() {
               className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col shrink-0"
               style={{ width: 'clamp(280px, 85vw, 340px)', scrollSnapAlign: 'start' }}
             >
-              {/* Trip destination photo */}
-              <div className="relative h-44 overflow-hidden shrink-0">
-                {r.tripPhoto.startsWith('data:') ? (
+              {/* Person photo (only shown if real photo exists) */}
+              {r.avatar ? (
+                <div className="relative h-44 overflow-hidden shrink-0">
                   <img
-                    src={r.tripPhoto}
-                    alt={`${r.name} — ${r.trip}`}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    onError={(e) => {
-                      e.currentTarget.onerror = null;
-                      e.currentTarget.src = getFallbackTripPhoto(r.trip);
-                    }}
+                    src={r.avatar}
+                    alt={r.name}
+                    className="absolute inset-0 w-full h-full object-cover object-top"
                   />
-                ) : (
-                  <Image
-                    src={r.tripPhoto}
-                    alt={`${r.name} — ${r.trip}`}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                {/* Trip + platform at bottom of photo */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 flex items-end justify-between">
-                  <span className="bg-white/15 text-white text-[10px] font-semibold uppercase tracking-wide px-2.5 py-1 rounded-full">
-                    {r.trip}
-                  </span>
-                  <div className="flex items-center gap-1 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-full">
-                    <BadgeCheck className="w-3 h-3 text-blue-400" />
-                    <span className="text-[10px] text-white/70">{r.platform}</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3 flex items-end justify-between">
+                    <span className="bg-white/15 text-white text-[10px] font-semibold uppercase tracking-wide px-2.5 py-1 rounded-full">
+                      {r.trip}
+                    </span>
+                    <div className="flex items-center gap-1 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-full">
+                      <BadgeCheck className="w-3 h-3 text-blue-400" />
+                      <span className="text-[10px] text-white/70">{r.platform}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <div className="px-5 pt-5 pb-2 flex items-center justify-between shrink-0">
+                  <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-400 bg-gray-100 px-2.5 py-1 rounded-full">
+                    {r.trip}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <BadgeCheck className="w-3 h-3 text-blue-400" />
+                    <span className="text-[10px] text-gray-400">{r.platform}</span>
+                  </div>
+                </div>
+              )}
 
               <div className="p-5 flex flex-col flex-1">
                 {/* Stars */}
