@@ -1568,7 +1568,7 @@ function DomesticDestinationsContent() {
         <section className="bg-gray-900 text-white py-3">
           <div className="section-container">
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs font-semibold uppercase tracking-wider">
-              {['🇺🇸 Trusted by Americans', '🇬🇧 Loved in the UK', '🇦🇺 Top-rated in Australia', '⭐ 4.9 Google · 2,400+ reviews', '🏆 MSME Certified', '💳 Visa · Mastercard · Amex'].map((item) => (
+              {['🇺🇸 Trusted by Americans', '🇬🇧 Loved in the UK', '🇦🇺 Top-rated in Australia', '⭐ 4.9★ Google', '🏆 MSME Certified', '💳 Visa · Mastercard · Amex'].map((item) => (
                 <span key={item} className="whitespace-nowrap">{item}</span>
               ))}
             </div>

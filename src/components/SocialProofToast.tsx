@@ -6,7 +6,7 @@ import { TrendingUp, Users, Star, Clock } from 'lucide-react';
 // Stat-based toasts — no fake individual bookings
 const statToasts = [
   { icon: Users,      color: 'text-blue-500',  bg: 'bg-blue-50',   text: '25,000+ travelers have planned their trip with us' },
-  { icon: Star,       color: 'text-yellow-500', bg: 'bg-yellow-50', text: '4.9★ rated on Google · 2,400+ verified reviews' },
+  { icon: Star,       color: 'text-yellow-500', bg: 'bg-yellow-50', text: '4.9★ Google Rating' },
   { icon: TrendingUp, color: 'text-green-500',  bg: 'bg-green-50',  text: '98% of our travelers would book with us again' },
   { icon: Clock,      color: 'text-purple-500', bg: 'bg-purple-50', text: 'Average response time: under 45 minutes' },
   { icon: Users,      color: 'text-blue-500',   bg: 'bg-blue-50',   text: 'Travelers from 40+ countries planned with us this month' },

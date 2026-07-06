@@ -1003,7 +1003,7 @@ function ProfilePage({ onOpenSearch, onOpenClientLogin }: { onOpenSearch: () => 
         <div className="bg-white rounded-2xl shadow-sm p-4">
           <div className="flex items-center justify-center gap-4 flex-wrap">
             {[
-              { label: '⭐ 4.9 Rating', sub: '2,400+ reviews' },
+              { label: '⭐ 4.9 Rating', sub: 'Google Rating' },
               { label: '📜 MSME Certified', sub: 'Govt. of India' },
               { label: '🔒 Secure Pay', sub: 'PCI-DSS' },
             ].map(({ label, sub }) => (

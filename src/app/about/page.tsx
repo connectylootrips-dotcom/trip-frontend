@@ -119,7 +119,7 @@ export default function AboutPage() {
                     { title: 'AI-Powered Planning', desc: 'Smart trip builder + Yloo AI assistant.', icon: '🤖' },
                     { title: '10% Cashback', desc: 'WanderLoot rewards on every booking.', icon: '💰' },
                     { title: 'EMI Options', desc: '0% cost EMI — travel now, pay later.', icon: '📆' },
-                    { title: 'Verified Reviews', desc: '4.9★ from 2,400+ real travelers.', icon: '⭐' },
+                    { title: 'Verified Reviews', desc: '4.9★ Google Rating.', icon: '⭐' },
                   ].map(({ title, desc, icon }) => (
                     <div key={title} className="flex items-start gap-3">
                       <span className="text-2xl shrink-0">{icon}</span>
@@ -481,7 +481,7 @@ export default function AboutPage() {
               { label: '📜 MSME Certified', sub: 'Ministry of MSME' },
               { label: '🧾 GST Registered', sub: 'Tax-Compliant Business' },
               { label: '🔒 PCI-DSS Compliant', sub: 'Secure Payment Processing' },
-              { label: '⭐ 4.9 Google Rating', sub: '2,400+ Verified Reviews' },
+              { label: '⭐ 4.9 Google Rating', sub: 'Google Rating' },
             ].map(({ label, sub }) => (
               <div key={label} className="flex flex-col items-center px-5 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm">
                 <div className="font-bold text-sm text-gray-800 dark:text-gray-100">{label}</div>

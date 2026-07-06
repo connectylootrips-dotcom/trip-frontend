@@ -106,7 +106,7 @@ export default function TrustBanner() {
                   ))}
                 </div>
               </div>
-              <div className="text-[9px] text-primary/40 leading-none mt-0.5">2,400+ Google reviews</div>
+              <div className="text-[9px] text-primary/40 leading-none mt-0.5">Google Rating</div>
             </div>
           </div>
 

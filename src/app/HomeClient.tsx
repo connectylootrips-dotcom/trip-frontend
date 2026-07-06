@@ -494,21 +494,40 @@ export default function HomeClient({ content, destinations }: HomeClientProps) {
     <>
       {/* 1 — Hero: full-screen immersive entry point */}
       <Hero
-        content={content?.hero}
-        stats={content?.stats}
+        content={content?.hero ? {
+          ...content.hero,
+          // Strip review counts from CMS eyebrow text
+          eyebrow: content.hero.eyebrow
+            ? content.hero.eyebrow.replace(/·?\s*2,?400\+?\s*(verified\s*)?reviews?/gi, '').replace(/\s+·\s*$/, '').trim()
+            : content.hero.eyebrow,
+        } : content?.hero}
+        stats={content?.stats?.map(s => ({
+          ...s,
+          // Strip review counts from any stat label
+          label: s.label.replace(/·?\s*2,?400\+?\s*(verified\s*)?reviews?/gi, '').replace(/\s*[-—]\s*$/, '').trim(),
+          value: s.value.replace(/2,?400\+?\s*(verified\s*)?reviews?/gi, '').trim(),
+        }))}
       />
 
       {/* 2 — Social proof micro-bar */}
       <div className="bg-gray-950 py-2.5 overflow-x-auto scrollbar-hide">
         <div className="flex items-center justify-center gap-6 md:gap-10 px-4 whitespace-nowrap">
           {[
-            { icon: '⭐', text: '4.9/5 Google Rating', sub: '2,400+ reviews' },
+            { icon: '⭐', text: '4.9/5 Google Rating', sub: 'Google Rating', href: 'https://share.google/RltJUJHq75aa8yfAl' },
             { icon: '✈️', text: '25,000+ Trips Booked', sub: 'since 2022' },
             { icon: '🔒', text: '100% Secure Payments', sub: 'Easebuzz & SSL' },
             { icon: '📞', text: 'Reply in < 1 Hour', sub: '24/7 support' },
             { icon: '🏆', text: 'MSME Certified', sub: 'UDYAM-HR-05-0141455' },
-          ].map(({ icon, text, sub }) => (
-            <div key={text} className="flex items-center gap-2 shrink-0">
+          ].map(({ icon, text, sub, href }) => (
+            href
+              ? <a key={text} href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 shrink-0 hover:opacity-80 transition-opacity">
+                  <span className="text-sm">{icon}</span>
+                  <div>
+                    <p className="text-white text-[11px] font-semibold leading-tight underline decoration-dotted underline-offset-2">{text}</p>
+                    <p className="text-white/40 text-[9px] leading-tight">{sub}</p>
+                  </div>
+                </a>
+              : <div key={text} className="flex items-center gap-2 shrink-0">
               <span className="text-sm">{icon}</span>
               <div>
                 <p className="text-white text-[11px] font-semibold leading-tight">{text}</p>

@@ -13,7 +13,7 @@ import {
 const STATS = [
   { value: '3+',  label: 'Years',       sub: 'Est. 2022',    icon: Award,         grad: 'from-amber-400 to-orange-500'  },
   { value: '25K+', label: 'Travelers',   sub: '40+ countries',   icon: Users,         grad: 'from-blue-400 to-violet-500'   },
-  { value: '4.9★', label: 'Rating',      sub: '',  icon: Star,          grad: 'from-yellow-400 to-amber-500'  },
+  { value: '4.9★', label: 'Rating',      sub: 'Click to verify',  icon: Star,          grad: 'from-yellow-400 to-amber-500', href: 'https://share.google/RltJUJHq75aa8yfAl'  },
   { value: '98%',  label: 'Satisfaction',sub: 'Would recommend', icon: HeartHandshake,grad: 'from-pink-400 to-rose-500'     },
 ];
 
@@ -53,7 +53,7 @@ const HOTELS = [
 ];
 
 const REVIEW_PLATFORMS = [
-  { name: 'Google Reviews', short: '⭐ Google', style: 'font-bold text-gray-700 dark:text-gray-200', href: 'https://www.google.com/search?q=ylootrips+reviews' },
+  { name: 'Google Reviews', short: '⭐ Google', style: 'font-bold text-gray-700 dark:text-gray-200', href: 'https://share.google/RltJUJHq75aa8yfAl' },
   { name: 'TripAdvisor',    short: '🦉 TripAdvisor', style: 'font-bold text-[#00af87]',  href: '/tripadvisor' },
   { name: 'WhatsApp',       short: '💬 WhatsApp', style: 'font-bold text-green-600',     href: 'https://wa.me/918427831127' },
   { name: 'Trustpilot',     short: '✅ Trustpilot', style: 'font-bold text-emerald-600', href: '/reviews' },
@@ -77,7 +77,7 @@ const CERTS = [
   { icon: '🔐', label: 'SSL Secured',      sub: '256-bit encrypted'},
   { icon: '💳', label: 'PCI-DSS',          sub: 'Payment security' },
   { icon: '⏳', label: '3+ Years',        sub: 'Since 2022'       },
-  { icon: '⭐', label: '4.9★ Google',      sub: ''   },
+  { icon: '⭐', label: '4.9★ Google',      sub: 'Verify', href: 'https://share.google/RltJUJHq75aa8yfAl' },
 ];
 
 const FLAGS = ['🇺🇸','🇬🇧','🇦🇺','🇨🇦','🇩🇪','🇫🇷','🇳🇱','🇯🇵','🇸🇬','🇨🇭','🇸🇪','🇳🇿','🇦🇹','🇮🇹','🇪🇸','🇮🇱','🇰🇷','🇿🇦','🇧🇷','🇵🇹'];
@@ -139,16 +139,20 @@ export default function TrustHub() {
 
         {/* ── Stats ───────────────────────────────────────────────────────── */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {STATS.map(({ value, label, sub, icon: Icon, grad }) => (
-            <div key={label} className="group text-center bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl p-5 md:p-7 hover:border-amber-200 hover:shadow-lg transition-all duration-300">
+          {STATS.map(({ value, label, sub, icon: Icon, grad, href } : { value: string; label: string; sub: string; icon: React.ElementType; grad: string; href?: string }) => {
+            const cardClass = "group text-center bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl p-5 md:p-7 hover:border-amber-200 hover:shadow-lg transition-all duration-300";
+            const inner = <>
               <div className="w-10 h-10 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
                 <Icon size={18} className="text-gray-600 dark:text-gray-300" />
               </div>
               <div className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-1">{value}</div>
               <div className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-0.5">{label}</div>
               <div className="text-[10px] text-gray-400 dark:text-gray-500">{sub}</div>
-            </div>
-          ))}
+            </>;
+            return href
+              ? <Link key={label} href={href} target="_blank" rel="noopener noreferrer" className={cardClass}>{inner}</Link>
+              : <div key={label} className={cardClass}>{inner}</div>;
+          })}
         </div>
 
 
@@ -266,13 +270,16 @@ export default function TrustHub() {
         <div className="bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl px-6 py-5">
           <p className="text-[9px] text-gray-400 uppercase tracking-[0.3em] text-center mb-4">Verified Credentials</p>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-            {CERTS.map(c => (
-              <div key={c.label} className="text-center group">
+            {CERTS.map(c => {
+              const certInner = <>
                 <div className="text-2xl mb-1 group-hover:scale-110 transition-transform duration-200">{c.icon}</div>
                 <div className="text-[10px] font-bold text-gray-800 dark:text-gray-200">{c.label}</div>
                 <div className="text-[8px] text-gray-500 dark:text-gray-400 mt-0.5">{c.sub}</div>
-              </div>
-            ))}
+              </>;
+              return (c as { href?: string }).href
+                ? <Link key={c.label} href={(c as { href: string }).href} target="_blank" rel="noopener noreferrer" className="text-center group hover:opacity-80 transition-opacity">{certInner}</Link>
+                : <div key={c.label} className="text-center group">{certInner}</div>;
+            })}
           </div>
         </div>
 

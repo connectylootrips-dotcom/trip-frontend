@@ -4,7 +4,7 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Contact YlooTrips — Plan Your India Trip Today',
-  description: 'Get in touch with YlooTrips India Pvt. Ltd. to plan your perfect India journey. Reply within 1 hour via WhatsApp (+91 84278 31127) or email. Custom itineraries, group tours, and honeymoon packages.',
+  description: 'Get in touch with YlooTrips (Ambe Enterprise) to plan your perfect India journey. Reply within 1 hour via WhatsApp (+91 84278 31127) or email. Custom itineraries, group tours, and honeymoon packages.',
   keywords: 'contact YlooTrips, India tour inquiry, plan India trip, custom India tour, India travel agent contact, WhatsApp India tour, New Delhi travel agent',
   openGraph: {
     title: 'Contact YlooTrips | Plan Your India Trip Today',

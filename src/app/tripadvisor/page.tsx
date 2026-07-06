@@ -9,7 +9,7 @@ import { BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: 'YlooTrips on TripAdvisor — Reviews, Rating & Profile',
-  description: 'YlooTrips on TripAdvisor: India\'s highest-rated budget travel company. 4.9★ Google rating, 2,400+ verified reviews. Book Manali, Goa, Kashmir, Bali, Dubai packages. Leave your review on TripAdvisor.',
+  description: 'YlooTrips on TripAdvisor: India\'s highest-rated budget travel company. 4.9★ Google rating. Book Manali, Goa, Kashmir, Bali, Dubai packages. Leave your review on TripAdvisor.',
   keywords: 'YlooTrips TripAdvisor, YlooTrips reviews TripAdvisor, ylootrips.com TripAdvisor, India tour operator TripAdvisor, best travel company India TripAdvisor',
   openGraph: {
     title: 'YlooTrips on TripAdvisor | India\'s Top-Rated Travel Company',
@@ -96,7 +96,7 @@ const BADGES = [
   { icon: Award, label: 'Travelers\' Choice', sub: 'Top Operator 2026', color: 'from-amber-500 to-orange-500' },
   { icon: Shield, label: 'MSME Certified', sub: 'Govt. of India Registered', color: 'from-blue-500 to-blue-600' },
   { icon: Users, label: '25,000+ Trips', sub: 'Since 2022', color: 'from-green-500 to-emerald-600' },
-  { icon: ThumbsUp, label: '4.9 / 5.0', sub: '2,400+ Google reviews', color: 'from-purple-500 to-violet-600' },
+  { icon: ThumbsUp, label: '4.9 / 5.0', sub: 'Google Rating', color: 'from-purple-500 to-violet-600' },
 ];
 
 const PACKAGES = [
@@ -136,7 +136,7 @@ export default function TripAdvisorPage() {
         },
         {
           question: 'How do I leave a TripAdvisor review for YlooTrips?',
-          answer: 'Visit tripadvisor.in/Profile/ylootrips and click "Write a Review". You need a TripAdvisor account. You can also leave a Google review at g.page/r/ylootrips/review.',
+          answer: 'Visit tripadvisor.in/Profile/ylootrips and click "Write a Review". You need a TripAdvisor account. You can also leave a Google review at share.google/RltJUJHq75aa8yfAl.',
         },
         {
           question: 'What is YlooTrips\' TripAdvisor rating?',
@@ -144,7 +144,7 @@ export default function TripAdvisorPage() {
         },
         {
           question: 'Is YlooTrips a legitimate travel company?',
-          answer: 'Yes. YlooTrips India Pvt. Ltd. is MSME-registered (UDYAM-HR-05-0141455) and GST-certified (07BATPV1942C1ZF) — a fully compliant Indian travel company operating since 2022 from New Delhi.',
+          answer: 'Yes. YlooTrips (Ambe Enterprise) is MSME-registered (UDYAM-HR-05-0141455) and GST-certified (07BATPV1942C1ZF) — a fully compliant Indian travel company operating since 2022 from New Delhi.',
         },
       ]} />
 
@@ -191,7 +191,7 @@ export default function TripAdvisorPage() {
                   <span className="text-white/60 text-sm">/ 5.0</span>
                 </div>
                 <span className="text-white/40">|</span>
-                <span className="text-sm text-white/80">2,400+ verified reviews</span>
+                
                 <span className="text-white/40">|</span>
                 <span className="text-sm text-white/80">25,000+ trips</span>
               </div>
@@ -207,7 +207,7 @@ export default function TripAdvisorPage() {
                   View on TripAdvisor
                 </Link>
                 <Link
-                  href="https://g.page/r/ylootrips/review"
+                  href="https://share.google/RltJUJHq75aa8yfAl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/15 border border-white/30 text-white font-semibold text-sm rounded-full backdrop-blur-sm hover:bg-white/25 transition-all"
@@ -255,7 +255,7 @@ export default function TripAdvisorPage() {
                   <div className="text-5xl font-black text-gray-900 leading-none">4.9</div>
                   <div>
                     <Stars n={5} size={20} />
-                    <p className="text-sm text-gray-400 mt-1.5">Based on 2,400+ reviews</p>
+                    
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -276,7 +276,7 @@ export default function TripAdvisorPage() {
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                 <h2 className="font-bold text-gray-900 mb-4">About YlooTrips</h2>
                 <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                  YlooTrips India Pvt. Ltd. is India&apos;s highest-rated budget travel company —
+                  YlooTrips (Ambe Enterprise) is India&apos;s highest-rated budget travel company —
                   MSME registered, GST certified, and trusted by 25,000+ travelers from 40+ countries since 2022.
                   We offer domestic trips (Manali, Goa, Kashmir, Kerala, Rajasthan) and international packages
                   (Bali, Dubai, Thailand, Singapore, Maldives).
@@ -348,14 +348,14 @@ export default function TripAdvisorPage() {
                     <ExternalLink className="w-4 h-4 text-[#00aa6c]" />
                   </Link>
                   <Link
-                    href="https://g.co/kgs/ylootrips"
+                    href="https://share.google/RltJUJHq75aa8yfAl"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-3 rounded-xl border border-blue-100 bg-blue-50/50 hover:bg-blue-50 transition-colors"
                   >
                     <div className="flex-1">
                       <div className="font-semibold text-sm text-gray-900">Google</div>
-                      <div className="text-xs text-gray-500">4.9★ · 2,400+ reviews</div>
+                      <div className="text-xs text-gray-500">4.9★ Google</div>
                     </div>
                     <ExternalLink className="w-4 h-4 text-blue-500" />
                   </Link>
@@ -381,7 +381,7 @@ export default function TripAdvisorPage() {
                     Review on TripAdvisor
                   </Link>
                   <Link
-                    href="https://g.page/r/ylootrips/review"
+                    href="https://share.google/RltJUJHq75aa8yfAl"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 inline-flex items-center justify-center gap-2 py-3 bg-white/15 border border-white/30 text-white font-semibold text-sm rounded-xl hover:bg-white/25 transition-colors"
@@ -396,7 +396,7 @@ export default function TripAdvisorPage() {
               <div>
                 <h2 className="font-bold text-gray-900 text-lg mb-4 flex items-center gap-2">
                   Traveler Reviews
-                  <span className="text-sm font-normal text-gray-400 ml-1">({REVIEWS.length} shown · 2,400+ total)</span>
+                  <span className="text-sm font-normal text-gray-400 ml-1">({REVIEWS.length} shown)</span>
                   <span className="ml-auto px-2.5 py-0.5 bg-[#00aa6c]/10 text-[#00aa6c] text-xs font-semibold rounded-full">
                     Verified
                   </span>

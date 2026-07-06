@@ -922,7 +922,7 @@ export default function Hero({ content, stats }: HeroProps) {
                     <div className="mt-5 flex flex-wrap items-center justify-center gap-5 sm:gap-8">
                         <div className="flex items-center gap-2 text-white/80 text-sm">
                             <Star size={15} className="text-amber-400 fill-amber-400" />
-                            <span><strong className="text-white">4.9/5</strong> · 2,400+ reviews</span>
+                            <span><strong className="text-white">4.9/5</strong> Google Rating</span>
                         </div>
                         <div className="flex items-center gap-2 text-white/80 text-sm">
                             <Shield size={15} className="text-green-400" />

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const trustSignals = [
   { icon: Shield, label: 'MSME Registered', sub: 'Govt. of India' },
-  { icon: Star, label: '4.9★ Google', sub: '2,400+ reviews' },
+  { icon: Star, label: '4.9★ Google', sub: 'Google Rating' },
   { icon: Users, label: '25,000+', sub: 'Travelers served' },
   { icon: Globe, label: '48 Countries', sub: 'Visitors hosted' },
   { icon: Award, label: 'Est. 2022', sub: '3 Years experience' },

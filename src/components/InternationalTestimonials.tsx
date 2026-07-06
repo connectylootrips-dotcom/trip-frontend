@@ -3,206 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Star, BadgeCheck, Quote, X, Loader2, CheckCircle, PenLine } from 'lucide-react';
 import Image from 'next/image';
+import { staticReviews as reviews } from '@/lib/static-reviews';
 
-
-/* ─── DATA ─────────────────────────────────────────────────────────────── */
-
-const reviews = [
-  // ── Indian travelers ──────────────────────────────────────────────────────
-  {
-    name: 'Sagar',
-    flag: '🇮🇳',
-    country: 'Gurugram, Haryana',
-    rating: 5,
-    trip: 'Kashmir Tour Package',
-    date: 'May 2026',
-    platform: 'Google',
-    avatar: '/reviews/sagar-kashmir.jpg',
-    tripPhoto: '/reviews/sagar-kashmir.jpg',
-    text: 'Our Kashmir trip with YLOO Trips was absolutely wonderful. From the beautiful valleys of Gulmarg and Pahalgam to the peaceful Dal Lake in Srinagar, every moment was memorable. The hotels, transportation, and sightseeing were perfectly arranged. The entire journey was smooth and stress-free. Thank you, YLOO Trips, for giving us an unforgettable holiday. Highly recommended!',
-  },
-  {
-    name: 'Prerna and Aditya',
-    flag: '🇮🇳',
-    country: 'Rohtak, Haryana',
-    rating: 5,
-    trip: 'Darjeeling Package',
-    date: 'July 2026',
-    platform: 'Google',
-    avatar: '/reviews/aditya-prerna-darjeeling.jpg',
-    tripPhoto: '/reviews/aditya-prerna-darjeeling.jpg',
-    text: 'I recently visited Darjeeling, and it was an amazing experience. The weather was pleasant, the scenery was beautiful, and the mountains were absolutely breathtaking. Every part of the trip was well planned and hassle-free. It was truly one of the best trips I have ever had. Thank you, YLOO Trips, for making this journey so memorable. Highly recommended!',
-  },
-  {
-    name: 'Avnish and Shivani',
-    flag: '🇮🇳',
-    country: 'Gurugram, Haryana',
-    rating: 5,
-    trip: 'Lakshadweep Island Package',
-    date: 'April 2026',
-    platform: 'Google',
-    avatar: '/reviews/lakshadweep-couple.jpg',
-    tripPhoto: '/reviews/lakshadweep-couple.jpg',
-    text: 'Recently visited Lakshadweep through Ylootrips.com and it was an incredible experience! The itinerary was well-planned, accommodations were comfortable, and the entire trip was smooth from start to finish. The team was supportive and always available for assistance. Lakshadweep itself is breathtaking, and Ylootrips made the journey even more memorable. Highly recommend booking with them!',
-  },
-  {
-    name: 'Neha & Rohan Sharma',
-    flag: '🇮🇳',
-    country: 'Mumbai, Maharashtra',
-    rating: 5,
-    trip: 'Bali Honeymoon Package',
-    date: 'March 2026',
-    platform: 'Google',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
-    text: 'Humari Bali honeymoon bilkul sapne jaisi thi! Overwater villa, private dinner, volcano sunrise — YlooTrips ne har cheez arrange ki. Paise kamaal ka vasool hua. Dil se shukriya team ko! 🙏',
-  },
-  {
-    name: 'Aditya Nair',
-    flag: '🇮🇳',
-    country: 'Bangalore, Karnataka',
-    rating: 5,
-    trip: 'Thailand Budget Trip',
-    date: 'February 2026',
-    platform: 'Google',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=800&q=80',
-    text: 'Pehli international trip thi — Thailand ne expectations se kaafi zyada diya. Phi Phi Islands toh zindagi bhar yaad rahegi. Coordinator WhatsApp pe hamesha available tha. Har rupee worth it!',
-  },
-  {
-    name: 'Vikram & Ananya Singh',
-    flag: '🇮🇳',
-    country: 'New Delhi, India',
-    rating: 5,
-    trip: 'Dubai Tour Package',
-    date: 'January 2026',
-    platform: 'TripAdvisor',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
-    text: 'Desert safari, Burj Khalifa, Dubai Mall — sab kuch perfect tha. Visa ka koi tension nahi, YlooTrips ne sab handle kiya. Ek baar aur zaroor jayenge. Highly recommend karta hoon sabko! 👍',
-  },
-  {
-    name: 'Meera & Suresh Iyer',
-    flag: '🇮🇳',
-    country: 'Chennai, Tamil Nadu',
-    rating: 5,
-    trip: 'Kerala Backwaters Tour',
-    date: 'December 2025',
-    platform: 'Google',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
-    text: 'Anniversary trip ke liye Kerala choose kiya — YlooTrips ki team ne jo itinerary banaya woh outstanding tha. Houseboat pe sunset dekhna aur fresh Kerala food… aisi memories jo kabhi nahi bhoolenge.',
-  },
-  {
-    name: 'Rajan & Preethi Pillai',
-    flag: '🇮🇳',
-    country: 'Kochi, Kerala',
-    rating: 5,
-    trip: 'Maldives Luxury Package',
-    date: 'February 2026',
-    platform: 'Google',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80',
-    text: 'Maldives mein overwater villa — yeh sirf sapne mein hota tha, lekin YlooTrips ne sach kar dikhaya. Dolphin cruise aur sandbank picnic best experiences rahe. Poori team ka bahut shukriya! ❤️',
-  },
-  {
-    name: 'Karan Malhotra',
-    flag: '🇮🇳',
-    country: 'Chandigarh, Punjab',
-    rating: 5,
-    trip: '7-Day Rajasthan Heritage',
-    date: 'November 2025',
-    platform: 'Google',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?w=800&q=80',
-    text: 'Rajasthan trip ekdum mast rahi yaar! Jaipur, Jodhpur, Udaipur — teen cities, teen alag worlds. Private car aur guide tha, koi rush nahi. Jitni photos li sab Instagram pe viral ho gayi 😄',
-  },
-  // ── International travelers ───────────────────────────────────────────────
-  {
-    name: 'Sarah Mitchell',
-    flag: '🇺🇸',
-    country: 'San Francisco, USA',
-    rating: 5,
-    trip: '10-Day Golden Triangle',
-    date: 'March 2026',
-    platform: 'Google',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80',
-    text: 'The Taj Mahal at sunrise was indescribable — I still get chills. YlooTrips made our first India trip absolutely seamless. Our guide knew stories about every monument. India is intense in the best way.',
-  },
-  {
-    name: 'James & Emma Hargreaves',
-    flag: '🇬🇧',
-    country: 'London, UK',
-    rating: 5,
-    trip: '14-Day Kerala & South India',
-    date: 'February 2026',
-    platform: 'TripAdvisor',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
-    text: 'The Kerala houseboat was the most romantic two days of our lives. YlooTrips answered every WhatsApp within minutes — even for last-minute hotel changes. Five stars without hesitation.',
-  },
-  {
-    name: 'Lachlan Burgess',
-    flag: '🇦🇺',
-    country: 'Melbourne, Australia',
-    rating: 5,
-    trip: '7-Day Rajasthan Heritage',
-    date: 'January 2026',
-    platform: 'Google',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?w=800&q=80',
-    text: 'Rajasthan blew my mind — forts, camels, the blue city of Jodhpur. I came solo and felt completely safe the whole time. Stayed in boutique heritage properties every night. 100% booking again.',
-  },
-  {
-    name: 'Priya Sharma',
-    flag: '🇨🇦',
-    country: 'Toronto, Canada',
-    rating: 5,
-    trip: '12-Day North India & Himalayas',
-    date: 'October 2025',
-    platform: 'Google',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80',
-    text: 'YlooTrips built me a completely custom itinerary — off-the-beaten-path temples, cooking classes in Varanasi, and the Kalka-Shimla mountain railway. Nothing was copy-pasted. Pure magic.',
-  },
-  {
-    name: 'Vikram & Ananya',
-    flag: '🇮🇳',
-    country: 'Delhi, India',
-    rating: 5,
-    trip: 'Dubai Tour Package',
-    date: 'January 2026',
-    platform: 'TripAdvisor',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
-    text: 'Desert safari at sunset, Burj Khalifa at night, breakfast with the skyline view — everything was perfect. The visa assistance alone saved so much stress. YlooTrips handles everything.',
-  },
-  {
-    name: 'Chloé Dubois',
-    flag: '🇫🇷',
-    country: 'Paris, France',
-    rating: 5,
-    trip: '14-Day Kerala & South India',
-    date: 'September 2025',
-    platform: 'Google',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?w=800&q=80',
-    text: 'Kerala — tea estates, spice gardens, traditional Kathakali arranged just for our group. The food recommendations were outstanding. YlooTrips is professional, warm, genuinely passionate. Je reviendrai!',
-  },
-  {
-    name: 'Katrin & Markus',
-    flag: '🇩🇪',
-    country: 'Munich, Germany',
-    rating: 4,
-    trip: '10-Day Golden Triangle',
-    date: 'November 2025',
-    platform: 'TripAdvisor',
-    avatar: '',
-    tripPhoto: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80',
-    text: 'Every hotel was better than expected. The private car and driver made all the difference — comfortable, safe, stopping wherever we wanted for photos. We wish we had one more day in Varanasi.',
-  },
-];
 
 const stats = [
   { value: '25,000+', label: 'Happy Travelers' },
@@ -544,7 +346,7 @@ export default function InternationalTestimonials() {
       } else {
         el.scrollBy({ left: 360, behavior: 'smooth' });
       }
-    }, 2000);
+    }, 5000);
     return () => clearInterval(id);
   }, []);
 
@@ -646,7 +448,8 @@ export default function InternationalTestimonials() {
                   <img
                     src={r.avatar}
                     alt={r.name}
-                    className="absolute inset-0 w-full h-full object-cover object-top"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ objectPosition: (r as { photoPosition?: string }).photoPosition || 'center' }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 flex items-end justify-between">

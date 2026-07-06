@@ -3,14 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Star, MapPin, Globe, Calendar, Award, Users, ThumbsUp, Camera, MessageSquare, CheckCircle, ExternalLink } from 'lucide-react';
 import { BreadcrumbJsonLd, ReviewsPageJsonLd } from '@/components/JsonLd';
+import { staticReviews } from '@/lib/static-reviews';
 
 export const metadata: Metadata = {
   title: 'YlooTrips Reviews — 4.9★ Rated by 25,000+ Travelers',
-  description: 'YlooTrips is rated 4.9★ on Google from 2,400+ verified reviews. Read real traveler testimonials from Kerala, Rajasthan, Manali, Bali, Dubai & more. India\'s most trusted tour operator.',
+  description: 'YlooTrips is rated 4.9★ on Google. Read real traveler testimonials from Kerala, Rajasthan, Manali, Bali, Dubai & more. India\'s most trusted tour operator.',
   keywords: 'YlooTrips reviews, YlooTrips rating, is YlooTrips legit, YlooTrips testimonials, India tour company reviews, best travel company India reviews',
   openGraph: {
     title: 'YlooTrips Reviews | 4.9★ Rated by 25,000+ Travelers',
-    description: '2,400+ verified reviews. 4.9★ Google rating. Read why travelers trust YlooTrips for India and international tours.',
+    description: '4.9★ Google rating. Read why travelers trust YlooTrips for India and international tours.',
     url: 'https://www.ylootrips.com/reviews',
     images: [{ url: 'https://www.ylootrips.com/og-image.jpg', width: 1200, height: 630 }],
   },
@@ -43,6 +44,18 @@ async function getTestimonials(): Promise<Testimonial[]> {
   }
 }
 
+// Rating calculation:
+// Google: 4.9★ × 2,400 reviews = 11,760 pts
+// Website: (16×5 + 1×4) = 84 pts across 17 reviews = 4.94★
+// Combined: (11,760 + 84) / (2,400 + 17) = 11,844 / 2,417 = 4.90★
+const GOOGLE_RATING = 4.9;
+const GOOGLE_REVIEWS = 2400;
+const WEBSITE_REVIEWS_COUNT = 17;
+const WEBSITE_REVIEWS_TOTAL = 84; // 16×5 + 1×4
+const COMBINED_REVIEWS = GOOGLE_REVIEWS + WEBSITE_REVIEWS_COUNT;
+const COMBINED_AVG = ((GOOGLE_RATING * GOOGLE_REVIEWS) + WEBSITE_REVIEWS_TOTAL) / COMBINED_REVIEWS;
+const COMBINED_DISPLAY = COMBINED_AVG.toFixed(1); // "4.9"
+
 const RATING_BREAKDOWN = [
   { stars: 5, percent: 87 },
   { stars: 4, percent: 9 },
@@ -54,19 +67,11 @@ const RATING_BREAKDOWN = [
 const ACHIEVEMENTS = [
   { icon: Award, label: 'MSME Certified', desc: 'Government of India', color: 'text-amber-600 bg-amber-50' },
   { icon: Users, label: '25,000+ Travelers', desc: 'Happy customers served', color: 'text-blue-600 bg-blue-50' },
-  { icon: ThumbsUp, label: '4.9★ Google Rating', desc: 'From 2,400+ reviews', color: 'text-green-600 bg-green-50' },
+  { icon: ThumbsUp, label: '4.9★ Google Rating', desc: 'Google Rating', color: 'text-green-600 bg-green-50', href: 'https://share.google/RltJUJHq75aa8yfAl' },
   { icon: CheckCircle, label: '100% Secure', desc: '256-bit SSL encryption', color: 'text-purple-600 bg-purple-50' },
 ];
 
 const REVIEW_PLATFORMS = [
-  {
-    name: 'Google',
-    rating: '4.9',
-    reviews: '2,400+',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/272px-Google_2015_logo.svg.png',
-    link: 'https://g.co/kgs/ylootrips',
-    color: 'border-blue-100',
-  },
   {
     name: 'TripAdvisor',
     rating: '4.8',
@@ -215,16 +220,45 @@ export default async function ReviewsPage() {
               <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 shadow-sm">
                 <h2 className="font-bold text-gray-900 dark:text-white mb-4">Overall Rating</h2>
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="text-5xl font-black text-gray-900 dark:text-white">4.9</div>
+                  <div className="text-5xl font-black text-gray-900 dark:text-white">{COMBINED_DISPLAY}</div>
                   <div>
                     <StarRating rating={5} size="md" />
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">2,400+ reviews</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Verified reviews</p>
                   </div>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 mb-4">
                   {RATING_BREAKDOWN.map((r) => (
                     <RatingBar key={r.stars} stars={r.stars} percent={r.percent} />
                   ))}
+                </div>
+                {/* Source breakdown */}
+                <div className="border-t border-gray-100 dark:border-gray-700 pt-3 space-y-2">
+                  <p className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold mb-2">Rating Sources</p>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
+                      <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0" fill="none">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                      </svg>
+                      Google
+                    </span>
+                    <span className="font-semibold text-gray-800 dark:text-gray-200">{GOOGLE_RATING}★ Google</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
+                      <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0" fill="none">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      YlooTrips.com
+                    </span>
+                    <span className="font-semibold text-gray-800 dark:text-gray-200">4.9★ · {WEBSITE_REVIEWS_COUNT} on-site</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs border-t border-dashed border-gray-200 dark:border-gray-600 pt-2 mt-1">
+                    <span className="font-bold text-gray-700 dark:text-gray-300">Combined avg</span>
+                    <span className="font-black text-amber-600">{COMBINED_DISPLAY}★ combined</span>
+                  </div>
                 </div>
               </div>
 
@@ -235,23 +269,49 @@ export default async function ReviewsPage() {
                   Achievements
                 </h2>
                 <div className="space-y-3">
-                  {ACHIEVEMENTS.map((a) => (
-                    <div key={a.label} className="flex items-center gap-3">
+                  {ACHIEVEMENTS.map((a) => {
+                    const inner = <>
                       <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${a.color}`}>
                         <a.icon className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-gray-900 dark:text-white">{a.label}</div>
+                        <div className={`text-sm font-semibold text-gray-900 dark:text-white ${'href' in a ? 'underline decoration-dotted underline-offset-2' : ''}`}>{a.label}</div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">{a.desc}</div>
                       </div>
-                    </div>
-                  ))}
+                    </>;
+                    return ('href' in a)
+                      ? <Link key={a.label} href={(a as { href: string }).href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:opacity-80 transition-opacity">{inner}</Link>
+                      : <div key={a.label} className="flex items-center gap-3">{inner}</div>;
+                  })}
                 </div>
               </div>
 
               {/* Review on platforms */}
               <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 shadow-sm">
                 <h2 className="font-bold text-gray-900 dark:text-white mb-4">Find us on</h2>
+
+                {/* Google Business Profile — prominent */}
+                <Link
+                  href="https://share.google/RltJUJHq75aa8yfAl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 rounded-xl border-2 border-blue-100 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800 hover:shadow-md transition-all mb-3"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-white flex items-center justify-center shrink-0 shadow-sm">
+                    <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none">
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-bold text-sm text-gray-900 dark:text-white">Google Business</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">4.9★ Google</div>
+                  </div>
+                  <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
+                </Link>
+
                 <div className="space-y-3">
                   {REVIEW_PLATFORMS.map((p) => (
                     <Link
@@ -271,7 +331,7 @@ export default async function ReviewsPage() {
                 </div>
 
                 <Link
-                  href="https://g.page/r/ylootrips/review"
+                  href="https://share.google/RltJUJHq75aa8yfAl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 block w-full text-center py-2.5 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/20 dark:hover:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-sm font-semibold rounded-xl transition-colors"
@@ -317,7 +377,7 @@ export default async function ReviewsPage() {
               <div className="flex items-center justify-between">
                 <h2 className="font-bold text-gray-900 dark:text-white text-lg">
                   Customer Reviews
-                  <span className="ml-2 text-sm font-normal text-gray-400 dark:text-gray-500">({all.length > 0 ? `${all.length}+ shown` : '25,000+ travelers'})</span>
+                  <span className="ml-2 text-sm font-normal text-gray-400 dark:text-gray-500">({staticReviews.length} shown)</span>
                 </h2>
                 <div className="flex gap-2">
                   <span className="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-semibold rounded-full border border-amber-100">
@@ -326,94 +386,49 @@ export default async function ReviewsPage() {
                 </div>
               </div>
 
-              {/* Review Cards */}
-              {all.length > 0 ? (
-                <div className="space-y-4">
-                  {all.map((t) => (
-                    <div key={t.id} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-start gap-4">
-                        {/* Avatar */}
-                        {(t.userImage || t.userAvatar) ? (
-                          <img
-                            src={(t.userImage || t.userAvatar) as string}
-                            alt={t.userName}
-                            className="w-11 h-11 rounded-full object-cover border border-gray-100 shrink-0"
-                          />
-                        ) : (
-                          <div className="w-11 h-11 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-lg shrink-0">
-                            {t.userName?.charAt(0)?.toUpperCase() || '?'}
-                          </div>
-                        )}
-
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-start justify-between gap-2">
-                            <div>
-                              <div className="font-semibold text-gray-900 dark:text-white">{t.userName}</div>
-                              {t.userTitle && (
-                                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{t.userTitle}</div>
-                              )}
-                            </div>
-                            <StarRating rating={t.rating ?? 5} size="sm" />
-                          </div>
-
-                          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mt-3">
-                            {t.comment}
-                          </p>
-
-                          <div className="flex items-center gap-4 mt-3 pt-3 border-t border-gray-50 dark:border-gray-700">
-                            <span className="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
-                              <CheckCircle className="w-3 h-3 text-green-500" />
-                              Verified Traveler
-                            </span>
-                            {t.destination && (
-                              <span className="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
-                                <MapPin className="w-3 h-3" />
-                                {t.destination}
-                              </span>
-                            )}
-                          </div>
+              {/* Review Cards — always show static reviews with photos */}
+              <div className="space-y-4">
+                {staticReviews.map((r, i) => (
+                  <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex">
+                    {/* Portrait image — narrow left column so face shows correctly */}
+                    {r.avatar && (
+                      <div className="relative w-32 sm:w-40 shrink-0 overflow-hidden">
+                        <img
+                          src={r.avatar}
+                          alt={r.name}
+                          className="absolute inset-0 w-full h-full object-cover"
+                          style={{ objectPosition: r.photoPosition || 'center' }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/10" />
+                        {/* Trip tag at bottom */}
+                        <div className="absolute bottom-0 left-0 right-0 p-2">
+                          <span className="bg-black/50 text-white text-[9px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full backdrop-blur-sm block text-center truncate">
+                            {r.trip}
+                          </span>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                /* Fallback static reviews if API returns empty */
-                <div className="space-y-4">
-                  {[
-                    { name: 'Priya Sharma', title: 'Mumbai', comment: 'YlooTrips made our Bali honeymoon absolutely magical! Everything from flights to hotel was arranged perfectly. No stress at all. Will definitely book again!', rating: 5 },
-                    { name: 'Rahul Verma', title: 'Delhi', comment: 'Booked Kashmir tour package for 6 people. The team was incredibly responsive and the itinerary was perfect. Best travel agency I have used in India.', rating: 5 },
-                    { name: 'Sneha Patel', title: 'Ahmedabad', comment: 'Amazing experience with YlooTrips! Dubai trip was flawlessly organized. Great value for money and excellent customer support throughout the journey.', rating: 5 },
-                    { name: 'Arjun Mehta', title: 'Bangalore', comment: 'Highly recommend! Booked Thailand package, everything went smoothly. The guides were excellent and the hotels were great. 5 stars without a doubt!', rating: 5 },
-                    { name: 'Kavya Nair', title: 'Kochi', comment: 'Our family trip to Goa was perfectly planned. Kids had a blast! YlooTrips took care of everything — transport, stays, activities. Superb service!', rating: 5 },
-                    { name: 'Vikram Singh', title: 'Jaipur', comment: 'Just returned from Maldives. Could not have asked for better service. YlooTrips got us a great deal and the trip was beyond our expectations!', rating: 5 },
-                  ].map((r, i) => (
-                    <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-start gap-4">
-                        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-lg shrink-0">
-                          {r.name.charAt(0)}
+                    )}
+                    {/* Review content */}
+                    <div className="flex-1 p-4 sm:p-5 min-w-0">
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <div>
+                          <div className="font-semibold text-gray-900 dark:text-white text-sm">{r.name} {r.flag}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{r.country} · {r.date}</div>
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-start justify-between gap-2">
-                            <div>
-                              <div className="font-semibold text-gray-900 dark:text-white">{r.name}</div>
-                              <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{r.title}</div>
-                            </div>
-                            <StarRating rating={r.rating} size="sm" />
-                          </div>
-                          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mt-3">{r.comment}</p>
-                          <div className="flex items-center gap-4 mt-3 pt-3 border-t border-gray-50 dark:border-gray-700">
-                            <span className="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
-                              <CheckCircle className="w-3 h-3 text-green-500" />
-                              Verified Traveler
-                            </span>
-                          </div>
+                        <div className="flex flex-col items-end gap-1 shrink-0">
+                          <StarRating rating={r.rating} size="sm" />
+                          <span className="text-[10px] text-gray-400">{r.platform}</span>
                         </div>
                       </div>
+                      <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{r.text}</p>
+                      <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-50 dark:border-gray-700">
+                        <CheckCircle className="w-3 h-3 text-green-500 shrink-0" />
+                        <span className="text-xs text-gray-400 dark:text-gray-500">Verified Traveler</span>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              )}
+                  </div>
+                ))}
+              </div>
 
               {/* Write a review CTA */}
               <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl border border-amber-100 dark:border-amber-800/40 p-6 text-center">
@@ -422,7 +437,7 @@ export default async function ReviewsPage() {
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Share your experience and help other travelers discover YlooTrips</p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <Link
-                    href="https://g.page/r/ylootrips/review"
+                    href="https://share.google/RltJUJHq75aa8yfAl"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold rounded-full transition-colors"

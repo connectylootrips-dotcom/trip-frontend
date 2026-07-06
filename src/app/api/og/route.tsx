@@ -103,7 +103,7 @@ export async function GET(req: NextRequest) {
                   <span style={{ color: GOLD, fontSize: '16px' }}>★★★★★</span>
                   <span style={{ color: TEXT_MID, fontSize: '15px', fontFamily: 'serif' }}>4.9 / 5.0</span>
                 </div>
-                <span style={{ color: TEXT_LOW, fontSize: '11px', letterSpacing: '3px', fontFamily: 'serif' }}>2,400+ VERIFIED REVIEWS</span>
+                <span style={{ color: TEXT_LOW, fontSize: '11px', letterSpacing: '3px', fontFamily: 'serif' }}>4.9★ GOOGLE RATING</span>
               </div>
             </div>
 

@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero';
 
 export const metadata: Metadata = {
   title: 'Partnerships — Work With YlooTrips',
-  description: 'Partner with YlooTrips India Pvt. Ltd. — hotels, guides, transport providers, and travel agents. Join our network serving 25,000+ travelers from 40+ countries.',
+  description: 'Partner with YlooTrips (Ambe Enterprise) — hotels, guides, transport providers, and travel agents. Join our network serving 25,000+ travelers from 40+ countries.',
   alternates: { canonical: 'https://www.ylootrips.com/partnerships' },
 };
 

@@ -43,6 +43,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/trips',
+        destination: '/destinations/domestic',
+        permanent: false,
+      },
+      {
         source: '/(.*)',
         has: [{ type: 'host', value: 'ylootrips.com' }],
         destination: 'https://www.ylootrips.com/:path*',

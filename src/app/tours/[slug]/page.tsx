@@ -358,7 +358,7 @@ export default async function TourPage({ params }: Props) {
               <div className="bg-cream-light border border-primary/8 p-5 space-y-4">
                 <p className="text-caption uppercase tracking-[0.3em] text-secondary">Why Book With Us</p>
                 {[
-                  { icon: Shield, text: 'Fully licensed & MSME certified', sub: 'India Pvt. Ltd. registered' },
+                  { icon: Shield, text: 'Fully licensed & MSME certified', sub: 'Ambe Enterprise (MSME registered)' },
                   { icon: Award, text: '4.9★ on Google Reviews', sub: `${tour.reviewCount}+ verified reviews` },
                   { icon: ThumbsUp, text: '25,000+ travellers since 2022', sub: '40+ source countries' },
                   { icon: CreditCard, text: 'Secure international payment', sub: 'USD, EUR, GBP, AUD accepted' },

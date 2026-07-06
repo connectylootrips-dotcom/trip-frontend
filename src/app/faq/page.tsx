@@ -21,7 +21,7 @@ const faqs = [
     items: [
       {
         question: 'What is YlooTrips?',
-        answer: 'YlooTrips (ylootrips.com) is an Indian travel company — Ambe Enterprise — headquartered in New Delhi, India. MSME registered (UDYAM-HR-05-0141455), GST certified (07BATPV1942C1ZF), and rated 4.9★ by 2,400+ verified travelers. We have served 25,000+ travelers from 40+ countries since 2022.',
+        answer: 'YlooTrips (ylootrips.com) is an Indian travel company — Ambe Enterprise — headquartered in New Delhi, India. MSME registered (UDYAM-HR-05-0141455), GST certified (07BATPV1942C1ZF), and rated 4.9★ on Google. We have served 25,000+ travelers from 40+ countries since 2022.',
       },
       {
         question: 'Is YlooTrips a registered and legitimate company?',

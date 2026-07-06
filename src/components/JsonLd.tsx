@@ -91,7 +91,7 @@ export function OrganizationJsonLd() {
           'https://in.pinterest.com/ylootrips',
           'https://www.threads.net/@ylootrips',
           'https://www.tripadvisor.in/Profile/ylootrips',
-          'https://g.co/kgs/ylootrips',
+          'https://share.google/RltJUJHq75aa8yfAl',
           'https://www.wikidata.org/wiki/Q139764225',
         ],
         aggregateRating: {
