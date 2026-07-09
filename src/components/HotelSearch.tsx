@@ -19,6 +19,10 @@ interface HotelResult {
   reviewCount: number;
   description: string;
   thumbnail: string;
+  images: string[];
+  address?: string;
+  latitude?: number;
+  longitude?: number;
   amenities: string[];
   checkIn: string;
   checkOut: string;
@@ -74,10 +78,11 @@ interface BookingModalProps {
   checkOut: string;
   rooms: number;
   adults: number;
+  roomType: string;
   onClose: () => void;
 }
 
-function BookingModal({ hotel, nights, checkIn, checkOut, rooms, adults, onClose }: BookingModalProps) {
+function BookingModal({ hotel, nights, checkIn, checkOut, rooms, adults, roomType, onClose }: BookingModalProps) {
   const [guest, setGuest] = useState({ name: '', email: '', phone: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -123,7 +128,7 @@ function BookingModal({ hotel, nights, checkIn, checkOut, rooms, adults, onClose
           <div>
             <h2 className="font-display text-xl leading-snug">{hotel.name}</h2>
             <p className="text-white/70 text-xs mt-1">
-              {checkIn} → {checkOut} · {nights} night{nights > 1 ? 's' : ''} · {rooms} room{rooms > 1 ? 's' : ''} · {adults} guest{adults > 1 ? 's' : ''}
+              {roomType} · {checkIn} → {checkOut} · {nights} night{nights > 1 ? 's' : ''} · {rooms} room{rooms > 1 ? 's' : ''} · {adults} guest{adults > 1 ? 's' : ''}
             </p>
           </div>
           <button onClick={onClose} className="shrink-0 text-white/70 hover:text-white transition-colors mt-0.5">
@@ -206,123 +211,227 @@ interface HotelCardProps {
 function HotelCard({ hotel, nights, checkIn, checkOut, rooms, adults }: HotelCardProps) {
   const [expanded, setExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const fmt = (n: number) =>
-    n ? `₹${n.toLocaleString('en-IN')}` : 'Price on request';
+  const [selectedRoomIdx, setSelectedRoomIdx] = useState(0);
+  const [imgIdx, setImgIdx] = useState(0);
+
+  const ROOM_TYPES = [
+    { label: 'Standard Room', multiplier: 1, bed: '1 Double Bed', desc: 'Comfortable room with essential amenities' },
+    { label: 'Deluxe Room', multiplier: 1.3, bed: '1 King Bed', desc: 'Spacious room with premium furnishings & view' },
+    { label: 'Suite', multiplier: 1.7, bed: '1 King + Sofa Bed', desc: 'Luxury suite with separate living area' },
+  ];
+
+  const roomType = ROOM_TYPES[selectedRoomIdx];
+  const base = hotel.pricePerNight;
+  const adjustedPPN = base ? Math.ceil(base * roomType.multiplier / 100) * 100 : 0;
+  const adjustedTotal = adjustedPPN * nights * rooms;
+
+  const images = hotel.images?.length ? hotel.images : hotel.thumbnail ? [hotel.thumbnail] : [];
+  const mapUrl = hotel.latitude && hotel.longitude
+    ? `https://www.google.com/maps?q=${hotel.latitude},${hotel.longitude}`
+    : `https://www.google.com/maps/search/${encodeURIComponent(hotel.name)}`;
+  const fmt = (n: number) => n ? `₹${n.toLocaleString('en-IN')}` : 'Price on request';
 
   return (
     <>
       {showModal && (
         <BookingModal
-          hotel={hotel}
+          hotel={{ ...hotel, pricePerNight: adjustedPPN, totalPrice: adjustedTotal }}
           nights={nights}
           checkIn={checkIn}
           checkOut={checkOut}
           rooms={rooms}
           adults={adults}
+          roomType={roomType.label}
           onClose={() => setShowModal(false)}
         />
       )}
       <div className="bg-white rounded-2xl overflow-hidden border border-sand/50 shadow-sm hover:shadow-md transition-shadow">
-        {/* Image + badge row */}
-        <div className="relative h-48 overflow-hidden">
-          {hotel.thumbnail ? (
-            <Image
-              src={hotel.thumbnail}
-              alt={hotel.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              unoptimized
-            />
-          ) : (
-            <div className="h-full bg-sand/40 flex items-center justify-center">
-              <BedDouble size={40} className="text-secondary/30" />
-            </div>
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-
-          <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
-            {hotel.type}
-          </span>
-
-          {hotel.isDemo && (
-            <span className="absolute top-3 right-3 bg-amber-400/90 text-primary text-[10px] font-bold px-2.5 py-1 rounded-full">
-              Sample prices
+        <div className="flex flex-col sm:flex-row">
+          {/* Image section with carousel */}
+          <div className="relative sm:w-52 md:w-60 h-52 sm:h-auto flex-shrink-0 overflow-hidden">
+            {images.length > 0 ? (
+              <>
+                <Image
+                  src={images[imgIdx]}
+                  alt={hotel.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 240px"
+                  unoptimized
+                />
+                {images.length > 1 && (
+                  <>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setImgIdx(i => Math.max(0, i - 1)); }}
+                      className="absolute left-1.5 top-1/2 -translate-y-1/2 bg-black/50 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm hover:bg-black/70 transition-colors"
+                    >‹</button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setImgIdx(i => Math.min(images.length - 1, i + 1)); }}
+                      className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-black/50 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm hover:bg-black/70 transition-colors"
+                    >›</button>
+                    <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
+                      {images.slice(0, 5).map((_, dotIdx) => (
+                        <button
+                          key={dotIdx}
+                          onClick={(e) => { e.stopPropagation(); setImgIdx(dotIdx); }}
+                          className={`w-1.5 h-1.5 rounded-full transition-colors ${dotIdx === imgIdx ? 'bg-white' : 'bg-white/50'}`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+              </>
+            ) : (
+              <div className="h-full bg-sand/40 flex items-center justify-center">
+                <BedDouble size={40} className="text-secondary/30" />
+              </div>
+            )}
+            <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
+              {hotel.type}
             </span>
-          )}
-
-          <div className="absolute bottom-3 left-3">
-            <StarRating stars={hotel.starClass} />
+            {hotel.isDemo && (
+              <span className="absolute top-3 right-3 bg-amber-400/90 text-primary text-[10px] font-bold px-2 py-1 rounded-full">
+                Sample
+              </span>
+            )}
           </div>
-        </div>
 
-        {/* Body */}
-        <div className="p-4">
-          <div className="flex items-start justify-between gap-3 mb-2">
-            <div>
-              <h3 className="font-display text-lg text-primary leading-snug">{hotel.name}</h3>
-              {hotel.overallRating > 0 && (
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className="bg-green-600 text-white text-[11px] font-bold px-1.5 py-0.5 rounded">
-                    {hotel.overallRating.toFixed(1)}
+          {/* Content */}
+          <div className="flex-1 p-4 flex flex-col min-w-0">
+            {/* Header */}
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex-1 min-w-0">
+                <StarRating stars={hotel.starClass} />
+                <h3 className="font-display text-lg text-primary leading-snug mt-0.5">{hotel.name}</h3>
+                {/* Location */}
+                <a
+                  href={mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-xs text-accent hover:underline mt-0.5"
+                >
+                  <MapPin size={11} />
+                  <span className="truncate">{hotel.address ?? 'View on map'}</span>
+                </a>
+                {hotel.overallRating > 0 && (
+                  <div className="flex items-center gap-1.5 mt-1.5">
+                    <span className="bg-green-600 text-white text-[11px] font-bold px-1.5 py-0.5 rounded">
+                      {hotel.overallRating.toFixed(1)}
+                    </span>
+                    <span className="text-xs text-secondary">
+                      {hotel.reviewCount > 0 && `${hotel.reviewCount.toLocaleString('en-IN')} reviews`}
+                    </span>
+                  </div>
+                )}
+              </div>
+              {/* Price */}
+              <div className="text-right shrink-0">
+                <p className="font-display text-xl text-primary">{fmt(adjustedPPN)}</p>
+                <p className="text-[11px] text-secondary">per night</p>
+                {nights > 1 && (
+                  <p className="text-xs text-secondary/70 mt-0.5">{fmt(adjustedTotal)} for {nights}N</p>
+                )}
+              </div>
+            </div>
+
+            {/* Description */}
+            {hotel.description && (
+              <p className={`text-xs text-secondary leading-relaxed mt-2 ${expanded ? '' : 'line-clamp-2'}`}>
+                {hotel.description}
+              </p>
+            )}
+
+            {/* Amenities */}
+            {hotel.amenities.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {hotel.amenities.slice(0, expanded ? undefined : 4).map((a) => (
+                  <AmenityPill key={a} label={a} />
+                ))}
+                {!expanded && hotel.amenities.length > 4 && (
+                  <span className="text-[11px] text-accent font-medium self-center">
+                    +{hotel.amenities.length - 4} more
                   </span>
-                  <span className="text-xs text-secondary">
-                    {hotel.reviewCount > 0 && `${hotel.reviewCount.toLocaleString('en-IN')} reviews`}
-                  </span>
+                )}
+              </div>
+            )}
+
+            {/* Expanded: Room selection + map */}
+            {expanded && (
+              <div className="mt-4 border-t border-sand/30 pt-4 space-y-4">
+                <div>
+                  <p className="text-[11px] font-semibold text-secondary uppercase tracking-widest mb-2">Choose Room Type</p>
+                  <div className="space-y-2">
+                    {ROOM_TYPES.map((rt, i) => {
+                      const rtPrice = base ? Math.ceil(base * rt.multiplier / 100) * 100 : 0;
+                      return (
+                        <label
+                          key={rt.label}
+                          className={`flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-colors ${
+                            selectedRoomIdx === i
+                              ? 'border-accent bg-accent/5'
+                              : 'border-sand/50 hover:border-accent/40 hover:bg-cream-light/50'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name={`room-${hotel.id}`}
+                            checked={selectedRoomIdx === i}
+                            onChange={() => setSelectedRoomIdx(i)}
+                            className="mt-0.5 accent-amber-400 shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-sm font-semibold text-primary">{rt.label}</span>
+                              <span className="text-sm font-display text-primary shrink-0">
+                                {fmt(rtPrice)}<span className="text-[11px] text-secondary font-normal">/night</span>
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-secondary mt-0.5 flex items-center gap-1">
+                              <BedDouble size={10} className="shrink-0" />{rt.bed} · {rt.desc}
+                            </p>
+                          </div>
+                        </label>
+                      );
+                    })}
+                  </div>
                 </div>
-              )}
+
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <div className="flex gap-4 text-[11px] text-secondary/70">
+                    <span>Check-in: <strong className="text-primary">{hotel.checkIn}</strong></span>
+                    <span>Check-out: <strong className="text-primary">{hotel.checkOut}</strong></span>
+                  </div>
+                  <a
+                    href={mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs text-accent hover:underline font-medium"
+                  >
+                    <MapPin size={12} />
+                    View on Google Maps
+                  </a>
+                </div>
+              </div>
+            )}
+
+            {/* Actions */}
+            <div className="flex gap-2 mt-3 pt-1">
+              <button
+                onClick={() => setShowModal(true)}
+                disabled={!adjustedTotal}
+                className="flex-1 flex items-center justify-center gap-2 bg-accent text-primary text-sm font-semibold py-2.5 rounded-xl hover:bg-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <CreditCard size={14} />
+                {adjustedTotal ? `Book · ${fmt(adjustedTotal)}` : 'Book Now'}
+              </button>
+              <button
+                onClick={() => setExpanded(v => !v)}
+                title={expanded ? 'Show less' : 'Room details & more'}
+                className="px-3 py-2.5 rounded-xl border border-sand/60 text-secondary hover:bg-cream-light transition-colors"
+              >
+                {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              </button>
             </div>
-
-            <div className="text-right shrink-0">
-              <p className="font-display text-xl text-primary">{fmt(hotel.pricePerNight)}</p>
-              <p className="text-[11px] text-secondary">per night</p>
-              {nights > 1 && (
-                <p className="text-xs text-secondary/70 mt-0.5">
-                  {fmt(hotel.totalPrice)} total ({nights}N)
-                </p>
-              )}
-            </div>
-          </div>
-
-          {hotel.description && (
-            <p className={`text-xs text-secondary leading-relaxed mb-3 ${expanded ? '' : 'line-clamp-2'}`}>
-              {hotel.description}
-            </p>
-          )}
-
-          {hotel.amenities.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {hotel.amenities.slice(0, expanded ? undefined : 4).map((a) => (
-                <AmenityPill key={a} label={a} />
-              ))}
-              {!expanded && hotel.amenities.length > 4 && (
-                <span className="text-[11px] text-accent font-medium self-center">
-                  +{hotel.amenities.length - 4} more
-                </span>
-              )}
-            </div>
-          )}
-
-          <div className="flex gap-4 text-[11px] text-secondary/70 mb-4">
-            <span>Check-in: <strong className="text-primary">{hotel.checkIn}</strong></span>
-            <span>Check-out: <strong className="text-primary">{hotel.checkOut}</strong></span>
-          </div>
-
-          <div className="flex gap-2">
-            <button
-              onClick={() => setShowModal(true)}
-              disabled={!hotel.totalPrice}
-              className="flex-1 flex items-center justify-center gap-2 bg-accent text-primary text-sm font-semibold py-2.5 rounded-xl hover:bg-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <CreditCard size={14} />
-              Book Now
-            </button>
-            <button
-              onClick={() => setExpanded((v) => !v)}
-              className="px-3 py-2.5 rounded-xl border border-sand/60 text-secondary hover:bg-cream-light transition-colors"
-            >
-              {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </button>
           </div>
         </div>
       </div>
@@ -518,7 +627,7 @@ export default function HotelSearch() {
         )}
 
         {loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 gap-5">
             {[...Array(4)].map((_, i) => (
               <div key={i} className="bg-white rounded-2xl overflow-hidden animate-pulse border border-sand/50">
                 <div className="h-48 bg-sand/60" />
@@ -580,7 +689,7 @@ export default function HotelSearch() {
             )}
 
             {/* Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 gap-5">
               {sorted.map((hotel) => (
                 <HotelCard
                   key={hotel.id}

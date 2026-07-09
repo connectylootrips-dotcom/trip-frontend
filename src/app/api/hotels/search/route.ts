@@ -14,6 +14,10 @@ export interface HotelResult {
   reviewCount: number;
   description: string;
   thumbnail: string;
+  images: string[];            // multiple photos
+  address?: string;            // street / neighbourhood
+  latitude?: number;
+  longitude?: number;
   amenities: string[];
   checkIn: string;
   checkOut: string;
@@ -39,13 +43,15 @@ interface SerpProperty {
   overall_rating?: number;
   reviews?: number;
   description?: string;
-  images?: { thumbnail?: string }[];
+  images?: { thumbnail?: string; original_image?: string }[];
   amenities?: string[];
   check_in_time?: string;
   check_out_time?: string;
   rate_per_night?: SerpRate;
   total_rate?: SerpRate;
   link?: string;
+  address?: string;
+  gps_coordinates?: { latitude: number; longitude: number };
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -66,6 +72,11 @@ function mapProperty(p: SerpProperty, nights: number, idx: number): HotelResult 
   const pricePerNight = rawPerNight ? applyMarkup(rawPerNight) : 0;
   const totalPrice = rawTotal ? applyMarkup(rawTotal) : pricePerNight * nights;
 
+  const images = (p.images ?? [])
+    .map(img => img.thumbnail ?? img.original_image ?? '')
+    .filter(Boolean)
+    .slice(0, 6);
+
   return {
     id: p.property_token ?? `SERP-${idx}`,
     isDemo: false,
@@ -75,7 +86,11 @@ function mapProperty(p: SerpProperty, nights: number, idx: number): HotelResult 
     overallRating: p.overall_rating ?? 0,
     reviewCount: p.reviews ?? 0,
     description: p.description ?? '',
-    thumbnail: p.images?.[0]?.thumbnail ?? '',
+    thumbnail: images[0] ?? '',
+    images,
+    address: p.address,
+    latitude: p.gps_coordinates?.latitude,
+    longitude: p.gps_coordinates?.longitude,
     amenities: p.amenities?.slice(0, 8) ?? [],
     checkIn: p.check_in_time ?? '12:00 PM',
     checkOut: p.check_out_time ?? '11:00 AM',
@@ -96,6 +111,12 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     reviewCount: 1284,
     description: 'An opulent resort nestled amid lush greenery, offering world-class amenities and breathtaking views. Perfect for a luxury getaway.',
     thumbnail: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80',
+      'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80',
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80',
+    ],
+    address: 'Resort Area, Hill Station',
     amenities: ['Pool', 'Spa', 'Free WiFi', 'Restaurant', 'Gym', 'Room Service', 'Bar', 'Parking'],
     checkIn: '2:00 PM',
     checkOut: '12:00 PM',
@@ -111,6 +132,11 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     reviewCount: 867,
     description: 'A comfortable mid-range hotel with all essential amenities. Centrally located for easy access to local attractions.',
     thumbnail: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80',
+      'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80',
+    ],
+    address: 'City Centre, Main Road',
     amenities: ['Free WiFi', 'AC', 'Restaurant', 'Room Service', 'Parking', '24hr Reception'],
     checkIn: '12:00 PM',
     checkOut: '11:00 AM',
@@ -126,6 +152,11 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     reviewCount: 2103,
     description: 'A vibrant community hostel loved by solo travellers. Great social vibes, hearty breakfasts, and unbeatable value.',
     thumbnail: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80',
+      'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80',
+    ],
+    address: 'Backpacker Street, Old Town',
     amenities: ['Free WiFi', 'Common Room', 'Lockers', 'Café', 'Laundry', 'Tours Desk'],
     checkIn: '1:00 PM',
     checkOut: '11:00 AM',
@@ -141,6 +172,12 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     reviewCount: 543,
     description: 'A beautifully restored heritage property with hand-painted murals and traditional décor. An immersive cultural experience.',
     thumbnail: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80',
+      'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&q=80',
+      'https://images.unsplash.com/photo-1600011689032-8b628b8a8747?w=600&q=80',
+    ],
+    address: 'Heritage Quarter, Old City',
     amenities: ['Free WiFi', 'Pool', 'Heritage Tours', 'Restaurant', 'Rooftop', 'Spa'],
     checkIn: '2:00 PM',
     checkOut: '11:00 AM',
@@ -156,6 +193,10 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     reviewCount: 312,
     description: 'No-frills, clean and safe accommodation right in the heart of the city. Ideal for budget-conscious travellers.',
     thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    ],
+    address: 'Near Bus Stand, Market Area',
     amenities: ['Free WiFi', 'AC', 'Hot Water', '24hr Security'],
     checkIn: '12:00 PM',
     checkOut: '10:00 AM',
@@ -171,6 +212,11 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     reviewCount: 731,
     description: 'Unique treehouse cottages surrounded by jungle canopy. Fall asleep to birdsong and wake up to misty valley views.',
     thumbnail: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&q=80',
+      'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=600&q=80',
+    ],
+    address: 'Forest Zone, Valley Road',
     amenities: ['Nature Walks', 'Bonfire', 'Organic Meals', 'Birdwatching', 'Free WiFi', 'Parking'],
     checkIn: '1:00 PM',
     checkOut: '11:00 AM',
