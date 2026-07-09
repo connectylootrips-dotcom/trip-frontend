@@ -24,7 +24,7 @@ const playfair = Playfair_Display({
   weight: ['400', '500', '600', '700'],
 });
 
-const GA_ID = 'G-D70RVF66E1';
+const GA_ID = 'G-QE08T7YJFS';
 
 export const metadata: Metadata = {
   title: {
