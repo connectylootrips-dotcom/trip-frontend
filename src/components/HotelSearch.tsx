@@ -256,8 +256,9 @@ function HotelCard({ hotel, nights, checkIn, checkOut, rooms, adults }: HotelCar
                   alt={hotel.name}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 100vw, 240px"
-                  unoptimized
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 208px, 240px"
+                  quality={90}
+                  unoptimized={!images[imgIdx]?.startsWith('https://images.unsplash.com')}
                 />
                 {images.length > 1 && (
                   <>

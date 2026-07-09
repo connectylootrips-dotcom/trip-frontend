@@ -73,7 +73,7 @@ function mapProperty(p: SerpProperty, nights: number, idx: number): HotelResult 
   const totalPrice = rawTotal ? applyMarkup(rawTotal) : pricePerNight * nights;
 
   const images = (p.images ?? [])
-    .map(img => img.thumbnail ?? img.original_image ?? '')
+    .map(img => img.original_image ?? img.thumbnail ?? '')
     .filter(Boolean)
     .slice(0, 6);
 
@@ -110,11 +110,11 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     overallRating: 4.7,
     reviewCount: 1284,
     description: 'An opulent resort nestled amid lush greenery, offering world-class amenities and breathtaking views. Perfect for a luxury getaway.',
-    thumbnail: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=90',
     images: [
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80',
-      'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80',
-      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80',
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=90',
+      'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1200&q=90',
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=90',
     ],
     address: 'Resort Area, Hill Station',
     amenities: ['Pool', 'Spa', 'Free WiFi', 'Restaurant', 'Gym', 'Room Service', 'Bar', 'Parking'],
@@ -131,10 +131,10 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     overallRating: 4.2,
     reviewCount: 867,
     description: 'A comfortable mid-range hotel with all essential amenities. Centrally located for easy access to local attractions.',
-    thumbnail: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1200&q=90',
     images: [
-      'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80',
-      'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80',
+      'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1200&q=90',
+      'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=90',
     ],
     address: 'City Centre, Main Road',
     amenities: ['Free WiFi', 'AC', 'Restaurant', 'Room Service', 'Parking', '24hr Reception'],
@@ -151,10 +151,10 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     overallRating: 4.4,
     reviewCount: 2103,
     description: 'A vibrant community hostel loved by solo travellers. Great social vibes, hearty breakfasts, and unbeatable value.',
-    thumbnail: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=90',
     images: [
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80',
-      'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80',
+      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=90',
+      'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1200&q=90',
     ],
     address: 'Backpacker Street, Old Town',
     amenities: ['Free WiFi', 'Common Room', 'Lockers', 'Café', 'Laundry', 'Tours Desk'],
@@ -171,11 +171,11 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     overallRating: 4.6,
     reviewCount: 543,
     description: 'A beautifully restored heritage property with hand-painted murals and traditional décor. An immersive cultural experience.',
-    thumbnail: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=90',
     images: [
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80',
-      'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&q=80',
-      'https://images.unsplash.com/photo-1600011689032-8b628b8a8747?w=600&q=80',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=90',
+      'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=1200&q=90',
+      'https://images.unsplash.com/photo-1600011689032-8b628b8a8747?w=1200&q=90',
     ],
     address: 'Heritage Quarter, Old City',
     amenities: ['Free WiFi', 'Pool', 'Heritage Tours', 'Restaurant', 'Rooftop', 'Spa'],
@@ -192,9 +192,9 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     overallRating: 3.9,
     reviewCount: 312,
     description: 'No-frills, clean and safe accommodation right in the heart of the city. Ideal for budget-conscious travellers.',
-    thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90',
     images: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90',
     ],
     address: 'Near Bus Stand, Market Area',
     amenities: ['Free WiFi', 'AC', 'Hot Water', '24hr Security'],
@@ -211,10 +211,10 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     overallRating: 4.8,
     reviewCount: 731,
     description: 'Unique treehouse cottages surrounded by jungle canopy. Fall asleep to birdsong and wake up to misty valley views.',
-    thumbnail: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&q=90',
     images: [
-      'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&q=80',
-      'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=600&q=80',
+      'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&q=90',
+      'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=1200&q=90',
     ],
     address: 'Forest Zone, Valley Road',
     amenities: ['Nature Walks', 'Bonfire', 'Organic Meals', 'Birdwatching', 'Free WiFi', 'Parking'],

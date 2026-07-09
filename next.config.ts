@@ -88,6 +88,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'trip-backend-65232427280.asia-south1.run.app' },
       { protocol: 'https', hostname: '*.googleusercontent.com' },
       { protocol: 'https', hostname: '*.amazonaws.com' },
+      { protocol: 'https', hostname: '*.gstatic.com' },
+      { protocol: 'https', hostname: '*.ggpht.com' },
     ],
   },
 
