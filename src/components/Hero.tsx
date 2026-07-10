@@ -243,7 +243,15 @@ export default function Hero({ content, stats }: HeroProps) {
     const [flightDate, setFlightDate] = useState('');
     const [flightReturn, setFlightReturn] = useState('');
     const [tripType, setTripType] = useState<'oneway' | 'return'>('oneway');
+    const [cabinClass, setCabinClass] = useState<'economy' | 'premium_economy' | 'business'>('economy');
     const [flightPax, setFlightPax] = useState(2);
+
+    const CABIN_OPTIONS = [
+        { id: 'economy' as const, label: 'Economy', multiplier: 1 },
+        { id: 'premium_economy' as const, label: 'Premium Eco', multiplier: 1.65 },
+        { id: 'business' as const, label: 'Business', multiplier: 2.8 },
+    ];
+    const cabinInfo = CABIN_OPTIONS.find(c => c.id === cabinClass) ?? CABIN_OPTIONS[0];
 
     // Flight results
     const [flightResults, setFlightResults] = useState<FlightResult[] | null>(null);
@@ -372,15 +380,19 @@ export default function Hero({ content, stats }: HeroProps) {
     , [flightResults, sortBy]);
 
     const buildBookingUrl = useCallback((f: FlightResult) => {
+        const multiplier = CABIN_OPTIONS.find(c => c.id === cabinClass)?.multiplier ?? 1;
         const p = new URLSearchParams({
             airline: f.airline, code: f.airlineCode, flightNum: f.flightNumber,
             from: f.departure.airport, to: f.arrival.airport,
             dep: f.departure.time, arr: f.arrival.time,
             date: flightDate, dur: f.durationFormatted,
-            stops: String(f.stops), pax: String(flightPax), price: String(f.totalPrice),
+            stops: String(f.stops), pax: String(flightPax),
+            price: String(Math.round(f.totalPrice * multiplier)),
+            cabin: cabinClass,
         });
         return `/flights/book?${p}`;
-    }, [flightDate, flightPax]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [flightDate, flightPax, cabinClass]);
 
     const currentAd = ads[adIndex];
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -545,14 +557,25 @@ export default function Hero({ content, stats }: HeroProps) {
                                     {/* ── FLIGHTS TAB ── */}
                                     {activeTab === 'flights' && (
                                         <>
-                                            {/* Trip type */}
-                                            <div className="flex gap-1 mb-3">
-                                                {(['oneway', 'return'] as const).map(t => (
-                                                    <button key={t} onClick={() => { setTripType(t); setFlightResults(null); }}
-                                                        className={`px-3 py-1 rounded-full text-xs font-semibold border transition-all ${tripType === t ? 'bg-gray-900 text-white border-gray-900' : 'border-gray-300 text-gray-500 hover:border-gray-300'}`}>
-                                                        {t === 'oneway' ? 'One Way' : 'Round Trip'}
-                                                    </button>
-                                                ))}
+                                            {/* Trip type + Cabin class */}
+                                            <div className="flex flex-wrap items-center gap-2 mb-3">
+                                                <div className="flex gap-1">
+                                                    {(['oneway', 'return'] as const).map(t => (
+                                                        <button key={t} onClick={() => { setTripType(t); setFlightResults(null); }}
+                                                            className={`px-3 py-1 rounded-full text-xs font-semibold border transition-all ${tripType === t ? 'bg-gray-900 text-white border-gray-900' : 'border-gray-300 text-gray-500 hover:border-gray-300'}`}>
+                                                            {t === 'oneway' ? 'One Way' : 'Round Trip'}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                                <div className="w-px h-4 bg-gray-200 hidden sm:block" />
+                                                <div className="flex gap-1">
+                                                    {CABIN_OPTIONS.map(c => (
+                                                        <button key={c.id} onClick={() => setCabinClass(c.id)}
+                                                            className={`px-3 py-1 rounded-full text-xs font-semibold border transition-all ${cabinClass === c.id ? 'bg-blue-600 text-white border-blue-600' : 'border-gray-300 text-gray-500 hover:border-blue-300'}`}>
+                                                            {c.label}
+                                                        </button>
+                                                    ))}
+                                                </div>
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-2 flex-wrap">
@@ -716,8 +739,8 @@ export default function Hero({ content, stats }: HeroProps) {
                                                             {/* Price + Book */}
                                                             <div className="flex sm:flex-col items-center sm:items-end gap-3 sm:gap-1 shrink-0">
                                                                 <div className="text-right">
-                                                                    <p className="text-xl font-bold text-gray-900">₹{fmt(f.totalPrice)}</p>
-                                                                    <p className="text-[10px] text-gray-400">₹{fmt(f.pricePerPerson)}/person</p>
+                                                                    <p className="text-xl font-bold text-gray-900">₹{fmt(Math.round(f.totalPrice * cabinInfo.multiplier))}</p>
+                                                                    <p className="text-[10px] text-gray-400">₹{fmt(Math.round(f.pricePerPerson * cabinInfo.multiplier))}/person</p>
                                                                     {f.seatsLeft && f.seatsLeft <= 5 && (
                                                                         <p className="text-[10px] text-red-500 font-semibold animate-pulse">{f.seatsLeft} seats left!</p>
                                                                     )}
