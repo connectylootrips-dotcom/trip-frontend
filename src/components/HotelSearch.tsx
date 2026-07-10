@@ -225,7 +225,26 @@ function HotelCard({ hotel, nights, checkIn, checkOut, rooms, adults }: HotelCar
   const adjustedPPN = base ? Math.ceil(base * roomType.multiplier / 100) * 100 : 0;
   const adjustedTotal = adjustedPPN * nights * rooms;
 
-  const images = hotel.images?.length ? hotel.images : hotel.thumbnail ? [hotel.thumbnail] : [];
+  const allImages = hotel.images?.length ? hotel.images : hotel.thumbnail ? [hotel.thumbnail] : [];
+
+  // Split images evenly across 3 room types (2 per type if 6 images)
+  const roomImages = useMemo(() => {
+    if (!allImages.length) return [[], [], []];
+    const third = Math.ceil(allImages.length / 3);
+    return [
+      allImages.slice(0, third),
+      allImages.slice(third, third * 2),
+      allImages.slice(third * 2),
+    ].map(g => g.length ? g : [allImages[0]]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hotel.id]);
+
+  // When expanded and a room is selected, show that room's images; otherwise show all
+  const images = expanded ? roomImages[selectedRoomIdx] : allImages;
+
+  // Reset carousel when room type changes
+  useEffect(() => { setImgIdx(0); }, [selectedRoomIdx]);
+
   const mapUrl = hotel.latitude && hotel.longitude
     ? `https://www.google.com/maps?q=${hotel.latitude},${hotel.longitude}`
     : `https://www.google.com/maps/search/${encodeURIComponent(hotel.name)}`;
@@ -288,7 +307,7 @@ function HotelCard({ hotel, nights, checkIn, checkOut, rooms, adults }: HotelCar
               </div>
             )}
             <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
-              {hotel.type}
+              {expanded ? roomType.label : hotel.type}
             </span>
             {hotel.isDemo && (
               <span className="absolute top-3 right-3 bg-amber-400/90 text-primary text-[10px] font-bold px-2 py-1 rounded-full">

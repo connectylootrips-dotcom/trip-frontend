@@ -112,9 +112,15 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     description: 'An opulent resort nestled amid lush greenery, offering world-class amenities and breathtaking views. Perfect for a luxury getaway.',
     thumbnail: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=90',
     images: [
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=90',
-      'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1200&q=90',
+      // Standard Room (idx 0–1)
       'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=90',
+      'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=90',
+      // Deluxe Room (idx 2–3)
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=90',
+      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200&q=90',
+      // Suite (idx 4–5)
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=90',
+      'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=90',
     ],
     address: 'Resort Area, Hill Station',
     amenities: ['Pool', 'Spa', 'Free WiFi', 'Restaurant', 'Gym', 'Room Service', 'Bar', 'Parking'],
@@ -133,8 +139,15 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     description: 'A comfortable mid-range hotel with all essential amenities. Centrally located for easy access to local attractions.',
     thumbnail: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1200&q=90',
     images: [
+      // Standard Room (idx 0–1)
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=90',
       'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1200&q=90',
+      // Deluxe Room (idx 2–3)
       'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=90',
+      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200&q=90',
+      // Suite (idx 4–5)
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=90',
+      'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=90',
     ],
     address: 'City Centre, Main Road',
     amenities: ['Free WiFi', 'AC', 'Restaurant', 'Room Service', 'Parking', '24hr Reception'],
@@ -153,8 +166,15 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     description: 'A vibrant community hostel loved by solo travellers. Great social vibes, hearty breakfasts, and unbeatable value.',
     thumbnail: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=90',
     images: [
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=90',
+      // Standard Room (idx 0–1)
       'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1200&q=90',
+      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=90',
+      // Deluxe Room (idx 2–3)
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=90',
+      'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=90',
+      // Suite (idx 4–5)
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=90',
+      'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=90',
     ],
     address: 'Backpacker Street, Old Town',
     amenities: ['Free WiFi', 'Common Room', 'Lockers', 'Café', 'Laundry', 'Tours Desk'],
@@ -173,8 +193,14 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     description: 'A beautifully restored heritage property with hand-painted murals and traditional décor. An immersive cultural experience.',
     thumbnail: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=90',
     images: [
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=90',
+      // Standard Room (idx 0–1)
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=90',
       'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=1200&q=90',
+      // Deluxe Room (idx 2–3)
+      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200&q=90',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=90',
+      // Suite (idx 4–5)
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=90',
       'https://images.unsplash.com/photo-1600011689032-8b628b8a8747?w=1200&q=90',
     ],
     address: 'Heritage Quarter, Old City',
@@ -194,7 +220,15 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     description: 'No-frills, clean and safe accommodation right in the heart of the city. Ideal for budget-conscious travellers.',
     thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90',
     images: [
+      // Standard Room (idx 0–1)
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=90',
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=90',
+      // Deluxe Room (idx 2–3)
+      'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=90',
+      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200&q=90',
+      // Suite (idx 4–5)
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=90',
+      'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=90',
     ],
     address: 'Near Bus Stand, Market Area',
     amenities: ['Free WiFi', 'AC', 'Hot Water', '24hr Security'],
@@ -213,8 +247,15 @@ const DEMO_HOTELS: Omit<HotelResult, 'id' | 'isDemo' | 'totalPrice'>[] = [
     description: 'Unique treehouse cottages surrounded by jungle canopy. Fall asleep to birdsong and wake up to misty valley views.',
     thumbnail: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&q=90',
     images: [
+      // Standard Room (idx 0–1)
       'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&q=90',
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=90',
+      // Deluxe Room (idx 2–3)
       'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=1200&q=90',
+      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200&q=90',
+      // Suite (idx 4–5)
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=90',
+      'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=90',
     ],
     address: 'Forest Zone, Valley Road',
     amenities: ['Nature Walks', 'Bonfire', 'Organic Meals', 'Birdwatching', 'Free WiFi', 'Parking'],
