@@ -43,6 +43,14 @@ const HOMEPAGE_FAQS = [
     question: 'What makes YlooTrips different from MakeMyTrip or Thomas Cook India?',
     answer: 'YlooTrips offers lowest prices (from ₹9,999), highest rating (4.9★ vs industry average 4.2★), only ₹5,000 advance (competitors require 30-50%), a free AI trip planner, and 24/7 WhatsApp support. We specialise in personalised group, family, honeymoon and solo travel — not just transactional bookings.',
   },
+  {
+    question: 'Can YlooTrips handle large group tours and corporate travel?',
+    answer: 'Yes. YlooTrips manages groups from 10 to 100+ travelers including corporate incentive tours, destination weddings, school trips, and large family reunions. We provide dedicated tour managers, customised itineraries, group hotel rates, and bulk transport. WhatsApp +91 84278 31127 for a group quote.',
+  },
+  {
+    question: 'Does YlooTrips offer Europe tour packages with visa assistance?',
+    answer: 'Yes. YlooTrips offers multi-country Europe tour packages from India (Paris, Rome, Amsterdam, Switzerland, Prague) starting ₹1,49,999. We provide full Schengen visa documentation assistance including appointment guidance, travel insurance, and hotel booking letters. Visit ylootrips.com/europe-tour-package-from-india.',
+  },
 ];
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://trip-backend-65232427280.asia-south1.run.app/api';
