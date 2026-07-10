@@ -113,6 +113,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/best-time-to-travel`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
     { url: `${BASE_URL}/visa`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
 
+    // Flight & hotel booking pages (discoverable but not booking flow)
+    { url: `${BASE_URL}/hotels`, lastModified: now, changeFrequency: 'weekly', priority: 0.82 },
+    { url: `${BASE_URL}/flights/checkin`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+
+    // High-intent keyword landing pages
+    { url: `${BASE_URL}/reel-to-trip`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${BASE_URL}/trip-planner`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
+
     // Visa destination pages
     ...['bali','dubai','thailand','singapore','maldives','malaysia','vietnam','sri-lanka','nepal','europe','uk','usa','canada','australia','japan','turkey','kenya','egypt'].map(d => ({
       url: `${BASE_URL}/visa/${d}`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.82,

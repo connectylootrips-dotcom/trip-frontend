@@ -17,7 +17,14 @@ export default function robots(): MetadataRoute.Robots {
                     '/my-booking',
                     '/payment-demo',
                     '/stories/write',
-                    '/*?*',             // block all query-string variants (prevents param abuse)
+                    '/flights/book',             // transactional — no SEO value
+                    '/flights/booking-success',  // post-payment — no SEO value
+                    '/hotels/booking-success',   // post-payment — no SEO value
+                    '/market/booking-success',   // post-payment — no SEO value
+                    '/market/booking-failure',   // error page — no SEO value
+                    '/vouchers/pdf',             // generated PDF — no SEO value
+                    '/profile',                  // user account — private
+                    '/*?*',                      // block all query-string variants (prevents param abuse)
                 ],
             },
             // ── AI Answer Engines — ALLOW (GEO: helps ChatGPT/Gemini recommend us) ──

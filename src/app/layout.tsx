@@ -28,43 +28,62 @@ const GA_ID = 'G-QE08T7YJFS';
 
 export const metadata: Metadata = {
   title: {
-    default: "YlooTrips — Safe & Budget India Tour Packages | Domestic & International Trips",
+    default: "YlooTrips — Safe, Budget & Luxury India Tour Packages | Domestic & International Trips",
     template: "%s | YlooTrips — India Travel Experts"
   },
-  description: "YlooTrips (Ambe Enterprise) — Book safe & affordable India tour packages. Domestic trips: Manali, Goa, Kashmir, Kerala, Rajasthan. International: Bali, Dubai, Thailand. 4.9★ rated · 25,000+ travelers · MSME certified.",
+  description: "YlooTrips — Book safe, affordable & luxury India tour packages. Budget trips from ₹9,999. Luxury packages with 5★ hotels. Manali, Goa, Kashmir, Kerala, Bali, Dubai, Maldives & more. 4.9★ rated · 25,000+ travelers · MSME certified.",
   keywords: [
+    // Budget
     "budget trips India",
-    "safe trips India",
     "affordable tour packages India",
-    "domestic trips India",
-    "best budget travel company India",
     "cheap India tour packages",
+    "best budget travel company India",
+    // Safe
+    "safe trips India",
+    "safe travel company India",
+    "trusted travel agency India",
+    // Luxury
+    "luxury trips India",
+    "luxury tour packages India",
+    "luxury travel company India",
+    "premium India tour packages",
+    // Domestic destinations
     "Manali trip package",
     "Kedarnath yatra package",
     "Goa tour package",
     "Kerala tour package",
+    "Kashmir tour package",
     "Rajasthan tour",
     "Spiti Valley trip",
+    "Ladakh tour package",
+    "Andaman tour package",
+    // International
     "international tour packages from India",
     "Bali tour package from India",
     "Dubai tour package from India",
     "Thailand trip from India",
+    "Maldives luxury package from India",
+    "Europe tour from India",
+    // Brand
     "YlooTrips",
     "Yloo Trips",
+    // Travel type
     "India trip planner",
-    "Golden Triangle tour",
     "best travel company India",
     "MSME certified travel agency",
     "group tours India",
     "honeymoon packages India",
     "solo travel India",
+    "solo female travel India",
     "family trips India",
     "weekend trips from Delhi",
     "Himalaya trekking packages",
+    "domestic trips India",
+    "Golden Triangle tour",
   ].join(", "),
   openGraph: {
-    title: "YlooTrips | Safe & Budget India Tour Packages — Domestic & International Trips",
-    description: "Safe, affordable India trips — Manali, Kedarnath, Goa, Kerala, Bali, Dubai & more. 4.9★ rated · 25,000+ travelers · MSME certified. Get your free itinerary in 1 hour.",
+    title: "YlooTrips | Safe, Budget & Luxury India Tour Packages — Domestic & International",
+    description: "Safe, affordable & luxury India trips from ₹9,999. Budget trips to Manali, Goa, Kashmir, luxury Maldives, Bali, Dubai & more. 4.9★ rated · 25,000+ travelers · MSME certified.",
     type: "website",
     siteName: "YlooTrips",
     url: "https://www.ylootrips.com",
