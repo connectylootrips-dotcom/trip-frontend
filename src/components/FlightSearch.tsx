@@ -1,10 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
-import { Plane, ArrowUpDown, Calendar, Users, Search, Clock, Zap, MessageCircle, AlertCircle, X, ChevronDown } from 'lucide-react';
+import { Plane, ArrowUpDown, Calendar, Users, Search, Clock, Zap, MessageCircle, AlertCircle, X, ChevronDown, SlidersHorizontal } from 'lucide-react';
 
 const CITIES = [
-  // ── India ──────────────────────────────────────────────
   { name: 'New Delhi',             code: 'DEL', intl: false },
   { name: 'Mumbai',                code: 'BOM', intl: false },
   { name: 'Bangalore',             code: 'BLR', intl: false },
@@ -35,7 +35,6 @@ const CITIES = [
   { name: 'Thiruvananthapuram',    code: 'TRV', intl: false },
   { name: 'Coimbatore',            code: 'CJB', intl: false },
   { name: 'Mangalore',             code: 'IXE', intl: false },
-  // ── South-East Asia ────────────────────────────────────
   { name: 'Dubai (UAE)',           code: 'DXB', intl: true },
   { name: 'Abu Dhabi (UAE)',       code: 'AUH', intl: true },
   { name: 'Bangkok, Thailand',     code: 'BKK', intl: true },
@@ -51,14 +50,12 @@ const CITIES = [
   { name: 'Ho Chi Minh City',      code: 'SGN', intl: true },
   { name: 'Manila (Philippines)',  code: 'MNL', intl: true },
   { name: 'Jakarta (Indonesia)',   code: 'CGK', intl: true },
-  // ── Middle East ────────────────────────────────────────
   { name: 'Riyadh (Saudi Arabia)', code: 'RUH', intl: true },
   { name: 'Doha (Qatar)',          code: 'DOH', intl: true },
   { name: 'Muscat (Oman)',         code: 'MCT', intl: true },
   { name: 'Kuwait City',           code: 'KWI', intl: true },
   { name: 'Bahrain',               code: 'BAH', intl: true },
   { name: 'Istanbul (Turkey)',     code: 'IST', intl: true },
-  // ── Europe ─────────────────────────────────────────────
   { name: 'London (Heathrow)',     code: 'LHR', intl: true },
   { name: 'Paris (CDG)',           code: 'CDG', intl: true },
   { name: 'Frankfurt (Germany)',   code: 'FRA', intl: true },
@@ -68,7 +65,6 @@ const CITIES = [
   { name: 'Barcelona (Spain)',     code: 'BCN', intl: true },
   { name: 'Vienna (Austria)',      code: 'VIE', intl: true },
   { name: 'Moscow (Russia)',       code: 'SVO', intl: true },
-  // ── East Asia & Pacific ────────────────────────────────
   { name: 'Tokyo (Japan)',         code: 'NRT', intl: true },
   { name: 'Osaka (Japan)',         code: 'KIX', intl: true },
   { name: 'Seoul (South Korea)',   code: 'ICN', intl: true },
@@ -77,15 +73,20 @@ const CITIES = [
   { name: 'Hong Kong',             code: 'HKG', intl: true },
   { name: 'Sydney (Australia)',    code: 'SYD', intl: true },
   { name: 'Melbourne (Australia)', code: 'MEL', intl: true },
-  // ── Americas ───────────────────────────────────────────
   { name: 'New York (JFK)',        code: 'JFK', intl: true },
   { name: 'San Francisco',         code: 'SFO', intl: true },
   { name: 'Toronto (Canada)',      code: 'YYZ', intl: true },
   { name: 'Vancouver (Canada)',    code: 'YVR', intl: true },
-  // ── Africa ─────────────────────────────────────────────
   { name: 'Nairobi (Kenya)',       code: 'NBO', intl: true },
   { name: 'Johannesburg (SA)',     code: 'JNB', intl: true },
 ];
+
+const CABIN_CLASSES = [
+  { id: 'economy' as const,         label: 'Economy',       multiplier: 1 },
+  { id: 'premium_economy' as const, label: 'Premium Eco',  multiplier: 1.65 },
+  { id: 'business' as const,        label: 'Business',      multiplier: 2.8 },
+];
+type CabinClass = typeof CABIN_CLASSES[number]['id'];
 
 interface FlightResult {
   id: string;
@@ -107,9 +108,7 @@ interface FlightResult {
 }
 
 const todayStr = new Date().toISOString().split('T')[0];
-
 function fmt(n: number) { return new Intl.NumberFormat('en-IN').format(n); }
-
 function airlineInitials(name: string) {
   return name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
 }
@@ -117,11 +116,7 @@ function airlineInitials(name: string) {
 const DOMESTIC = CITIES.filter(c => !c.intl);
 const INTERNATIONAL = CITIES.filter(c => c.intl);
 
-function CityPicker({ value, onChange, icon }: {
-  value: string;
-  onChange: (code: string) => void;
-  icon?: React.ReactNode;
-}) {
+function CityPicker({ value, onChange }: { value: string; onChange: (code: string) => void }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -141,43 +136,33 @@ function CityPicker({ value, onChange, icon }: {
 
   const domestic = filter(DOMESTIC);
   const international = filter(INTERNATIONAL);
-
   const pick = (code: string) => { onChange(code); setOpen(false); setQuery(''); };
 
   return (
     <>
-      {/* Trigger */}
       <button type="button" onClick={() => setOpen(true)}
         className="w-full pl-9 pr-3 py-3 bg-cream-dark text-sm text-primary text-left flex items-center justify-between focus:outline-none focus:ring-1 focus:ring-secondary">
         <span className="truncate">{selected ? `${selected.name} (${selected.code})` : 'Select city'}</span>
         <ChevronDown size={14} className="shrink-0 text-primary/40 ml-1" />
       </button>
 
-      {/* Bottom-sheet modal */}
       {open && (
         <div className="fixed inset-0 z-[9999] flex flex-col justify-end sm:items-center sm:justify-center">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => { setOpen(false); setQuery(''); }} />
-          <div className="relative w-full sm:max-w-md bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col"
-            style={{ maxHeight: '85dvh' }}>
-            {/* Header */}
+          <div className="relative w-full sm:max-w-md bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col" style={{ maxHeight: '85dvh' }}>
             <div className="flex items-center gap-3 px-4 pt-4 pb-3 border-b border-gray-100 shrink-0">
               <Search size={16} className="text-gray-400 shrink-0" />
               <input ref={inputRef} value={query} onChange={e => setQuery(e.target.value)}
                 placeholder="Search city or airport code…"
                 className="flex-1 text-sm text-gray-900 outline-none placeholder:text-gray-400" />
-              <button onClick={() => { setOpen(false); setQuery(''); }}
-                className="p-1 rounded-full hover:bg-gray-100 text-gray-400 shrink-0">
+              <button onClick={() => { setOpen(false); setQuery(''); }} className="p-1 rounded-full hover:bg-gray-100 text-gray-400 shrink-0">
                 <X size={16} />
               </button>
             </div>
-
-            {/* City list */}
             <div className="overflow-y-auto flex-1 pb-6">
               {domestic.length > 0 && (
                 <>
-                  <div className="sticky top-0 bg-amber-50 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-amber-700">
-                    🇮🇳 India
-                  </div>
+                  <div className="sticky top-0 bg-amber-50 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-amber-700">🇮🇳 India</div>
                   {domestic.map(c => (
                     <button key={c.code} type="button" onClick={() => pick(c.code)}
                       className={`w-full text-left px-4 py-3 text-sm flex items-center justify-between hover:bg-gray-50 active:bg-amber-50 transition-colors ${value === c.code ? 'bg-amber-50 text-amber-700 font-semibold' : 'text-gray-800'}`}>
@@ -189,9 +174,7 @@ function CityPicker({ value, onChange, icon }: {
               )}
               {international.length > 0 && (
                 <>
-                  <div className="sticky top-0 bg-blue-50 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-blue-700">
-                    ✈️ International
-                  </div>
+                  <div className="sticky top-0 bg-blue-50 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-blue-700">✈️ International</div>
                   {international.map(c => (
                     <button key={c.code} type="button" onClick={() => pick(c.code)}
                       className={`w-full text-left px-4 py-3 text-sm flex items-center justify-between hover:bg-gray-50 active:bg-blue-50 transition-colors ${value === c.code ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-800'}`}>
@@ -219,34 +202,35 @@ export default function FlightSearch() {
   const [date, setDate]         = useState('');
   const [returnDate, setReturn] = useState('');
   const [passengers, setPass]   = useState(2);
+  const [cabinClass, setCabinClass] = useState<CabinClass>('economy');
   const [loading, setLoading]   = useState(false);
   const [results, setResults]   = useState<FlightResult[] | null>(null);
   const [isDemo, setIsDemo]     = useState(false);
   const [error, setError]       = useState<string | null>(null);
   const [sortBy, setSortBy]     = useState<'price' | 'duration'>('price');
+  const [showFilters, setShowFilters] = useState(false);
+  const [filterStops, setFilterStops] = useState<'all' | '0' | '1'>('all');
+  const [filterAirlines, setFilterAirlines] = useState<string[]>([]);
+  const [filterDep, setFilterDep] = useState<'all' | 'morning' | 'afternoon' | 'evening' | 'night'>('all');
 
   const swap = () => { setFrom(to); setTo(from); setResults(null); };
-
   const cityName = (code: string) => CITIES.find(c => c.code === code)?.name ?? code;
+  const classInfo = CABIN_CLASSES.find(c => c.id === cabinClass)!;
 
   const handleSearch = async () => {
     if (!date) return;
     setLoading(true);
     setError(null);
     setResults(null);
+    setFilterStops('all');
+    setFilterAirlines([]);
+    setFilterDep('all');
 
     try {
-      const params = new URLSearchParams({
-        origin: from,
-        destination: to,
-        date,
-        adults: String(passengers),
-      });
+      const params = new URLSearchParams({ origin: from, destination: to, date, adults: String(passengers) });
       const res = await fetch(`/api/flights/search?${params}`);
       const json = await res.json();
-
       if (json.error) throw new Error(json.error);
-
       setResults(json.data ?? []);
       setIsDemo(json.isDemo ?? false);
     } catch {
@@ -256,9 +240,22 @@ export default function FlightSearch() {
     }
   };
 
+  // All unique airlines in current results
+  const allAirlines = results ? [...new Set(results.map(f => f.airline))] : [];
+
   const sorted = results
     ? [...results]
         .filter(f => f.totalPrice > 0 && f.pricePerPerson > 0)
+        .filter(f => filterStops === 'all' || f.stops === parseInt(filterStops))
+        .filter(f => filterAirlines.length === 0 || filterAirlines.includes(f.airline))
+        .filter(f => {
+          if (filterDep === 'all') return true;
+          const hour = parseInt(f.departure.time.split(':')[0]);
+          if (filterDep === 'morning')   return hour >= 6 && hour < 12;
+          if (filterDep === 'afternoon') return hour >= 12 && hour < 17;
+          if (filterDep === 'evening')   return hour >= 17 && hour < 21;
+          return hour >= 21 || hour < 6;
+        })
         .sort((a, b) =>
           sortBy === 'price'
             ? a.totalPrice - b.totalPrice
@@ -266,16 +263,40 @@ export default function FlightSearch() {
         )
     : null;
 
+  const bookUrl = (f: FlightResult) => {
+    const p = new URLSearchParams({
+      airline: f.airline,
+      code: f.airlineCode,
+      flightNum: f.flightNumber,
+      from: f.departure.airport,
+      to: f.arrival.airport,
+      dep: f.departure.time,
+      arr: f.arrival.time,
+      date,
+      dur: f.durationFormatted,
+      stops: String(f.stops),
+      pax: String(passengers),
+      price: String(Math.round(f.totalPrice * classInfo.multiplier)),
+      cabin: cabinClass,
+    });
+    return `/flights/book?${p}`;
+  };
+
   const waText = (f: FlightResult) =>
     encodeURIComponent(
-      `Hi, I'd like to book a flight:\n` +
-      `Route: ${f.departure.airport} → ${f.arrival.airport}\n` +
-      `Date: ${date}\n` +
+      `Hi, I'd like to book:\n` +
       `Flight: ${f.airline} ${f.flightNumber}\n` +
-      `Dep: ${f.departure.time}  Arr: ${f.arrival.time}\n` +
-      `Passengers: ${passengers}\n` +
-      `Price: ₹${fmt(f.totalPrice)} total`
+      `Route: ${f.departure.airport} → ${f.arrival.airport}\n` +
+      `Date: ${date}  Dep: ${f.departure.time}  Arr: ${f.arrival.time}\n` +
+      `Class: ${classInfo.label}  Pax: ${passengers}\n` +
+      `Price: ₹${fmt(Math.round(f.totalPrice * classInfo.multiplier))}`
     );
+
+  const activeFiltersCount = [
+    filterStops !== 'all',
+    filterAirlines.length > 0,
+    filterDep !== 'all',
+  ].filter(Boolean).length;
 
   return (
     <section className="py-14 md:py-20 bg-primary text-cream">
@@ -287,25 +308,31 @@ export default function FlightSearch() {
             Find the best <span className="italic">flight fares</span>
           </h2>
           <p className="text-cream/55 text-body-sm max-w-md mx-auto mt-3">
-            Compare flights across all airlines. Results shown right here — no redirects.
+            Compare flights across all airlines. Book instantly — e-ticket + PNR in minutes.
           </p>
         </div>
 
         {/* Search card */}
         <div className="max-w-3xl mx-auto bg-cream text-primary p-6 md:p-8 shadow-2xl">
-          {/* Trip type */}
-          <div className="flex gap-2 mb-5">
-            {(['return', 'oneway'] as const).map((t) => (
-              <button
-                key={t}
-                onClick={() => { setTripType(t); setResults(null); }}
-                className={`px-5 py-2 text-xs uppercase tracking-widest transition-colors ${
-                  tripType === t ? 'bg-primary text-cream' : 'bg-cream-dark text-primary hover:bg-primary/10'
-                }`}
-              >
-                {t === 'return' ? 'Round Trip' : 'One Way'}
-              </button>
-            ))}
+          {/* Trip type + Cabin class */}
+          <div className="flex flex-wrap gap-2 mb-5">
+            <div className="flex gap-2">
+              {(['return', 'oneway'] as const).map((t) => (
+                <button key={t} onClick={() => { setTripType(t); setResults(null); }}
+                  className={`px-5 py-2 text-xs uppercase tracking-widest transition-colors ${tripType === t ? 'bg-primary text-cream' : 'bg-cream-dark text-primary hover:bg-primary/10'}`}>
+                  {t === 'return' ? 'Round Trip' : 'One Way'}
+                </button>
+              ))}
+            </div>
+            <div className="h-8 w-px bg-primary/20 self-center hidden sm:block" />
+            <div className="flex gap-1.5">
+              {CABIN_CLASSES.map(c => (
+                <button key={c.id} onClick={() => setCabinClass(c.id)}
+                  className={`px-3 py-1.5 text-[11px] uppercase tracking-wider transition-colors border ${cabinClass === c.id ? 'bg-secondary text-cream border-secondary' : 'border-primary/20 text-primary/60 hover:border-secondary/40'}`}>
+                  {c.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* From / swap / To */}
@@ -317,11 +344,9 @@ export default function FlightSearch() {
                 <CityPicker value={from} onChange={(v) => { setFrom(v); setResults(null); }} />
               </div>
             </div>
-
             <button onClick={swap} className="h-[46px] flex items-center justify-center bg-secondary/10 hover:bg-secondary/20 text-secondary transition-colors">
               <ArrowUpDown className="w-4 h-4" />
             </button>
-
             <div>
               <label className="block text-[10px] uppercase tracking-widest text-primary/45 mb-1.5">To</label>
               <div className="relative">
@@ -344,7 +369,6 @@ export default function FlightSearch() {
                   className="w-full pl-9 pr-3 py-3 bg-cream-dark text-sm text-primary focus:outline-none focus:ring-1 focus:ring-secondary" />
               </div>
             </div>
-
             {tripType === 'return' && (
               <div>
                 <label className="block text-[10px] uppercase tracking-widest text-primary/45 mb-1.5">Return</label>
@@ -356,7 +380,6 @@ export default function FlightSearch() {
                 </div>
               </div>
             )}
-
             <div>
               <label className="block text-[10px] uppercase tracking-widest text-primary/45 mb-1.5">Passengers</label>
               <div className="relative">
@@ -390,114 +413,203 @@ export default function FlightSearch() {
         {sorted && isDemo && (
           <div className="max-w-3xl mx-auto mt-4 flex items-center gap-2 bg-accent/20 border border-accent/30 text-cream px-4 py-2.5 text-xs">
             <AlertCircle className="w-3.5 h-3.5 shrink-0 text-accent" />
-            Sample prices shown — add Amadeus API keys in <code className="font-mono bg-white/10 px-1">.env</code> for live fares
+            Sample prices shown — add Amadeus/SerpAPI keys for live fares
           </div>
         )}
 
         {/* Results */}
-        {sorted && sorted.length > 0 && (
+        {sorted && sorted.length >= 0 && results && results.length > 0 && (
           <div className="max-w-3xl mx-auto mt-6 space-y-3">
-            {/* Results header */}
-            <div className="flex items-center justify-between">
+            {/* Results header + filter toggle */}
+            <div className="flex items-center justify-between flex-wrap gap-3">
               <p className="text-cream/70 text-sm">
-                <span className="font-semibold text-cream">{sorted.length} flights</span> · {cityName(from)} → {cityName(to)} · {date}
+                <span className="font-semibold text-cream">{sorted.length} flights</span>
+                {sorted.length !== results.length && <span className="text-cream/50"> (filtered from {results.length})</span>}
+                {' '}· {cityName(from)} → {cityName(to)} · {date}
               </p>
-              <div className="flex items-center gap-1 text-[10px] uppercase tracking-widest">
-                <span className="text-cream/40">Sort:</span>
-                {(['price', 'duration'] as const).map(s => (
-                  <button key={s} onClick={() => setSortBy(s)}
-                    className={`px-3 py-1 transition-colors ${sortBy === s ? 'bg-accent text-primary font-semibold' : 'text-cream/60 hover:text-cream'}`}>
-                    {s === 'price' ? 'Cheapest' : 'Fastest'}
-                  </button>
-                ))}
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1 text-[10px] uppercase tracking-widest">
+                  <span className="text-cream/40">Sort:</span>
+                  {(['price', 'duration'] as const).map(s => (
+                    <button key={s} onClick={() => setSortBy(s)}
+                      className={`px-3 py-1 transition-colors ${sortBy === s ? 'bg-accent text-primary font-semibold' : 'text-cream/60 hover:text-cream'}`}>
+                      {s === 'price' ? 'Cheapest' : 'Fastest'}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setShowFilters(v => !v)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-[10px] uppercase tracking-widest transition-colors border ${showFilters || activeFiltersCount > 0 ? 'border-accent bg-accent text-primary font-semibold' : 'border-cream/30 text-cream/60 hover:text-cream'}`}
+                >
+                  <SlidersHorizontal size={11} />
+                  Filters{activeFiltersCount > 0 ? ` (${activeFiltersCount})` : ''}
+                </button>
               </div>
             </div>
 
-            {sorted.map((f, i) => (
-              <div key={f.id}
-                className={`bg-cream text-primary p-5 flex flex-col sm:flex-row sm:items-center gap-4 relative ${i === 0 && sortBy === 'price' ? 'ring-2 ring-green-500' : ''}`}>
-
-                {/* Best deal badge */}
-                {i === 0 && sortBy === 'price' && (
-                  <div className="absolute -top-2.5 left-4 flex items-center gap-1 bg-green-500 text-white text-[9px] uppercase tracking-widest px-2 py-0.5 font-bold">
-                    <Zap className="w-2.5 h-2.5" /> Best Price
-                  </div>
-                )}
-
-                {/* Airline logo */}
-                <div className="shrink-0 flex items-center gap-3 min-w-[120px]">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                    style={{ backgroundColor: f.airlineColor }}>
-                    {airlineInitials(f.airline)}
-                  </div>
+            {/* Filters panel */}
+            {showFilters && (
+              <div className="bg-cream/10 border border-cream/20 p-4 space-y-4">
+                <div className="flex flex-wrap gap-6">
+                  {/* Stops */}
                   <div>
-                    <p className="text-xs font-semibold text-primary">{f.airline}</p>
-                    <p className="text-[10px] text-primary/45 uppercase">{f.flightNumber}</p>
-                  </div>
-                </div>
-
-                {/* Times */}
-                <div className="flex-1 flex items-center gap-3">
-                  <div className="text-center">
-                    <p className="text-xl font-display text-primary">{f.departure.time}</p>
-                    <p className="text-[10px] uppercase tracking-widest text-primary/50">{f.departure.airport}</p>
-                  </div>
-
-                  <div className="flex-1 flex flex-col items-center gap-1">
-                    <p className="text-[10px] text-primary/40 uppercase tracking-wider flex items-center gap-1">
-                      <Clock className="w-2.5 h-2.5" /> {f.durationFormatted}
-                    </p>
-                    <div className="w-full flex items-center gap-1">
-                      <div className="w-1.5 h-1.5 rounded-full border border-primary/30" />
-                      <div className="flex-1 h-px bg-primary/20" />
-                      {f.stops > 0 && <div className="w-1.5 h-1.5 rounded-full bg-primary/30" />}
-                      {f.stops > 0 && <div className="flex-1 h-px bg-primary/20" />}
-                      <Plane className="w-3 h-3 text-secondary" />
+                    <p className="text-[10px] uppercase tracking-widest text-cream/40 mb-2">Stops</p>
+                    <div className="flex gap-1.5">
+                      {[{k:'all',l:'Any'},{k:'0',l:'Non-stop'},{k:'1',l:'1 Stop'}].map(({k,l}) => (
+                        <button key={k}
+                          onClick={() => setFilterStops(k as 'all' | '0' | '1')}
+                          className={`px-3 py-1.5 text-[11px] transition-colors ${filterStops === k ? 'bg-accent text-primary font-semibold' : 'text-cream/60 border border-cream/30 hover:bg-cream/10'}`}>
+                          {l}
+                        </button>
+                      ))}
                     </div>
-                    <p className={`text-[10px] font-medium uppercase tracking-widest ${f.stops === 0 ? 'text-green-600' : 'text-amber-600'}`}>
-                      {f.stopInfo}
-                    </p>
                   </div>
 
-                  <div className="text-center">
-                    <p className="text-xl font-display text-primary">{f.arrival.time}</p>
-                    <p className="text-[10px] uppercase tracking-widest text-primary/50">{f.arrival.airport}</p>
+                  {/* Departure time */}
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-cream/40 mb-2">Departure Time</p>
+                    <div className="flex gap-1.5 flex-wrap">
+                      {[
+                        {k:'all',l:'Any'},
+                        {k:'morning',l:'🌅 6-12'},
+                        {k:'afternoon',l:'☀️ 12-17'},
+                        {k:'evening',l:'🌆 17-21'},
+                        {k:'night',l:'🌙 Night'},
+                      ].map(({k,l}) => (
+                        <button key={k}
+                          onClick={() => setFilterDep(k as typeof filterDep)}
+                          className={`px-3 py-1.5 text-[11px] transition-colors ${filterDep === k ? 'bg-accent text-primary font-semibold' : 'text-cream/60 border border-cream/30 hover:bg-cream/10'}`}>
+                          {l}
+                        </button>
+                      ))}
+                    </div>
                   </div>
+
+                  {/* Airlines */}
+                  {allAirlines.length > 1 && (
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-cream/40 mb-2">Airlines</p>
+                      <div className="flex gap-1.5 flex-wrap">
+                        {allAirlines.map(airline => (
+                          <button key={airline}
+                            onClick={() => setFilterAirlines(prev =>
+                              prev.includes(airline) ? prev.filter(a => a !== airline) : [...prev, airline]
+                            )}
+                            className={`px-3 py-1.5 text-[11px] transition-colors ${filterAirlines.includes(airline) ? 'bg-accent text-primary font-semibold' : 'text-cream/60 border border-cream/30 hover:bg-cream/10'}`}>
+                            {airline.split(' ')[0]}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Price + Book */}
-                <div className="shrink-0 flex flex-row sm:flex-col items-center sm:items-end gap-3 sm:gap-2">
-                  <div className="text-right">
-                    <p className="font-display text-2xl text-primary">₹{fmt(f.totalPrice)}</p>
-                    <p className="text-[10px] text-primary/45">
-                      ₹{fmt(f.pricePerPerson)}/person · {passengers} pax
-                    </p>
-                    {f.seatsLeft && f.seatsLeft <= 5 && (
-                      <p className="text-[10px] text-red-500 font-semibold animate-pulse">
-                        {f.seatsLeft} seats left!
-                      </p>
-                    )}
-                  </div>
-                  <a
-                    href={`https://wa.me/918427831127?text=${waText(f)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-4 py-2.5 text-xs uppercase tracking-widest font-semibold transition-colors whitespace-nowrap"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5" />
-                    Book Now
-                  </a>
-                </div>
+                {activeFiltersCount > 0 && (
+                  <button
+                    onClick={() => { setFilterStops('all'); setFilterAirlines([]); setFilterDep('all'); }}
+                    className="text-[11px] text-accent/80 hover:text-accent underline">
+                    Clear all filters
+                  </button>
+                )}
               </div>
-            ))}
+            )}
+
+            {/* Flight cards */}
+            {sorted.length === 0 ? (
+              <div className="text-center py-8 text-cream/50 text-sm bg-cream/5">
+                No flights match your filters. <button onClick={() => { setFilterStops('all'); setFilterAirlines([]); setFilterDep('all'); }} className="underline text-accent">Clear filters</button>
+              </div>
+            ) : (
+              sorted.map((f, i) => {
+                const adjTotal = Math.round(f.totalPrice * classInfo.multiplier);
+                const adjPP    = Math.round(f.pricePerPerson * classInfo.multiplier);
+                return (
+                  <div key={f.id}
+                    className={`bg-cream text-primary p-5 flex flex-col sm:flex-row sm:items-center gap-4 relative ${i === 0 && sortBy === 'price' ? 'ring-2 ring-green-500' : ''}`}>
+                    {i === 0 && sortBy === 'price' && (
+                      <div className="absolute -top-2.5 left-4 flex items-center gap-1 bg-green-500 text-white text-[9px] uppercase tracking-widest px-2 py-0.5 font-bold">
+                        <Zap className="w-2.5 h-2.5" /> Best Price
+                      </div>
+                    )}
+
+                    {/* Airline */}
+                    <div className="shrink-0 flex items-center gap-3 min-w-[120px]">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                        style={{ backgroundColor: f.airlineColor }}>
+                        {airlineInitials(f.airline)}
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-primary">{f.airline}</p>
+                        <p className="text-[10px] text-primary/45 uppercase">{f.flightNumber}</p>
+                        <p className="text-[10px] text-secondary font-medium">{classInfo.label}</p>
+                      </div>
+                    </div>
+
+                    {/* Route */}
+                    <div className="flex-1 flex items-center gap-3">
+                      <div className="text-center">
+                        <p className="text-xl font-display text-primary">{f.departure.time}</p>
+                        <p className="text-[10px] uppercase tracking-widest text-primary/50">{f.departure.airport}</p>
+                      </div>
+                      <div className="flex-1 flex flex-col items-center gap-1">
+                        <p className="text-[10px] text-primary/40 uppercase tracking-wider flex items-center gap-1">
+                          <Clock className="w-2.5 h-2.5" /> {f.durationFormatted}
+                        </p>
+                        <div className="w-full flex items-center gap-1">
+                          <div className="w-1.5 h-1.5 rounded-full border border-primary/30" />
+                          <div className="flex-1 h-px bg-primary/20" />
+                          {f.stops > 0 && <><div className="w-1.5 h-1.5 rounded-full bg-primary/30" /><div className="flex-1 h-px bg-primary/20" /></>}
+                          <Plane className="w-3 h-3 text-secondary" />
+                        </div>
+                        <p className={`text-[10px] font-medium uppercase tracking-widest ${f.stops === 0 ? 'text-green-600' : 'text-amber-600'}`}>
+                          {f.stopInfo}
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xl font-display text-primary">{f.arrival.time}</p>
+                        <p className="text-[10px] uppercase tracking-widest text-primary/50">{f.arrival.airport}</p>
+                      </div>
+                    </div>
+
+                    {/* Price + Buttons */}
+                    <div className="shrink-0 flex flex-row sm:flex-col items-center sm:items-end gap-3 sm:gap-2">
+                      <div className="text-right">
+                        <p className="font-display text-2xl text-primary">₹{fmt(adjTotal)}</p>
+                        <p className="text-[10px] text-primary/45">₹{fmt(adjPP)}/person · {passengers} pax</p>
+                        {f.seatsLeft && f.seatsLeft <= 5 && (
+                          <p className="text-[10px] text-red-500 font-semibold animate-pulse">{f.seatsLeft} seats left!</p>
+                        )}
+                      </div>
+                      <div className="flex sm:flex-col gap-2">
+                        <Link
+                          href={bookUrl(f)}
+                          className="flex items-center gap-1.5 bg-secondary text-cream px-4 py-2.5 text-xs uppercase tracking-widest font-semibold transition-colors hover:bg-primary whitespace-nowrap"
+                        >
+                          <Plane className="w-3.5 h-3.5" />
+                          Book Now
+                        </Link>
+                        <a
+                          href={`https://wa.me/918427831127?text=${waText(f)}`}
+                          target="_blank" rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-4 py-2.5 text-xs uppercase tracking-widest font-semibold transition-colors whitespace-nowrap"
+                        >
+                          <MessageCircle className="w-3.5 h-3.5" />
+                          WhatsApp
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            )}
 
             <p className="text-center text-cream/30 text-[10px] uppercase tracking-widest pt-2">
-              Prices indicative · Final fare confirmed on booking · Contact us to book
+              Prices shown include taxes · E-ticket + PNR issued after booking
             </p>
           </div>
         )}
 
-        {sorted && sorted.length === 0 && (
+        {sorted && sorted.length === 0 && results && results.length === 0 && (
           <div className="max-w-3xl mx-auto mt-6 text-center py-10 bg-cream/5 text-cream/60 text-sm">
             No flights found for this route on {date}. Try a different date or ask us for alternatives.
           </div>
