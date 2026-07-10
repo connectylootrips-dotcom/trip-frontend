@@ -7,6 +7,41 @@ import {
 } from 'lucide-react';
 import { BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd';
 
+function TripAdvisorOrganizationSchema() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': ['TravelAgency', 'TouristInformationCenter', 'LocalBusiness'],
+    '@id': 'https://www.ylootrips.com/#organization',
+    name: 'YlooTrips',
+    legalName: 'Ambe Enterprise',
+    url: 'https://www.ylootrips.com',
+    description: 'YlooTrips is India\'s highest-rated budget travel agency — 4.9★ Google rating, 25,000+ travelers from 40+ countries. Domestic & international tour packages from ₹9,999.',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '2400',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    sameAs: [
+      'https://www.ylootrips.com',
+      'https://www.tripadvisor.in/Profile/ylootrips',
+      'https://www.instagram.com/ylootrips',
+      'https://www.facebook.com/profile.php?id=61574908545709',
+      'https://share.google/RltJUJHq75aa8yfAl',
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'New Delhi',
+      addressRegion: 'Delhi',
+      addressCountry: 'IN',
+    },
+    telephone: '+91-8427831127',
+    email: 'hello@ylootrips.com',
+  };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+}
+
 export const metadata: Metadata = {
   title: 'YlooTrips on TripAdvisor — Reviews, Rating & Profile',
   description: 'YlooTrips on TripAdvisor: India\'s highest-rated budget travel company. 4.9★ Google rating. Book Manali, Goa, Kashmir, Bali, Dubai packages. Leave your review on TripAdvisor.',
@@ -125,6 +160,7 @@ function Stars({ n, size = 16 }: { n: number; size?: number }) {
 export default function TripAdvisorPage() {
   return (
     <>
+      <TripAdvisorOrganizationSchema />
       <BreadcrumbJsonLd items={[
         { name: 'Home', url: 'https://www.ylootrips.com' },
         { name: 'TripAdvisor', url: 'https://www.ylootrips.com/tripadvisor' },
@@ -317,7 +353,7 @@ export default function TripAdvisorPage() {
                   {[
                     { label: 'MSME Registered', value: 'UDYAM-HR-05-0141455' },
                     { label: 'GST Certified', value: '07BATPV1942C1ZF' },
-                    { label: 'GST Certified', value: '07BATPV1942C1ZF' },
+                    { label: 'Serving Since', value: 'April 2022 · New Delhi' },
                     { label: 'Payment Security', value: 'PCI-DSS (Easebuzz)' },
                   ].map((c) => (
                     <div key={c.label} className="flex items-start gap-2">
