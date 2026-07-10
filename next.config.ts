@@ -48,10 +48,10 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: '/(.*)',
+        source: '/:path*',
         has: [{ type: 'host', value: 'ylootrips.com' }],
         destination: 'https://www.ylootrips.com/:path*',
-        permanent: true, // 301
+        permanent: true,
       },
     ];
   },
