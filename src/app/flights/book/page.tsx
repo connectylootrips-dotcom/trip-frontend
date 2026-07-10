@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, Suspense, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import {
-    Plane, Calendar, Users, User, Mail, Phone, Shield, ChevronRight,
+    Plane, Users, User, Mail, Phone, Shield, ChevronRight, ChevronLeft,
     Info, CheckCircle, CreditCard, Smartphone, Building2, Globe, Luggage,
-    ArrowRight, Star, Clock, MapPin
+    ArrowRight, Star, Clock,
 } from 'lucide-react';
 
 function fmt(n: number) { return new Intl.NumberFormat('en-IN').format(n); }
@@ -28,33 +28,191 @@ interface Passenger {
 }
 
 const defaultPassenger = (): Passenger => ({
-    title: 'Mr',
-    firstName: '',
-    lastName: '',
-    dob: '',
-    gender: 'Male',
-    nationality: 'Indian',
-    passportNo: '',
-    passportExpiry: '',
+    title: 'Mr', firstName: '', lastName: '', dob: '',
+    gender: 'Male', nationality: 'Indian', passportNo: '', passportExpiry: '',
 });
 
-function PassengerCard({
-    index, passenger, isInternational, onChange,
-}: {
+// ─── Seat Map ────────────────────────────────────────────────────────────────
+
+function genOccupied(flightNum: string, seats: string[]): Set<string> {
+    let h = 0;
+    for (const c of flightNum) h = (h * 31 + c.charCodeAt(0)) & 0x7fffffff;
+    const out = new Set<string>();
+    for (let i = 0; i < seats.length; i++) {
+        if (((h * (i + 17) * 1664525 + 1013904223) & 0x7fffffff) % 100 < 42) {
+            out.add(seats[i]);
+        }
+    }
+    return out;
+}
+
+const PAX_COLORS = ['bg-amber-500', 'bg-blue-500', 'bg-purple-500', 'bg-emerald-500'];
+
+function SeatMap({ cabin, flightNum, pax, selectedSeats, onSelectSeat }: {
+    cabin: string;
+    flightNum: string;
+    pax: number;
+    selectedSeats: string[];
+    onSelectSeat: (seat: string) => void;
+}) {
+    const isBusiness = cabin === 'business';
+    const cols = isBusiness ? ['A', 'B', 'C', 'D'] : ['A', 'B', 'C', 'D', 'E', 'F'];
+    const rows = isBusiness ? 6 : 30;
+    const leftCols = isBusiness ? cols.slice(0, 2) : cols.slice(0, 3);
+    const rightCols = isBusiness ? cols.slice(2) : cols.slice(3);
+
+    const allSeats = useMemo(() => {
+        const s: string[] = [];
+        for (let r = 1; r <= rows; r++) for (const c of cols) s.push(`${r}${c}`);
+        return s;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [flightNum, cabin]);
+
+    const occupied = useMemo(() => genOccupied(flightNum, allSeats), [flightNum, allSeats]);
+
+    const currentPaxIdx = selectedSeats.findIndex(s => !s);
+    const allSelected = selectedSeats.every(s => !!s);
+
+    const getSeatState = (seat: string) => {
+        const pIdx = selectedSeats.indexOf(seat);
+        if (pIdx !== -1) return { state: 'selected' as const, pIdx };
+        if (occupied.has(seat)) return { state: 'occupied' as const, pIdx: -1 };
+        return { state: 'available' as const, pIdx: -1 };
+    };
+
+    return (
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
+            <div className="flex items-start justify-between mb-4">
+                <div>
+                    <h2 className="font-bold text-gray-900 text-base">Select Your Seat</h2>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                        {isBusiness
+                            ? 'Business Class · 2-2 layout · 6 rows'
+                            : `Economy Class · 3-3 layout · ${rows} rows`}
+                    </p>
+                </div>
+                {!allSelected && currentPaxIdx >= 0 && (
+                    <div className="text-right">
+                        <p className="text-[11px] font-semibold text-amber-600 uppercase tracking-wide">Selecting for</p>
+                        <p className="text-sm font-bold text-gray-900">Traveller {currentPaxIdx + 1}</p>
+                    </div>
+                )}
+                {allSelected && (
+                    <div className="flex items-center gap-1.5 text-green-600 text-sm font-bold">
+                        <CheckCircle size={16} /> All seats selected
+                    </div>
+                )}
+            </div>
+
+            {/* Legend */}
+            <div className="flex items-center gap-4 mb-4 text-xs font-medium">
+                <div className="flex items-center gap-1.5">
+                    <div className="w-5 h-5 rounded bg-gray-100 border border-gray-300" />
+                    <span className="text-gray-500">Available</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                    <div className="w-5 h-5 rounded bg-amber-500" />
+                    <span className="text-gray-500">Selected</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                    <div className="w-5 h-5 rounded bg-gray-300" />
+                    <span className="text-gray-500">Occupied</span>
+                </div>
+            </div>
+
+            {/* Front label */}
+            <div className="flex items-center gap-2 mb-2 text-xs text-gray-400 font-semibold">
+                <div className="flex-1 h-px bg-gray-200" />
+                <Plane size={11} className="text-amber-400" /> Front of Aircraft
+                <div className="flex-1 h-px bg-gray-200" />
+            </div>
+
+            {/* Column headers */}
+            <div className="flex items-center gap-1 mb-1 ml-8">
+                {leftCols.map(c => <div key={c} className="w-8 text-center text-[11px] font-bold text-gray-400">{c}</div>)}
+                <div className="w-7" />
+                {rightCols.map(c => <div key={c} className="w-8 text-center text-[11px] font-bold text-gray-400">{c}</div>)}
+            </div>
+
+            {/* Rows */}
+            <div className="space-y-1 max-h-72 overflow-y-auto pr-1">
+                {Array.from({ length: rows }, (_, i) => i + 1).map(row => (
+                    <div key={row} className="flex items-center gap-1">
+                        <div className="w-7 text-right text-[11px] text-gray-400 font-semibold shrink-0 pr-1">{row}</div>
+                        {leftCols.map(col => {
+                            const seat = `${row}${col}`;
+                            const { state, pIdx } = getSeatState(seat);
+                            return (
+                                <button key={seat} type="button"
+                                    disabled={state === 'occupied'}
+                                    onClick={() => onSelectSeat(seat)}
+                                    className={`w-8 h-7 rounded text-[11px] font-bold transition-all ${
+                                        state === 'occupied' ? 'bg-gray-300 cursor-not-allowed text-gray-400' :
+                                        state === 'selected' ? `${PAX_COLORS[pIdx % PAX_COLORS.length]} text-white shadow-sm` :
+                                        'bg-gray-100 hover:bg-amber-100 border border-gray-300 hover:border-amber-400 text-gray-500'
+                                    }`}>
+                                    {state === 'selected' ? pIdx + 1 : ''}
+                                </button>
+                            );
+                        })}
+                        {/* Aisle */}
+                        <div className="w-7 flex items-center justify-center">
+                            <div className="w-px h-5 bg-gray-200" />
+                        </div>
+                        {rightCols.map(col => {
+                            const seat = `${row}${col}`;
+                            const { state, pIdx } = getSeatState(seat);
+                            return (
+                                <button key={seat} type="button"
+                                    disabled={state === 'occupied'}
+                                    onClick={() => onSelectSeat(seat)}
+                                    className={`w-8 h-7 rounded text-[11px] font-bold transition-all ${
+                                        state === 'occupied' ? 'bg-gray-300 cursor-not-allowed text-gray-400' :
+                                        state === 'selected' ? `${PAX_COLORS[pIdx % PAX_COLORS.length]} text-white shadow-sm` :
+                                        'bg-gray-100 hover:bg-amber-100 border border-gray-300 hover:border-amber-400 text-gray-500'
+                                    }`}>
+                                    {state === 'selected' ? pIdx + 1 : ''}
+                                </button>
+                            );
+                        })}
+                    </div>
+                ))}
+            </div>
+
+            {/* Selected summary */}
+            {selectedSeats.some(s => s) && (
+                <div className="mt-4 pt-4 border-t border-gray-100">
+                    <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wide mb-2">Your Selection</p>
+                    <div className="flex flex-wrap gap-2">
+                        {selectedSeats.map((seat, i) => (
+                            <div key={i}
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold ${seat ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-400 border border-dashed border-gray-300'}`}>
+                                <User size={11} />
+                                Pax {i + 1}: {seat || 'tap to select'}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+// ─── Passenger Card ──────────────────────────────────────────────────────────
+
+function PassengerCard({ index, passenger, isInternational, onChange }: {
     index: number;
     passenger: Passenger;
     isInternational: boolean;
     onChange: (field: keyof Passenger, value: string) => void;
 }) {
     const [open, setOpen] = useState(index === 0);
+    const complete = !!(passenger.firstName && passenger.lastName && passenger.dob);
 
     return (
         <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
-            <button
-                type="button"
-                onClick={() => setOpen(!open)}
-                className="w-full flex items-center justify-between px-5 py-4 hover:bg-gray-50 transition-colors"
-            >
+            <button type="button" onClick={() => setOpen(!open)}
+                className="w-full flex items-center justify-between px-5 py-4 hover:bg-gray-50 transition-colors">
                 <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center">
                         <User size={16} className="text-amber-600" />
@@ -67,23 +225,19 @@ function PassengerCard({
                         }
                     </div>
                 </div>
-                <div className={`w-5 h-5 rounded-full border-2 transition-colors ${passenger.firstName && passenger.lastName && passenger.dob ? 'border-green-500 bg-green-500' : 'border-gray-300'} flex items-center justify-center`}>
-                    {passenger.firstName && passenger.lastName && passenger.dob && (
-                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                    )}
+                <div className={`w-5 h-5 rounded-full border-2 transition-colors flex items-center justify-center ${complete ? 'border-green-500 bg-green-500' : 'border-gray-300'}`}>
+                    {complete && <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
                 </div>
             </button>
 
             {open && (
                 <div className="px-5 pb-5 border-t border-gray-100">
-                    {/* Title + Gender */}
                     <div className="grid grid-cols-2 gap-4 mt-4">
                         <div>
                             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Title *</label>
                             <div className="flex gap-2">
                                 {(['Mr', 'Ms', 'Mrs'] as const).map(t => (
-                                    <button key={t} type="button"
-                                        onClick={() => onChange('title', t)}
+                                    <button key={t} type="button" onClick={() => onChange('title', t)}
                                         className={`px-3 py-1.5 rounded-lg text-sm font-semibold border transition-all ${passenger.title === t ? 'bg-amber-500 text-white border-amber-500' : 'border-gray-300 text-gray-600 hover:border-amber-400'}`}>
                                         {t}
                                     </button>
@@ -94,8 +248,7 @@ function PassengerCard({
                             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Gender *</label>
                             <div className="flex gap-2">
                                 {(['Male', 'Female'] as const).map(g => (
-                                    <button key={g} type="button"
-                                        onClick={() => onChange('gender', g)}
+                                    <button key={g} type="button" onClick={() => onChange('gender', g)}
                                         className={`px-3 py-1.5 rounded-lg text-sm font-semibold border transition-all ${passenger.gender === g ? 'bg-amber-500 text-white border-amber-500' : 'border-gray-300 text-gray-600 hover:border-amber-400'}`}>
                                         {g}
                                     </button>
@@ -104,7 +257,6 @@ function PassengerCard({
                         </div>
                     </div>
 
-                    {/* Name */}
                     <div className="grid grid-cols-2 gap-4 mt-4">
                         <div>
                             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">First Name *</label>
@@ -120,7 +272,6 @@ function PassengerCard({
                         </div>
                     </div>
 
-                    {/* DOB + Nationality */}
                     <div className="grid grid-cols-2 gap-4 mt-4">
                         <div>
                             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Date of Birth *</label>
@@ -136,7 +287,6 @@ function PassengerCard({
                         </div>
                     </div>
 
-                    {/* International: Passport */}
                     {isInternational && (
                         <div className="grid grid-cols-2 gap-4 mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100">
                             <div className="col-span-2">
@@ -165,6 +315,14 @@ function PassengerCard({
     );
 }
 
+// ─── Main Booking Page ───────────────────────────────────────────────────────
+
+const CABIN_LABELS: Record<string, string> = {
+    economy: 'Economy',
+    premium_economy: 'Premium Economy',
+    business: 'Business',
+};
+
 function FlightBookContent() {
     const sp = useSearchParams();
 
@@ -180,13 +338,19 @@ function FlightBookContent() {
     const stops = parseInt(sp.get('stops') || '0');
     const pax = parseInt(sp.get('pax') || '1');
     const price = parseInt(sp.get('price') || '0');
+    const cabin = sp.get('cabin') || 'economy';
 
     const isInternational = !INDIA_CODES.has(from) || !INDIA_CODES.has(to);
 
+    // ── state ──
+    const [step, setStep] = useState<1 | 2 | 3>(1);
     const [passengers, setPassengers] = useState<Passenger[]>(
         Array.from({ length: Math.max(1, pax) }, defaultPassenger)
     );
     const [contact, setContact] = useState({ email: '', phone: '' });
+    const [selectedSeats, setSelectedSeats] = useState<string[]>(
+        Array.from({ length: Math.max(1, pax) }, () => '')
+    );
     const [gstEnabled, setGstEnabled] = useState(false);
     const [gst, setGst] = useState({ gstin: '', company: '' });
     const [paymentMethod, setPaymentMethod] = useState('upi');
@@ -199,20 +363,56 @@ function FlightBookContent() {
 
     const updatePassenger = (i: number, field: keyof Passenger, value: string) => {
         setPassengers(prev => {
-            const updated = [...prev];
-            updated[i] = { ...updated[i], [field]: value };
-            return updated;
+            const u = [...prev];
+            u[i] = { ...u[i], [field]: value };
+            return u;
         });
     };
 
-    const validate = () => {
+    const handleSelectSeat = (seat: string) => {
+        setSelectedSeats(prev => {
+            const next = [...prev];
+            const existing = next.indexOf(seat);
+            if (existing !== -1) {
+                // Deselect
+                next[existing] = '';
+                return next;
+            }
+            // Assign to next unselected passenger
+            const nextEmpty = next.findIndex(s => !s);
+            if (nextEmpty === -1) return next;
+            next[nextEmpty] = seat;
+            return next;
+        });
+    };
+
+    const validateStep1 = () => {
         for (const p of passengers) {
             if (!p.firstName.trim() || !p.lastName.trim() || !p.dob) return false;
             if (isInternational && (!p.passportNo.trim() || !p.passportExpiry)) return false;
         }
         if (!contact.email.includes('@') || contact.phone.length < 10) return false;
-        if (!agreed) return false;
         return true;
+    };
+
+    const handleContinueToSeats = () => {
+        if (!validateStep1()) {
+            setError('Please fill all passenger details and contact information.');
+            return;
+        }
+        setError(null);
+        setStep(2);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleContinueToPayment = () => {
+        if (selectedSeats.some(s => !s)) {
+            setError('Please select a seat for every passenger.');
+            return;
+        }
+        setError(null);
+        setStep(3);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handlePay = async () => {
@@ -220,17 +420,18 @@ function FlightBookContent() {
             setError('Flight price is unavailable. Please go back and search again, or contact us on WhatsApp.');
             return;
         }
-        if (!validate()) {
-            setError('Please fill all required fields and accept the terms.');
+        if (!agreed) {
+            setError('Please accept the Terms & Conditions to continue.');
             return;
         }
         setError(null);
         setSubmitting(true);
 
         const bookingData = {
-            flight: { airline, code, flightNum, from, to, dep, arr, date, dur, stops, pax, price: totalPayable },
+            flight: { airline, code, flightNum, from, to, dep, arr, date, dur, stops, pax, price: totalPayable, cabin },
             passengers,
             contact,
+            seats: selectedSeats,
             gst: gstEnabled ? gst : null,
             paymentMethod,
         };
@@ -260,15 +461,17 @@ function FlightBookContent() {
     };
 
     const paymentMethods = [
-        { id: 'upi', label: 'UPI', sub: 'PhonePe, Google Pay, Paytm', icon: Smartphone, badge: '' },
-        { id: 'credit_card', label: 'Credit Card', sub: 'Visa, Mastercard, Amex', icon: CreditCard, badge: '' },
-        { id: 'debit_card', label: 'Debit Card', sub: 'Visa, Mastercard, RuPay', icon: CreditCard, badge: '' },
-        { id: 'netbanking', label: 'Net Banking', sub: 'All major banks supported', icon: Building2, badge: '' },
+        { id: 'upi', label: 'UPI', sub: 'PhonePe, Google Pay, Paytm', icon: Smartphone },
+        { id: 'credit_card', label: 'Credit Card', sub: 'Visa, Mastercard, Amex', icon: CreditCard },
+        { id: 'debit_card', label: 'Debit Card', sub: 'Visa, Mastercard, RuPay', icon: CreditCard },
+        { id: 'netbanking', label: 'Net Banking', sub: 'All major banks supported', icon: Building2 },
     ];
+
+    const stepLabels = ['Traveller Details', 'Select Seats', 'Payment'];
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Top header */}
+            {/* Header */}
             <div className="bg-white border-b border-gray-200 sticky top-0 z-30">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
                     <Link href="/" className="text-xl font-bold text-amber-600">YlooTrips</Link>
@@ -280,6 +483,7 @@ function FlightBookContent() {
                         <span className="text-gray-400 mx-1">·</span>
                         <span>{date}</span>
                         <span className="text-gray-400 mx-1">·</span>
+                        <span className="hidden sm:inline">{CABIN_LABELS[cabin] || cabin} · </span>
                         <span>{pax} Pax</span>
                     </div>
                     <div className="hidden sm:flex items-center gap-1.5 text-xs text-green-700 bg-green-50 border border-green-200 px-3 py-1.5 rounded-full font-semibold">
@@ -288,19 +492,26 @@ function FlightBookContent() {
                 </div>
             </div>
 
-            {/* Progress bar */}
+            {/* Progress Bar */}
             <div className="bg-amber-500">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3">
-                    <div className="flex items-center gap-3 text-sm font-semibold text-white">
-                        <div className="flex items-center gap-2">
-                            <span className="w-6 h-6 rounded-full bg-white text-amber-600 text-xs font-bold flex items-center justify-center">1</span>
-                            <span>Traveller Details</span>
-                        </div>
-                        <ChevronRight size={14} className="text-amber-200" />
-                        <div className="flex items-center gap-2 opacity-60">
-                            <span className="w-6 h-6 rounded-full border border-amber-200 text-xs font-bold flex items-center justify-center">2</span>
-                            <span>Payment</span>
-                        </div>
+                    <div className="flex items-center gap-2 text-sm font-semibold text-white">
+                        {stepLabels.map((label, i) => {
+                            const num = i + 1;
+                            const active = step === num;
+                            const done = step > num;
+                            return (
+                                <div key={label} className="flex items-center gap-2">
+                                    {i > 0 && <ChevronRight size={14} className="text-amber-200 shrink-0" />}
+                                    <div className={`flex items-center gap-2 transition-opacity ${active ? 'opacity-100' : done ? 'opacity-80' : 'opacity-50'}`}>
+                                        <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center shrink-0 ${active ? 'bg-white text-amber-600' : done ? 'bg-amber-400 text-white' : 'border border-amber-200 text-amber-100'}`}>
+                                            {done ? <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg> : num}
+                                        </span>
+                                        <span className="hidden sm:inline">{label}</span>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
@@ -310,14 +521,9 @@ function FlightBookContent() {
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
                         <Info size={16} className="text-red-500 shrink-0" />
                         <p className="text-sm text-red-700 font-medium">
-                            Price is unavailable for this flight. Online payment is disabled.
-                            Please{' '}
-                            <a
-                                href={`https://wa.me/918427831127?text=${encodeURIComponent(`Hi, I want to book flight ${airline} ${flightNum} (${from}→${to}) on ${date}. Please share the price and payment link.`)}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="underline text-red-800 font-semibold"
-                            >
+                            Price unavailable. Please{' '}
+                            <a href={`https://wa.me/918427831127?text=${encodeURIComponent(`Hi, I want to book ${airline} ${flightNum} (${from}→${to}) on ${date}. Please share the price.`)}`}
+                                target="_blank" rel="noopener noreferrer" className="underline text-red-800 font-semibold">
                                 contact us on WhatsApp
                             </a>
                             {' '}to complete this booking.
@@ -329,14 +535,18 @@ function FlightBookContent() {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
                 <div className="grid lg:grid-cols-[1fr_340px] gap-6 items-start">
 
-                    {/* LEFT: Forms */}
+                    {/* LEFT */}
                     <div className="space-y-5">
 
-                        {/* Flight Summary Card */}
+                        {/* Flight Summary */}
                         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-                            <p className="text-xs font-bold text-amber-600 uppercase tracking-wider mb-3">Your Flight</p>
+                            <div className="flex items-center justify-between mb-3">
+                                <p className="text-xs font-bold text-amber-600 uppercase tracking-wider">Your Flight</p>
+                                <span className="text-xs px-2 py-1 rounded-full font-bold bg-amber-100 text-amber-700">
+                                    {CABIN_LABELS[cabin] || cabin}
+                                </span>
+                            </div>
                             <div className="flex items-center justify-between gap-4">
-                                {/* Airline */}
                                 <div className="flex items-center gap-3">
                                     <div className="w-11 h-11 rounded-xl bg-amber-500 flex items-center justify-center text-white text-sm font-bold shrink-0">
                                         {code || airline.substring(0, 2).toUpperCase()}
@@ -346,8 +556,6 @@ function FlightBookContent() {
                                         <p className="text-xs text-gray-400 uppercase">{flightNum}</p>
                                     </div>
                                 </div>
-
-                                {/* Route */}
                                 <div className="flex-1 flex items-center gap-3">
                                     <div className="text-center">
                                         <p className="text-2xl font-bold text-gray-900">{dep}</p>
@@ -371,8 +579,6 @@ function FlightBookContent() {
                                         <p className="text-xs text-gray-400 font-semibold uppercase">{to}</p>
                                     </div>
                                 </div>
-
-                                {/* Date */}
                                 <div className="text-right hidden sm:block">
                                     <p className="text-xs text-gray-400 uppercase tracking-wide">Date</p>
                                     <p className="font-semibold text-gray-800 text-sm">{date}</p>
@@ -380,146 +586,204 @@ function FlightBookContent() {
                             </div>
                         </div>
 
-                        {/* Passenger forms */}
-                        <div>
-                            <h2 className="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
-                                <Users size={16} className="text-amber-500" /> Traveller Details
-                            </h2>
-                            <div className="space-y-3">
-                                {passengers.map((p, i) => (
-                                    <PassengerCard key={i} index={i} passenger={p}
-                                        isInternational={isInternational}
-                                        onChange={(field, val) => updatePassenger(i, field, val)} />
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Contact Details */}
-                        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-                            <h2 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <Mail size={16} className="text-amber-500" /> Contact Details
-                                <span className="text-xs font-normal text-gray-400">(Booking details & e-ticket sent here)</span>
-                            </h2>
-                            <div className="grid sm:grid-cols-2 gap-4">
+                        {/* ── STEP 1: Traveller Details ── */}
+                        {step === 1 && (
+                            <>
                                 <div>
-                                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Email Address *</label>
-                                    <div className="relative">
-                                        <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                                        <input type="email" placeholder="your@email.com" value={contact.email}
-                                            onChange={e => setContact(c => ({ ...c, email: e.target.value }))}
-                                            className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100" />
+                                    <h2 className="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
+                                        <Users size={16} className="text-amber-500" /> Traveller Details
+                                    </h2>
+                                    <div className="space-y-3">
+                                        {passengers.map((p, i) => (
+                                            <PassengerCard key={i} index={i} passenger={p}
+                                                isInternational={isInternational}
+                                                onChange={(field, val) => updatePassenger(i, field, val)} />
+                                        ))}
                                     </div>
                                 </div>
-                                <div>
-                                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Mobile Number *</label>
-                                    <div className="relative">
-                                        <Phone size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                                        <input type="tel" placeholder="+91 98765 43210" value={contact.phone}
-                                            onChange={e => setContact(c => ({ ...c, phone: e.target.value }))}
-                                            className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        {/* GST Details (optional) */}
-                        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-                            <button type="button" onClick={() => setGstEnabled(!gstEnabled)}
-                                className="w-full flex items-center justify-between">
-                                <span className="text-sm font-semibold text-gray-700">GST Details (Optional — for business travelers)</span>
-                                <span className={`text-xs px-2 py-1 rounded-full font-semibold ${gstEnabled ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-500'}`}>
-                                    {gstEnabled ? 'Added' : 'Add'}
-                                </span>
-                            </button>
-                            {gstEnabled && (
-                                <div className="grid sm:grid-cols-2 gap-4 mt-4 pt-4 border-t border-gray-100">
-                                    <div>
-                                        <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">GSTIN</label>
-                                        <input type="text" placeholder="22AAAAA0000A1Z5" value={gst.gstin}
-                                            onChange={e => setGst(g => ({ ...g, gstin: e.target.value.toUpperCase() }))}
-                                            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-amber-400" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Company Name</label>
-                                        <input type="text" placeholder="Your Company Pvt Ltd" value={gst.company}
-                                            onChange={e => setGst(g => ({ ...g, company: e.target.value }))}
-                                            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-amber-400" />
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Payment Method */}
-                        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-                            <h2 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <CreditCard size={16} className="text-amber-500" /> Choose Payment Method
-                            </h2>
-                            <div className="grid sm:grid-cols-2 gap-3">
-                                {paymentMethods.map(m => {
-                                    const Icon = m.icon;
-                                    return (
-                                        <label key={m.id}
-                                            className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${paymentMethod === m.id ? 'border-amber-500 bg-amber-50' : 'border-gray-200 hover:border-amber-300'}`}>
-                                            <input type="radio" name="payMethod" value={m.id} checked={paymentMethod === m.id}
-                                                onChange={() => setPaymentMethod(m.id)} className="sr-only" />
-                                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${paymentMethod === m.id ? 'bg-amber-500' : 'bg-gray-100'}`}>
-                                                <Icon size={18} className={paymentMethod === m.id ? 'text-white' : 'text-gray-500'} />
+                                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
+                                    <h2 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                        <Mail size={16} className="text-amber-500" /> Contact Details
+                                        <span className="text-xs font-normal text-gray-400">(e-ticket sent here)</span>
+                                    </h2>
+                                    <div className="grid sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Email Address *</label>
+                                            <div className="relative">
+                                                <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                                <input type="email" placeholder="your@email.com" value={contact.email}
+                                                    onChange={e => setContact(c => ({ ...c, email: e.target.value }))}
+                                                    className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100" />
                                             </div>
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex items-center gap-2">
-                                                    <p className="text-sm font-semibold text-gray-800">{m.label}</p>
-                                                    {m.badge && <span className="text-[10px] font-bold bg-green-100 text-green-700 px-1.5 py-0.5 rounded">{m.badge}</span>}
-                                                </div>
-                                                <p className="text-xs text-gray-400">{m.sub}</p>
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Mobile Number *</label>
+                                            <div className="relative">
+                                                <Phone size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                                <input type="tel" placeholder="+91 98765 43210" value={contact.phone}
+                                                    onChange={e => setContact(c => ({ ...c, phone: e.target.value }))}
+                                                    className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100" />
                                             </div>
-                                            {paymentMethod === m.id && <CheckCircle size={16} className="text-amber-500 shrink-0" />}
-                                        </label>
-                                    );
-                                })}
-                            </div>
-                        </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        {/* Terms + CTA */}
-                        {error && (
-                            <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
-                                <Info size={15} className="mt-0.5 shrink-0" /> {error}
-                            </div>
+                                {error && (
+                                    <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+                                        <Info size={15} className="mt-0.5 shrink-0" /> {error}
+                                    </div>
+                                )}
+
+                                <button onClick={handleContinueToSeats}
+                                    className="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold text-base transition-all shadow-lg shadow-amber-500/30 flex items-center justify-center gap-3">
+                                    Continue to Select Seats <ChevronRight size={18} />
+                                </button>
+                            </>
                         )}
 
-                        <label className="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)}
-                                className="mt-0.5 rounded border-gray-300 text-amber-500 focus:ring-amber-400" />
-                            <span className="text-sm text-gray-600">
-                                I agree to the <Link href="/terms" className="text-amber-600 hover:underline">Terms & Conditions</Link> and{' '}
-                                <Link href="/privacy" className="text-amber-600 hover:underline">Privacy Policy</Link>. I confirm that all passenger details are correct.
-                            </span>
-                        </label>
+                        {/* ── STEP 2: Seat Selection ── */}
+                        {step === 2 && (
+                            <>
+                                <SeatMap
+                                    cabin={cabin}
+                                    flightNum={flightNum || 'YL001'}
+                                    pax={pax}
+                                    selectedSeats={selectedSeats}
+                                    onSelectSeat={handleSelectSeat}
+                                />
 
-                        <button onClick={handlePay} disabled={submitting || !agreed || price <= 0}
-                            className="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-base transition-all shadow-lg shadow-amber-500/30 active:scale-[0.99] flex items-center justify-center gap-3">
-                            {submitting ? (
-                                <><span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Processing Payment...</>
-                            ) : price <= 0 ? (
-                                <>Price unavailable — contact us</>
-                            ) : (
-                                <><Shield size={18} /> Pay ₹{fmt(totalPayable)} Securely</>
-                            )}
-                        </button>
+                                {error && (
+                                    <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+                                        <Info size={15} className="mt-0.5 shrink-0" /> {error}
+                                    </div>
+                                )}
 
-                        <p className="text-center text-xs text-gray-400">
-                            🔒 Secured by Easebuzz · 256-bit SSL Encryption · PCI DSS Compliant
-                        </p>
+                                <div className="flex gap-3">
+                                    <button onClick={() => { setError(null); setStep(1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                                        className="flex items-center gap-2 px-5 py-4 rounded-xl border-2 border-gray-300 hover:border-amber-400 text-gray-700 font-semibold transition-all">
+                                        <ChevronLeft size={16} /> Back
+                                    </button>
+                                    <button onClick={handleContinueToPayment}
+                                        className="flex-1 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold text-base transition-all shadow-lg shadow-amber-500/30 flex items-center justify-center gap-3">
+                                        Continue to Payment <ChevronRight size={18} />
+                                    </button>
+                                </div>
+                            </>
+                        )}
+
+                        {/* ── STEP 3: Payment ── */}
+                        {step === 3 && (
+                            <>
+                                {/* Seat confirmation chip */}
+                                <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 flex items-center justify-between">
+                                    <div className="flex items-center gap-2 text-green-700">
+                                        <CheckCircle size={16} className="shrink-0" />
+                                        <span className="text-sm font-semibold">Seats confirmed: {selectedSeats.join(', ')}</span>
+                                    </div>
+                                    <button onClick={() => { setStep(2); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                                        className="text-xs text-amber-600 font-bold hover:underline">Change</button>
+                                </div>
+
+                                {/* GST */}
+                                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
+                                    <button type="button" onClick={() => setGstEnabled(!gstEnabled)}
+                                        className="w-full flex items-center justify-between">
+                                        <span className="text-sm font-semibold text-gray-700">GST Details (Optional — for business travelers)</span>
+                                        <span className={`text-xs px-2 py-1 rounded-full font-semibold ${gstEnabled ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-500'}`}>
+                                            {gstEnabled ? 'Added' : 'Add'}
+                                        </span>
+                                    </button>
+                                    {gstEnabled && (
+                                        <div className="grid sm:grid-cols-2 gap-4 mt-4 pt-4 border-t border-gray-100">
+                                            <div>
+                                                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">GSTIN</label>
+                                                <input type="text" placeholder="22AAAAA0000A1Z5" value={gst.gstin}
+                                                    onChange={e => setGst(g => ({ ...g, gstin: e.target.value.toUpperCase() }))}
+                                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-amber-400" />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Company Name</label>
+                                                <input type="text" placeholder="Your Company Pvt Ltd" value={gst.company}
+                                                    onChange={e => setGst(g => ({ ...g, company: e.target.value }))}
+                                                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-amber-400" />
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Payment Method */}
+                                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
+                                    <h2 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                        <CreditCard size={16} className="text-amber-500" /> Choose Payment Method
+                                    </h2>
+                                    <div className="grid sm:grid-cols-2 gap-3">
+                                        {paymentMethods.map(m => {
+                                            const Icon = m.icon;
+                                            return (
+                                                <label key={m.id}
+                                                    className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${paymentMethod === m.id ? 'border-amber-500 bg-amber-50' : 'border-gray-200 hover:border-amber-300'}`}>
+                                                    <input type="radio" name="payMethod" value={m.id} checked={paymentMethod === m.id}
+                                                        onChange={() => setPaymentMethod(m.id)} className="sr-only" />
+                                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${paymentMethod === m.id ? 'bg-amber-500' : 'bg-gray-100'}`}>
+                                                        <Icon size={18} className={paymentMethod === m.id ? 'text-white' : 'text-gray-500'} />
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <p className="text-sm font-semibold text-gray-800">{m.label}</p>
+                                                        <p className="text-xs text-gray-400">{m.sub}</p>
+                                                    </div>
+                                                    {paymentMethod === m.id && <CheckCircle size={16} className="text-amber-500 shrink-0" />}
+                                                </label>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+
+                                {error && (
+                                    <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+                                        <Info size={15} className="mt-0.5 shrink-0" /> {error}
+                                    </div>
+                                )}
+
+                                <label className="flex items-start gap-3 cursor-pointer">
+                                    <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)}
+                                        className="mt-0.5 rounded border-gray-300 text-amber-500 focus:ring-amber-400" />
+                                    <span className="text-sm text-gray-600">
+                                        I agree to the <Link href="/terms" className="text-amber-600 hover:underline">Terms & Conditions</Link> and{' '}
+                                        <Link href="/privacy" className="text-amber-600 hover:underline">Privacy Policy</Link>. I confirm all passenger details are correct.
+                                    </span>
+                                </label>
+
+                                <div className="flex gap-3">
+                                    <button onClick={() => { setStep(2); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                                        className="flex items-center gap-2 px-5 py-4 rounded-xl border-2 border-gray-300 hover:border-amber-400 text-gray-700 font-semibold transition-all">
+                                        <ChevronLeft size={16} /> Back
+                                    </button>
+                                    <button onClick={handlePay} disabled={submitting || !agreed || price <= 0}
+                                        className="flex-1 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-base transition-all shadow-lg shadow-amber-500/30 flex items-center justify-center gap-3">
+                                        {submitting ? (
+                                            <><span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Processing...</>
+                                        ) : price <= 0 ? (
+                                            <>Price unavailable — contact us</>
+                                        ) : (
+                                            <><Shield size={18} /> Pay ₹{fmt(totalPayable)} Securely</>
+                                        )}
+                                    </button>
+                                </div>
+
+                                <p className="text-center text-xs text-gray-400">
+                                    Secured by Easebuzz · 256-bit SSL Encryption · PCI DSS Compliant
+                                </p>
+                            </>
+                        )}
                     </div>
 
-                    {/* RIGHT: Fare Summary (sticky) */}
+                    {/* RIGHT: Fare Summary */}
                     <div className="lg:sticky lg:top-20 space-y-4">
-
-                        {/* Fare Breakdown */}
                         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
                             <h3 className="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wide flex items-center gap-2">
                                 <Luggage size={15} className="text-amber-500" /> Fare Summary
                             </h3>
-
                             <div className="space-y-3 text-sm">
                                 <div className="flex justify-between">
                                     <span className="text-gray-600">Base Fare ({pax} × adult)</span>
@@ -540,36 +804,37 @@ function FlightBookContent() {
                                 </div>
                                 <p className="text-xs text-gray-400">Inclusive of all applicable taxes</p>
                             </div>
-
-                            {/* Instant discount preview */}
-                            {(paymentMethod === 'upi' || paymentMethod === 'credit_card' || paymentMethod === 'debit_card') && (
-                                <div className="mt-3 flex items-center gap-2 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
-                                    <span className="text-green-600 text-xs font-semibold">
-                                        {paymentMethod === 'upi' ? '✅ UPI selected' : '✅ Card selected'}
-                                    </span>
-                                </div>
-                            )}
                         </div>
 
-                        {/* What you get */}
+                        {/* Selected seats (step 2+) */}
+                        {step >= 2 && selectedSeats.some(s => s) && (
+                            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
+                                <h3 className="font-bold text-gray-900 mb-3 text-sm">Your Seats</h3>
+                                <div className="space-y-2">
+                                    {selectedSeats.map((seat, i) => (
+                                        <div key={i} className="flex items-center justify-between text-sm">
+                                            <span className="text-gray-600">Pax {i + 1}</span>
+                                            <span className={`font-bold ${seat ? 'text-amber-600' : 'text-gray-400'}`}>
+                                                {seat || 'Not selected'}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
                             <h3 className="font-bold text-gray-900 mb-3 text-sm">What&apos;s Included</h3>
                             <div className="space-y-2 text-sm text-gray-600">
-                                {[
-                                    '✈️ Confirmed e-ticket via email',
-                                    '🧳 15 kg check-in baggage',
-                                    '💼 7 kg cabin baggage',
-                                    '📱 24/7 YlooTrips support',
-                                    '🔄 Free date change (T&C apply)',
-                                ].map(item => (
-                                    <div key={item} className="flex items-start gap-2">
+                                {['Confirmed e-ticket via email', '15 kg check-in baggage', '7 kg cabin baggage', '24/7 YlooTrips support', 'Free date change (T&C apply)'].map(item => (
+                                    <div key={item} className="flex items-center gap-2">
+                                        <CheckCircle size={12} className="text-green-500 shrink-0" />
                                         <span>{item}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Trust badges */}
                         <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-4">
                             <div className="flex items-center gap-2 mb-3">
                                 <Star size={14} className="text-amber-500 fill-amber-500" />
@@ -582,7 +847,6 @@ function FlightBookContent() {
                             </div>
                         </div>
 
-                        {/* Need help */}
                         <a href="https://wa.me/918427831127?text=Hi!%20I%20need%20help%20booking%20a%20flight."
                             target="_blank" rel="noopener noreferrer"
                             className="flex items-center gap-3 w-full p-4 bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-xl transition-colors font-semibold text-sm">
