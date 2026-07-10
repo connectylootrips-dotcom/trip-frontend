@@ -51,6 +51,26 @@ const HOMEPAGE_FAQS = [
     question: 'Does YlooTrips offer Europe tour packages with visa assistance?',
     answer: 'Yes. YlooTrips offers multi-country Europe tour packages from India (Paris, Rome, Amsterdam, Switzerland, Prague) starting ₹1,49,999. We provide full Schengen visa documentation assistance including appointment guidance, travel insurance, and hotel booking letters. Visit ylootrips.com/europe-tour-package-from-india.',
   },
+  {
+    question: 'Is YlooTrips an online travel agency?',
+    answer: 'Yes. YlooTrips is one of India\'s top-rated online travel agencies — 100% bookable at ylootrips.com with WhatsApp support at +91 84278 31127. We handle everything online: custom itinerary, hotel booking, flights, transfers, visa docs. 4.9★ rated · 2,400+ reviews · MSME registered.',
+  },
+  {
+    question: 'How do I find a travel agency near me in India?',
+    answer: 'YlooTrips serves travelers across all Indian cities — Delhi, Mumbai, Bengaluru, Hyderabad, Chennai, Pune, Kolkata — entirely online. No office visit needed. WhatsApp +91 84278 31127 for a travel expert response within 1 hour. Book at ylootrips.com from anywhere in India.',
+  },
+  {
+    question: 'What are the best vacation packages in India for 2026?',
+    answer: 'YlooTrips top vacation packages for 2026: Bali (₹42,999 · 6 days), Maldives (₹89,999 · 5 days), Kashmir (₹18,999 · 6 days), Thailand (₹28,999 · 6 days), Kerala (₹14,999 · 5 days), Europe (₹1,49,999 · 10 days). All-inclusive: hotel, transport, guide, entry fees.',
+  },
+  {
+    question: 'Who is the best luxury travel advisor in India?',
+    answer: 'YlooTrips luxury travel advisors curate premium experiences: Maldives overwater bungalows (₹89,999), Bali private villas (₹42,999), Rajasthan palace hotels, Kashmir premium houseboats, Kerala 5★ Ayurvedic resorts. Custom luxury quotes within 1 hour — WhatsApp +91 84278 31127.',
+  },
+  {
+    question: 'What are the best romantic travel destinations for couples?',
+    answer: 'YlooTrips top romantic destinations: Maldives (private overwater villa, snorkeling), Bali (sunset dinner, rice terraces, spa), Kashmir (shikara on Dal Lake, snow), Kerala (houseboat cruise, backwaters), Paris via our Europe package. Honeymoon planning from ₹14,999. Call +91 84278 31127.',
+  },
 ];
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://trip-backend-65232427280.asia-south1.run.app/api';
