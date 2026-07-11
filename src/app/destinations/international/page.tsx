@@ -745,47 +745,37 @@ export default function InternationalDestinationsPage() {
         overlayClassName="bg-gradient-to-b from-black/40 via-black/55 to-black/85"
       />
 
-      {/* Trust bar — dark luxury */}
-      <section className="py-5 bg-[#0A2752] border-b border-white/5">
+      {/* Trust bar + Niyo Forex Card — single compact bar */}
+      <section className="bg-[#0A2752] border-b border-white/5">
         <div className="section-container">
-          <div className="flex flex-wrap justify-center gap-5 md:gap-10">
+          {/* Trust signals row */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 py-3 border-b border-white/10">
             {[
               { icon: '✈️', text: 'Visa assistance included' },
               { icon: '💳', text: 'INR pricing · no forex surprises' },
               { icon: '🗣', text: 'Hindi & English guides' },
               { icon: '📞', text: '24/7 on-trip support' },
             ].map((item) => (
-              <span key={item.text} className="flex items-center gap-2 text-xs md:text-sm text-white/60 font-medium">
+              <span key={item.text} className="flex items-center gap-1.5 text-xs text-white/60 font-medium">
                 <span>{item.icon}</span>
                 <span>{item.text}</span>
               </span>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Niyo Forex Card Promo Banner */}
-      <section className="bg-gradient-to-r from-[#0A2752] via-[#0d3a7a] to-[#0A2752] border-b border-white/10">
-        <div className="section-container py-4">
+          {/* Forex card promo row */}
           <a
             href="https://campaigns.goniyo.com/niyoexpress/?utm_source=ylootrips&utm_medium=website&utm_campaign=forex_card_intl"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col sm:flex-row items-center justify-between gap-3 group"
+            className="flex items-center justify-between gap-3 py-2.5 group"
           >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                <CreditCard className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-white font-bold text-sm">Free Forex Card</span>
-                  <span className="bg-green-400 text-green-900 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wide">Exclusive for YlooTrips travelers</span>
-                </div>
-                <p className="text-white/60 text-xs mt-0.5">Zero joining fee · Zero annual fee · Best exchange rates — powered by Niyo Express</p>
-              </div>
+            <div className="flex items-center gap-2">
+              <CreditCard className="w-4 h-4 text-green-400 shrink-0" />
+              <span className="text-white text-xs font-semibold">Free Forex Card with YlooTrips</span>
+              <span className="hidden sm:inline text-white/40 text-xs">·</span>
+              <span className="hidden sm:inline text-white/50 text-xs">Zero joining fee · Zero annual fee · Niyo Express</span>
             </div>
-            <span className="shrink-0 px-5 py-2 bg-white text-[#0A2752] font-bold text-xs rounded-full group-hover:bg-green-400 group-hover:text-green-900 transition-colors">
+            <span className="shrink-0 text-green-400 text-xs font-bold group-hover:text-green-300 transition-colors whitespace-nowrap">
               Get Free Card →
             </span>
           </a>
