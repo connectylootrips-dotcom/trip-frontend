@@ -66,8 +66,8 @@ const pkg: PackageData = {
 
   gallery: [
     { src: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80', alt: 'Dubai Burj Khalifa skyline at night', label: 'Burj Khalifa' },
-    { src: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80', alt: 'Dubai desert safari camels dunes sunset', label: 'Desert Safari' },
-    { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', alt: 'Dubai Creek dhow old souk', label: 'Old Dubai' },
+    { src: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80', alt: 'Dubai desert safari sand dunes golden sunset', label: 'Desert Safari' },
+    { src: 'https://images.unsplash.com/photo-1543872084-c7bd3822856f?w=800&q=80', alt: 'Dubai Creek old town traditional dhow boats', label: 'Old Dubai' },
     { src: 'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=800&q=80', alt: 'Palm Jumeirah Dubai aerial view', label: 'Palm Jumeirah' },
     { src: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80', alt: 'Dubai luxury hotel pool', label: 'Hotel' },
   ],

@@ -59,11 +59,11 @@ export default async function SriLankaPackagePage() {
     ],
 
     gallery: [
-      { src: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', alt: 'Sigiriya Lion Rock Sri Lanka UNESCO', label: 'Sigiriya' },
+      { src: 'https://images.unsplash.com/photo-1580182970834-f6b84e0a218c?w=800&q=80', alt: 'Sigiriya Lion Rock Sri Lanka UNESCO ancient fortress', label: 'Sigiriya' },
       { src: 'https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9?w=800&q=80', alt: 'Ella Nine Arch Bridge train Sri Lanka', label: 'Ella Nine Arch Bridge' },
-      { src: 'https://images.unsplash.com/photo-1586861203927-800a5acddffd?w=800&q=80', alt: 'Galle Fort Dutch colonial walls Sri Lanka', label: 'Galle Fort' },
-      { src: 'https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80', alt: 'Sri Lanka tea plantation green hills', label: 'Tea Plantations' },
-      { src: 'https://images.unsplash.com/photo-1555899434-94d1368aa7af?w=800&q=80', alt: 'Kandy Temple of the Tooth Buddhist', label: 'Kandy' },
+      { src: 'https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=800&q=80', alt: 'Galle Fort Dutch colonial lighthouse Sri Lanka', label: 'Galle Fort' },
+      { src: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80', alt: 'Sri Lanka tea plantation green rolling hills', label: 'Tea Plantations' },
+      { src: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80', alt: 'Kandy Temple of the Tooth Buddhist Sri Lanka', label: 'Kandy' },
     ],
 
     itinerary: [

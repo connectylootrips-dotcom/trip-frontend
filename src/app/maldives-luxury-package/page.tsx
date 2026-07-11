@@ -67,9 +67,9 @@ const pkg: PackageData = {
   gallery: [
     { src: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80', alt: 'Maldives overwater bungalow turquoise lagoon', label: 'Overwater Bungalow' },
     { src: 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=800&q=80', alt: 'Maldives snorkeling coral reef tropical fish', label: 'Snorkeling' },
-    { src: 'https://images.unsplash.com/photo-1540202404-a2f29564651e?w=800&q=80', alt: 'Maldives sunset dolphin cruise ocean', label: 'Dolphin Cruise' },
+    { src: 'https://images.unsplash.com/photo-1559628233-100c798642d0?w=800&q=80', alt: 'Maldives sunset dolphin cruise turquoise ocean', label: 'Dolphin Cruise' },
     { src: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&q=80', alt: 'Maldives spa overwater treatment room', label: 'Spa & Wellness' },
-    { src: 'https://images.unsplash.com/photo-1586861203927-800a5acdcc4d?w=800&q=80', alt: 'Maldives private beach sunset couple', label: 'Private Beach' },
+    { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', alt: 'Maldives private beach white sand tropical', label: 'Private Beach' },
   ],
 
   itinerary: [

@@ -59,11 +59,11 @@ export default async function NepalPackagePage() {
     ],
 
     gallery: [
-      { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', alt: 'Nepal Pokhara Phewa Lake Machhapuchchhre', label: 'Pokhara' },
+      { src: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', alt: 'Nepal Pokhara Phewa Lake Annapurna mountains', label: 'Pokhara' },
       { src: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80', alt: 'Kathmandu Boudhanath Stupa UNESCO Nepal', label: 'Boudhanath Stupa' },
       { src: 'https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800&q=80', alt: 'Nepal Himalayan mountains sunrise snow peaks', label: 'Himalayan Sunrise' },
       { src: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=800&q=80', alt: 'Chitwan National Park Nepal rhino elephant', label: 'Chitwan Safari' },
-      { src: 'https://images.unsplash.com/photo-1606928673853-5ee4b1d5da94?w=800&q=80', alt: 'Pashupatinath Temple Hindu Nepal Kathmandu', label: 'Pashupatinath' },
+      { src: 'https://images.unsplash.com/photo-1585960573067-7e0be89f7b6a?w=800&q=80', alt: 'Pashupatinath Temple Hindu Nepal Kathmandu', label: 'Pashupatinath' },
     ],
 
     itinerary: [

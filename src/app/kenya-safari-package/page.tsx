@@ -62,9 +62,9 @@ export default async function KenyaSafariPackagePage() {
     gallery: [
       { src: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80', alt: 'Kenya Masai Mara safari lions giraffe savanna', label: 'Masai Mara' },
       { src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80', alt: 'Amboseli elephants Mount Kilimanjaro Kenya', label: 'Amboseli' },
-      { src: 'https://images.unsplash.com/photo-1550358864-518f202c02ba?w=800&q=80', alt: 'Great Migration wildebeest crossing Mara River', label: 'Great Migration' },
-      { src: 'https://images.unsplash.com/photo-1504173010664-32509107de67?w=800&q=80', alt: 'Diani Beach Kenya white sand Indian Ocean', label: 'Diani Beach' },
-      { src: 'https://images.unsplash.com/photo-1534476478164-b15b93c245e5?w=800&q=80', alt: 'Hot air balloon safari Masai Mara Kenya sunrise', label: 'Balloon Safari' },
+      { src: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80', alt: 'Great Migration wildebeest zebras Africa savanna', label: 'Great Migration' },
+      { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', alt: 'Diani Beach Kenya white sand palm trees Indian Ocean', label: 'Diani Beach' },
+      { src: 'https://images.unsplash.com/photo-1535941339077-2dd1c7963098?w=800&q=80', alt: 'Hot air balloon safari Masai Mara Kenya sunrise', label: 'Balloon Safari' },
     ],
 
     itinerary: [

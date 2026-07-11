@@ -66,8 +66,8 @@ const pkg: PackageData = {
 
   gallery: [
     { src: 'https://images.unsplash.com/photo-1508964942454-1a56651d54ac?w=800&q=80', alt: 'Singapore Marina Bay Sands and city skyline at night', label: 'Marina Bay' },
-    { src: 'https://images.unsplash.com/photo-1555639039-f8d51a7c0d67?w=800&q=80', alt: 'Gardens by the Bay Supertrees Singapore', label: 'Gardens by the Bay' },
-    { src: 'https://images.unsplash.com/photo-1559592413-7cbb1a8d1b68?w=800&q=80', alt: 'Universal Studios Singapore entrance', label: 'Universal Studios' },
+    { src: 'https://images.unsplash.com/photo-1547201240-5d8be2f1ca5e?w=800&q=80', alt: 'Gardens by the Bay Supertrees Singapore aerial view', label: 'Gardens by the Bay' },
+    { src: 'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=800&q=80', alt: 'Sentosa Universal Studios Singapore theme park rides', label: 'Universal Studios' },
     { src: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80', alt: 'Sentosa Island beach Singapore', label: 'Sentosa Island' },
     { src: 'https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&q=80', alt: 'Singapore Chinatown street food hawker', label: 'Singapore Food' },
   ],

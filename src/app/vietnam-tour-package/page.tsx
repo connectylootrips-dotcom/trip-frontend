@@ -59,9 +59,9 @@ export default async function VietnamPackagePage() {
     ],
 
     gallery: [
-      { src: 'https://images.unsplash.com/photo-1602867741746-6df80f40b3f6?w=800&q=80', alt: 'Ha Long Bay Vietnam limestone karsts emerald water boats', label: 'Ha Long Bay' },
-      { src: 'https://images.unsplash.com/photo-1557408818-5e9e0e8bb98a?w=800&q=80', alt: 'Hoi An Ancient Town colourful lanterns night Vietnam', label: 'Hoi An' },
-      { src: 'https://images.unsplash.com/photo-1474540412665-1cdae210ae6b?w=800&q=80', alt: 'Hanoi Hoan Kiem Lake Vietnam old quarter', label: 'Hanoi' },
+      { src: 'https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&q=80', alt: 'Ha Long Bay Vietnam limestone karsts emerald water', label: 'Ha Long Bay' },
+      { src: 'https://images.unsplash.com/photo-1540198163009-7afda7da2945?w=800&q=80', alt: 'Hoi An Ancient Town colourful lanterns Vietnam', label: 'Hoi An' },
+      { src: 'https://images.unsplash.com/photo-1572375992501-4b0892d50c69?w=800&q=80', alt: 'Hanoi Hoan Kiem Lake Vietnam', label: 'Hanoi' },
       { src: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80', alt: 'Ho Chi Minh City Saigon skyline Vietnam', label: 'Ho Chi Minh City' },
       { src: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80', alt: 'Vietnamese pho noodle soup bowl street food', label: 'Vietnamese Food' },
     ],
