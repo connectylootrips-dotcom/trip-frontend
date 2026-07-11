@@ -33,7 +33,7 @@ export default function PageHero({ title, subtitle, breadcrumb, backgroundImage,
         'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1920&q=80';
 
     return (
-        <section className="relative pt-28 pb-20 md:pt-40 md:pb-32 lg:pt-48 lg:pb-36 overflow-hidden bg-gray-900">
+        <section className="relative pt-24 pb-10 md:pt-28 md:pb-12 lg:pt-32 lg:pb-14 overflow-hidden bg-gray-900">
             {/* Background Image with Ken Burns */}
             <div className="absolute inset-0 overflow-hidden">
                 <Image
