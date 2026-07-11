@@ -61,7 +61,7 @@ export default async function JapanPackagePage() {
 
     gallery: [
       { src: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80', alt: 'Mount Fuji Japan cherry blossoms reflection', label: 'Mount Fuji' },
-      { src: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80', alt: 'Kyoto Fushimi Inari torii gates Japan', label: 'Fushimi Inari' },
+      { src: 'https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=800&q=80', alt: 'Kyoto Fushimi Inari torii gates Japan red', label: 'Fushimi Inari' },
       { src: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80', alt: 'Tokyo Shibuya crossing Japan night', label: 'Tokyo Shibuya' },
       { src: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80', alt: 'Kyoto Arashiyama bamboo grove Japan', label: 'Bamboo Grove' },
       { src: 'https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=800&q=80', alt: 'Japan ramen noodles traditional food', label: 'Japanese Food' },

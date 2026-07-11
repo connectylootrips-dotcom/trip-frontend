@@ -69,7 +69,7 @@ const pkg: PackageData = {
     { src: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&q=80', alt: 'Tanah Lot temple sunset Bali ocean waves', label: 'Tanah Lot' },
     { src: 'https://images.unsplash.com/photo-1573790387438-4da905039392?w=800&q=80', alt: 'Bali private pool villa jungle view', label: 'Private Villa' },
     { src: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80', alt: 'Uluwatu cliff temple Bali ocean sunset', label: 'Uluwatu' },
-    { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', alt: 'Bali Seminyak beach sunset cocktails', label: 'Seminyak' },
+    { src: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80', alt: 'Bali Seminyak beach sunset ocean view', label: 'Seminyak' },
   ],
 
   itinerary: [

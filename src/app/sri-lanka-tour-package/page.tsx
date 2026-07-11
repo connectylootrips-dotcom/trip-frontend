@@ -61,7 +61,7 @@ export default async function SriLankaPackagePage() {
     gallery: [
       { src: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', alt: 'Sigiriya Lion Rock Sri Lanka UNESCO', label: 'Sigiriya' },
       { src: 'https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9?w=800&q=80', alt: 'Ella Nine Arch Bridge train Sri Lanka', label: 'Ella Nine Arch Bridge' },
-      { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', alt: 'Galle Fort Dutch colonial Sri Lanka', label: 'Galle Fort' },
+      { src: 'https://images.unsplash.com/photo-1586861203927-800a5acddffd?w=800&q=80', alt: 'Galle Fort Dutch colonial walls Sri Lanka', label: 'Galle Fort' },
       { src: 'https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80', alt: 'Sri Lanka tea plantation green hills', label: 'Tea Plantations' },
       { src: 'https://images.unsplash.com/photo-1555899434-94d1368aa7af?w=800&q=80', alt: 'Kandy Temple of the Tooth Buddhist', label: 'Kandy' },
     ],
@@ -104,7 +104,7 @@ export default async function SriLankaPackagePage() {
     reviewCount: 1280,
 
     related: [
-      { title: 'Nepal Tour Package — 5 Nights', href: '/nepal-tour-package', priceINR: 18999, image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
+      { title: 'Nepal Tour Package — 5 Nights', href: '/nepal-tour-package', priceINR: 18999, image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=600&q=80' },
       { title: 'Maldives Luxury Package', href: '/maldives-luxury-package', priceINR: 69999, image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=600&q=80' },
       { title: 'Bali Honeymoon Package — 6 Nights', href: '/bali-honeymoon-package', priceINR: 52499, image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80' },
     ],

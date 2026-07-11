@@ -61,10 +61,10 @@ export default async function GeorgiaAzerbaijanPackagePage() {
 
     gallery: [
       { src: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&q=80', alt: 'Tbilisi old town Georgia Caucasus', label: 'Old Tbilisi' },
-      { src: 'https://images.unsplash.com/photo-1566396476157-b3e46b9f2ada?w=800&q=80', alt: 'Kazbegi Gergeti Trinity Church Georgia mountains', label: 'Kazbegi' },
-      { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', alt: 'Baku Flame Towers Azerbaijan night', label: 'Baku' },
-      { src: 'https://images.unsplash.com/photo-1601046668428-94ea13437736?w=800&q=80', alt: 'Baku Old City Maiden Tower Azerbaijan', label: 'Baku Old City' },
-      { src: 'https://images.unsplash.com/photo-1567604412-3bd7f31c5823?w=800&q=80', alt: 'Georgian wine khinkali dumplings food', label: 'Georgian Food' },
+      { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', alt: 'Kazbegi Gergeti Trinity Church Georgia mountains Caucasus', label: 'Kazbegi' },
+      { src: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=800&q=80', alt: 'Baku Flame Towers Azerbaijan night skyline', label: 'Baku' },
+      { src: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80', alt: 'Baku Old City Icheri Sheher medieval walls Azerbaijan', label: 'Baku Old City' },
+      { src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80', alt: 'Georgian khinkali dumplings khachapuri food', label: 'Georgian Food' },
     ],
 
     itinerary: [
