@@ -154,6 +154,12 @@ export const metadata: Metadata = {
   verification: {
     google: '9C1_Q3HeFI5G6i2JTyjPllbVtlomtZQzOsWDVekljY0',
   },
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'YlooTrips',
+  },
   // GEO: help AI engines understand the site content and purpose
   other: {
     'ai-content-declaration': 'human-authored',
