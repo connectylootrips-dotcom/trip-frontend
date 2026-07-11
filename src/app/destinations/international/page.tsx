@@ -764,6 +764,34 @@ export default function InternationalDestinationsPage() {
         </div>
       </section>
 
+      {/* Niyo Forex Card Promo Banner */}
+      <section className="bg-gradient-to-r from-[#0A2752] via-[#0d3a7a] to-[#0A2752] border-b border-white/10">
+        <div className="section-container py-4">
+          <a
+            href="https://campaigns.goniyo.com/niyoexpress/?utm_source=ylootrips&utm_medium=website&utm_campaign=forex_card_intl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col sm:flex-row items-center justify-between gap-3 group"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                <CreditCard className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-white font-bold text-sm">Free Forex Card</span>
+                  <span className="bg-green-400 text-green-900 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wide">Exclusive for YlooTrips travelers</span>
+                </div>
+                <p className="text-white/60 text-xs mt-0.5">Zero joining fee · Zero annual fee · Best exchange rates — powered by Niyo Express</p>
+              </div>
+            </div>
+            <span className="shrink-0 px-5 py-2 bg-white text-[#0A2752] font-bold text-xs rounded-full group-hover:bg-green-400 group-hover:text-green-900 transition-colors">
+              Get Free Card →
+            </span>
+          </a>
+        </div>
+      </section>
+
       {/* Region filter */}
       <section className="py-4 md:py-5 bg-cream-dark border-b border-primary/8 sticky top-16 z-30 shadow-sm">
         <div className="section-container">
