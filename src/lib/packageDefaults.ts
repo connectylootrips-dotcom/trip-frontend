@@ -18,4 +18,7 @@ export const PACKAGE_DEFAULTS: Record<string, { label: string; priceINR: number;
   'vietnam-tour-package':          { label: 'Vietnam Tour Package (6N)',           priceINR: 38999, originalPriceINR: 49999 },
   'sri-lanka-tour-package':        { label: 'Sri Lanka Tour Package (5N)',         priceINR: 28999, originalPriceINR: 37999 },
   'nepal-tour-package':            { label: 'Nepal Tour Package (5N)',             priceINR: 18999, originalPriceINR: 24999 },
+  'japan-tour-package':            { label: 'Japan Tour Package (7N)',             priceINR: 172799,originalPriceINR: 219999},
+  'georgia-azerbaijan-tour-package':{ label: 'Georgia & Azerbaijan Tour (6N)',    priceINR: 54999, originalPriceINR: 69999 },
+  'kenya-safari-package':          { label: 'Kenya Safari Package (7N)',           priceINR: 224999,originalPriceINR: 284999},
 };

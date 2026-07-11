@@ -611,7 +611,7 @@ const DOMESTIC_TRIPS: DomesticTrip[] = [
     priceINR: 5499,
     originalPriceINR: 5899,
     difficulty: 'Moderate',
-    image: 'https://images.unsplash.com/photo-1603612692333-7bac35e43500?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1568207447557-45cdc32a3558?w=800&q=80',
     highlights: ['Trek through dense Parvati Valley forest & waterfalls', 'Camp by Parvati River at 7,500 ft', 'Rasul snow bridge & alpine meadows', 'Visit Tosh village (Himalayan hippie trail)'],
     includes: ['Volvo AC bus Delhi–Kasol–Delhi', '3 nights camping', 'All meals (breakfast, lunch, dinner)', 'Experienced trek guide', 'Camping equipment'],
     itinerary: [
