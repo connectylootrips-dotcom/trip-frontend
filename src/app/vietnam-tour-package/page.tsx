@@ -59,11 +59,11 @@ export default async function VietnamPackagePage() {
     ],
 
     gallery: [
-      { src: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80', alt: 'Ha Long Bay Vietnam limestone karsts UNESCO', label: 'Ha Long Bay' },
-      { src: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&q=80', alt: 'Hoi An Ancient Town lanterns at night Vietnam', label: 'Hoi An' },
-      { src: 'https://images.unsplash.com/photo-1559592413-7cbb1a8d1b68?w=800&q=80', alt: 'Hanoi Hoan Kiem Lake Vietnam', label: 'Hanoi' },
-      { src: 'https://images.unsplash.com/photo-1555921015-5532091f6026?w=800&q=80', alt: 'Ho Chi Minh City Notre Dame Cathedral Vietnam', label: 'Ho Chi Minh City' },
-      { src: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80', alt: 'Vietnamese pho street food bowl', label: 'Vietnamese Food' },
+      { src: 'https://images.unsplash.com/photo-1602867741746-6df80f40b3f6?w=800&q=80', alt: 'Ha Long Bay Vietnam limestone karsts emerald water boats', label: 'Ha Long Bay' },
+      { src: 'https://images.unsplash.com/photo-1557408818-5e9e0e8bb98a?w=800&q=80', alt: 'Hoi An Ancient Town colourful lanterns night Vietnam', label: 'Hoi An' },
+      { src: 'https://images.unsplash.com/photo-1474540412665-1cdae210ae6b?w=800&q=80', alt: 'Hanoi Hoan Kiem Lake Vietnam old quarter', label: 'Hanoi' },
+      { src: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80', alt: 'Ho Chi Minh City Saigon skyline Vietnam', label: 'Ho Chi Minh City' },
+      { src: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80', alt: 'Vietnamese pho noodle soup bowl street food', label: 'Vietnamese Food' },
     ],
 
     itinerary: [
