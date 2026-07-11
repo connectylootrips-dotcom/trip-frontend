@@ -111,7 +111,7 @@ export default async function Home() {
   try {
     // Single request for all homepage data, cached for 60 seconds
     const res = await fetch(`${API_BASE_URL}/homepage`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 1800 }, // 30 min — CMS content changes rarely
     });
     if (res.ok) {
       const data = await res.json();
