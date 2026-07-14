@@ -10,13 +10,15 @@ const SecurityShield    = dynamic(() => import('@/components/SecurityShield'),  
 const ExitIntentPopup   = dynamic(() => import('@/components/ExitIntentPopup'),   { ssr: false });
 const EmailCapturePopup = dynamic(() => import('@/components/EmailCapturePopup'), { ssr: false });
 const ActiveUserPing    = dynamic(() => import('@/components/ActiveUserPing'),    { ssr: false });
-const IOSInstallBanner  = dynamic(() => import('@/components/IOSInstallBanner'),  { ssr: false });
+const IOSInstallBanner     = dynamic(() => import('@/components/IOSInstallBanner'),     { ssr: false });
+const AndroidInstallBanner = dynamic(() => import('@/components/AndroidInstallBanner'), { ssr: false });
 
 export default function LayoutWidgets() {
   return (
     <>
       <ActiveUserPing />
       <IOSInstallBanner />
+      <AndroidInstallBanner />
       <SecurityShield />
       <ExitIntentPopup />
       <EmailCapturePopup />
