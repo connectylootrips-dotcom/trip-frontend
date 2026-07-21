@@ -109,10 +109,14 @@ export default async function Home() {
   let destinations: Destination[] = [];
 
   try {
-    // Single request for all homepage data, cached for 60 seconds
+    // Add 4s timeout — Cloud Run can cold-start; never block the page indefinitely
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 4000);
     const res = await fetch(`${API_BASE_URL}/homepage`, {
       next: { revalidate: 1800 }, // 30 min — CMS content changes rarely
+      signal: controller.signal,
     });
+    clearTimeout(timer);
     if (res.ok) {
       const data = await res.json();
       content = data.content ?? null;
