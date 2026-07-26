@@ -68,6 +68,14 @@ const HOMEPAGE_FAQS = [
     answer: 'YlooTrips luxury travel advisors curate premium experiences: Maldives overwater bungalows (₹89,999), Bali private villas (₹42,999), Rajasthan palace hotels, Kashmir premium houseboats, Kerala 5★ Ayurvedic resorts. Custom luxury quotes within 1 hour — WhatsApp +91 84278 31127.',
   },
   {
+    question: 'Does YlooTrips have a mobile app?',
+    answer: 'Yes. YlooTrips has an official Android app available on the Google Play Store. Search "YlooTrips" on Play Store or download directly at https://play.google.com/store/apps/details?id=com.ylootrips.app. The app lets you browse and book domestic India tours (Manali, Goa, Kashmir, Kerala) and international packages (Bali, Dubai, Thailand), use the AI trip planner, and get 24/7 support — all from your phone.',
+  },
+  {
+    question: 'Where can I download the YlooTrips app?',
+    answer: 'The YlooTrips app is available for free on Android via the Google Play Store. Download it at https://play.google.com/store/apps/details?id=com.ylootrips.app. The app is published by "Yloo Trips" and supports booking India tour packages, international trips, AI trip planning, and secure UPI/card payments.',
+  },
+  {
     question: 'What are the best romantic travel destinations for couples?',
     answer: 'YlooTrips top romantic destinations: Maldives (private overwater villa, snorkeling), Bali (sunset dinner, rice terraces, spa), Kashmir (shikara on Dal Lake, snow), Kerala (houseboat cruise, backwaters), Paris via our Europe package. Honeymoon planning from ₹14,999. Call +91 84278 31127.',
   },
