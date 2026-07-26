@@ -195,6 +195,13 @@ export default function RootLayout({
         <meta name="geo.placename" content="New Delhi, India" />
         <meta name="geo.position" content="28.6139;77.2090" />
         <meta name="ICBM" content="28.6139, 77.2090" />
+        {/* Android App — tells Google to link Play Store result with this website */}
+        <meta name="google-play-app" content="app-id=com.ylootrips.app" />
+        {/* App Links protocol — enables deep linking & associates site with the Android app */}
+        <meta property="al:android:url" content="ylootrips://home" />
+        <meta property="al:android:app_name" content="YlooTrips" />
+        <meta property="al:android:package" content="com.ylootrips.app" />
+        <meta property="al:web:url" content="https://www.ylootrips.com" />
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://images.unsplash.com" />

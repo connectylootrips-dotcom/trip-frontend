@@ -7,6 +7,14 @@
   "background_color": "#ffffff",
   "theme_color": "#f97316",
   "orientation": "portrait",
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.ylootrips.app",
+      "id": "com.ylootrips.app"
+    }
+  ],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/favicon.png",
