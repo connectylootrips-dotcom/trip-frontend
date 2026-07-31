@@ -34,6 +34,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/privacy-policy`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE_URL}/faq`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
 
+    // App download page
+    { url: `${BASE_URL}/download-app`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+
     // International SEO pages
     { url: `${BASE_URL}/india-travel-guide`, lastModified: now, changeFrequency: 'monthly', priority: 0.92 },
 
