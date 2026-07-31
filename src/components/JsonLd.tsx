@@ -581,6 +581,36 @@ export function ArticleJsonLd({
   );
 }
 
+interface VideoJsonLdProps {
+  name: string;
+  description: string;
+  thumbnailUrl: string;
+  uploadDate: string;
+  duration?: string;
+  contentUrl?: string;
+  embedUrl?: string;
+}
+
+export function VideoJsonLd({ name, description, thumbnailUrl, uploadDate, duration, contentUrl, embedUrl }: VideoJsonLdProps) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name,
+    description,
+    thumbnailUrl,
+    uploadDate,
+    ...(duration && { duration }),
+    ...(contentUrl && { contentUrl }),
+    ...(embedUrl && { embedUrl }),
+    publisher: {
+      '@type': 'Organization',
+      name: 'YlooTrips',
+      logo: { '@type': 'ImageObject', url: 'https://www.ylootrips.com/logo.png' },
+    },
+  };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+}
+
 interface FaqItem {
   question: string;
   answer: string;

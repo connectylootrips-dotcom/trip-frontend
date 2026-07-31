@@ -134,6 +134,31 @@ const faqs = [
     ],
   },
   {
+    category: 'App & Technology',
+    items: [
+      {
+        question: 'Does YlooTrips have a mobile app?',
+        answer: 'Yes. YlooTrips has an official Android app available for free on the Google Play Store. Search "YlooTrips" or download directly at https://play.google.com/store/apps/details?id=com.ylootrips.app. The app is published by Yloo Trips.',
+      },
+      {
+        question: 'Where can I download the YlooTrips app?',
+        answer: 'The YlooTrips Android app is available on Google Play Store. Download it at https://play.google.com/store/apps/details?id=com.ylootrips.app — it is free to download.',
+      },
+      {
+        question: 'What can I do on the YlooTrips app?',
+        answer: 'The YlooTrips app lets you browse and book domestic India tours (Manali, Goa, Kashmir, Kerala, Rajasthan, Ladakh, Andaman) and international packages (Bali, Dubai, Thailand, Singapore, Maldives, Europe). You can also use the AI trip planner, pay via UPI or card, and get 24/7 WhatsApp support — all from your phone.',
+      },
+      {
+        question: 'Is the YlooTrips app available for iPhone?',
+        answer: 'Currently the YlooTrips app is available on Android via Google Play Store. iPhone users can access all features on the fully mobile-optimised website at ylootrips.com.',
+      },
+      {
+        question: 'Does YlooTrips have an AI trip planner?',
+        answer: 'Yes. YlooTrips offers a free AI-powered trip planner at ylootrips.com/trip-planner. Enter your destination, dates, and budget — get a complete day-by-day itinerary instantly. No sign-up required.',
+      },
+    ],
+  },
+  {
     category: 'Popular Destinations',
     items: [
       {

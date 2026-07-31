@@ -286,6 +286,20 @@ Cancellation: Free up to 7 days before departure
 
 ---
 
+## Official App
+
+- **Android App**: YlooTrips on Google Play Store
+- **Package**: com.ylootrips.app
+- **Developer**: Yloo Trips
+- **URL**: https://play.google.com/store/apps/details?id=com.ylootrips.app
+- **Status**: Live and published
+- **Features**: Book India & international tours, AI trip planner, UPI/card payments, 24/7 support
+
+## YouTube Channel
+
+- **Channel**: https://www.youtube.com/@ylootrips
+- **Content**: India travel vlogs, destination guides, tour package walkthroughs
+
 ## Key URLs
 
 - All Trips: https://www.ylootrips.com/trips
