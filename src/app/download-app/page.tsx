@@ -32,7 +32,7 @@ const APP_FAQS = [
   },
   {
     question: 'What can I do on the YlooTrips app?',
-    answer: 'The YlooTrips app (launching August 2026) will let you browse and book domestic India tour packages (Manali, Goa, Kashmir, Kerala, Rajasthan, Ladakh, Andaman), international packages (Bali, Dubai, Thailand, Singapore, Maldives, Europe), use the AI trip planner, pay via UPI or card, and get 24/7 WhatsApp support.',
+    answer: 'The YlooTrips app (launching August 2026) lets you: track your booking live, download your full itinerary PDF, view flight details and PNR, access hotel vouchers, see your guide\'s name and contact, and download your payment slip — all anytime from your phone. Plus browse and book 150+ domestic & international packages, use the AI trip planner, pay via UPI or card, and get 24/7 support.',
   },
   {
     question: 'Can I book trips without the app?',
@@ -101,10 +101,13 @@ export default function DownloadAppPage() {
 
           <ul className="text-sm text-gray-700 space-y-2 mb-6">
             {[
-              'Browse 150+ domestic & international tour packages',
+              'Track your booking anytime — live status updates',
+              'Download itinerary, flight details & hotel vouchers instantly',
+              'View your guide\'s name, photo & contact number',
+              'Download payment slip & booking confirmation PDF',
               'AI-powered trip planner — instant itinerary for any destination',
+              'Browse 150+ domestic & international tour packages',
               'Secure payments: UPI, Visa, Mastercard, EMI',
-              'Real-time booking confirmation & e-tickets',
               '24/7 WhatsApp support from the app',
             ].map(f => (
               <li key={f} className="flex items-start gap-2">
@@ -129,6 +132,28 @@ export default function DownloadAppPage() {
             >
               Notify Me on WhatsApp
             </a>
+          </div>
+        </div>
+
+        {/* Track Your Booking section */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Track Your Entire Trip — All in One Place</h2>
+          <p className="text-gray-500 text-sm mb-5">Everything about your booking, available anytime from the app.</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { icon: '📍', title: 'Live Booking Status', desc: 'Know your booking status in real time — confirmed, pending, or upcoming.' },
+              { icon: '🗺️', title: 'Full Itinerary', desc: 'Day-by-day trip plan with timings, activities, and locations — downloadable PDF.' },
+              { icon: '✈️', title: 'Flight Details', desc: 'PNR, departure times, terminal info, and e-ticket — always at hand.' },
+              { icon: '🏨', title: 'Hotel Vouchers', desc: 'Hotel name, address, check-in / check-out, and room details.' },
+              { icon: '🧑‍✈️', title: 'Guide Details', desc: 'Your guide\'s name, photo, phone number, and meeting point info.' },
+              { icon: '🧾', title: 'Payment Slip', desc: 'Download official payment receipt and booking confirmation PDF anytime.' },
+            ].map(item => (
+              <div key={item.title} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                <div className="text-2xl mb-2">{item.icon}</div>
+                <h3 className="font-semibold text-gray-900 text-sm mb-1">{item.title}</h3>
+                <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
 
