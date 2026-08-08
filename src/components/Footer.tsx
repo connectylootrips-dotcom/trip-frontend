@@ -124,22 +124,17 @@ export default function Footer() {
 
               {/* Download App */}
               <div>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-white/70 mb-3">Download the App</p>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.ylootrips.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg px-4 py-2.5 transition-colors"
-                  aria-label="Download YlooTrips on Google Play"
-                >
-                  <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/70 mb-3">Mobile App</p>
+                <div className="inline-flex items-center gap-2.5 bg-white/5 border border-white/20 rounded-lg px-4 py-2.5">
+                  <svg className="w-5 h-5 shrink-0 text-white/50" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3.18 23.76c.3.17.64.24.98.2L14.76 12 3.96.04a1.5 1.5 0 0 0-.78.2C2.46.63 2 1.3 2 2.08v19.84c0 .78.46 1.45 1.18 1.84zM16.34 13.6l2.7 2.7-9.03 5.02L16.34 13.6zM20.3 10.3c.46.25.7.67.7 1.2s-.24.94-.7 1.2l-2.2 1.22-3.04-3.04 3.04-3.04 2.2 1.22zM10.01 12L5.04 7.03 16.34 2l-6.33 10z"/>
                   </svg>
                   <div className="text-left">
-                    <p className="text-[9px] text-white/60 leading-none">GET IT ON</p>
-                    <p className="text-sm font-semibold text-white leading-tight">Google Play</p>
+                    <p className="text-[9px] text-white/50 leading-none uppercase tracking-wider">Google Play</p>
+                    <p className="text-sm font-semibold text-white leading-tight">Launching Aug 2026</p>
                   </div>
-                </a>
+                  <span className="ml-1 text-[9px] font-bold uppercase tracking-wider bg-orange-500/80 text-white px-1.5 py-0.5 rounded">Soon</span>
+                </div>
               </div>
 
               {/* Newsletter */}

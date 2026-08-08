@@ -69,11 +69,11 @@ const HOMEPAGE_FAQS = [
   },
   {
     question: 'Does YlooTrips have a mobile app?',
-    answer: 'Yes. YlooTrips has an official Android app available on the Google Play Store. Search "YlooTrips" on Play Store or download directly at https://play.google.com/store/apps/details?id=com.ylootrips.app. The app lets you browse and book domestic India tours (Manali, Goa, Kashmir, Kerala) and international packages (Bali, Dubai, Thailand), use the AI trip planner, and get 24/7 support — all from your phone.',
+    answer: 'Yes. The official YlooTrips Android app is launching on Google Play Store in August 2026. Until then, all features — trip booking, AI trip planner, payments, and 24/7 support — are fully available at ylootrips.com, which is optimised for all mobile browsers on Android and iPhone.',
   },
   {
-    question: 'Where can I download the YlooTrips app?',
-    answer: 'The YlooTrips app is available for free on Android via the Google Play Store. Download it at https://play.google.com/store/apps/details?id=com.ylootrips.app. The app is published by "Yloo Trips" and supports booking India tour packages, international trips, AI trip planning, and secure UPI/card payments.',
+    question: 'When is the YlooTrips app launching?',
+    answer: 'The YlooTrips Android app is launching in August 2026 on the Google Play Store. WhatsApp +91 84278 31127 to get notified the moment it goes live. Until then, book all trips and use the AI trip planner at ylootrips.com — no app needed.',
   },
   {
     question: 'What are the best romantic travel destinations for couples?',
