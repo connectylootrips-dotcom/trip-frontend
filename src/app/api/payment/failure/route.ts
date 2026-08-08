@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     if (txnid) {
       failureUrl.searchParams.set('txnid', txnid);
     }
-    failureUrl.searchParams.set('error', encodeURIComponent(errorDesc));
+    failureUrl.searchParams.set('error', errorDesc);
 
     return NextResponse.redirect(failureUrl, { status: 303 });
   } catch {

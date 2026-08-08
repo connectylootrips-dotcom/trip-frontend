@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server';
 import Groq from 'groq-sdk';
+import { isRateLimited, getClientIp } from '@/lib/ratelimit';
 
 const SYSTEM_PROMPT = `You are a travel expert specialising in Indian travel. Given a description of a travel Instagram reel or post, extract the destination and vibe, then create an inspiring, detailed 5-day itinerary for Indian travelers with estimated costs in INR.
 
@@ -46,6 +47,10 @@ Rules:
 - If description is vague, make a creative but logical destination match`;
 
 export async function POST(req: NextRequest) {
+  if (isRateLimited(`reel-to-trip:${getClientIp(req)}`, 5, 60_000)) {
+    return new Response(JSON.stringify({ error: 'Too many requests. Please wait a moment.' }), { status: 429 });
+  }
+
   const { description } = await req.json();
 
   if (!description || typeof description !== 'string') {

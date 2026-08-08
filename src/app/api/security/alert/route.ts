@@ -3,6 +3,14 @@ import { Resend } from 'resend';
 
 const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
+function esc(s: string): string {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 // Simple in-memory cooldown — prevent spam (1 alert per IP per 60s)
 const cooldown = new Map<string, number>();
 
@@ -30,7 +38,7 @@ export async function POST(req: NextRequest) {
       scrape: '🤖 Suspicious Scraping Pattern',
     };
 
-    const label = typeLabels[type] || `⚠️ Unknown Threat: ${type}`;
+    const label = typeLabels[type] || `⚠️ Unknown Threat: ${esc(type)}`;
     const now = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
 
     await getResend().emails.send({
@@ -46,10 +54,10 @@ export async function POST(req: NextRequest) {
           <div style="padding:24px 28px;space-y:12px">
             <table style="width:100%;border-collapse:collapse;font-size:14px">
               <tr><td style="padding:10px 0;border-bottom:1px solid #222;color:#888;width:140px">Type</td><td style="padding:10px 0;border-bottom:1px solid #222;font-weight:600;color:#fff">${label}</td></tr>
-              <tr><td style="padding:10px 0;border-bottom:1px solid #222;color:#888">IP Address</td><td style="padding:10px 0;border-bottom:1px solid #222;font-weight:600;color:#f87171">${ip}</td></tr>
-              <tr><td style="padding:10px 0;border-bottom:1px solid #222;color:#888">Page</td><td style="padding:10px 0;border-bottom:1px solid #222;color:#60a5fa">${page}</td></tr>
+              <tr><td style="padding:10px 0;border-bottom:1px solid #222;color:#888">IP Address</td><td style="padding:10px 0;border-bottom:1px solid #222;font-weight:600;color:#f87171">${esc(ip)}</td></tr>
+              <tr><td style="padding:10px 0;border-bottom:1px solid #222;color:#888">Page</td><td style="padding:10px 0;border-bottom:1px solid #222;color:#60a5fa">${esc(page)}</td></tr>
               <tr><td style="padding:10px 0;border-bottom:1px solid #222;color:#888">Time (IST)</td><td style="padding:10px 0;border-bottom:1px solid #222;color:#fff">${now}</td></tr>
-              <tr><td style="padding:10px 0;color:#888;vertical-align:top">Browser</td><td style="padding:10px 0;color:#9ca3af;font-size:12px;word-break:break-all">${ua}</td></tr>
+              <tr><td style="padding:10px 0;color:#888;vertical-align:top">Browser</td><td style="padding:10px 0;color:#9ca3af;font-size:12px;word-break:break-all">${esc(ua)}</td></tr>
             </table>
           </div>
           <div style="padding:16px 28px;background:#1a1a1a;font-size:12px;color:#555;text-align:center">

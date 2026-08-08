@@ -115,8 +115,6 @@ ACTION: Book from source above after payment confirms.
       try {
         const amount = String(amountToCharge.toFixed(2));
         const firstname = name.split(' ')[0] || name;
-        const rawPhone = phone.replace(/\D/g, '');
-        const cleanPhone = rawPhone.length >= 10 ? rawPhone.slice(-10) : rawPhone.padStart(10, '0');
         const baseTitle = (packageTitle || destination || 'Package').replace(/[^a-zA-Z0-9 _.,()\-\/]/g, '');
         const productinfo = (paymentMode === 'partial'
           ? `${baseTitle} (20% Advance)`

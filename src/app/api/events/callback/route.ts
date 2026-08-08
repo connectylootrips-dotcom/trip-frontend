@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { generateTicket } from '@/lib/leads';
+import { isRateLimited, getClientIp } from '@/lib/ratelimit';
 
 export async function POST(req: NextRequest) {
+  if (isRateLimited(`events-callback:${getClientIp(req)}`, 5, 60_000)) {
+    return NextResponse.json({ error: 'Too many requests. Please wait a moment.' }, { status: 429 });
+  }
   try {
     const body = await req.json();
     const { name, phone, email, eventType, guests, preferredDate, notes } = body;
