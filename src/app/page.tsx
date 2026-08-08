@@ -69,11 +69,11 @@ const HOMEPAGE_FAQS = [
   },
   {
     question: 'Does YlooTrips have a mobile app?',
-    answer: 'Yes. The official YlooTrips Android app is launching on Google Play Store in August 2026. Until then, all features — trip booking, AI trip planner, payments, and 24/7 support — are fully available at ylootrips.com, which is optimised for all mobile browsers on Android and iPhone.',
+    answer: 'Yes. The official YlooTrips Android app launched in August 2026 and is available for free on Google Play Store. Download at https://play.google.com/store/apps/details?id=com.ylootrips.app. Track your bookings, download itinerary, flight & hotel details, guide info, and payment slips — all from your phone.',
   },
   {
-    question: 'When is the YlooTrips app launching?',
-    answer: 'The YlooTrips Android app is launching in August 2026 on the Google Play Store. WhatsApp +91 84278 31127 to get notified the moment it goes live. Until then, book all trips and use the AI trip planner at ylootrips.com — no app needed.',
+    question: 'Where can I download the YlooTrips app?',
+    answer: 'The YlooTrips app is available for free on Android via Google Play Store — launched August 2026. Download at https://play.google.com/store/apps/details?id=com.ylootrips.app. The app supports booking India tour packages, tracking bookings, downloading payment slips, and 24/7 WhatsApp support.',
   },
   {
     question: 'What are the best romantic travel destinations for couples?',

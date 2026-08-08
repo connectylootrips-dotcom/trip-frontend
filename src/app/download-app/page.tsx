@@ -3,15 +3,15 @@ import { FaqJsonLd } from '@/components/JsonLd';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'YlooTrips App — Launching August 2026 on Google Play',
-  description: 'The YlooTrips Android app is launching on Google Play in August 2026. Book India tour packages, international trips, and use the AI trip planner — all from your phone.',
-  keywords: 'YlooTrips app, YlooTrips Android app, YlooTrips Play Store, travel app India, India tour booking app, coming soon',
+  title: 'Download YlooTrips App — Now Live on Google Play | Launched August 2026',
+  description: 'Download the YlooTrips Android app — launched August 2026 on Google Play. Track bookings, download itinerary, flight & hotel details, guide info, and payment slips. Free.',
+  keywords: 'YlooTrips app, YlooTrips Android app, YlooTrips Play Store, download YlooTrips, travel app India, India tour booking app, track booking app',
   alternates: {
     canonical: 'https://www.ylootrips.com/download-app',
   },
   openGraph: {
-    title: 'YlooTrips App — Launching August 2026 on Google Play',
-    description: 'The YlooTrips Android app is launching in August 2026. Book India tour packages, international trips, and use the AI trip planner — free on Google Play.',
+    title: 'Download YlooTrips App — Now Live on Google Play',
+    description: 'Download the free YlooTrips app, launched August 2026. Track your booking, itinerary, flights, hotels, guide details & payment slips — anytime from your phone.',
     url: 'https://www.ylootrips.com/download-app',
     type: 'website',
   },
@@ -20,23 +20,23 @@ export const metadata: Metadata = {
 const APP_FAQS = [
   {
     question: 'Does YlooTrips have a mobile app?',
-    answer: 'Yes. The YlooTrips Android app is launching on the Google Play Store in August 2026. Until then, all features — trip booking, AI trip planner, payments, and 24/7 support — are fully available at ylootrips.com, which is optimised for mobile browsers.',
+    answer: 'Yes. The official YlooTrips Android app launched in August 2026 and is available for free on Google Play Store. Search "YlooTrips" or visit https://play.google.com/store/apps/details?id=com.ylootrips.app.',
   },
   {
-    question: 'When is the YlooTrips app launching?',
-    answer: 'The official YlooTrips Android app is launching in August 2026 on Google Play Store. WhatsApp +91 84278 31127 to be notified the moment it goes live.',
+    question: 'When was the YlooTrips app launched?',
+    answer: 'The YlooTrips Android app was launched in August 2026 on Google Play Store. It is free to download — search "YlooTrips" on Google Play.',
   },
   {
     question: 'Is the YlooTrips app free?',
-    answer: 'Yes, the YlooTrips app will be completely free to download from the Google Play Store when it launches in August 2026. You can browse destinations, plan trips, and book packages — all for free.',
+    answer: 'Yes, the YlooTrips app is completely free to download from the Google Play Store. Browse destinations, track bookings, download itineraries, and book packages — all for free.',
   },
   {
     question: 'What can I do on the YlooTrips app?',
-    answer: 'The YlooTrips app (launching August 2026) lets you: track your booking live, download your full itinerary PDF, view flight details and PNR, access hotel vouchers, see your guide\'s name and contact, and download your payment slip — all anytime from your phone. Plus browse and book 150+ domestic & international packages, use the AI trip planner, pay via UPI or card, and get 24/7 support.',
+    answer: 'The YlooTrips app lets you: track your booking live, download your full itinerary PDF, view flight details and PNR, access hotel vouchers, see your guide\'s name and contact number, and download your payment slip — all anytime from your phone. Plus browse and book 150+ domestic & international packages, use the AI trip planner, pay via UPI or card, and get 24/7 WhatsApp support.',
   },
   {
-    question: 'Can I book trips without the app?',
-    answer: 'Absolutely. YlooTrips.com is fully mobile-optimised and works on all Android and iOS devices via your browser. Book tours, use the AI trip planner, manage payments, and chat with support — all without an app. The app launching in August 2026 will make it even more convenient.',
+    question: 'Is the YlooTrips app available on iPhone?',
+    answer: 'Currently the YlooTrips app is available on Android via Google Play Store. iPhone users can access all features at ylootrips.com — fully optimised for iOS via Safari or Chrome.',
   },
 ];
 
@@ -74,15 +74,15 @@ export default function DownloadAppPage() {
       <FaqJsonLd faqs={APP_FAQS} />
 
       <main className="max-w-3xl mx-auto px-4 py-16">
-        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
-          <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse" />
-          Launching August 2026
+        <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
+          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+          Launched August 2026 — Now Live on Google Play
         </div>
 
-        <h1 className="text-4xl font-bold mb-4">YlooTrips App — Coming Soon</h1>
+        <h1 className="text-4xl font-bold mb-4">Download the YlooTrips App</h1>
         <p className="text-lg text-gray-600 mb-8">
-          The official YlooTrips Android app is launching on Google Play in <strong>August 2026</strong>.
-          Until then, book trips, plan itineraries with AI, and get 24/7 support at <strong>ylootrips.com</strong> — fully optimised for mobile.
+          The official YlooTrips Android app is <strong>now live</strong> on Google Play — launched August 2026.
+          Track your bookings, download your itinerary, flight & hotel details, guide info, and payment slips — all from your phone, anytime.
         </p>
 
         {/* App preview card */}
@@ -95,7 +95,7 @@ export default function DownloadAppPage() {
             </div>
             <div>
               <h2 className="text-xl font-semibold text-gray-900">YlooTrips Android App</h2>
-              <p className="text-sm text-gray-500">by Yloo Trips · Free · Google Play Store · Aug 2026</p>
+              <p className="text-sm text-gray-500">by Yloo Trips · Free · Launched August 2026</p>
             </div>
           </div>
 
@@ -118,21 +118,31 @@ export default function DownloadAppPage() {
           </ul>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <div className="inline-flex items-center gap-2.5 bg-gray-200 text-gray-500 cursor-not-allowed px-5 py-3 rounded-lg font-semibold text-sm select-none">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.ylootrips.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 bg-gray-900 hover:bg-gray-700 text-white px-5 py-3 rounded-lg font-semibold text-sm transition-colors"
+              aria-label="Download YlooTrips on Google Play"
+            >
+              <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3.18 23.76c.3.17.64.24.98.2L14.76 12 3.96.04a1.5 1.5 0 0 0-.78.2C2.46.63 2 1.3 2 2.08v19.84c0 .78.46 1.45 1.18 1.84zM16.34 13.6l2.7 2.7-9.03 5.02L16.34 13.6zM20.3 10.3c.46.25.7.67.7 1.2s-.24.94-.7 1.2l-2.2 1.22-3.04-3.04 3.04-3.04 2.2 1.22zM10.01 12L5.04 7.03 16.34 2l-6.33 10z"/>
               </svg>
-              Available August 2026
-            </div>
+              <div className="text-left">
+                <p className="text-[9px] text-white/60 leading-none uppercase tracking-wider">Get it on</p>
+                <p className="text-sm font-bold leading-tight">Google Play</p>
+              </div>
+            </a>
             <a
-              href="https://wa.me/918427831127?text=Hi%2C%20please%20notify%20me%20when%20the%20YlooTrips%20app%20launches%20in%20August%202026"
+              href="https://wa.me/918427831127?text=Hi%2C%20I%20downloaded%20the%20YlooTrips%20app%20and%20need%20help"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-lg font-semibold text-sm transition-colors"
             >
-              Notify Me on WhatsApp
+              Need Help? WhatsApp Us
             </a>
           </div>
+          <p className="text-xs text-gray-400 mt-3">Free · Android · Launched August 2026</p>
         </div>
 
         {/* Track Your Booking section */}
