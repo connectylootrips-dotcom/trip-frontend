@@ -254,6 +254,10 @@ export default function AdminBookingsPage() {
     };
 
     const uploadPdf = async (bookingRef: string, docType: PdfDocType, file: File) => {
+        if (file.size > 4 * 1024 * 1024) {
+            alert('File too large. Please compress the PDF to under 4 MB and try again.');
+            return;
+        }
         const key = `${editingDetailsId}-${docType}`;
         setUploadingPdf(key);
         const token = localStorage.getItem('adminToken') || '';
@@ -267,7 +271,11 @@ export default function AdminBookingsPage() {
                 headers: { 'x-admin-token': token },
                 body: form,
             });
-            const data = await res.json();
+            const text = await res.text();
+            let data: { error?: string; path?: string } = {};
+            try { data = JSON.parse(text); } catch {
+                throw new Error(res.status === 413 ? 'PDF too large for server. Compress under 4 MB.' : `Server error (${res.status})`);
+            }
             if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
             const field = `${docType}Pdf` as keyof BookingDetails;
             setDetailsDraft(prev => ({ ...prev, [field]: data.path }));
