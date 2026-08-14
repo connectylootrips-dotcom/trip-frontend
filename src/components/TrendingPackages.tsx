@@ -485,13 +485,13 @@ export default function TrendingPackages() {
     <section className="py-10 md:py-16 bg-gradient-to-b from-cream to-cream-dark dark:from-gray-900 dark:to-gray-950 overflow-hidden">
       <div className="section-container">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8 md:mb-10">
           <div>
             <div className="inline-flex items-center gap-2 bg-primary/5 border border-primary/15 text-primary dark:bg-white/10 dark:border-white/20 dark:text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
               <TrendingUp className="w-3 h-3" />
               Most Popular
             </div>
-            <h2 className="font-display text-display-lg text-primary dark:text-white">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-display-lg text-primary dark:text-white">
               Trending <span className="italic text-secondary">Right Now</span>
             </h2>
             <p className="text-primary/55 dark:text-gray-400 text-sm mt-2 max-w-lg">

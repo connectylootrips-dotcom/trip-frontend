@@ -53,7 +53,7 @@ export default function MobileCategories() {
             <p className={`text-[11px] font-semibold leading-tight mt-0.5 ${hot ? 'text-amber-600 dark:text-amber-400' : 'text-gray-700 dark:text-gray-200'}`}>
               {label}
             </p>
-            <p className="text-[9px] text-gray-400 leading-tight">{sub}</p>
+            <p className="text-[10px] text-gray-400 leading-tight">{sub}</p>
           </Link>
         ))}
       </div>

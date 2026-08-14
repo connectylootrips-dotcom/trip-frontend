@@ -721,7 +721,7 @@ export default function HomeClient({ content, destinations }: HomeClientProps) {
               </div>
 
               {/* Floating badge with CMS stat */}
-              <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 md:-bottom-6 md:-left-6 bg-accent text-primary px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4">
+              <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 lg:-bottom-6 lg:-left-6 bg-accent text-primary px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4">
                 <span className="font-display text-xl sm:text-2xl md:text-3xl">
                   {content?.stats?.find(s => s.label?.includes('Year'))?.value || '3+'}
                 </span>
@@ -763,7 +763,7 @@ export default function HomeClient({ content, destinations }: HomeClientProps) {
             </div>
 
             {/* Perks */}
-            <div className="hidden md:flex items-center gap-6 text-white/90">
+            <div className="hidden lg:flex items-center gap-6 text-white/90">
               {[
                 { icon: TrendingUp, label: '10% Cashback', sub: 'on every booking' },
                 { icon: Gift, label: 'Promo Codes', sub: 'exclusive offers' },

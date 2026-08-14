@@ -128,7 +128,7 @@ export default function TrustHub() {
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest mb-4 border border-gray-200 dark:border-gray-700">
             <Zap size={12} /> Why YlooTrips
           </span>
-          <h2 className="font-serif text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             India experts you can{' '}
             <span className="italic text-amber-600">actually trust</span>
           </h2>
@@ -178,7 +178,7 @@ export default function TrustHub() {
         <div>
           <div className="text-center mb-6">
             <p className="text-[10px] uppercase tracking-[0.3em] text-amber-600 mb-2">Our Promise</p>
-            <h3 className="font-serif text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+            <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
               Book with <span className="italic text-amber-500">complete confidence</span>
             </h3>
           </div>
@@ -202,7 +202,7 @@ export default function TrustHub() {
         <div>
           <div className="text-center mb-6">
             <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-2">Our Partner Hotels</p>
-            <h3 className="font-serif text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+            <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
               Staying in <span className="italic text-amber-500">India&apos;s finest</span>
             </h3>
             <p className="text-xs text-gray-400 mt-1.5">Hand-selected · Pre-inspected · Boutique to 5-star</p>

@@ -20,13 +20,13 @@ export default function HiddenSpots() {
     <section className="py-10 md:py-16 bg-[#0f1a12] text-cream overflow-hidden">
       <div className="section-container">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 md:mb-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Compass className="w-4 h-4 text-accent" />
               <p className="text-caption uppercase tracking-[0.35em] text-accent">Secret India</p>
             </div>
-            <h2 className="font-display text-display-lg text-cream">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-display-lg text-cream">
               Hidden gems most<br />
               <span className="italic text-accent">travellers never find</span>
             </h2>
