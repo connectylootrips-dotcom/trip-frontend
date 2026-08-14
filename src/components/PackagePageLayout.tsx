@@ -99,6 +99,9 @@ export interface PackageData {
   // Things to Carry (optional)
   thingsToCarry?: string[];
 
+  // Optional note shown under price (e.g. "Land package · Flights not included")
+  priceNote?: string;
+
   // Schema
   schemaHighlights?: string[];
 }
@@ -455,6 +458,9 @@ function BookingSidebar({ pkg }: { pkg: PackageData }) {
                 {Math.round((1 - pkg.priceINR / pkg.originalPriceINR) * 100)}% OFF
               </span>
             </div>
+          )}
+          {pkg.priceNote && (
+            <p className="text-amber-300 text-xs mt-1 font-medium">{pkg.priceNote}</p>
           )}
           {currency === 'INR' && (
             <p className="text-white/50 text-xs mt-1">≈ {fmtUSD(pkg.priceUSD)} for international travelers</p>

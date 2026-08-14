@@ -4,10 +4,10 @@ import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
   title: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999 | YlooTrips',
-  description: 'Book Goa tour packages starting ₹9,999. 3 nights / 4 days — North Goa beaches, South Goa, water sports, Dudhsagar Falls, Old Goa churches. Flights + hotel included.',
+  description: 'Book Goa tour packages starting ₹9,999 per person (group rate, land only). 3 nights / 4 days — North Goa beaches, South Goa, water sports, Dudhsagar Falls, Old Goa churches. Hotel + transfers included.',
   openGraph: {
     title: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999',
-    description: 'All-inclusive Goa holiday — North Goa beaches, water sports, Dudhsagar Falls, South Goa, Old Goa churches. Flights + hotel included.',
+    description: 'Goa group tour package — North Goa beaches, water sports, Dudhsagar Falls, South Goa, Old Goa churches. Hotel + transfers included. Land cost only.',
     url: 'https://www.ylootrips.com/goa-tour-package',
     type: 'website',
     images: [{ url: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80', width: 1200, height: 630, alt: 'Goa beach sunset tour package from India' }],
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Goa Tour Package — ₹9,999 Onwards | YlooTrips',
-    description: 'North Goa beaches + Water Sports + Dudhsagar Falls + South Goa. Flights + hotel included.',
+    description: 'North Goa beaches + Water Sports + Dudhsagar Falls + South Goa. Hotel + transfers included. Group rate, land only.',
     images: ['https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80'],
   },
   alternates: { canonical: 'https://www.ylootrips.com/goa-tour-package' },
@@ -25,7 +25,7 @@ const pkg: PackageData = {
   slug: 'goa-tour-package',
   canonicalUrl: 'https://www.ylootrips.com/goa-tour-package',
   metaTitle: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999 | YlooTrips',
-  metaDescription: 'Book Goa tour packages starting ₹9,999. 3 nights 4 days — North Goa beaches, water sports, Dudhsagar Falls, Old Goa churches. Flights + hotel included.',
+  metaDescription: 'Book Goa group tour packages starting ₹9,999/person (land only). 3 nights 4 days — North Goa beaches, water sports, Dudhsagar Falls, Old Goa churches. Hotel + transfers included.',
   ogImage: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1600&q=85',
@@ -34,7 +34,7 @@ const pkg: PackageData = {
   tagline: 'India\'s Most Popular Beach Destination',
 
   duration: '3 Nights / 4 Days',
-  groupSize: 'Solo, Couple, Family or Group',
+  groupSize: 'Group (Min 6 persons)',
   difficulty: 'Easy (All Ages)',
   startLocation: 'Delhi / Mumbai → Goa (GOI/GOX)',
 
@@ -45,13 +45,13 @@ const pkg: PackageData = {
 
   overview: [
     'Goa — India\'s smallest state and its most famous beach destination — is a world unto itself. Portuguese colonial churches, golden beaches stretching for kilometres, coconut-fringed coastlines, spiced seafood, beach shacks serving cold beer at sunset, and a laid-back vibe that\'s impossible to replicate. Whether you\'re after relaxation, adventure, history, or nightlife, Goa delivers it all.',
-    'Our 3-night Goa package covers both the buzzing North and the serene South. Hit the famous North Goa beaches — Baga, Calangute, Anjuna — for water sports and beach shacks. Explore the baroque splendour of Old Goa\'s UNESCO World Heritage churches. Venture to the majestic Dudhsagar Waterfall — one of India\'s tallest at 310 metres. And unwind on the unspoilt white sands of South Goa\'s Palolem and Agonda beaches.',
-    'Goa is extremely well-connected — direct flights from Delhi (2.5h), Mumbai (1h), Bangalore (1h), and most major Indian cities. Our package includes flights, hotel, and all transfers so you can focus on the beaches.',
+    'Our 3-night Goa group package covers both the buzzing North and the serene South. Hit the famous North Goa beaches — Baga, Calangute, Anjuna — for water sports and beach shacks. Explore the baroque splendour of Old Goa\'s UNESCO World Heritage churches. Venture to the majestic Dudhsagar Waterfall — one of India\'s tallest at 310 metres. And unwind on the unspoilt white sands of South Goa\'s Palolem and Agonda beaches.',
+    'This is a land-only group package (minimum 6 persons) — flights to Goa are not included. Goa is extremely well-connected with direct flights from Delhi (2.5h), Mumbai (1h), Bangalore (1h), and most major Indian cities. Our package includes hotel, all Goa transfers, and all activities listed.',
     'Book with ₹2,500 advance. Free cancellation up to 10 days before departure.',
   ],
 
   highlights: [
-    'Return flights from Delhi/Mumbai/Bangalore to Goa',
+    'Land package (group rate) — hotel + all Goa transfers included',
     'North Goa beaches — Baga, Calangute, Anjuna, Vagator',
     'Water sports at Baga — jet ski, parasailing, banana boat, kayaking',
     'Dudhsagar Waterfall jeep safari (310 m, one of India\'s tallest)',
@@ -75,7 +75,7 @@ const pkg: PackageData = {
     {
       day: 1,
       title: 'Arrive Goa — North Goa Beaches & Beach Shacks',
-      description: 'Fly to Goa (Dabolim/Mopa Airport). Your driver will be waiting at arrivals. Transfer to your hotel in North Goa (Calangute/Baga area — the heart of the action). Check in and head straight to the beach. Baga Beach and Calangute Beach are just minutes away — hire a sunbed, take a dip in the Arabian Sea, and settle into the famous Goa pace. Lunch at a beach shack — try prawn curry rice, fish thali, and bebinca (Goan coconut dessert). Afternoon: wander through the colourful Anjuna Flea Market (Wednesdays only) or explore the boutiques in Arpora. Sundowner drinks at Baga Beach with views of the sunset over the sea. Dinner at one of Goa\'s famous beach restaurants — we recommend Britto\'s, Fiesta, or A Reverie.',
+      description: 'Arrive at Goa Airport (Dabolim/Mopa). Your driver will be waiting at arrivals. Transfer to your hotel in North Goa (Calangute/Baga area — the heart of the action). Check in and head straight to the beach. Baga Beach and Calangute Beach are just minutes away — hire a sunbed, take a dip in the Arabian Sea, and settle into the famous Goa pace. Lunch at a beach shack — try prawn curry rice, fish thali, and bebinca (Goan coconut dessert). Afternoon: wander through the colourful Anjuna Flea Market (Wednesdays only) or explore the boutiques in Arpora. Sundowner drinks at Baga Beach with views of the sunset over the sea. Dinner at one of Goa\'s famous beach restaurants — we recommend Britto\'s, Fiesta, or A Reverie.',
       meals: 'None',
       hotel: '3★ Hotel in North Goa',
       activities: ['Airport pickup', 'Baga and Calangute beaches', 'Beach shack lunch', 'Anjuna Flea Market (Wednesdays)', 'Sunset at Baga'],
@@ -99,7 +99,7 @@ const pkg: PackageData = {
     {
       day: 4,
       title: 'South Goa Beaches + Departure',
-      description: 'Check out of hotel (luggage can be stored). Morning drive to South Goa — a completely different world from the North. Palolem Beach is one of India\'s most beautiful crescent beaches, framed by headlands and lined with coconut palms. Cola Beach (hidden gem, 30-minute walk or boat ride) has a stunning freshwater lagoon meeting the sea. Colva Beach is the longest beach in Goa. South Goa has fewer crowds, calmer water, and a more relaxed atmosphere — perfect for a final morning swim and seafood lunch. Transfer to Goa Airport in time for your return flight to Delhi/Mumbai/Bangalore.',
+      description: 'Check out of hotel (luggage can be stored). Morning drive to South Goa — a completely different world from the North. Palolem Beach is one of India\'s most beautiful crescent beaches, framed by headlands and lined with coconut palms. Cola Beach (hidden gem, 30-minute walk or boat ride) has a stunning freshwater lagoon meeting the sea. Colva Beach is the longest beach in Goa. South Goa has fewer crowds, calmer water, and a more relaxed atmosphere — perfect for a final morning swim and seafood lunch. Transfer to Goa Airport for your departure.',
       meals: 'Breakfast',
       hotel: 'Departure',
       activities: ['South Goa — Palolem Beach', 'Cola Beach (hidden gem)', 'Colva Beach', 'Seafood lunch', 'Airport transfer & departure'],
@@ -107,7 +107,6 @@ const pkg: PackageData = {
   ],
 
   includes: [
-    'Return economy class flights India ↔ Goa (IndiGo/Air India/SpiceJet)',
     '3 nights in a 3-star hotel in North Goa (breakfast included)',
     'All transfers in Goa by private AC vehicle',
     'Water sports at Baga: jet ski, parasailing, banana boat, bumper boat',
@@ -120,6 +119,7 @@ const pkg: PackageData = {
   ],
 
   excludes: [
+    'Flights to/from Goa (book separately — IndiGo/Air India/SpiceJet)',
     'Travel insurance (recommended — from ₹400/person)',
     'Meals other than breakfast, plantation lunch, and cruise dinner',
     'Scuba diving (optional — approx. ₹3,500/person)',
@@ -179,7 +179,7 @@ const pkg: PackageData = {
     },
     {
       question: 'How much does a Goa trip cost from Delhi?',
-      answer: 'Our all-inclusive Goa package from Delhi starts at ₹9,999 per person for 3 nights. This includes return flights, 3-star hotel, water sports, Dudhsagar jeep safari, Old Goa tour, spice plantation lunch, and sunset cruise. Budget ₹3,000–₹5,000 extra for additional meals, beach shopping, feni, scuba diving, or nightlife.',
+      answer: 'Our Goa group land package starts at ₹9,999 per person (minimum 6 persons) for 3 nights. This includes 3-star hotel, water sports, Dudhsagar jeep safari, Old Goa tour, spice plantation lunch, and sunset cruise. Flights to Goa are not included — book separately from Delhi/Mumbai/Bangalore. Budget ₹3,000–₹5,000 extra for flights, additional meals, beach shopping, feni, or nightlife.',
     },
     {
       question: 'Is Goa suitable for families with children?',
@@ -205,7 +205,9 @@ const pkg: PackageData = {
     { title: 'Bali Honeymoon Package — 6 Nights', href: '/bali-honeymoon-package', priceINR: 52499, image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80' },
   ],
 
-  whatsappMsg: "Hi! I'm interested in the Goa Tour Package (3 nights ₹9,999). Please share availability and details.",
+  priceNote: 'Group rate · Land only · Flights not included',
+
+  whatsappMsg: "Hi! I'm interested in the Goa Group Tour Package (3 nights ₹9,999/person, land only). Please share availability and details.",
   bookingHref: '/contact?package=goa-tour-package',
 
   schemaHighlights: ['North Goa beaches and water sports', 'Dudhsagar Waterfall jeep safari', 'Old Goa UNESCO heritage churches', 'Mandovi River sunset cruise', 'South Goa Palolem beach'],

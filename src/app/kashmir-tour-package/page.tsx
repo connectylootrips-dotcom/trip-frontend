@@ -4,10 +4,10 @@ import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
   title: 'Kashmir Tour Package 2026 — 5 Nights Starting ₹18,999 | YlooTrips',
-  description: 'Book Kashmir tour packages starting ₹18,999. 5 nights / 6 days — Dal Lake houseboat, Gulmarg, Pahalgam, Sonamarg. Flights + hotel + shikara ride included. Book now.',
+  description: 'Book Kashmir tour packages starting ₹18,999 (land cost only). 5 nights / 6 days — Dal Lake houseboat, Gulmarg, Pahalgam, Sonamarg. Hotel + transfers + shikara ride included. Flights not included.',
   openGraph: {
     title: 'Kashmir Tour Package 2026 — 5 Nights Starting ₹18,999',
-    description: 'All-inclusive Kashmir holiday — Dal Lake houseboat, Gulmarg cable car, Pahalgam meadows, Sonamarg glaciers. Flights + hotel + shikara included.',
+    description: 'Kashmir land package — Dal Lake houseboat, Gulmarg cable car, Pahalgam meadows, Sonamarg glaciers. Hotel + transfers + shikara included. Flights not included.',
     url: 'https://www.ylootrips.com/kashmir-tour-package',
     type: 'website',
     images: [{ url: 'https://images.unsplash.com/photo-1566837945700-30057527ade0?w=1200&q=80', width: 1200, height: 630, alt: 'Kashmir Dal Lake houseboat tour package from India' }],
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Kashmir Tour Package — ₹18,999 Onwards | YlooTrips',
-    description: 'Dal Lake Houseboat + Gulmarg + Pahalgam + Sonamarg. Flights + hotel + shikara ride. Book now.',
+    description: 'Dal Lake Houseboat + Gulmarg + Pahalgam + Sonamarg. Hotel + transfers + shikara ride. Land cost only — flights not included.',
     images: ['https://images.unsplash.com/photo-1566837945700-30057527ade0?w=1200&q=80'],
   },
   alternates: { canonical: 'https://www.ylootrips.com/kashmir-tour-package' },
@@ -25,7 +25,7 @@ const pkg: PackageData = {
   slug: 'kashmir-tour-package',
   canonicalUrl: 'https://www.ylootrips.com/kashmir-tour-package',
   metaTitle: 'Kashmir Tour Package 2026 — 5 Nights Starting ₹18,999 | YlooTrips',
-  metaDescription: 'Book Kashmir tour packages starting ₹18,999. 5 nights 6 days — Dal Lake houseboat, Gulmarg, Pahalgam, Sonamarg. Flights + hotel + shikara included.',
+  metaDescription: 'Book Kashmir land packages starting ₹18,999. 5 nights 6 days — Dal Lake houseboat, Gulmarg, Pahalgam, Sonamarg. Hotel + transfers + shikara included. Flights not included.',
   ogImage: 'https://images.unsplash.com/photo-1566837945700-30057527ade0?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1566837945700-30057527ade0?w=1600&q=85',
@@ -45,13 +45,13 @@ const pkg: PackageData = {
 
   overview: [
     'Kashmir — rightfully called "Heaven on Earth" — is India\'s most breathtaking destination. Snow-capped Himalayan peaks, emerald meadows bursting with wildflowers, the serene expanse of Dal Lake with its iconic shikaras and houseboats, and the charming hospitality of Kashmiri people make this a journey unlike any other in the world.',
-    'Our 5-night Kashmir package covers the four essential experiences: a night on a traditional wooden houseboat on Dal Lake, the Gulmarg Gondola cable car to 13,000 feet with its panoramic Himalayan views and winter skiing, the pastoral beauty of Pahalgam and Betaab Valley immortalised in Bollywood films, and the otherworldly glacial landscape of Sonamarg.',
-    'Kashmir is a year-round destination — visit in summer (April to September) for meadows carpeted in wildflowers, or in winter (December to February) for magical snowscapes and skiing in Gulmarg. Our Kashmiri guides have 10+ years of experience and speak Hindi, English, and Kashmiri — ensuring a safe, immersive experience.',
+    'Our 5-night Kashmir land package covers the four essential experiences: a night on a traditional wooden houseboat on Dal Lake, the Gulmarg Gondola cable car to 13,000 feet with its panoramic Himalayan views and winter skiing, the pastoral beauty of Pahalgam and Betaab Valley immortalised in Bollywood films, and the otherworldly glacial landscape of Sonamarg.',
+    'This is a land-only package — flights to/from Srinagar are not included and need to be booked separately. Srinagar airport (SXR) has direct connections from Delhi (1.5h), Mumbai, and other major cities. Our Kashmiri guides have 10+ years of experience and speak Hindi, English, and Kashmiri — ensuring a safe, immersive experience.',
     'Book with just ₹5,000 advance. Balance due 30 days before travel. Free cancellation up to 14 days before departure.',
   ],
 
   highlights: [
-    'Return flights from Delhi to Srinagar',
+    'Land package — hotel + all transfers included (flights not included)',
     'Night on iconic Dal Lake houseboat (traditional wooden houseboat)',
     'Shikara ride on Dal Lake at sunrise',
     'Gulmarg Gondola — Phase 1 + Phase 2 cable car to 13,400 ft',
@@ -75,7 +75,7 @@ const pkg: PackageData = {
     {
       day: 1,
       title: 'Delhi → Srinagar — Dal Lake Houseboat Check-in',
-      description: 'Fly from Delhi to Srinagar (approx. 1h 30m) on IndiGo or Air India. On arrival at Sheikh ul-Alam International Airport, your Kashmiri guide will be waiting. Transfer directly to Dal Lake and board your traditional wooden houseboat — lovingly hand-carved and furnished with walnut wood furniture and Kashmiri carpets. Settle in over a cup of hot Kashmiri kahwa (saffron tea). Evening shikara ride on the glassy waters of Dal Lake, gliding past the famous floating vegetable markets, lotus gardens, and cheerful shikara vendors. Dinner aboard your houseboat — a feast of authentic Wazwan cuisine: rogan josh, yakhni, dam aloo, and Kashmiri pulao.',
+      description: 'Arrive at Srinagar\'s Sheikh ul-Alam International Airport (SXR). Your Kashmiri guide will be waiting. Transfer directly to Dal Lake and board your traditional wooden houseboat — lovingly hand-carved and furnished with walnut wood furniture and Kashmiri carpets. Settle in over a cup of hot Kashmiri kahwa (saffron tea). Evening shikara ride on the glassy waters of Dal Lake, gliding past the famous floating vegetable markets, lotus gardens, and cheerful shikara vendors. Dinner aboard your houseboat — a feast of authentic Wazwan cuisine: rogan josh, yakhni, dam aloo, and Kashmiri pulao.',
       meals: 'Dinner',
       hotel: 'Luxury Houseboat on Dal Lake',
       activities: ['Airport pickup', 'Dal Lake houseboat check-in', 'Evening shikara ride', 'Wazwan dinner onboard'],
@@ -118,12 +118,11 @@ const pkg: PackageData = {
       description: 'Final morning breakfast at the hotel. Time permitting, visit the Lal Chowk clock tower — the historic heart of Srinagar. Last-minute shopping at the Government Arts Emporium for quality-certified Kashmiri handicrafts: genuine pashmina, khatamband woodwork, and Kashmiri saffron (world\'s most expensive spice). Transfer to Srinagar Airport for your return flight to Delhi. Arrive back in Delhi by afternoon. Your Kashmir memories will last a lifetime.',
       meals: 'Breakfast',
       hotel: 'Departure',
-      activities: ['Lal Chowk visit', 'Handicrafts shopping', 'Airport transfer', 'Depart Srinagar → Delhi'],
+      activities: ['Lal Chowk visit', 'Handicrafts shopping', 'Airport transfer', 'Depart from Srinagar Airport'],
     },
   ],
 
   includes: [
-    'Return economy class flights Delhi ↔ Srinagar (IndiGo/Air India)',
     '1 night on luxury Dal Lake houseboat (all meals)',
     '4 nights in a 4-star hotel in Srinagar (breakfast included)',
     'All transfers in private AC Innova / Tempo Traveller',
@@ -138,6 +137,7 @@ const pkg: PackageData = {
   ],
 
   excludes: [
+    'Flights to/from Srinagar (book separately — IndiGo/Air India)',
     'Travel insurance (strongly recommended — from ₹600/person)',
     'Meals other than houseboat meals and hotel breakfast',
     'Pony rides at Sonamarg and Pahalgam (approx. ₹400–800/person)',
@@ -201,7 +201,7 @@ const pkg: PackageData = {
     },
     {
       question: 'How much does a Kashmir trip cost from Delhi?',
-      answer: 'Our all-inclusive Kashmir package starts at ₹18,999 per person for 5 nights. This includes return flights from Delhi, houseboat night, 4-star hotel (4 nights), all transfers, Gulmarg Gondola, and all excursions. Budget ₹3,000–₹5,000 extra per person for additional activities (pony rides, skiing), meals outside breakfast, and shopping.',
+      answer: 'Our Kashmir land package starts at ₹18,999 per person for 5 nights. This includes houseboat night, 4-star hotel (4 nights), all Srinagar transfers, Gulmarg Gondola, and all excursions. Flights to/from Srinagar are not included — add ₹4,000–₹8,000/person for Delhi–Srinagar return flights. Budget ₹3,000–₹5,000 extra for pony rides, skiing, meals outside breakfast, and shopping.',
     },
     {
       question: 'Do I need any special permits to visit Kashmir?',
@@ -223,10 +223,12 @@ const pkg: PackageData = {
     { title: 'Maldives Luxury Package — 4 Nights', href: '/maldives-luxury-package', priceINR: 89999, image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80' },
   ],
 
-  whatsappMsg: "Hi! I'm interested in the Kashmir Tour Package (5 nights ₹18,999). Please share availability and details.",
+  priceNote: 'Land cost only · Flights not included',
+
+  whatsappMsg: "Hi! I'm interested in the Kashmir Tour Package (5 nights ₹18,999, land only). Please share availability and details.",
   bookingHref: '/contact?package=kashmir-tour-package',
 
-  schemaHighlights: ['Dal Lake houseboat and shikara ride', 'Gulmarg Gondola to 13,400 feet', 'Pahalgam Betaab Valley', 'Sonamarg Thajiwas Glacier', 'Return flights from Delhi'],
+  schemaHighlights: ['Dal Lake houseboat and shikara ride', 'Gulmarg Gondola to 13,400 feet', 'Pahalgam Betaab Valley', 'Sonamarg Thajiwas Glacier', 'Land package — hotel and transfers included'],
 };
 
 export default async function KashmirTourPackagePage() {
