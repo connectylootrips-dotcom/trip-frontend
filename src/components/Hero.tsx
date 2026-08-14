@@ -509,10 +509,13 @@ export default function Hero({ content, stats }: HeroProps) {
 
                     {/* Headline — centered */}
                     <div className="text-center mb-6">
-                        <p className="text-accent text-xs uppercase tracking-[0.35em] font-bold mb-2 drop-shadow">
-                            {content?.eyebrow || '⭐ Rated 4.9 on Google · 25,000+ Trips Booked'}
-                        </p>
-                        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3 drop-shadow-lg">
+                        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-4">
+                            <span className="text-amber-400 text-xs">★</span>
+                            <span className="text-white/90 text-xs font-semibold tracking-wide">
+                                {content?.eyebrow || 'Rated 4.9 on Google · 25,000+ Trips Booked'}
+                            </span>
+                        </div>
+                        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-3 drop-shadow-lg">
                             {content?.title
                                 ? <span className="text-white">{content.title}</span>
                                 : <>
@@ -942,18 +945,18 @@ export default function Hero({ content, stats }: HeroProps) {
                     </div>
 
                     {/* Trust bar - on dark hero background */}
-                    <div className="mt-5 flex flex-wrap items-center justify-center gap-5 sm:gap-8">
-                        <div className="flex items-center gap-2 text-white/80 text-sm">
-                            <Star size={15} className="text-amber-400 fill-amber-400" />
-                            <span><strong className="text-white">4.9/5</strong> Google Rating</span>
+                    <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:gap-x-10">
+                        <div className="flex items-center gap-1.5 text-white/75 text-xs">
+                            <Star size={13} className="text-amber-400 fill-amber-400 shrink-0" />
+                            <span><strong className="text-white font-semibold">4.9/5</strong> Google Rating</span>
                         </div>
-                        <div className="flex items-center gap-2 text-white/80 text-sm">
-                            <Shield size={15} className="text-green-400" />
-                            <span><strong className="text-white">Secure</strong> · Licensed &amp; insured</span>
+                        <div className="flex items-center gap-1.5 text-white/75 text-xs">
+                            <Shield size={13} className="text-green-400 shrink-0" />
+                            <span><strong className="text-white font-semibold">Secure</strong> · Licensed &amp; insured</span>
                         </div>
-                        <div className="flex items-center gap-2 text-white/80 text-sm">
-                            <Clock size={15} className="text-blue-400" />
-                            <span><strong className="text-white">1-hour</strong> response guarantee</span>
+                        <div className="flex items-center gap-1.5 text-white/75 text-xs">
+                            <Clock size={13} className="text-blue-400 shrink-0" />
+                            <span><strong className="text-white font-semibold">1-hour</strong> response guarantee</span>
                         </div>
                     </div>
                 </div>
@@ -962,11 +965,11 @@ export default function Hero({ content, stats }: HeroProps) {
             {/* Stats bar */}
             <div className="relative z-10 bg-black/50 backdrop-blur-sm border-t border-white/10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div className="flex items-center justify-center divide-x divide-white/15">
                         {displayStats.slice(0, 4).map((stat, i) => (
-                            <div key={i} className="text-center">
-                                <div className="text-2xl sm:text-3xl font-bold text-white">{stat.value}</div>
-                                <div className="text-xs text-white/50 uppercase tracking-wider mt-0.5">{stat.label}</div>
+                            <div key={i} className="text-center px-4 sm:px-8 first:pl-0 last:pr-0">
+                                <div className="text-xl sm:text-2xl font-bold text-white leading-tight">{stat.value}</div>
+                                <div className="text-[10px] text-white/45 uppercase tracking-wider mt-0.5">{stat.label}</div>
                             </div>
                         ))}
                     </div>

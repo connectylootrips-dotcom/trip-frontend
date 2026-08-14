@@ -510,30 +510,30 @@ export default function HomeClient({ content, destinations }: HomeClientProps) {
       />
 
       {/* 2 — Social proof micro-bar */}
-      <div className="bg-gray-950 py-2.5 overflow-x-auto scrollbar-hide">
-        <div className="flex items-center justify-center gap-6 md:gap-10 px-4 whitespace-nowrap">
+      <div className="bg-[#0c1420] border-b border-white/5 py-3 overflow-x-auto scrollbar-hide">
+        <div className="flex items-center justify-center gap-0 px-4 whitespace-nowrap divide-x divide-white/10">
           {[
             { icon: '⭐', text: '4.9/5 Google Rating', sub: 'Google Rating', href: 'https://share.google/RltJUJHq75aa8yfAl' },
-            { icon: '✈️', text: '25,000+ Trips Booked', sub: 'since 2022' },
-            { icon: '🔒', text: '100% Secure Payments', sub: 'Easebuzz & SSL' },
-            { icon: '📞', text: 'Reply in < 1 Hour', sub: '24/7 support' },
-            { icon: '🏆', text: 'MSME Certified', sub: 'UDYAM-HR-05-0141455' },
+            { icon: '✈️', text: '25,000+ Trips Booked', sub: 'since 2022', href: undefined },
+            { icon: '🔒', text: '100% Secure Payments', sub: 'Easebuzz & SSL', href: undefined },
+            { icon: '📞', text: 'Reply in <1 Hour', sub: '24/7 support', href: undefined },
+            { icon: '🏆', text: 'MSME Certified', sub: 'UDYAM-HR-05-0141455', href: undefined },
           ].map(({ icon, text, sub, href }) => (
             href
-              ? <a key={text} href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 shrink-0 hover:opacity-80 transition-opacity">
-                  <span className="text-sm">{icon}</span>
+              ? <a key={text} href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 shrink-0 hover:opacity-80 transition-opacity px-5 sm:px-8">
+                  <span className="text-base leading-none">{icon}</span>
                   <div>
-                    <p className="text-white text-[11px] font-semibold leading-tight underline decoration-dotted underline-offset-2">{text}</p>
-                    <p className="text-white/40 text-[9px] leading-tight">{sub}</p>
+                    <p className="text-white text-xs font-semibold leading-tight underline decoration-dotted underline-offset-2">{text}</p>
+                    <p className="text-white/40 text-[10px] leading-tight mt-0.5">{sub}</p>
                   </div>
                 </a>
-              : <div key={text} className="flex items-center gap-2 shrink-0">
-              <span className="text-sm">{icon}</span>
-              <div>
-                <p className="text-white text-[11px] font-semibold leading-tight">{text}</p>
-                <p className="text-white/40 text-[9px] leading-tight">{sub}</p>
-              </div>
-            </div>
+              : <div key={text} className="flex items-center gap-2.5 shrink-0 px-5 sm:px-8">
+                  <span className="text-base leading-none">{icon}</span>
+                  <div>
+                    <p className="text-white text-xs font-semibold leading-tight">{text}</p>
+                    <p className="text-white/40 text-[10px] leading-tight mt-0.5">{sub}</p>
+                  </div>
+                </div>
           ))}
         </div>
       </div>
@@ -545,17 +545,15 @@ export default function HomeClient({ content, destinations }: HomeClientProps) {
       <TrendingPackages />
 
       {/* 5 — Hot Deals Strip */}
-      <section className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-white/10 py-5">
+      <section className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-white/10 py-8 sm:py-12">
         <div className="section-container">
           {/* Header row */}
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2.5">
-              <span className="flex items-center gap-1.5 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800/30 text-red-600 dark:text-red-400 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
-                🔥 Flash Prices
-              </span>
-              <span className="text-gray-400 dark:text-white/30 text-[11px]">Limited-time deals · Prices may change</span>
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-500 dark:text-red-400 mb-1.5">Limited-time deals</p>
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-gray-900 dark:text-white leading-tight">Flash Prices</h2>
             </div>
-            <Link href="/trips" className="text-[11px] font-bold text-accent hover:underline underline-offset-2 hidden sm:block">View All →</Link>
+            <Link href="/trips" className="text-sm font-semibold text-accent hover:underline underline-offset-2 flex items-center gap-1">View All <ArrowRight size={14} /></Link>
           </div>
 
           {/* Card scroll */}
@@ -576,7 +574,7 @@ export default function HomeClient({ content, destinations }: HomeClientProps) {
                   key={pkg.href}
                   href={pkg.href}
                   className="group flex-shrink-0 relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-100 dark:border-white/10 hover:border-accent/40 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                  style={{ width: 'clamp(140px, 45vw, 160px)' }}
+                  style={{ width: 'clamp(155px, 46vw, 175px)' }}
                 >
                   {/* Destination image */}
                   <div className="relative h-24 overflow-hidden">
@@ -631,7 +629,7 @@ export default function HomeClient({ content, destinations }: HomeClientProps) {
                 <p className="text-caption uppercase tracking-[0.35em] text-accent font-semibold mb-4">
                   {philosophySection?.eyebrow || 'Our Philosophy'}
                 </p>
-                <h2 className="font-display text-display-lg text-primary dark:text-white leading-tight">
+                <h2 className="font-display text-2xl sm:text-3xl lg:text-display-lg text-primary dark:text-white leading-tight">
                   {philosophySection?.title?.split('.').map((part, i) => (
                     <span key={i}>
                       {i === 1 ? <><br /><span className="italic text-secondary">{part.trim()}</span></> : part}
@@ -764,8 +762,8 @@ export default function HomeClient({ content, destinations }: HomeClientProps) {
               </div>
             </div>
 
-            {/* Perks — hidden on mobile */}
-            <div className="hidden lg:flex items-center gap-6 text-white/90">
+            {/* Perks */}
+            <div className="hidden md:flex items-center gap-6 text-white/90">
               {[
                 { icon: TrendingUp, label: '10% Cashback', sub: 'on every booking' },
                 { icon: Gift, label: 'Promo Codes', sub: 'exclusive offers' },
