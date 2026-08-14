@@ -115,10 +115,13 @@ function HolidayCalendar({ onSelect }: { onSelect: (q: string) => void }) {
 
   return (
     <div className="mt-6">
-      <div className="flex items-center justify-between mb-3 px-1">
+      <div className="flex items-center gap-3 mb-4 px-1">
+        <div className="w-8 h-8 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center shrink-0">
+          <Calendar className="w-4 h-4 text-amber-600" />
+        </div>
         <div>
-          <p className="text-sm font-bold text-gray-900">📅 Long Weekends & Holiday Calendar 2026</p>
-          <p className="text-xs mt-0.5 text-gray-500">Tap any holiday to plan your trip instantly</p>
+          <p className="text-sm font-bold text-gray-900">Long Weekends &amp; Holiday Calendar 2026</p>
+          <p className="text-xs mt-0.5 text-gray-500">Tap any holiday to instantly plan your trip</p>
         </div>
       </div>
       <div className="space-y-2.5">
@@ -1049,9 +1052,11 @@ export default function TripPlannerChat() {
   return (
     <div className="min-h-screen bg-[#F6F9FF]">
       {/* Hero Header */}
-      <div className="pt-24 pb-10 px-4 relative overflow-hidden bg-[#0A2752]">
+      <div className="pt-24 pb-12 px-4 relative overflow-hidden bg-[#0A2752]">
         {/* Ambient glow */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(0,140,255,0.15) 0%, transparent 70%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,140,255,0.18) 0%, transparent 70%)' }} />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-12 pointer-events-none" style={{ background: 'linear-gradient(to bottom, transparent, rgba(10,39,82,0.6))' }} />
 
         {/* Real Trips pill — top right */}
         <a
@@ -1064,48 +1069,66 @@ export default function TripPlannerChat() {
         </a>
 
         <div className="max-w-2xl mx-auto text-center relative">
-          <div className="inline-flex items-center gap-1.5 rounded-full mb-4 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.15em] bg-white/10 border border-white/20 text-white/80">
-            <Calendar className="w-3 h-3" />
-            AI Holiday Planner · Powered by Yloo
+          <div className="inline-flex items-center gap-1.5 rounded-full mb-5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] bg-[#008cff]/20 border border-[#008cff]/40 text-[#7EC8FF]">
+            <Sparkles className="w-3 h-3" />
+            AI-Powered Trip Planner · Free
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 leading-tight">
-            <span className="text-white">Plan Your Dream </span>
-            <span className="text-[#FFB347]">Journey</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 leading-tight tracking-tight">
+            <span className="text-white">Plan Your </span>
+            <span style={{ background: 'linear-gradient(135deg, #FFB347 0%, #FF8C42 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Dream Trip</span>
           </h1>
-          <p className="text-sm max-w-sm mx-auto leading-relaxed text-white/70">
-            Pick a long weekend below — or describe any trip to get a personalised AI itinerary in seconds.
+          <p className="text-sm sm:text-base max-w-md mx-auto leading-relaxed text-white/65 mb-8">
+            Describe any trip — our AI builds a personalised day-by-day itinerary with budgets, hotels &amp; insider tips in seconds.
           </p>
+
+          {/* Trust stats */}
+          <div className="inline-flex items-center gap-5 sm:gap-8 text-center">
+            {[
+              { value: '4.9★', label: 'Avg rating' },
+              { value: '25,000+', label: 'Travelers' },
+              { value: '50+', label: 'Destinations' },
+            ].map(({ value, label }) => (
+              <div key={label}>
+                <p className="text-base sm:text-lg font-black text-white">{value}</p>
+                <p className="text-[10px] text-white/45 mt-0.5">{label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 -mt-4">
+      <div className="max-w-6xl mx-auto px-4 -mt-6">
         <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_300px] xl:gap-6 xl:items-start">
           <div>
         {/* Input Card */}
-        <div className="rounded-2xl p-4 sm:p-5 bg-white border border-gray-200 shadow-md">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 px-1 text-[#008cff]">✨ Ask Yloo AI anything</p>
-          <textarea
-            ref={textareaRef}
-            value={input}
-            onChange={(e) => { setInput(e.target.value); autoResize(); }}
-            onKeyDown={handleKeyDown}
-            placeholder="e.g. 5-day Bali trip for 2, honeymoon, budget ₹80,000…"
-            rows={2}
-            className="w-full resize-none text-sm bg-transparent outline-none leading-relaxed text-gray-800 placeholder:text-gray-400"
-          />
-          <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
-            <p className="text-[10px] hidden sm:block text-gray-400">Enter to generate · Shift+Enter new line</p>
-            <button
-              onClick={() => handleSubmit()}
-              disabled={!input.trim() || loading}
-              className="ml-auto flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed bg-[#008cff] hover:bg-[#0077dd] text-white shadow-md shadow-blue-500/25"
-            >
-              {loading ? (
-                <><Loader2 className="w-4 h-4 animate-spin" />Planning…</>
-              ) : (
-                <><Sparkles className="w-4 h-4" />Plan My Trip</>
-              )}
-            </button>
+        <div className="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-lg shadow-blue-500/8">
+          {/* Gradient accent bar */}
+          <div className="h-1 bg-gradient-to-r from-[#008cff] via-[#0066dd] to-[#008cff]" />
+          <div className="p-4 sm:p-5">
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-3 text-[#008cff]">Ask Yloo AI — Where do you want to go?</p>
+            <textarea
+              ref={textareaRef}
+              value={input}
+              onChange={(e) => { setInput(e.target.value); autoResize(); }}
+              onKeyDown={handleKeyDown}
+              placeholder="e.g. 5-day Bali trip for 2, honeymoon, budget ₹80,000…"
+              rows={2}
+              className="w-full resize-none text-sm bg-transparent outline-none leading-relaxed text-gray-800 placeholder:text-gray-400"
+            />
+            <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+              <p className="text-[10px] hidden sm:block text-gray-400">Press Enter to generate · Shift+Enter for new line</p>
+              <button
+                onClick={() => handleSubmit()}
+                disabled={!input.trim() || loading}
+                className="ml-auto flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed bg-[#008cff] hover:bg-[#0077dd] text-white shadow-md shadow-blue-500/30"
+              >
+                {loading ? (
+                  <><Loader2 className="w-4 h-4 animate-spin" />Planning…</>
+                ) : (
+                  <><Send className="w-4 h-4" />Plan My Trip</>
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1113,17 +1136,19 @@ export default function TripPlannerChat() {
         {!hasSearched && (
           <>
             <HolidayCalendar onSelect={(q) => handleSubmit(q)} />
-            <div className="mt-4">
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] mb-3 px-1 text-gray-400">✦ Quick examples</p>
-              <div className="flex flex-col gap-2">
+            <div className="mt-5">
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] mb-3 px-1 text-gray-400">Popular trip ideas</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {SUGGESTIONS.map((s, i) => (
                   <button
                     key={i}
                     onClick={() => handleSubmit(s)}
-                    className="text-left text-sm rounded-xl px-4 py-3.5 transition-all flex items-center gap-2.5 bg-white border border-gray-200 text-gray-700 hover:border-blue-300 hover:bg-blue-50 hover:text-gray-900"
+                    className="text-left text-xs rounded-xl px-3.5 py-3 transition-all flex items-start gap-2.5 bg-white border border-gray-200 text-gray-700 hover:border-[#008cff]/40 hover:bg-blue-50 hover:text-gray-900 group"
                   >
-                    <span className="text-[10px] text-gray-400">→</span>
-                    {s}
+                    <span className="mt-0.5 w-5 h-5 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0 group-hover:bg-[#008cff] group-hover:border-[#008cff] transition-colors">
+                      <MapPin className="w-2.5 h-2.5 text-[#008cff] group-hover:text-white transition-colors" />
+                    </span>
+                    <span className="leading-snug">{s}</span>
                   </button>
                 ))}
               </div>
@@ -1133,13 +1158,24 @@ export default function TripPlannerChat() {
 
         {/* Loading State */}
         {loading && (
-          <div className="mt-8 text-center py-12">
-            <div className="inline-flex flex-col items-center gap-3">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#008cff]">
-                <Sparkles className="w-6 h-6 animate-pulse text-white" />
+          <div className="mt-8 py-14">
+            <div className="flex flex-col items-center gap-4">
+              <div className="relative">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-[#008cff] shadow-lg shadow-blue-500/30">
+                  <Sparkles className="w-7 h-7 text-white animate-pulse" />
+                </div>
+                <div className="absolute -inset-1 rounded-2xl border-2 border-[#008cff]/30 animate-ping" />
               </div>
-              <p className="font-medium text-sm text-gray-700">Yloo AI is crafting your itinerary…</p>
-              <p className="text-xs text-gray-400">This usually takes 10–15 seconds</p>
+              <div className="text-center">
+                <p className="font-bold text-sm text-gray-800">Crafting your personalised itinerary…</p>
+                <p className="text-xs text-gray-400 mt-1">Building day-by-day plan with budgets &amp; tips</p>
+              </div>
+              <div className="flex gap-1.5">
+                {[0, 0.15, 0.3].map((delay, i) => (
+                  <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#008cff] animate-bounce"
+                    style={{ animationDelay: `${delay}s` }} />
+                ))}
+              </div>
             </div>
           </div>
         )}
