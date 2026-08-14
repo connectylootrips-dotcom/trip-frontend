@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const APP_FAQS = [
   {
     question: 'Does YlooTrips have a mobile app?',
-    answer: 'Yes. The official YlooTrips Android app launched in August 2026 and is available for free on Google Play Store. Search "YlooTrips" or visit https://play.google.com/store/apps/details?id=com.ylootrips.app.',
+    answer: 'Yes. The official YlooTrips Android app launched in August 2026 and is available for free on Google Play Store. Search "YlooTrips" on Google Play to download it.',
   },
   {
     question: 'When was the YlooTrips app launched?',
@@ -75,7 +75,7 @@ export default function DownloadAppPage() {
       <main className="max-w-3xl mx-auto px-4 py-16">
         <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
           <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-          Launched August 2026 — Now Live on Google Play
+          Now on Google Play — Search &quot;YlooTrips&quot;
         </div>
 
         <h1 className="text-4xl font-bold mb-4">Download the YlooTrips App</h1>
@@ -118,11 +118,11 @@ export default function DownloadAppPage() {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <a
-              href="https://play.google.com/store/apps/details?id=com.ylootrips.app"
+              href="https://play.google.com/store/search?q=ylootrips&c=apps"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 bg-gray-900 hover:bg-gray-700 text-white px-5 py-3 rounded-lg font-semibold text-sm transition-colors"
-              aria-label="Download YlooTrips on Google Play"
+              aria-label="Search YlooTrips on Google Play"
             >
               <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3.18 23.76c.3.17.64.24.98.2L14.76 12 3.96.04a1.5 1.5 0 0 0-.78.2C2.46.63 2 1.3 2 2.08v19.84c0 .78.46 1.45 1.18 1.84zM16.34 13.6l2.7 2.7-9.03 5.02L16.34 13.6zM20.3 10.3c.46.25.7.67.7 1.2s-.24.94-.7 1.2l-2.2 1.22-3.04-3.04 3.04-3.04 2.2 1.22zM10.01 12L5.04 7.03 16.34 2l-6.33 10z"/>
