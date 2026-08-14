@@ -30,7 +30,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE_URL}/reviews`, lastModified: now, changeFrequency: 'weekly', priority: 0.88 },
     { url: `${BASE_URL}/tripadvisor`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${BASE_URL}/trip-planner`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
     { url: `${BASE_URL}/privacy-policy`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE_URL}/faq`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
 
@@ -108,6 +107,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/vietnam-tour-package`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
     { url: `${BASE_URL}/sri-lanka-tour-package`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
     { url: `${BASE_URL}/nepal-tour-package`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${BASE_URL}/japan-tour-package`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${BASE_URL}/georgia-azerbaijan-tour-package`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
+    { url: `${BASE_URL}/kenya-safari-package`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
 
     // Feature pages
     { url: `${BASE_URL}/group-travel`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },

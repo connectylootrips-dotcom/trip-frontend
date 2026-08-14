@@ -42,6 +42,9 @@ export default function Footer() {
       { name: 'Nepal', href: '/nepal-tour-package' },
       { name: 'Europe', href: '/europe-tour-package-from-india' },
       { name: 'Maldives', href: '/maldives-luxury-package' },
+      { name: 'Japan', href: '/japan-tour-package' },
+      { name: 'Georgia & Azerbaijan', href: '/georgia-azerbaijan-tour-package' },
+      { name: 'Kenya Safari', href: '/kenya-safari-package' },
     ],
     company: [
       { name: 'Our Story', href: '/about' },
