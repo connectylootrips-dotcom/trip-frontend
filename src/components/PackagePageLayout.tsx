@@ -48,7 +48,7 @@ export interface PackageData {
   // SEO
   metaTitle: string;
   metaDescription: string;
-  keywords: string;
+  keywords?: string;
   ogImage: string;
 
   // Hero
