@@ -258,7 +258,7 @@ export default function BlogsPage() {
         <div className="section-container">
           <div className="mb-8">
             <p className="text-caption uppercase tracking-[0.3em] text-secondary mb-3">India Travel Guides</p>
-            <h2 className="font-display text-display-lg text-primary">
+            <h2 className="font-display text-2xl sm:text-display-lg text-primary">
               Essential reads for <span className="italic">first-time visitors</span>
             </h2>
           </div>
@@ -334,7 +334,7 @@ export default function BlogsPage() {
                 <span className="text-caption uppercase tracking-widest text-secondary mb-4">
                   {featuredPost.category}
                 </span>
-                <h2 className="font-display text-display-lg text-primary group-hover:text-secondary transition-colors mb-4">
+                <h2 className="font-display text-2xl sm:text-display-lg text-primary group-hover:text-secondary transition-colors mb-4">
                   {featuredPost.title}
                 </h2>
                 <p className="text-primary/60 text-body-lg mb-6">
@@ -366,7 +366,7 @@ export default function BlogsPage() {
       <section className="py-10 md:py-14 bg-cream-dark">
         <div className="section-container">
           <p className="text-caption uppercase tracking-[0.3em] text-secondary mb-3">From Our Writers</p>
-          <h2 className="font-display text-display-lg text-primary mb-2">Latest Stories</h2>
+          <h2 className="font-display text-2xl sm:text-display-lg text-primary mb-2">Latest Stories</h2>
           <p className="text-primary/50 text-sm mb-10">Our team shares travel insights, destination guides, and inspiration.</p>
 
           {loading ? (
@@ -436,10 +436,10 @@ export default function BlogsPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-3 shrink-0">
               <a href="https://wa.me/918427831127" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-6 py-3 text-sm font-semibold uppercase tracking-widest transition-colors">
+                className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-6 py-3 text-sm font-semibold uppercase tracking-widest transition-colors w-full sm:w-auto">
                 WhatsApp Us
               </a>
-              <Link href="/destinations/domestic" className="inline-flex items-center justify-center gap-2 border border-cream/25 text-cream hover:bg-white/8 px-6 py-3 text-sm uppercase tracking-widest transition-all">
+              <Link href="/destinations/domestic" className="flex items-center justify-center gap-2 border border-cream/25 text-cream hover:bg-white/8 px-6 py-3 text-sm uppercase tracking-widest transition-all w-full sm:w-auto">
                 Browse Trips
               </Link>
             </div>

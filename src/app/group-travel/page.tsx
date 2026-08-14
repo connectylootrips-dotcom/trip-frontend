@@ -62,12 +62,12 @@ export default function GroupTravelPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="https://wa.me/918427831127?text=Hi%20I%20want%20to%20plan%20a%20group%20trip" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 font-bold px-8 py-4 rounded-full hover:bg-gray-100 transition-colors text-sm">
+              className="flex items-center justify-center gap-2 bg-white text-gray-900 font-bold px-8 py-4 rounded-full hover:bg-gray-100 transition-colors text-sm w-full sm:w-auto">
               <MessageCircle size={16} />
               WhatsApp for Group Quote
             </Link>
             <Link href="/trip-planner"
-              className="inline-flex items-center justify-center gap-2 border border-white/40 text-white font-semibold px-8 py-4 rounded-full hover:bg-white/10 transition-colors text-sm">
+              className="flex items-center justify-center gap-2 border border-white/40 text-white font-semibold px-8 py-4 rounded-full hover:bg-white/10 transition-colors text-sm w-full sm:w-auto">
               Plan with AI
               <ChevronRight size={15} />
             </Link>
@@ -180,12 +180,12 @@ export default function GroupTravelPage() {
           <p className="text-white/70 mb-7">WhatsApp us for a free custom quote within 2 hours. Groups of 4+ get 20% off automatically.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="https://wa.me/918427831127?text=Hi%20I%20want%20to%20plan%20a%20group%20trip" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 font-bold px-7 py-3.5 rounded-full hover:bg-gray-100 transition-colors text-sm">
+              className="flex items-center justify-center gap-2 bg-white text-gray-900 font-bold px-7 py-3.5 rounded-full hover:bg-gray-100 transition-colors text-sm w-full sm:w-auto">
               <MessageCircle size={15} />
               WhatsApp: +91-84278-31127
             </Link>
             <Link href="/contact"
-              className="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full hover:bg-white/10 transition-colors text-sm">
+              className="flex items-center justify-center gap-2 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full hover:bg-white/10 transition-colors text-sm w-full sm:w-auto">
               Send Enquiry
             </Link>
           </div>

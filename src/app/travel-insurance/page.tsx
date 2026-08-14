@@ -99,11 +99,11 @@ export default function TravelInsurancePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href={whatsapp} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 font-bold px-8 py-4 rounded-full hover:bg-gray-100 transition-colors text-sm">
+              className="flex items-center justify-center gap-2 bg-white text-gray-900 font-bold px-8 py-4 rounded-full hover:bg-gray-100 transition-colors text-sm w-full sm:w-auto">
               <MessageCircle size={16} /> Get Insurance Now
             </Link>
             <Link href="#plans"
-              className="inline-flex items-center justify-center gap-2 border border-white/40 text-white font-semibold px-8 py-4 rounded-full hover:bg-white/10 transition-colors text-sm">
+              className="flex items-center justify-center gap-2 border border-white/40 text-white font-semibold px-8 py-4 rounded-full hover:bg-white/10 transition-colors text-sm w-full sm:w-auto">
               View Plans <ChevronRight size={15} />
             </Link>
           </div>

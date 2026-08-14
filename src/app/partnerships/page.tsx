@@ -133,14 +133,14 @@ export default function PartnershipsPage() {
                 href="https://wa.me/918427831127?text=Hi%2C+I'd+like+to+explore+a+partnership+with+YlooTrips.%0A%0ABusiness+name%3A+%0AType%3A+%0ALocation%3A+"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-8 py-4 font-semibold text-sm uppercase tracking-widest transition-colors"
+                className="flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-8 py-4 font-semibold text-sm uppercase tracking-widest transition-colors w-full sm:w-auto"
               >
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp Us
               </a>
               <a
                 href="mailto:hello@ylootrips.com?subject=Partnership Enquiry — YlooTrips&body=Hi YlooTrips team,%0A%0AI'd like to explore a partnership.%0A%0ABusiness name:%0AType of partnership:%0ALocation:%0AWebsite / Reviews:%0A%0A[Tell us more about your business]"
-                className="inline-flex items-center justify-center gap-2 border border-primary/20 text-primary hover:bg-primary hover:text-cream px-8 py-4 text-sm uppercase tracking-widest transition-all"
+                className="flex items-center justify-center gap-2 border border-primary/20 text-primary hover:bg-primary hover:text-cream px-8 py-4 text-sm uppercase tracking-widest transition-all w-full sm:w-auto"
               >
                 Send Email <ArrowUpRight className="w-4 h-4" />
               </a>

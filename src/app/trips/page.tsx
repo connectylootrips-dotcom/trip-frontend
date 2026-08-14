@@ -94,12 +94,12 @@ export default async function TripsPage() {
                             href="https://wa.me/918427831127?text=Hi%2C+I'm+looking+for+a+custom+trip+package"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-8 py-4 font-semibold text-sm uppercase tracking-widest transition-colors"
+                            className="flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-8 py-4 font-semibold text-sm uppercase tracking-widest transition-colors w-full sm:w-auto"
                         >
                             <MessageCircle className="w-5 h-5" />
                             Chat on WhatsApp
                         </a>
-                        <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-cream/25 text-cream hover:border-cream hover:bg-white/5 px-8 py-4 text-sm uppercase tracking-widest transition-all">
+                        <Link href="/contact" className="flex items-center justify-center gap-2 border border-cream/25 text-cream hover:border-cream hover:bg-white/5 px-8 py-4 text-sm uppercase tracking-widest transition-all w-full sm:w-auto">
                             <span>Plan Custom Journey</span>
                             <ArrowUpRight className="w-4 h-4" />
                         </Link>
