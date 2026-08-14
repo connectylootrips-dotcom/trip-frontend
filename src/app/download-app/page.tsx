@@ -72,16 +72,16 @@ export default function DownloadAppPage() {
       />
       <FaqJsonLd faqs={APP_FAQS} />
 
-      <main className="max-w-3xl mx-auto px-4 py-16">
-        <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
+      <main className="max-w-3xl mx-auto px-4 py-10 sm:py-16">
+        <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
           <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
           Now on Google Play — Search &quot;YlooTrips&quot;
         </div>
 
-        <h1 className="text-4xl font-bold mb-4">Download the YlooTrips App</h1>
-        <p className="text-lg text-gray-600 mb-8">
+        <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4 leading-tight">Download the YlooTrips App</h1>
+        <p className="text-sm sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
           The official YlooTrips Android app is <strong>now live</strong> on Google Play — launched August 2026.
-          Track your bookings, download your itinerary, flight & hotel details, guide info, and payment slips — all from your phone, anytime.
+          Track your bookings, itinerary, flight &amp; hotel details, guide info, and payment slips — all from your phone.
         </p>
 
         {/* App preview card */}
@@ -121,7 +121,7 @@ export default function DownloadAppPage() {
               href="https://play.google.com/store/search?q=ylootrips&c=apps"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-gray-900 hover:bg-gray-700 text-white px-5 py-3 rounded-lg font-semibold text-sm transition-colors"
+              className="flex items-center justify-center gap-2.5 bg-gray-900 hover:bg-gray-700 text-white px-5 py-3.5 rounded-xl font-semibold text-sm transition-colors w-full sm:w-auto"
               aria-label="Search YlooTrips on Google Play"
             >
               <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -133,10 +133,10 @@ export default function DownloadAppPage() {
               </div>
             </a>
             <a
-              href="https://wa.me/918427831127?text=Hi%2C%20I%20downloaded%20the%20YlooTrips%20app%20and%20need%20help"
+              href="https://wa.me/918427831127?text=Hi%2C%20I%20need%20help%20with%20the%20YlooTrips%20app"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-lg font-semibold text-sm transition-colors"
+              className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-5 py-3.5 rounded-xl font-semibold text-sm transition-colors w-full sm:w-auto"
             >
               Need Help? WhatsApp Us
             </a>
@@ -146,8 +146,8 @@ export default function DownloadAppPage() {
 
         {/* Track Your Booking section */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Track Your Entire Trip — All in One Place</h2>
-          <p className="text-gray-500 text-sm mb-5">Everything about your booking, available anytime from the app.</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Track Your Entire Trip — All in One Place</h2>
+          <p className="text-gray-500 text-sm mb-4">Everything about your booking, available anytime from the app.</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {[
               { icon: '📍', title: 'Live Booking Status', desc: 'Know your booking status in real time — confirmed, pending, or upcoming.' },
@@ -170,14 +170,14 @@ export default function DownloadAppPage() {
         <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-10">
           <h3 className="font-semibold text-gray-900 mb-1">Book trips right now on our website</h3>
           <p className="text-sm text-gray-600 mb-3">
-            ylootrips.com is fully mobile-optimised — works perfectly on Android & iPhone without any app.
+            ylootrips.com is fully mobile-optimised — works perfectly on Android &amp; iPhone without any app.
           </p>
-          <a href="/" className="inline-block bg-gray-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-700 transition-colors">
+          <a href="/" className="flex items-center justify-center sm:inline-flex bg-gray-900 text-white px-5 py-3 rounded-xl text-sm font-semibold hover:bg-gray-700 transition-colors w-full sm:w-auto">
             Browse Trips →
           </a>
         </div>
 
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <h2 className="text-xl sm:text-2xl font-bold mb-5">Frequently Asked Questions</h2>
         <div className="space-y-6">
           {APP_FAQS.map((faq) => (
             <div key={faq.question}>
