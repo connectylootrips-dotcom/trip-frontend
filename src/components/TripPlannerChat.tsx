@@ -149,7 +149,7 @@ function HolidayCalendar({ onSelect }: { onSelect: (q: string) => void }) {
                     <button
                       key={dest}
                       onClick={e => { e.stopPropagation(); onSelect(`Plan a ${h.totalDays}-day trip to ${dest} for ${h.name} break (${h.date}), budget trip for 2 people`); }}
-                      className="text-[11px] font-semibold px-2.5 py-1 rounded-full active:scale-95 transition-all bg-blue-50 text-[#008cff] border border-blue-200 hover:bg-blue-100"
+                      className="text-[11px] font-semibold px-2.5 py-1.5 rounded-full active:scale-95 transition-all bg-blue-50 text-[#008cff] border border-blue-200 hover:bg-blue-100"
                     >
                       {dest}
                     </button>
@@ -1082,15 +1082,18 @@ export default function TripPlannerChat() {
           </p>
 
           {/* Trust stats */}
-          <div className="inline-flex items-center gap-5 sm:gap-8 text-center">
+          <div className="flex items-center justify-center">
             {[
               { value: '4.9★', label: 'Avg rating' },
               { value: '25,000+', label: 'Travelers' },
               { value: '50+', label: 'Destinations' },
-            ].map(({ value, label }) => (
-              <div key={label}>
-                <p className="text-base sm:text-lg font-black text-white">{value}</p>
-                <p className="text-[10px] text-white/45 mt-0.5">{label}</p>
+            ].map(({ value, label }, i) => (
+              <div key={label} className="flex items-center">
+                {i > 0 && <div className="w-px h-8 bg-white/15 mx-4 sm:mx-6" />}
+                <div className="text-center">
+                  <p className="text-base sm:text-lg font-black text-white">{value}</p>
+                  <p className="text-[10px] text-white/50 mt-0.5">{label}</p>
+                </div>
               </div>
             ))}
           </div>
