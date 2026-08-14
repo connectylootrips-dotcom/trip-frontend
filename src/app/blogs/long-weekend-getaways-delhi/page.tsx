@@ -7,7 +7,6 @@ import { MessageCircle, ArrowRight, MapPin, Clock, Calendar } from 'lucide-react
 export const metadata: Metadata = {
   title: "20 Best Long Weekend Getaways from Delhi 2026 — Under 500km",
   description: "20 best weekend trips from Delhi in 2026: Agra, Jaipur, Rishikesh, Manali, Shimla, Jim Corbett, Nainital, Mussoorie, Mathura, Haridwar, Kasauli and more — grouped by distance and drive time.",
-  keywords: "long weekend getaways from Delhi, weekend trips from Delhi 2026, places to visit near Delhi under 500km, Delhi weekend trip, Rishikesh from Delhi, Shimla from Delhi, Jim Corbett from Delhi, short trips from Delhi",
   openGraph: {
     title: "20 Best Long Weekend Getaways from Delhi 2026 — Under 500km",
     description: "Best weekend getaways from Delhi grouped by distance: under 3 hours, 3–5 hours, and 5–8 hours drive. All under 500km.",

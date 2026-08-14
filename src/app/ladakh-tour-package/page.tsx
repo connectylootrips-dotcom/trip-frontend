@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Ladakh Tour Package 2026 — 6 Nights Starting ₹22,999 | YlooTrips',
   description: 'Book Ladakh tour packages starting ₹22,999. Leh, Pangong Lake, Nubra Valley, Khardung La, Tso Moriri. 6 nights / 7 days — high-altitude adventure in the Himalayas.',
-  keywords: 'Ladakh tour package, Leh Ladakh trip, Ladakh holiday package 2026, Pangong Lake trip, Nubra Valley tour, Ladakh trip from Delhi, Ladakh package cost, Khardung La pass trip',
   openGraph: {
     title: 'Ladakh Tour Package 2026 — 6 Nights Starting ₹22,999',
     description: 'Leh, Pangong Lake, Nubra Valley, Khardung La — 6 nights across the roof of India.',
@@ -24,7 +23,6 @@ export default async function LadakhPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/ladakh-tour-package',
     metaTitle: 'Ladakh Tour Package 2026 — 6 Nights Starting ₹22,999 | YlooTrips',
     metaDescription: 'Leh, Pangong Tso, Nubra Valley, Khardung La — 6 nights across the world\'s most dramatic high-altitude landscape.',
-    keywords: 'Ladakh tour package from Delhi, Leh Ladakh trip package, Pangong Lake tour',
     ogImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85',

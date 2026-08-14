@@ -8,7 +8,6 @@ import { staticReviews } from '@/lib/static-reviews';
 export const metadata: Metadata = {
   title: 'YlooTrips Reviews — 4.9★ Rated by 25,000+ Travelers',
   description: 'YlooTrips is rated 4.9★ on Google. Read real traveler testimonials from Kerala, Rajasthan, Manali, Bali, Dubai & more. India\'s most trusted tour operator.',
-  keywords: 'YlooTrips reviews, YlooTrips rating, is YlooTrips legit, YlooTrips testimonials, India tour company reviews, best travel company India reviews',
   openGraph: {
     title: 'YlooTrips Reviews | 4.9★ Rated by 25,000+ Travelers',
     description: '4.9★ Google rating. Read why travelers trust YlooTrips for India and international tours.',

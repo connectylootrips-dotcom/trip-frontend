@@ -4,7 +4,6 @@ import type { ReactNode } from 'react';
 export const metadata: Metadata = {
   title: 'India Travel Blog — Tips, Guides & Inspiration | YlooTrips',
   description: 'Expert India travel guides and articles — best time to visit, safety tips, budget breakdowns, destination comparisons, and insider knowledge from 25,000+ trips. Written by YlooTrips travel experts.',
-  keywords: 'India travel blog, India travel tips, India travel guide, best time visit India, India travel advice, India solo travel, India budget travel, India destinations blog',
   openGraph: {
     title: 'India Travel Blog | YlooTrips — India Travel Experts',
     description: 'Expert India travel guides — best time to visit, safety tips, budget breakdowns, and insider destination knowledge from 25,000+ trips.',

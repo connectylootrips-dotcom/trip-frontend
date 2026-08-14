@@ -6,7 +6,6 @@ import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd'
 export const metadata: Metadata = {
   title: "India vs Thailand: Which Should You Visit First?",
   description: "Comparing India and Thailand for international travelers. Cost, safety, food, culture, beaches, and which destination is right for first-time Asia visitors.",
-  keywords: "India vs Thailand travel, should I visit India or Thailand first, India Thailand comparison, best Asia destination first timer",
   openGraph: {
     title: "India vs Thailand: Which Should You Visit First? | YlooTrips",
     description: "An honest comparison of India and Thailand — cost, culture, safety, food, and which one is right for your travel style.",

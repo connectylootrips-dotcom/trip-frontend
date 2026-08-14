@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999 | YlooTrips',
   description: 'Book Goa tour packages starting ₹9,999. 3 nights / 4 days — North Goa beaches, South Goa, water sports, Dudhsagar Falls, Old Goa churches. Flights + hotel included.',
-  keywords: 'Goa tour package, Goa trip from Delhi, Goa holiday package 2026, Goa beach package, Goa 3 nights 4 days, Goa package cost, Goa trip cost India, Goa honeymoon package, North Goa South Goa package',
   openGraph: {
     title: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999',
     description: 'All-inclusive Goa holiday — North Goa beaches, water sports, Dudhsagar Falls, South Goa, Old Goa churches. Flights + hotel included.',
@@ -27,7 +26,6 @@ const pkg: PackageData = {
   canonicalUrl: 'https://www.ylootrips.com/goa-tour-package',
   metaTitle: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999 | YlooTrips',
   metaDescription: 'Book Goa tour packages starting ₹9,999. 3 nights 4 days — North Goa beaches, water sports, Dudhsagar Falls, Old Goa churches. Flights + hotel included.',
-  keywords: 'Goa tour package from Delhi',
   ogImage: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1600&q=85',

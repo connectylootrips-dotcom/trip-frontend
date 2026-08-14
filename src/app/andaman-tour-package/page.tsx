@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Andaman Tour Package 2026 — 4 Nights Starting ₹24,999 | YlooTrips',
   description: 'Book Andaman tour packages starting ₹24,999. Port Blair, Havelock Island (Radhanagar Beach), Neil Island, Cellular Jail. 4 nights / 5 days — scuba diving, snorkelling, and pristine beaches.',
-  keywords: 'Andaman tour package, Andaman Nicobar trip, Havelock Island package, Port Blair tour, Andaman holiday package 2026, Andaman scuba diving, Andaman trip cost from Delhi, Andaman package from India',
   openGraph: {
     title: 'Andaman Tour Package 2026 — 4 Nights Starting ₹24,999',
     description: 'Havelock Island, Neil Island, Port Blair, Cellular Jail — scuba diving, snorkelling, pristine beaches in 5 days.',
@@ -24,7 +23,6 @@ export default async function AndamanPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/andaman-tour-package',
     metaTitle: 'Andaman Tour Package 2026 — 4 Nights Starting ₹24,999 | YlooTrips',
     metaDescription: 'Port Blair, Havelock, Neil Island — 4 nights scuba diving, snorkelling, and pristine beaches in the Andaman Islands.',
-    keywords: 'Andaman tour package from Delhi, Havelock Island scuba diving',
     ogImage: 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=1600&q=85',

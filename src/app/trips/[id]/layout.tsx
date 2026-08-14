@@ -52,16 +52,6 @@ export async function generateMetadata({
   return {
     title: `${trip.title}${trip.duration ? ' — ' + trip.duration : ''}`,
     description: truncatedDesc || ogDesc,
-    keywords: [
-      trip.title,
-      trip.destination || 'India',
-      'India tour package',
-      'India trip',
-      'YlooTrips',
-      trip.duration || '',
-    ]
-      .filter(Boolean)
-      .join(', '),
     openGraph: {
       title: `${trip.title} | YlooTrips — India Travel Experts`,
       description: ogDesc,

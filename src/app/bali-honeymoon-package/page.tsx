@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Bali Honeymoon Package 2026 — 6 Nights Starting ₹52,499 | YlooTrips',
   description: 'Romantic Bali honeymoon packages from India starting ₹52,499 for 2. 6 nights in Ubud + Seminyak — private villa, rice terraces, temple tours, sunset dinner. Hotel + transfers + activities included.',
-  keywords: 'Bali honeymoon package, Bali tour package from India, Bali trip cost from India 2026, Bali romantic holiday, honeymoon packages under 1 lakh, Bali Indonesia tour',
   openGraph: {
     title: 'Bali Honeymoon Package 2026 — ₹52,499 Per Person | YlooTrips',
     description: 'Romantic Bali honeymoon — private villa in Ubud, sunrise at Tegalalang, couples spa, sunset at Tanah Lot. Visa free for Indians.',
@@ -26,7 +25,6 @@ const pkg: PackageData = {
   canonicalUrl: 'https://www.ylootrips.com/bali-honeymoon-package',
   metaTitle: 'Bali Honeymoon Package 2026 — 6 Nights Starting ₹52,499',
   metaDescription: 'Romantic Bali honeymoon packages from India starting ₹52,499 per person. 6 nights in Ubud & Seminyak — private villa, Tegalalang, Tanah Lot. Hotel + transfers + activities included.',
-  keywords: 'Bali honeymoon package India',
   ogImage: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1600&q=85',

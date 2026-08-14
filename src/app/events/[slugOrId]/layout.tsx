@@ -55,15 +55,6 @@ export async function generateMetadata({
   return {
     title: `${event.title}${event.city ? ' — ' + event.city : ''}`,
     description: truncatedDesc,
-    keywords: [
-      event.title,
-      event.category || 'India event',
-      event.city || 'India',
-      'India events',
-      'YlooTrips events',
-    ]
-      .filter(Boolean)
-      .join(', '),
     openGraph: {
       title: `${event.title} | YlooTrips — India Travel Experts`,
       description: truncatedDesc,

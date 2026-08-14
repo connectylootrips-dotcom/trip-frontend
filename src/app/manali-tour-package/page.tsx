@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Manali Tour Package 2026 — 4 Nights Starting ₹12,999 | YlooTrips',
   description: 'Book Manali tour packages starting ₹12,999. 4 nights / 5 days — Rohtang Pass, Solang Valley, Old Manali, Hadimba Temple. Volvo bus or flights + hotel + transfers included.',
-  keywords: 'Manali tour package, Manali trip from Delhi, Manali holiday package 2026, Rohtang Pass package, Solang Valley tour, Manali 4 nights 5 days, Manali package cost, Manali trip cost India, Manali honeymoon package',
   openGraph: {
     title: 'Manali Tour Package 2026 — 4 Nights Starting ₹12,999',
     description: 'All-inclusive Manali holiday — Rohtang Pass, Solang Valley, river rafting, snow activities. Volvo + hotel + transfers included.',
@@ -27,7 +26,6 @@ const pkg: PackageData = {
   canonicalUrl: 'https://www.ylootrips.com/manali-tour-package',
   metaTitle: 'Manali Tour Package 2026 — 4 Nights Starting ₹12,999 | YlooTrips',
   metaDescription: 'Book Manali tour packages starting ₹12,999. 4 nights 5 days — Rohtang Pass, Solang Valley, Hadimba Temple. Volvo + hotel + transfers included.',
-  keywords: 'Manali tour package from Delhi',
   ogImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1600&q=85',

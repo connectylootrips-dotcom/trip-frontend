@@ -7,7 +7,6 @@ import { TourJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: "7-Day Rajasthan Heritage Tour — Jaipur, Jodhpur & Udaipur",
   description: "Explore royal Rajasthan in 7 days. Amber Fort, Mehrangarh Fort, Lake Palace, camel rides, and desert sunsets. Private guided tour with palace hotels. Get a custom quote.",
-  keywords: "Rajasthan tour package, Jaipur Jodhpur Udaipur tour, Rajasthan heritage tour, camel safari Rajasthan, India desert tour, India royal palaces tour",
   openGraph: {
     title: "7-Day Rajasthan Heritage Tour | YlooTrips — India Travel Experts",
     description: "Royal forts, painted havelis, camel safaris, and lakeside palace hotels — explore Rajasthan's incredible heritage in 7 days.",

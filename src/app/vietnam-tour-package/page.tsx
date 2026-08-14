@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Vietnam Tour Package from India 2026 — 6 Nights Starting ₹38,999 | YlooTrips',
   description: 'Book Vietnam tour packages from India starting ₹38,999. Hanoi, Ha Long Bay, Hoi An, Ho Chi Minh City. 6 nights / 7 days — UNESCO heritage, street food, and Southeast Asia at its best.',
-  keywords: 'Vietnam tour package from India, Vietnam trip from India, Hanoi Ha Long Bay tour, Hoi An Vietnam package, Ho Chi Minh City tour, Vietnam holiday package 2026, Vietnam trip cost India',
   openGraph: {
     title: 'Vietnam Tour Package from India 2026 — 6 Nights Starting ₹38,999',
     description: 'Hanoi, Ha Long Bay cruise, Hoi An, Ho Chi Minh City — 6 nights across Vietnam\'s best destinations.',
@@ -24,7 +23,6 @@ export default async function VietnamPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/vietnam-tour-package',
     metaTitle: 'Vietnam Tour Package from India 2026 — 6 Nights Starting ₹38,999 | YlooTrips',
     metaDescription: 'Hanoi, Ha Long Bay, Hoi An, Ho Chi Minh City — 6 nights of UNESCO heritage, street food, and Southeast Asian adventure.',
-    keywords: 'Vietnam tour package from India, Ha Long Bay cruise, Hoi An tour',
     ogImage: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1600&q=85',

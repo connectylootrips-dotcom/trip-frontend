@@ -52,13 +52,6 @@ export async function generateMetadata({
   return {
     title: blog.title,
     description: description.length > 160 ? description.slice(0, 157) + '...' : description,
-    keywords: [
-      blog.category,
-      'India travel',
-      'India travel guide',
-      'YlooTrips',
-      blog.title,
-    ].join(', '),
     openGraph: {
       title: `${blog.title} | YlooTrips`,
       description,

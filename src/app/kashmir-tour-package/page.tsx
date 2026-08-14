@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Kashmir Tour Package 2026 — 5 Nights Starting ₹18,999 | YlooTrips',
   description: 'Book Kashmir tour packages starting ₹18,999. 5 nights / 6 days — Dal Lake houseboat, Gulmarg, Pahalgam, Sonamarg. Flights + hotel + shikara ride included. Book now.',
-  keywords: 'Kashmir tour package, Kashmir trip from Delhi, Kashmir holiday package 2026, Dal Lake houseboat package, Gulmarg tour package, Kashmir 5 nights 6 days, Kashmir package cost, Kashmir trip cost India',
   openGraph: {
     title: 'Kashmir Tour Package 2026 — 5 Nights Starting ₹18,999',
     description: 'All-inclusive Kashmir holiday — Dal Lake houseboat, Gulmarg cable car, Pahalgam meadows, Sonamarg glaciers. Flights + hotel + shikara included.',
@@ -27,7 +26,6 @@ const pkg: PackageData = {
   canonicalUrl: 'https://www.ylootrips.com/kashmir-tour-package',
   metaTitle: 'Kashmir Tour Package 2026 — 5 Nights Starting ₹18,999 | YlooTrips',
   metaDescription: 'Book Kashmir tour packages starting ₹18,999. 5 nights 6 days — Dal Lake houseboat, Gulmarg, Pahalgam, Sonamarg. Flights + hotel + shikara included.',
-  keywords: 'Kashmir tour package from Delhi',
   ogImage: 'https://images.unsplash.com/photo-1566837945700-30057527ade0?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1566837945700-30057527ade0?w=1600&q=85',

@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Sri Lanka Tour Package from India 2026 — 5 Nights Starting ₹28,999 | YlooTrips',
   description: 'Book Sri Lanka tour packages from India starting ₹28,999. Colombo, Kandy, Ella, Sigiriya, Galle. 5 nights / 6 days — temples, tea estates, ancient ruins, and golden beaches.',
-  keywords: 'Sri Lanka tour package from India, Sri Lanka trip from India, Colombo Kandy Ella tour, Sigiriya Sri Lanka, Sri Lanka holiday package 2026, Sri Lanka trip cost India, Ceylon tour package',
   openGraph: {
     title: 'Sri Lanka Tour Package from India 2026 — 5 Nights Starting ₹28,999',
     description: 'Colombo, Kandy, Ella, Sigiriya, Galle — 5 nights across the Pearl of the Indian Ocean.',
@@ -24,7 +23,6 @@ export default async function SriLankaPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/sri-lanka-tour-package',
     metaTitle: 'Sri Lanka Tour Package from India 2026 — 5 Nights Starting ₹28,999 | YlooTrips',
     metaDescription: 'Colombo, Kandy, Ella, Sigiriya, Galle — 5 nights across Sri Lanka\'s most beautiful destinations.',
-    keywords: 'Sri Lanka tour package from India, Sigiriya Kandy Ella tour',
     ogImage: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=1600&q=85',

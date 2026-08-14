@@ -7,7 +7,6 @@ import { CheckCircle, MessageCircle, ArrowRight } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Manali Trip Cost for 2 Persons 2026 — Complete Budget Breakdown',
   description: 'Exact Manali trip cost for 2 persons in 2026: budget, mid-range and luxury breakdowns. Includes bus/flight, hotel, food, activities and how to save money. Plan from ₹12,000 for a couple.',
-  keywords: 'Manali trip cost for 2 persons, Manali trip budget for couple, Manali package cost 2026, how much does Manali trip cost, Manali couple trip budget',
   openGraph: {
     title: 'Manali Trip Cost for 2 Persons 2026 — Complete Budget Breakdown',
     description: 'Exact cost breakdown for a Manali couple trip: bus, hotel, food, activities. Budget from ₹12,000 for 2 people.',

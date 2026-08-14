@@ -4,7 +4,6 @@ import type { ReactNode } from 'react';
 export const metadata: Metadata = {
   title: 'International Destinations — Asia, Europe, Africa & More',
   description: 'Explore international destinations curated by YlooTrips — Southeast Asia, Europe, Africa, and beyond. Expertly planned tours for Indian travelers heading abroad.',
-  keywords: 'international destinations India, international tour packages from India, Southeast Asia tour, Europe tour from India, Africa safari, international travel India',
   openGraph: {
     title: 'International Destinations | YlooTrips — India Travel Experts',
     description: 'Expertly curated international destinations for Indian travelers — Asia, Europe, Africa, and beyond.',

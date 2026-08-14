@@ -4,7 +4,6 @@ import type { ReactNode } from 'react';
 export const metadata: Metadata = {
   title: 'WanderLoot — Earn Cashback on Every Trip | YlooTrips',
   description: 'Earn 10% cashback on every trip you book with YlooTrips. Redeem WanderLoot credits on future bookings. Refer friends and earn more — India\'s best travel rewards program.',
-  keywords: 'travel cashback India, trip cashback YlooTrips, WanderLoot, travel rewards India, refer and earn travel, YlooTrips cashback',
   alternates: { canonical: 'https://www.ylootrips.com/cashback' },
   openGraph: {
     title: 'WanderLoot — Earn Cashback on Every Trip',

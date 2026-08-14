@@ -70,14 +70,6 @@ export async function generateMetadata({
   return {
     title: `${dest.name} — ${dest.country} Destination Guide`,
     description: `Explore ${dest.name}, ${dest.country} with YlooTrips. ${truncatedDesc}${bestTime}`.slice(0, 160),
-    keywords: [
-      `${dest.name} tour`,
-      `${dest.name} travel guide`,
-      `visit ${dest.name}`,
-      `${dest.country} destinations`,
-      'India tour packages',
-      'YlooTrips',
-    ].join(', '),
     openGraph: {
       title: `${dest.name}, ${dest.country} — Travel Guide | YlooTrips`,
       description: `Discover ${dest.name} — expert travel guide covering highlights, best time to visit, activities, culture and cuisine.`,

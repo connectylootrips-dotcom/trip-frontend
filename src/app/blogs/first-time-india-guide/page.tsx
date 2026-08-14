@@ -6,7 +6,6 @@ import { ArticleJsonLd, FaqJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd'
 export const metadata: Metadata = {
   title: "First Time in India? Complete 2026 Guide for International Travelers",
   description: "Everything you need to know before visiting India for the first time. Visa, safety, money, food, transport, cultural tips, and the best places to start. Updated 2026.",
-  keywords: "first time India travel guide, India for beginners, India travel tips for first timers, visiting India for the first time, India travel advice",
   openGraph: {
     title: "First Time in India? Complete 2026 Guide for International Travelers",
     description: "The honest, practical guide to your first India trip — from visa to street food, safety to culture shock.",

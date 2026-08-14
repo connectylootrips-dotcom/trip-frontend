@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Singapore Tour Package from India 2026 — 4 Nights Starting ₹44,999',
   description: 'Book Singapore tour packages from India starting ₹44,999. 4 nights / 5 days — Gardens by the Bay, Universal Studios, Sentosa, Marina Bay Sands. Hotel + transfers + activities included.',
-  keywords: 'Singapore tour package from India, Singapore trip from India, Singapore package 2026, Singapore holiday package India, Singapore 4 nights 5 days, cheapest Singapore tour India, Singapore trip cost India',
   openGraph: {
     title: 'Singapore Tour Package from India 2026 — ₹44,999 Onwards',
     description: 'Singapore holiday from India — hotel, Gardens by the Bay, Universal Studios, Marina Bay Sands. Book with ₹5,000 advance.',
@@ -27,7 +26,6 @@ const pkg: PackageData = {
   canonicalUrl: 'https://www.ylootrips.com/singapore-tour-package',
   metaTitle: 'Singapore Tour Package from India 2026 — 4 Nights Starting ₹44,999',
   metaDescription: 'Book Singapore tour packages from India starting ₹44,999. 4 nights 5 days — Gardens by the Bay, Universal Studios, Marina Bay Sands. Hotel + transfers + activities included.',
-  keywords: 'Singapore tour package from India',
   ogImage: 'https://images.unsplash.com/photo-1508964942454-1a56651d54ac?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1508964942454-1a56651d54ac?w=1600&q=85',

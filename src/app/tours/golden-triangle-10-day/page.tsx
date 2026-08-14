@@ -7,7 +7,6 @@ import { TourJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: "10-Day Golden Triangle Tour — Delhi, Agra & Jaipur",
   description: "Explore India's iconic Golden Triangle in 10 days. Visit the Taj Mahal, Red Fort, Amber Fort, Hawa Mahal & more. Private guided tour with handpicked hotels. Get a custom quote.",
-  keywords: "Golden Triangle tour India, Delhi Agra Jaipur tour, Taj Mahal tour package, India Golden Triangle 10 days, India tour for Americans",
   openGraph: {
     title: "10-Day Golden Triangle Tour — Delhi, Agra & Jaipur | YlooTrips",
     description: "Experience India's most iconic landmarks — Taj Mahal, Red Fort, and Amber Fort — in 10 days. Private guide, handpicked hotels, seamless logistics.",

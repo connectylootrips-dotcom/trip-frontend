@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Dubai Tour Package from Delhi 2026 — 5 Nights Starting ₹36,499',
   description: 'Book Dubai tour packages from Delhi starting ₹36,499. 5 nights / 6 days — Burj Khalifa, Desert Safari, Dubai Mall, Palm Jumeirah. Hotel + visa assistance + activities included.',
-  keywords: 'Dubai tour package from Delhi, Dubai trip from India, Dubai package 2026, Delhi to Dubai holiday package, Dubai 5 nights 6 days, cheapest Dubai tour India',
   openGraph: {
     title: 'Dubai Tour Package from Delhi 2026 — ₹36,499 Onwards',
     description: 'Dubai holiday from Delhi — visa, hotel, Burj Khalifa, Desert Safari. Book with ₹5,000 advance.',
@@ -27,7 +26,6 @@ const pkg: PackageData = {
   canonicalUrl: 'https://www.ylootrips.com/dubai-tour-package-from-delhi',
   metaTitle: 'Dubai Tour Package from Delhi 2026 — 5 Nights Starting ₹36,499',
   metaDescription: 'Book Dubai tour packages from Delhi starting ₹36,499. 5 nights 6 days — Burj Khalifa, Desert Safari, Dubai Mall, Palm Jumeirah. Hotel + visa + activities included.',
-  keywords: 'Dubai tour package from Delhi',
   ogImage: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=85',

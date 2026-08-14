@@ -7,7 +7,6 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: 'About YlooTrips — India\'s Fastest-Growing Travel Platform',
   description: 'YlooTrips is India\'s next-gen travel platform — 25,000+ travelers, 4.9★ Google rating, MSME certified. Meet our founder and learn our vision to make premium travel accessible to every Indian.',
-  keywords: 'about YlooTrips, India travel startup, best India travel agency, trusted India tour operator, travel tech India, YlooTrips app, YlooTrips Android app, is YlooTrips safe, YlooTrips reviews',
   openGraph: {
     title: 'About YlooTrips | India\'s Next-Gen Travel Platform',
     description: '25,000+ happy travelers, 4.9★ Google rating. Making premium travel accessible to every Indian.',

@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Maldives Luxury Package from India 2026 — 4 Nights Starting ₹89,999',
   description: 'Book Maldives luxury packages from India starting ₹89,999. 4 nights / 5 days — overwater bungalow, snorkeling, dolphin cruise, couples spa, private beach. Resort + transfers + all activities included.',
-  keywords: 'maldives luxury package from india, maldives trip from india cost, maldives honeymoon package india, maldives overwater bungalow india, maldives 5 days package',
   openGraph: {
     title: 'Maldives Luxury Package from India 2026 — ₹89,999 Onwards',
     description: 'Maldives luxury holiday from India — overwater bungalow, snorkeling, dolphin cruise, couples spa. Book with ₹10,000 advance.',
@@ -27,7 +26,6 @@ const pkg: PackageData = {
   canonicalUrl: 'https://www.ylootrips.com/maldives-luxury-package',
   metaTitle: 'Maldives Luxury Package from India 2026 — 4 Nights Starting ₹89,999',
   metaDescription: 'Book Maldives luxury packages from India starting ₹89,999. 4 nights 5 days — overwater bungalow, snorkeling, dolphin cruise, couples spa, private beach. Resort + transfers + all activities included.',
-  keywords: 'maldives luxury package from india, maldives trip from india cost, maldives honeymoon package india',
   ogImage: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1600&q=85',

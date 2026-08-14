@@ -5,7 +5,6 @@ import { Users, Star, Shield, Zap, Phone, MessageCircle, Check, ChevronRight, Aw
 export const metadata: Metadata = {
   title: 'Group Tour Packages India 2026 — 4+ People Get 20% Off | YlooTrips',
   description: 'Plan group trips across India and abroad. Corporate outings, college trips, family reunions, friends getaways. 4+ people get 20% off. Custom itineraries, dedicated coordinator, group discounts.',
-  keywords: 'group tour packages India, group travel India, corporate trip packages, college group trips, family group tours, group holiday India, group trip planner, group discount travel India',
   openGraph: {
     title: 'Group Tour Packages India 2026 — 20% Off for Groups of 4+',
     description: 'Corporate outings, college trips, family reunions. Custom itineraries, dedicated coordinator, group discounts on all packages.',

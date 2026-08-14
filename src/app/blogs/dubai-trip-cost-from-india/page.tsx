@@ -7,7 +7,6 @@ import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd'
 export const metadata: Metadata = {
   title: 'Dubai Trip Cost from India 2026 — Complete Budget Breakdown | YlooTrips',
   description: 'How much does a Dubai trip from India cost in 2026? Complete cost breakdown: flights, visa, hotel, food, activities. Budget trip ₹35,000 to luxury ₹1,20,000. Real numbers.',
-  keywords: 'Dubai trip cost from India, Dubai trip budget India 2026, how much does Dubai trip cost, Dubai package price from India, Dubai travel expenses, Dubai trip planning India',
   openGraph: {
     title: 'Dubai Trip Cost from India 2026 — Complete Budget Breakdown',
     description: 'Full cost breakdown for a Dubai trip from India — flights, visa, hotel, food, activities. From budget ₹35K to luxury ₹1.2L per person.',

@@ -7,7 +7,6 @@ import { CheckCircle, MessageCircle, ArrowRight } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Kashmir Trip Cost from Delhi 2026 — Complete Budget Guide',
   description: 'Exact Kashmir trip cost from Delhi in 2026: flights, hotel, houseboat, food, activities. Budget ₹18,000–₹45,000 per person for 6 nights. Includes Gulmarg, Pahalgam, Sonamarg pricing.',
-  keywords: 'Kashmir trip cost from Delhi, Kashmir trip budget 2026, Kashmir tour package cost, how much does Kashmir trip cost, Kashmir holiday budget per person',
   openGraph: {
     title: 'Kashmir Trip Cost from Delhi 2026 — Complete Budget Guide',
     description: 'Exact cost of a Kashmir trip from Delhi: flights, houseboat, Gulmarg, Pahalgam. Budget to luxury breakdown.',

@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Rajasthan Tour Package 2026 — 6 Nights Starting ₹14,999 | YlooTrips',
   description: 'Book Rajasthan tour packages starting ₹14,999. Jaipur, Jodhpur, Jaisalmer, Udaipur — 6 nights / 7 days of forts, palaces, desert safaris, and lake city romance.',
-  keywords: 'Rajasthan tour package, Rajasthan trip from Delhi, Jaipur Jodhpur Jaisalmer Udaipur package, Rajasthan holiday package 2026, Golden Triangle Rajasthan, desert safari Rajasthan, Rajasthan 7 days itinerary',
   openGraph: {
     title: 'Rajasthan Tour Package 2026 — 6 Nights Starting ₹14,999',
     description: 'Jaipur forts, Jodhpur Blue City, Jaisalmer desert, Udaipur lakes — 6 nights covering the Royal Rajasthan circuit.',
@@ -24,7 +23,6 @@ export default async function RajasthanPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/rajasthan-tour-package',
     metaTitle: 'Rajasthan Tour Package 2026 — 6 Nights Starting ₹14,999 | YlooTrips',
     metaDescription: 'Jaipur, Jodhpur, Jaisalmer, Udaipur — 6 nights across the Royal Rajasthan circuit. Forts, palaces, desert camel safaris.',
-    keywords: 'Rajasthan tour package from Delhi, Jaipur Jodhpur Udaipur package',
     ogImage: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=85',

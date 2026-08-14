@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Nepal Tour Package from India 2026 — 5 Nights Starting ₹18,999 | YlooTrips',
   description: 'Book Nepal tour packages from India starting ₹18,999. Kathmandu, Pokhara, Chitwan, Nagarkot. 5 nights / 6 days — Everest views, temples, wildlife safaris, and Himalayan lakes.',
-  keywords: 'Nepal tour package from India, Nepal trip from India, Kathmandu Pokhara tour, Nepal holiday package 2026, Everest Base Camp trek, Chitwan National Park, Nepal trip cost India, Pokhara Phewa Lake',
   openGraph: {
     title: 'Nepal Tour Package from India 2026 — 5 Nights Starting ₹18,999',
     description: 'Kathmandu, Pokhara, Chitwan, Nagarkot — 5 nights with Everest views, temples, and wildlife.',
@@ -24,7 +23,6 @@ export default async function NepalPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/nepal-tour-package',
     metaTitle: 'Nepal Tour Package from India 2026 — 5 Nights Starting ₹18,999 | YlooTrips',
     metaDescription: 'Kathmandu, Pokhara, Chitwan, Nagarkot — 5 nights of Himalayan views, ancient temples, and Nepal at its best.',
-    keywords: 'Nepal tour package from India, Kathmandu Pokhara Chitwan package',
     ogImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=85',

@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Europe Tour Package from India 2026 — 10 Nights Starting ₹1,24,999 | YlooTrips',
   description: 'Book Europe tour packages from India starting ₹1,24,999. Paris, Rome, Barcelona, Amsterdam, Prague — 10 nights / 11 days across Western Europe. Schengen visa, flights, hotels included.',
-  keywords: 'Europe tour package from India, Europe trip from India, Schengen tour package India, Paris Rome Barcelona Amsterdam tour, Europe holiday package India 2026, Western Europe tour India',
   openGraph: {
     title: 'Europe Tour Package from India 2026 — 10 Nights Starting ₹1,24,999',
     description: 'Paris, Rome, Barcelona, Amsterdam, Prague — 10 nights covering the best of Western Europe.',
@@ -24,7 +23,6 @@ export default async function EuropePackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/europe-tour-package-from-india',
     metaTitle: 'Europe Tour Package from India 2026 — 10 Nights Starting ₹1,24,999 | YlooTrips',
     metaDescription: 'Paris, Rome, Barcelona, Amsterdam, Prague — 10 nights of European magic. Schengen visa assistance, flights, hotels, and transfers included.',
-    keywords: 'Europe tour package from India, Western Europe trip',
     ogImage: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1600&q=85',

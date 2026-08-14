@@ -7,7 +7,6 @@ import { MessageCircle, ArrowRight, CheckCircle, MapPin, Clock, Calendar } from 
 export const metadata: Metadata = {
   title: "Kedarnath Yatra 2026 — Complete Guide (Registration, Trek, Budget & Tips)",
   description: "Complete Kedarnath Yatra guide 2026: online registration, how to reach, trek route day-by-day, accommodation options, packing list, budget, do's & don'ts, and practical tips for first-time pilgrims.",
-  keywords: "Kedarnath Yatra 2026, Kedarnath registration, Kedarnath trek guide, Kedarnath how to reach, Kedarnath budget, Kedarnath packing list, Kedarnath opening date 2026, Gaurikund to Kedarnath trek",
   openGraph: {
     title: "Kedarnath Yatra 2026 — Complete Guide (Registration, Trek, Budget & Tips)",
     description: "Everything for Kedarnath Yatra 2026: registration process, how to reach, trek plan, budget breakdown, and tips for a safe and fulfilling pilgrimage.",

@@ -6,7 +6,6 @@ import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd'
 export const metadata: Metadata = {
   title: "Best Time to Visit India — Month by Month Guide 2026",
   description: "When is the best time to visit India? Month-by-month breakdown of weather, festivals, crowds, and prices. Find your perfect India travel window.",
-  keywords: "best time to visit India, India travel seasons, India weather month by month, India monsoon season, India peak tourist season, when to visit Rajasthan Kerala",
   openGraph: {
     title: "Best Time to Visit India — Month by Month Guide 2026",
     description: "When should you travel to India? Our month-by-month breakdown covers weather, festivals, crowds, and prices for every region.",

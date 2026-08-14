@@ -7,7 +7,6 @@ import { CheckCircle, MessageCircle, ArrowRight } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Bali Trip Cost from India 2026 — Complete Budget Guide (₹40K–₹1L)',
   description: 'Exact Bali trip cost from India 2026: flights, hotel, visa, food, activities. Budget ₹40,000–₹1,00,000 per person for 6 nights. Includes Ubud, Seminyak, Kuta, Nusa Penida costs.',
-  keywords: 'Bali trip cost from India, Bali trip budget 2026, Bali package cost from India, how much does Bali trip cost from India, Bali honeymoon cost India',
   openGraph: {
     title: 'Bali Trip Cost from India 2026 — Complete Budget Guide',
     description: 'Exact cost of a Bali trip from India: flights, hotels, visa, activities. ₹40,000–₹1,00,000 per person.',

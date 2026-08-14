@@ -5,7 +5,6 @@ import Script from 'next/script';
 export const metadata: Metadata = {
   title: 'Download YlooTrips App — Now Live on Google Play | Launched August 2026',
   description: 'Download the YlooTrips Android app — launched August 2026 on Google Play. Track bookings, download itinerary, flight & hotel details, guide info, and payment slips. Free.',
-  keywords: 'YlooTrips app, YlooTrips Android app, YlooTrips Play Store, download YlooTrips, travel app India, India tour booking app, track booking app',
   alternates: {
     canonical: 'https://www.ylootrips.com/download-app',
   },

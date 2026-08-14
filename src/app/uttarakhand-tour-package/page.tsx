@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Uttarakhand Tour Package 2026 — 5 Nights Starting ₹11,999 | YlooTrips',
   description: 'Book Uttarakhand tour packages starting ₹11,999. Rishikesh, Haridwar, Mussoorie, Nainital, Valley of Flowers. 5 nights / 6 days — rivers, yoga, treks, and sacred temples.',
-  keywords: 'Uttarakhand tour package, Rishikesh Haridwar package, Mussoorie Nainital tour, Uttarakhand holiday package 2026, Char Dham trip, Valley of Flowers tour, Uttarakhand travel package from Delhi',
   openGraph: {
     title: 'Uttarakhand Tour Package 2026 — 5 Nights Starting ₹11,999',
     description: 'Rishikesh rafting, Haridwar Ganga Aarti, Mussoorie hills, Nainital lake — 5 nights across Uttarakhand.',
@@ -24,7 +23,6 @@ export default async function UttarakhandPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/uttarakhand-tour-package',
     metaTitle: 'Uttarakhand Tour Package 2026 — 5 Nights Starting ₹11,999 | YlooTrips',
     metaDescription: 'Rishikesh, Haridwar, Mussoorie, Nainital — 5 nights of rivers, yoga, mountains, and sacred temples in Uttarakhand.',
-    keywords: 'Uttarakhand tour package from Delhi, Rishikesh Haridwar tour',
     ogImage: 'https://images.unsplash.com/photo-1544731612-de7f96afe55f?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1544731612-de7f96afe55f?w=1600&q=85',

@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Spiti Valley Tour Package 2026 — 7 Nights Starting ₹19,999 | YlooTrips',
   description: 'Book Spiti Valley tour packages starting ₹19,999. Kaza, Key Monastery, Chandratal Lake, Kunzum Pass, Chitkul. 7 nights / 8 days — one of the most dramatic landscapes in India.',
-  keywords: 'Spiti Valley tour package, Spiti Valley trip from Delhi, Kaza Spiti tour, Chandratal Lake tour, Key Monastery trip, Spiti Valley road trip, Spiti holiday package 2026, cold desert Himachal Pradesh',
   openGraph: {
     title: 'Spiti Valley Tour Package 2026 — 7 Nights Starting ₹19,999',
     description: 'Kaza, Key Monastery, Chandratal Lake, Kunzum Pass — 7 nights in India\'s remote cold desert.',
@@ -24,7 +23,6 @@ export default async function SpitiPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/spiti-valley-tour-package',
     metaTitle: 'Spiti Valley Tour Package 2026 — 7 Nights Starting ₹19,999 | YlooTrips',
     metaDescription: 'Key Monastery, Chandratal Lake, Kaza, Kunzum Pass — 7 nights across India\'s most dramatic cold desert.',
-    keywords: 'Spiti Valley tour package from Delhi, Key Monastery Kaza trip, Chandratal Lake trek',
     ogImage: 'https://images.unsplash.com/photo-1598346762291-aee88549193f?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1598346762291-aee88549193f?w=1600&q=85',

@@ -7,7 +7,6 @@ import { MessageCircle, ArrowRight, CheckCircle, MapPin, Clock, Calendar } from 
 export const metadata: Metadata = {
   title: "Manali Trip Guide 2026 — Complete Travel Guide (Summer & Winter)",
   description: "Complete Manali travel guide 2026: best time to visit, how to reach, things to do, budget breakdown, packing list, and tips for first-timers in summer and winter.",
-  keywords: "Manali trip guide 2026, Manali travel guide, best time to visit Manali, Manali budget trip, things to do in Manali, Manali winter trip, Manali summer trip, Rohtang Pass, Solang Valley",
   openGraph: {
     title: "Manali Trip Guide 2026 — Complete Travel Guide (Summer & Winter)",
     description: "Everything you need for a Manali trip: when to visit, how to reach, what to do in summer vs winter, budget, and packing tips.",

@@ -5,7 +5,6 @@ import { FaqJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: 'Travel FAQ — YlooTrips | Common Questions About India Tours',
   description: 'Answers to the most common questions about booking India tour packages with YlooTrips — pricing, safety, cancellation, group tours, visa, and more.',
-  keywords: 'YlooTrips FAQ, India tour questions, travel company India FAQ, how to book India tour, is YlooTrips safe, YlooTrips cancellation policy, India trip cost, group tour India',
   alternates: { canonical: 'https://www.ylootrips.com/faq' },
   openGraph: {
     title: 'Travel FAQ — YlooTrips | Common India Tour Questions',

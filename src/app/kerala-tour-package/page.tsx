@@ -4,8 +4,7 @@ import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
   title: 'Kerala Tour Package 2026 — 5 Nights Starting ₹15,999 | YlooTrips',
-  description: 'Book Kerala tour packages starting ₹15,999. 5 nights / 6 days — Munnar tea gardens, Alleppey houseboat, Kovalam beach, Thekkady wildlife. Flights + houseboat + hotel included.',
-  keywords: 'Kerala tour package, Kerala trip from Delhi, Kerala holiday package 2026, Alleppey houseboat package, Munnar tour package, Kerala 5 nights 6 days, Kerala package cost, God\'s Own Country tour',
+  description: 'Book Kerala tour packages starting ₹15,999. 5 nights / 6 days — Munnar tea gardens, Alleppey houseboat, Kovalam beach, Thekkady wildlife. Flights + houseboat + hotel included.',s Own Country tour',
   openGraph: {
     title: 'Kerala Tour Package 2026 — 5 Nights Starting ₹15,999',
     description: 'All-inclusive Kerala holiday — Munnar tea gardens, Alleppey houseboat, Kovalam beach, Thekkady wildlife. Flights + houseboat + hotel included.',
@@ -27,7 +26,6 @@ const pkg: PackageData = {
   canonicalUrl: 'https://www.ylootrips.com/kerala-tour-package',
   metaTitle: 'Kerala Tour Package 2026 — 5 Nights Starting ₹15,999 | YlooTrips',
   metaDescription: 'Book Kerala tour packages starting ₹15,999. 5 nights 6 days — Munnar tea gardens, Alleppey houseboat, Kovalam beach, Thekkady wildlife. Flights + houseboat + hotel included.',
-  keywords: 'Kerala tour package from Delhi',
   ogImage: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1600&q=85',

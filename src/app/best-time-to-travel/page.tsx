@@ -5,7 +5,6 @@ import { Calendar, ChevronRight, Sun, Snowflake, Cloud } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Best Time to Travel in India — Month-by-Month Travel Guide 2026 | YlooTrips',
   description: 'Complete month-by-month travel guide for India and international destinations. Where to go in January, February, March, and every month of the year. Best weather, festivals, and deals.',
-  keywords: 'best time to travel India, where to go in January India, February travel India, best places to visit every month India, month wise travel guide India, when to visit India',
   openGraph: {
     title: 'Best Time to Travel — Month-by-Month Guide | YlooTrips',
     description: 'Where to go every month of the year — weather, festivals, and deals for India and beyond.',

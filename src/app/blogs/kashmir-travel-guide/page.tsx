@@ -7,7 +7,6 @@ import { MessageCircle, ArrowRight, CheckCircle, MapPin, Clock, Calendar } from 
 export const metadata: Metadata = {
   title: "Kashmir Travel Guide 2026 — Complete Itinerary, Best Time & Travel Tips",
   description: "Complete Kashmir travel guide 2026: Srinagar, Gulmarg, Pahalgam, Sonamarg, houseboat stays, month-by-month best time to visit, safety, and practical travel tips for Indian tourists.",
-  keywords: "Kashmir travel guide 2026, Kashmir itinerary, best time to visit Kashmir, Srinagar travel guide, Gulmarg Pahalgam Sonamarg, Kashmir houseboat, Kashmir trip tips, is Kashmir safe to visit",
   openGraph: {
     title: "Kashmir Travel Guide 2026 — Complete Itinerary, Best Time & Travel Tips",
     description: "Srinagar, Gulmarg, Pahalgam, Sonamarg — complete Kashmir travel guide with month-by-month timing, houseboat tips, and honest safety advice.",

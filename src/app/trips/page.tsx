@@ -10,7 +10,6 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: 'India Trip Packages — Tours, Treks & Cultural Experiences',
   description: 'Browse 150+ curated India trip packages — Golden Triangle, Kerala backwaters, Rajasthan, Himalayan treks, wildlife safaris, and more. Trusted by 25,000+ travelers. Book online with instant confirmation.',
-  keywords: 'India trip packages, India tour packages 2025, India travel itinerary, best India tours, India trekking packages, India cultural tours, India wildlife safari, Golden Triangle tour, Kerala tour, Rajasthan tour',
   openGraph: {
     title: 'India Trip Packages | YlooTrips — India Travel Experts',
     description: '150+ curated India tours — from Golden Triangle to Kerala backwaters. 4.9★ rated. Book online with instant confirmation.',

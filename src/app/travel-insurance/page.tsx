@@ -5,7 +5,6 @@ import { Shield, Check, X, Phone, MessageCircle, Star, ChevronRight, AlertTriang
 export const metadata: Metadata = {
   title: 'Travel Insurance for India & International Trips 2026 | YlooTrips',
   description: 'Get travel insurance from ₹399/trip. Covers trip cancellation, medical emergencies, flight delay, baggage loss, and adventure activities. Instant policy, 24/7 claim support.',
-  keywords: 'travel insurance India, trip insurance, international travel insurance from India, travel medical insurance, trip cancellation insurance, travel insurance online India',
   openGraph: {
     title: 'Travel Insurance — From ₹399/Trip | YlooTrips',
     description: 'Trip cancellation, medical emergencies, flight delays, baggage loss. Instant policy online. Covers India and 150+ countries.',

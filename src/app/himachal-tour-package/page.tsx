@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Himachal Pradesh Tour Package 2026 — 5 Nights Starting ₹13,999 | YlooTrips',
   description: 'Book Himachal Pradesh tour packages starting ₹13,999. Manali, Shimla, Kasol, Spiti Valley, Dharamsala. 5 nights / 6 days — mountains, snow, rivers, and monasteries. Flights optional.',
-  keywords: 'Himachal Pradesh tour package, Himachal tour package from Delhi, Shimla Manali package, Himachal holiday package 2026, Himachal Pradesh trip cost, Kasol trek package, Dharamsala trip package',
   openGraph: {
     title: 'Himachal Pradesh Tour Package 2026 — 5 Nights Starting ₹13,999',
     description: 'Manali, Shimla, Kasol, Dharamsala — 5 nights covering the best of Himachal Pradesh.',
@@ -24,7 +23,6 @@ export default async function HimachalPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/himachal-tour-package',
     metaTitle: 'Himachal Pradesh Tour Package 2026 — 5 Nights Starting ₹13,999 | YlooTrips',
     metaDescription: 'Book Himachal Pradesh tour packages starting ₹13,999. Manali, Shimla, Kasol, Dharamsala — 5 nights across the best mountain destinations.',
-    keywords: 'Himachal Pradesh tour package from Delhi, Shimla Manali package',
     ogImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1600&q=85',

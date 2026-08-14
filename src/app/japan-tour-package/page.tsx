@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Japan Tour Package from India 2026 — 7 Nights Starting ₹1,72,799 | YlooTrips',
   description: 'Book Japan tour packages from India starting ₹1,72,799. Tokyo, Kyoto, Osaka, Nara, Mt. Fuji. 7 nights / 8 days — cherry blossoms, bullet trains, ancient temples & world-class food.',
-  keywords: 'Japan tour package from India, Japan trip from India, Tokyo Kyoto Osaka tour, Japan holiday package 2026, cherry blossom Japan, Mt Fuji tour, Japan trip cost India, bullet train Japan',
   openGraph: {
     title: 'Japan Tour Package from India 2026 — 7 Nights Starting ₹1,72,799',
     description: 'Tokyo, Kyoto, Osaka, Nara, Mt. Fuji — 7 nights across the Land of the Rising Sun.',
@@ -24,7 +23,6 @@ export default async function JapanPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/japan-tour-package',
     metaTitle: 'Japan Tour Package from India 2026 — 7 Nights Starting ₹1,72,799 | YlooTrips',
     metaDescription: 'Tokyo, Kyoto, Osaka, Nara, Mt. Fuji — 7 nights of cherry blossoms, bullet trains, ancient temples, and world-class Japanese cuisine.',
-    keywords: 'Japan tour package from India, Tokyo Kyoto Osaka trip, cherry blossom Japan tour',
     ogImage: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1600&q=85',

@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Georgia & Azerbaijan Tour Package from India 2026 — 6 Nights Starting ₹54,999 | YlooTrips',
   description: 'Book Georgia & Azerbaijan tour packages from India starting ₹54,999. Tbilisi, Kazbegi, Baku, Gabala. 6 nights / 7 days — Caucasus mountains, ancient churches, Baku flame towers.',
-  keywords: 'Georgia Azerbaijan tour package India, Tbilisi tour from India, Baku tour package India, Georgia trip from India, Caucasus tour India 2026, Georgia Azerbaijan holiday package',
   openGraph: {
     title: 'Georgia & Azerbaijan Tour Package from India 2026 — 6 Nights Starting ₹54,999',
     description: 'Tbilisi, Kazbegi, Baku, Gabala — 6 nights across the Caucasus mountains.',
@@ -24,7 +23,6 @@ export default async function GeorgiaAzerbaijanPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/georgia-azerbaijan-tour-package',
     metaTitle: 'Georgia & Azerbaijan Tour Package from India 2026 — 6 Nights Starting ₹54,999 | YlooTrips',
     metaDescription: 'Tbilisi, Kazbegi Mountains, Baku Old City, Flame Towers, Gabala — 6 nights across the stunning Caucasus region.',
-    keywords: 'Georgia Azerbaijan tour package India, Tbilisi Kazbegi Baku tour',
     ogImage: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=1600&q=85',

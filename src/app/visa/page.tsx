@@ -5,7 +5,6 @@ import { FileText, Clock, Check, MessageCircle, ChevronRight, Globe } from 'luci
 export const metadata: Metadata = {
   title: 'Visa Guide for Indian Travelers 2026 — Requirements, Fees & Processing | YlooTrips',
   description: 'Complete visa guide for Indian passport holders. Visa on arrival, e-visa, and embassy visa requirements for Bali, Dubai, Thailand, Singapore, Europe, USA, and 50+ countries. Updated for 2026.',
-  keywords: 'visa guide India, visa requirements Indian passport, Bali visa Indian, Dubai visa India, Thailand visa India, Singapore visa India, Europe Schengen visa India, visa on arrival India',
   openGraph: {
     title: 'Visa Guide for Indian Travelers 2026 | YlooTrips',
     description: 'Visa requirements, fees, and processing times for 50+ countries. Updated for 2026.',

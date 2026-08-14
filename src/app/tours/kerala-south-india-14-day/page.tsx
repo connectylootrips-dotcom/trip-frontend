@@ -7,7 +7,6 @@ import { TourJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd';
 export const metadata: Metadata = {
   title: "14-Day Kerala & South India Tour Package",
   description: "Discover Kerala's backwaters, Munnar tea estates, spice gardens, and ancient temples on this 14-day South India tour. Houseboat cruise, Ayurveda massage, and more. Get a quote.",
-  keywords: "Kerala tour package, South India tour, Kerala backwaters tour, Munnar tea estate, Kerala houseboat, India south tour 14 days",
   openGraph: {
     title: "14-Day Kerala & South India Tour | YlooTrips — India Travel Experts",
     description: "Kerala backwaters, Munnar tea estates, ancient temples, and a houseboat cruise on Alleppey. The ultimate South India experience in 14 days.",

@@ -5,7 +5,6 @@ import { Package, ChevronRight, Mountain, Waves, TreePine, Building2, Snowflake,
 export const metadata: Metadata = {
   title: 'Travel Packing Checklist 2026 — What to Pack for Every Destination | YlooTrips',
   description: 'Free travel packing checklists for every destination — Manali, Goa, Kashmir, Bali, Dubai, Europe, and more. Never forget essentials again. Updated for 2026.',
-  keywords: 'travel packing checklist India, what to pack for Manali, Goa packing list, Kashmir packing checklist, Bali packing list, Europe travel packing, international trip packing India',
   openGraph: {
     title: 'Travel Packing Checklist — Every Destination | YlooTrips',
     description: 'Destination-specific packing lists for mountains, beaches, deserts, cities, and international trips.',

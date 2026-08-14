@@ -7,7 +7,6 @@ import { MessageCircle, ArrowRight, CheckCircle, MapPin, Clock, Calendar } from 
 export const metadata: Metadata = {
   title: "Goa on a Budget 2026 — How to Visit for Under ₹15,000",
   description: "Complete Goa budget travel guide 2026: cheap stays, cheap food, free beaches, North vs South Goa, best season, transport hacks, and a full 5-day budget breakdown under ₹15,000.",
-  keywords: "Goa budget trip 2026, cheap Goa trip, Goa under 15000, budget travel Goa, North Goa vs South Goa, cheap hotels Goa, Goa backpacker guide, Goa travel tips",
   openGraph: {
     title: "Goa on a Budget 2026 — How to Visit for Under ₹15,000",
     description: "How to do Goa without spending a fortune. Real budget breakdown, best cheap stays, free beaches, and season guide.",

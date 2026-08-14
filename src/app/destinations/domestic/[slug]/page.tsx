@@ -264,7 +264,6 @@ export default async function DomesticTripDetailPage({ params }: { params: Promi
     canonicalUrl: `https://www.ylootrips.com/destinations/domestic/${trip.slug}`,
     metaTitle: `${trip.title} 2026 — ${trip.duration} | YlooTrips`,
     metaDescription: `${trip.title} from ${trip.location}. ${trip.duration} at ₹${trip.priceINR.toLocaleString('en-IN')}/person. ${trip.highlights[0]}.`,
-    keywords: `${trip.title}, ${trip.location} trip, ${trip.category} India, YLOO trips`,
     ogImage: trip.image,
 
     heroImage: trip.image,

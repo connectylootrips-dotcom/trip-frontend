@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Thailand Budget Trip 2026 — 5 Nights from ₹49,499 | YlooTrips',
   description: 'Cheapest Thailand tour packages from India starting ₹49,499. 5 nights Bangkok + Phuket — temples, street food, islands, nightlife. Hotels + transfers + activities included.',
-  keywords: 'Thailand budget trip from India, Thailand tour package cheap, Bangkok Phuket package, Thailand trip cost from India 2026, cheap Thailand holiday, Thailand 5 nights 6 days',
   openGraph: {
     title: 'Thailand Budget Trip 2026 — ₹49,499 Per Person | YlooTrips',
     description: 'Bangkok temples, Phi Phi islands, floating markets, street food, nightlife. All-inclusive Thailand on a budget from India.',
@@ -26,7 +25,6 @@ const pkg: PackageData = {
   canonicalUrl: 'https://www.ylootrips.com/thailand-budget-trip',
   metaTitle: 'Thailand Budget Trip 2026 — 5 Nights from ₹49,499',
   metaDescription: 'Cheapest Thailand packages from India starting ₹49,499. 5 nights Bangkok + Phuket — temples, islands, street food. Hotel + transfers + activities included.',
-  keywords: 'Thailand budget trip from India',
   ogImage: 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=1200&q=80',
 
   heroImage: 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=1600&q=85',

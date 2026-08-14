@@ -5,7 +5,6 @@ import { getPackagePrice } from '@/lib/packagePrices';
 export const metadata: Metadata = {
   title: 'Kenya Safari Package from India 2026 — 7 Nights Starting ₹2,24,999 | YlooTrips',
   description: 'Book Kenya safari packages from India starting ₹2,24,999. Masai Mara, Amboseli, Nairobi, Diani Beach. 7 nights / 8 days — Big Five game drives, Great Migration, and Kilimanjaro views.',
-  keywords: 'Kenya safari package from India, Masai Mara tour India, Kenya trip from India, African safari India, Big Five safari India, Great Migration Kenya, Kenya holiday package 2026, Amboseli elephant park',
   openGraph: {
     title: 'Kenya Safari Package from India 2026 — 7 Nights Starting ₹2,24,999',
     description: 'Masai Mara, Amboseli, Nairobi, Diani Beach — 7 nights on an unforgettable African safari.',
@@ -24,7 +23,6 @@ export default async function KenyaSafariPackagePage() {
     canonicalUrl: 'https://www.ylootrips.com/kenya-safari-package',
     metaTitle: 'Kenya Safari Package from India 2026 — 7 Nights Starting ₹2,24,999 | YlooTrips',
     metaDescription: 'Masai Mara Big Five game drives, Great Migration, Amboseli elephant herds with Kilimanjaro views, Nairobi, Diani Beach — 7 nights in wild Africa.',
-    keywords: 'Kenya safari package from India, Masai Mara tour, Big Five safari Africa',
     ogImage: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&q=80',
 
     heroImage: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1600&q=85',

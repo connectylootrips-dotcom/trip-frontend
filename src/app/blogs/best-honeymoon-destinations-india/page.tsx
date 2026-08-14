@@ -7,7 +7,6 @@ import { MessageCircle, MapPin, Clock, Calendar } from 'lucide-react';
 export const metadata: Metadata = {
   title: "15 Best Honeymoon Destinations in India 2026 — Romantic Getaways",
   description: "15 best honeymoon destinations in India for 2026: Andaman, Kashmir, Goa, Kerala, Manali, Coorg, Udaipur, Darjeeling, Rishikesh, Ooty, Shimla, Munnar, Spiti, Mussoorie, Rann of Kutch. Budget, season & tips.",
-  keywords: "best honeymoon destinations India 2026, romantic getaways India, honeymoon places India, Kashmir honeymoon, Andaman honeymoon, Kerala honeymoon, Goa honeymoon, Udaipur honeymoon, Manali honeymoon",
   openGraph: {
     title: "15 Best Honeymoon Destinations in India 2026 — Romantic Getaways",
     description: "From snow-capped Manali to tropical Andaman — the 15 most romantic places in India for honeymooners in 2026.",

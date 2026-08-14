@@ -45,7 +45,6 @@ function TripAdvisorOrganizationSchema() {
 export const metadata: Metadata = {
   title: 'YlooTrips on TripAdvisor — Reviews, Rating & Profile',
   description: 'YlooTrips on TripAdvisor: India\'s highest-rated budget travel company. 4.9★ Google rating. Book Manali, Goa, Kashmir, Bali, Dubai packages. Leave your review on TripAdvisor.',
-  keywords: 'YlooTrips TripAdvisor, YlooTrips reviews TripAdvisor, ylootrips.com TripAdvisor, India tour operator TripAdvisor, best travel company India TripAdvisor',
   openGraph: {
     title: 'YlooTrips on TripAdvisor | India\'s Top-Rated Travel Company',
     description: 'Find YlooTrips on TripAdvisor. 4.9★ rated, 25,000+ travelers served. Book India & international tour packages.',

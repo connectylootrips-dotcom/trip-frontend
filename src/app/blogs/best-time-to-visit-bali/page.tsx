@@ -7,7 +7,6 @@ import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd'
 export const metadata: Metadata = {
   title: 'Best Time to Visit Bali 2026 — Month-by-Month Guide | YlooTrips',
   description: 'When is the best time to visit Bali? Complete 2026 month-by-month guide covering weather, festivals, crowds, and prices. Find your perfect Bali travel window.',
-  keywords: 'best time to visit Bali, Bali weather month by month, Bali dry season wet season, when to visit Bali 2026, Bali travel tips India, Bali peak season',
   openGraph: {
     title: 'Best Time to Visit Bali 2026 — Month-by-Month Guide',
     description: 'Dry season, wet season, festivals, prices — the complete guide to choosing the best month to visit Bali from India.',
