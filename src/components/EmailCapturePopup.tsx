@@ -32,12 +32,13 @@ export default function EmailCapturePopup() {
     if (!email) return;
     setLoading(true);
     try {
-      // Send to backend or just store locally for now
       await fetch('/api/email-capture', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, destination, source: 'popup' }),
-      }).catch(() => {}); // silent fail if endpoint doesn't exist yet
+      });
+    } catch {
+      // Network error — still show success to user
     } finally {
       setLoading(false);
       setSubmitted(true);
