@@ -887,7 +887,7 @@ function ProfilePage({ onOpenSearch, onOpenClientLogin }: { onOpenSearch: () => 
       title: 'WanderLoot Rewards',
       items: [
         { icon: <Wallet size={20} className="text-green-600" />, label: 'Cashback Wallet', sub: balance > 0 ? `₹${balance} available` : 'Earn 10% on every trip', href: '/cashback', bg: 'bg-green-50' },
-        { icon: <span className="text-lg">🎁</span>, label: 'Refer & Earn', sub: 'Invite friends, earn cashback', href: 'https://wa.me/918427831127?text=Hi!%20I%20want%20to%20refer%20a%20friend%20to%20YlooTrips.', external: true, bg: 'bg-purple-50' },
+        { icon: <span className="text-lg">🎁</span>, label: 'Refer & Earn', sub: 'Invite friends, earn ₹1,000', href: '/refer', bg: 'bg-purple-50' },
       ],
     },
     {

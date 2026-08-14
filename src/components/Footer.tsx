@@ -290,7 +290,7 @@ export default function Footer() {
                   cursor: 'pointer',
                 }}
               >
-                ADMIN
+                YlooTrips
               </button>
             </div>
           </div>
