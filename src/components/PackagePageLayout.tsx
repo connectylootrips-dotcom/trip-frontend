@@ -754,8 +754,8 @@ export default function PackagePageLayout({ pkg }: { pkg: PackageData }) {
               <span className="text-white/90">{pkg.heroTitle}</span>
             </nav>
             <p className="text-accent text-xs uppercase tracking-[0.3em] mb-2">{pkg.tagline}</p>
-            <h1 className="font-display text-display-xl text-white max-w-3xl">{pkg.heroTitle}</h1>
-            <p className="text-white/75 text-body-lg mt-3 max-w-2xl">{pkg.heroSubtitle}</p>
+            <h1 className="font-display text-2xl sm:text-display-lg md:text-display-xl text-white max-w-3xl leading-tight">{pkg.heroTitle}</h1>
+            <p className="text-white/75 text-sm sm:text-body-lg mt-2 sm:mt-3 max-w-2xl">{pkg.heroSubtitle}</p>
 
             {/* Quick stats row */}
             <div className="flex flex-wrap gap-4 mt-5 text-white/90 text-sm">
@@ -776,7 +776,7 @@ export default function PackagePageLayout({ pkg }: { pkg: PackageData }) {
       </section>
 
       {/* ── MOBILE TOP BAR ── */}
-      <div className="lg:hidden bg-white border-b border-primary/10 sticky top-0 z-30 shadow-sm px-4 py-3 flex items-center justify-between gap-3">
+      <div className="lg:hidden bg-white border-b border-primary/10 sticky top-16 z-30 shadow-sm px-4 py-3 flex items-center justify-between gap-3">
         <div>
           <p className="text-[10px] text-primary/50 uppercase tracking-wider">Starting from</p>
           <p className="font-display text-xl text-primary">{fp(pkg.priceINR)}<span className="text-xs font-sans text-primary/40"> /person</span></p>
@@ -1033,7 +1033,7 @@ export default function PackagePageLayout({ pkg }: { pkg: PackageData }) {
             {pkg.related.length > 0 && (
               <section>
                 <h2 className="font-display text-3xl text-primary mb-6">You Might Also Like</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                   {pkg.related.map((r, i) => (
                     <Link key={i} href={r.href} className="group bg-cream-light border border-primary/8 rounded-2xl overflow-hidden hover:shadow-lg transition-all">
                       <div className="relative h-36">
