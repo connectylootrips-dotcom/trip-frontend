@@ -1,3 +1,19 @@
+export interface MustVisitPlace {
+  name: string;
+  description: string;
+  image: string;
+  type: 'landmark' | 'activity' | 'food' | 'experience' | 'beach' | 'nature';
+  tip?: string;
+}
+
+export interface ActivityItem {
+  name: string;
+  description: string;
+  image: string;
+  duration?: string;
+  cost?: string;
+}
+
 export interface HiddenSpot {
   slug: string;
   name: string;
@@ -24,6 +40,9 @@ export interface HiddenSpot {
   coordinates: { lat: number; lng: number };
   avgCost: string;
   featured?: boolean;
+  mustVisitPlaces?: MustVisitPlace[];
+  activities?: ActivityItem[];
+  tips?: string[];
 }
 
 const hiddenSpots: HiddenSpot[] = [
@@ -372,6 +391,95 @@ const hiddenSpots: HiddenSpot[] = [
     coordinates: { lat: 17.5941, lng: 106.2828 },
     avgCost: '₹35,000–55,000 per person (5 nights Vietnam including flights from India)',
     featured: true,
+    mustVisitPlaces: [
+      {
+        name: 'Beer Street (Tạ Hiện), Hanoi',
+        description: 'The most vibrant street in Hanoi\'s Old Quarter — packed with open-air bars, cheap bia hơi (fresh draft beer for ₹20/glass), street food stalls, and travellers from all over the world. Come after 7pm when the plastic stools spill onto the street.',
+        image: 'https://images.unsplash.com/photo-1557750255-c06ac3f70dc7?w=800&q=80',
+        type: 'experience',
+        tip: 'Order bia hơi (fresh draught beer) — it\'s brewed daily and costs ₹20–30 per glass.',
+      },
+      {
+        name: 'Hoan Kiem Lake & Old Quarter, Hanoi',
+        description: 'The living heart of Hanoi — a jade-green lake with the red Huc Bridge, the 18th-century Ngoc Son Temple on an island, and 36 guild streets of the Old Quarter radiating from its banks. The pedestrian zone on weekends has street performances and food carts.',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
+        type: 'landmark',
+        tip: 'Visit at 6am to see locals doing tai chi and exercising on the lake\'s perimeter — a daily Hanoi ritual.',
+      },
+      {
+        name: 'Hoi An Ancient Town',
+        description: 'A UNESCO-listed trading port frozen in the 16th century — Japanese merchant houses, Chinese assembly halls, French colonial facades, and Vietnamese tube houses on one lantern-lit street. The Thursday night Full Moon Festival bans motorised vehicles and fills the town with candles.',
+        image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80',
+        type: 'landmark',
+        tip: 'Get a dress or suit tailor-made on Tran Phu Street — a ₹1,500–3,000 suit in 24 hours is Hoi An\'s best value.',
+      },
+      {
+        name: 'Da Nang — Dragon Bridge & Marble Mountains',
+        description: 'Vietnam\'s third-largest city has a stunning riverside promenade, the fire-breathing Dragon Bridge (breathes fire at 9pm on weekends), and the Marble Mountains — five marble-and-limestone peaks with cave pagodas and rooftop views of the South China Sea.',
+        image: 'https://images.unsplash.com/photo-1570366583862-f91883984fde?w=800&q=80',
+        type: 'landmark',
+        tip: 'The Dragon Bridge breathes fire and water every Saturday and Sunday night at 9pm sharp. Position on the river bank 30 minutes early.',
+      },
+      {
+        name: 'Hue Imperial Citadel',
+        description: 'Vietnam\'s last royal capital — a 10km-walled citadel housing the Imperial City, royal tombs, and the Thien Mu Pagoda on the Perfume River. Less visited than Hoi An but architecturally richer. The royal tombs are scattered across forested hills outside the city.',
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+        type: 'landmark',
+        tip: 'Hire a motorbike (₹400/day) to visit the royal tombs — Tu Duc, Minh Mang, and Khai Dinh each have distinct architecture.',
+      },
+      {
+        name: 'My Khe Beach, Da Nang',
+        description: 'One of Asia\'s top beaches — a 30km arc of white sand, warm 28°C water year-round, gentle waves, and a backdrop of the Marble Mountains. Forbes named it one of the most beautiful beaches in the world. Almost no hawkers, very affordable beach resorts.',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+        type: 'beach',
+        tip: 'Stay at a Da Nang beachfront hotel — you can be at Phong Nha in 2.5 hours and on this beach by evening.',
+      },
+    ],
+    activities: [
+      {
+        name: 'Paradise Cave Tour',
+        description: 'Board wooden boardwalks through 7km of illuminated Paradise Cave interior — crystalline stalactites, cathedral chambers reaching 72m high, and underground silence. The most accessible major cave in the park. No permit required.',
+        image: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&q=80',
+        duration: '3–4 hours',
+        cost: '₹1,200–1,800 per person (entry + guide)',
+      },
+      {
+        name: 'Dark Cave Zip-line & Mud Bath',
+        description: 'Zip-line over a jungle river into the mouth of a cave, then navigate through absolute darkness to reach an underground mud pool. Float in mineral-rich mud, rinse off in the cave river, and kayak back out. One of Vietnam\'s most unique adventure experiences.',
+        image: 'https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?w=800&q=80',
+        duration: '2–3 hours',
+        cost: '₹1,500 per person',
+      },
+      {
+        name: 'Ho Chi Minh Trail Motor-bike Ride',
+        description: 'Ride the legendary Ho Chi Minh Trail — a network of supply roads used during the Vietnam War — through dense jungle, past bomb craters, and over limestone ridges. Countless operators in Son Trach offer guided rides on semi-automatic bikes.',
+        image: 'https://images.unsplash.com/photo-1558181304800-259b08848526?w=800&q=80',
+        duration: 'Full day',
+        cost: '₹1,800–2,500 per person with guide',
+      },
+      {
+        name: 'Phong Nha Cave Boat Ride',
+        description: 'Board a traditional wooden sampan for an 8km journey into Phong Nha Cave along an underground river — stalactites reflected in black water, bat colonies in the ceiling, and spectacular karst formations lit by boat lanterns.',
+        image: 'https://images.unsplash.com/photo-1544550285-f813152fb2fd?w=800&q=80',
+        duration: '1.5 hours',
+        cost: '₹800–1,200 per person',
+      },
+      {
+        name: 'Farmstay Cooking Class in Son Trach',
+        description: 'Learn to make Vietnamese pho, banh xeo (sizzling crepes), and fresh spring rolls at a family farmstay in Son Trach village. Market visit included — you shop, you cook, you eat. A quiet counterpoint to the caves.',
+        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+        duration: '3–4 hours',
+        cost: '₹1,200–1,800 per person',
+      },
+    ],
+    tips: [
+      'Book Son Doong Cave permits a year in advance — only 1,000 permits per year are issued, at USD 3,000 per person. Non-negotiable.',
+      'Paradise Cave and Dark Cave can be combined in one day — book a combo ticket at the park entrance in Son Trach for a 15% discount.',
+      'Rent a bicycle (₹200/day) in Son Trach town to explore the village, river banks, and local market at your own pace.',
+      'Caves close from July 15–October 15 during monsoon — check park website before booking.',
+      'The train from Hue to Dong Hoi (2.5 hrs, ₹300) is more scenic than the bus and stops near the park transfer point.',
+      'Bring a lightweight rain jacket — the jungle road to the caves gets muddy after rain and the cave interiors are cool (18°C year-round).',
+    ],
   },
   {
     slug: 'ella-sri-lanka',
@@ -403,6 +511,81 @@ const hiddenSpots: HiddenSpot[] = [
     coordinates: { lat: 6.8667, lng: 81.0466 },
     avgCost: '₹30,000–50,000 per person (7 nights Sri Lanka including flights from India)',
     featured: true,
+    mustVisitPlaces: [
+      {
+        name: 'Nine Arch Bridge',
+        description: 'Sri Lanka\'s most photographed landmark — a 91m colonial stone viaduct of nine perfect arches rising 24m above the jungle. Built in 1921 without steel (replaced by stone when WWI cut off metal supplies). Best photographed from the surrounding jungle when a blue train crosses at 9am or 3pm.',
+        image: 'https://images.unsplash.com/photo-1580289510209-c70b8d084b77?w=800&q=80',
+        type: 'landmark',
+        tip: 'Check the train timetable at Ella station and position yourself in the jungle 20 mins before crossing time for the perfect shot.',
+      },
+      {
+        name: 'Sigiriya Rock Fortress',
+        description: 'A 5th-century royal palace built on a 200m vertical granite rock — with frescoed cave paintings, the mirror wall of polished plaster, and ruins of water gardens and lion-paw gate. UNESCO World Heritage. Sigiriya is 3 hours from Ella and worth an overnight detour.',
+        image: 'https://images.unsplash.com/photo-1540202404-1b927e27fa8b?w=800&q=80',
+        type: 'landmark',
+        tip: 'Climb before 7am to beat both the heat and the crowds — the top platform with 360° jungle views is extraordinary in the early mist.',
+      },
+      {
+        name: 'Galle Dutch Fort',
+        description: 'A 16th-century Portuguese fort expanded by the Dutch — a UNESCO World Heritage town of winding cobbled streets, coral-and-granite ramparts, lighthouses, and boutique hotels inside colonial buildings. Sunsets from the rampart walls are among Sri Lanka\'s finest.',
+        image: 'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80',
+        type: 'landmark',
+        tip: 'Stay inside the fort walls for a night — heritage guesthouses are compact but the atmosphere after day-trippers leave is magical.',
+      },
+      {
+        name: 'Yala National Park — Leopard Safari',
+        description: 'The world\'s highest density of leopards per square kilometre — a morning jeep safari gives better odds of a leopard sighting than anywhere in Africa. Sri Lankan leopards are larger and bolder than Indian ones. Yala is 2.5 hours from Ella.',
+        image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
+        type: 'nature',
+        tip: 'Book a 6am half-day safari (₹3,500–5,000 per jeep including entry). Block 5 (the most popular zone) has the highest leopard density.',
+      },
+      {
+        name: 'Temple of the Tooth, Kandy',
+        description: 'Sri Lanka\'s holiest Buddhist site — a 17th-century golden-roofed temple housing a relic of the Buddha\'s tooth. The evening puja ceremony at 6:30pm, with drummers, chanting monks, and incense filling the colonial-era complex, is extraordinary. Kandy is 3 hours from Ella.',
+        image: 'https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?w=800&q=80',
+        type: 'experience',
+        tip: 'Arrive 30 minutes before the evening puja and queue on the left side for a closer view of the golden relic chamber.',
+      },
+    ],
+    activities: [
+      {
+        name: 'Kandy–Ella Scenic Train Ride',
+        description: 'The most beautiful rail journey in Asia — 6 hours from Kandy to Ella through misty tea plantations, cloud forest, colonial viaducts, and waterfall views. Sit on the right side (facing Ella direction) for the best views. Book 3rd class observation car for open doorways.',
+        image: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&q=80',
+        duration: '6 hours Kandy → Ella',
+        cost: '₹150–600 per person (2nd/1st class)',
+      },
+      {
+        name: 'Little Adam\'s Peak Sunrise Hike',
+        description: 'A 45-minute hike from Ella town through tea estates and jungle to the summit of Little Adam\'s Peak (1,141m). The sunrise panorama over Ella Gap — a valley splitting two mountain ranges — is one of Sri Lanka\'s finest views. Guides not required.',
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+        duration: '45 min up · 35 min down',
+        cost: 'Free (access through tea estate — tip workers appreciated)',
+      },
+      {
+        name: 'Tea Factory & Plantation Tour',
+        description: 'Visit a working tea factory in the estates above Ella — see the four stages of Ceylon tea production (withering, rolling, oxidation, drying), learn to distinguish grades, and taste fresh-picked tea. Lipton\'s Seat viewpoint offers 360° estate panoramas.',
+        image: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&q=80',
+        duration: '2–3 hours',
+        cost: '₹300–600 per person',
+      },
+      {
+        name: 'White Water Rafting — Kitulgala',
+        description: 'Grade 3–4 rapids on the Kelani River at Kitulgala (near Kandy), with 16 rapids including a famous swimming hole beneath a waterfall. Best in the rivers\' high-flow season (June–August). One of Sri Lanka\'s top adventure experiences.',
+        image: 'https://images.unsplash.com/photo-1544550285-f813152fb2fd?w=800&q=80',
+        duration: '2 hours on water',
+        cost: '₹2,000–3,000 per person',
+      },
+    ],
+    tips: [
+      'Book the Kandy–Ella train online at www.railway.gov.lk at least 3 weeks in advance — seats sell out fast, especially observation car and 1st class.',
+      'Carry cash (Sri Lankan Rupees) in Ella — many smaller restaurants and guesthouses don\'t accept cards.',
+      'The Nine Arch Bridge train crossing times are roughly 9:10am and 3:20pm (check at Ella station on arrival — times shift seasonally).',
+      'Book Yala safari jeeps at your Ella guesthouse the day before — arrange a driver who takes you Ella → Yala → Galle in one day for best value.',
+      'Ella is cool at night (15–18°C) — carry a light jacket even in summer.',
+      'The best Sri Lanka itinerary from India: Colombo → Kandy (train) → Ella (scenic train) → Yala (safari) → Galle (fort) → fly home.',
+    ],
   },
   {
     slug: 'phobjikha-valley-bhutan',
@@ -433,6 +616,81 @@ const hiddenSpots: HiddenSpot[] = [
     tripSearchQuery: 'Phobjikha Valley Bhutan cranes',
     coordinates: { lat: 27.4833, lng: 90.2000 },
     avgCost: '₹65,000–95,000 per person (7 nights Bhutan with SDF + flights from India)',
+    mustVisitPlaces: [
+      {
+        name: 'Paro Taktsang — Tiger\'s Nest Monastery',
+        description: 'The most iconic image in Bhutan — a Buddhist monastery clinging to a 900m vertical cliff face, accessible by a 2-hour hike through prayer-flag-lined forest. Built in 1692 on the spot where Guru Rinpoche meditated for 3 months. The monastery complex has four temples and is still active.',
+        image: 'https://images.unsplash.com/photo-1553856622-d1b352e9a211?w=800&q=80',
+        type: 'landmark',
+        tip: 'Start the hike at 7am before day-trippers arrive. The final 700 steps descend and re-ascend a steep valley — carry water. The interior is only open 8am–1pm, 2–5pm.',
+      },
+      {
+        name: 'Punakha Dzong',
+        description: 'Bhutan\'s most beautiful fortress-monastery, built in 1637 at the confluence of two rivers (the "Male River" and "Female River"). The white-and-gold dzong is the winter seat of Bhutan\'s chief monk. Flowering jacaranda trees frame the approach bridge in spring.',
+        image: 'https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?w=800&q=80',
+        type: 'landmark',
+        tip: 'Visit in March when jacaranda trees along the approach road bloom purple — the contrast with the white dzong walls is extraordinary.',
+      },
+      {
+        name: 'Gangtey Monastery (Gonpa)',
+        description: 'The largest Nyingma monastery in Bhutan, founded in 1613, commanding a hilltop view over the entire Phobjikha Valley. The main assembly hall has 17th-century murals and a 500-year-old statue. Monks perform rituals daily at 7am and 4pm — visitors are welcome respectfully.',
+        image: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=800&q=80',
+        type: 'experience',
+        tip: 'Attend the 4pm puja — drums, cymbals, long horns (dungchen), and monks in red robes chanting in the lamp-lit assembly hall is one of the most moving experiences in Bhutan.',
+      },
+      {
+        name: 'Dochula Pass (108 Chortens)',
+        description: 'At 3,116m between Thimphu and Punakha, 108 white chortens (stupas) arranged in concentric circles on the pass create an otherworldly winter scene against Himalayan peaks. On clear days, you can see 7 of Bhutan\'s highest peaks including Gangkhar Puensum (7,570m).',
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+        type: 'landmark',
+        tip: 'Stop here in the early morning on the drive from Thimphu to Punakha — cloud usually rolls in by 10am obscuring the mountain views.',
+      },
+      {
+        name: 'Thimphu Weekend Market',
+        description: 'Bhutan\'s largest open-air market, open Saturday–Sunday on the banks of the Wang Chhu River. Local farmers sell red rice, dried yak cheese, datsi (cheese), Bhutanese textiles, wooden prayer bowls, and hand-woven kira cloth. The only authentic shopping experience in Thimphu.',
+        image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80',
+        type: 'experience',
+        tip: 'Buy a bag of Bhutanese red rice (nutty, chewy, nutritious) — it\'s ₹300/kg and impossible to find outside Bhutan at this quality.',
+      },
+    ],
+    activities: [
+      {
+        name: 'Black-Necked Crane Dawn Walk',
+        description: 'Join the guided dawn walk with the Black-Necked Crane Information Centre — walk the valley floor in early morning light, watching hundreds of cranes feed and call in the marshes. November–February only. The information centre provides binoculars and expert commentary.',
+        image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
+        duration: '2–3 hours (6–9am)',
+        cost: '₹400–800 per person',
+      },
+      {
+        name: 'Gogona Village Trek',
+        description: 'A 3-hour round-trip hike from Gangtey through rhododendron and blue pine forest to the traditional farming village of Gogona — no roads, no electricity, stone-and-wood farmhouses unchanged for centuries. Red pandas inhabit the forest along the trail.',
+        image: 'https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=800&q=80',
+        duration: '3 hours',
+        cost: 'Free with guide (guide fee approx ₹1,500)',
+      },
+      {
+        name: 'Archery Demonstration & Try',
+        description: 'Bhutan\'s national sport — watch locals compete with traditional bamboo bows from 145m (the Olympic distance is 70m) and then try the sport yourself. Competitions happen in fields around Thimphu on weekends and are open for spectators.',
+        image: 'https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?w=800&q=80',
+        duration: '1–2 hours',
+        cost: 'Free to watch · ₹500–800 to try',
+      },
+      {
+        name: 'Hot Stone Bath (Dotsho)',
+        description: 'A traditional Bhutanese therapeutic bath — river stones heated over a fire are lowered into a wooden tub of water infused with Artemisia herbs. Joints absorb the minerals, muscles relax. The most authentic wellness experience in Bhutan and far better than any spa.',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
+        duration: '45 minutes',
+        cost: '₹1,500–2,500 per person',
+      },
+    ],
+    tips: [
+      'All Bhutan visits must be booked through a licensed Bhutanese tour operator — independent travel is not permitted. YlooTrips can arrange this fully.',
+      'The Sustainable Development Fee (SDF) is USD 100 per person per night — it\'s mandatory and includes all accommodation, all meals, a licensed guide, and all internal transport.',
+      'Pack in layers — Phobjikha in November is 5–10°C by day and below zero at night. Good boots are essential for valley walks.',
+      'Bhutanese cuisine revolves around ema datshi (chilli and cheese stew) — it\'s hotter than you expect. Ask for "not spicy" if needed.',
+      'There are very few ATMs in Bhutan — bring USD cash to exchange at Paro airport or your hotel.',
+      'The best value window is spring (March–May) — SDF is USD 100/night, rhododendrons bloom, and clear days reveal the full Himalayan panorama.',
+    ],
   },
   {
     slug: 'musandam-oman',
@@ -464,6 +722,73 @@ const hiddenSpots: HiddenSpot[] = [
     coordinates: { lat: 26.1874, lng: 56.2451 },
     avgCost: '₹40,000–65,000 per person (5 nights Dubai + Musandam including flights)',
     featured: true,
+    mustVisitPlaces: [
+      {
+        name: 'Burj Khalifa & Dubai Mall',
+        description: 'The world\'s tallest building at 828m — visit the 124th-floor observation deck at sunset for the full Dubai skyline panorama. Below it, Dubai Mall has the world\'s largest indoor waterfall, an Olympic-sized ice rink, and an aquarium with whale sharks. Plan 3 hours minimum.',
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
+        type: 'landmark',
+        tip: 'Book the Burj Khalifa "At the Top" tickets online — saves 40% vs at-the-door price. Go 45 minutes before sunset for the best light.',
+      },
+      {
+        name: 'Dubai Desert Safari',
+        description: 'A 6-hour evening desert safari — dune bashing in 4×4s over red sand dunes, sunset camel ride, sandboarding, a Bedouin camp dinner under the stars with belly dance and tanoura performances. One of the most complete evening experiences in the Middle East.',
+        image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80',
+        type: 'experience',
+        tip: 'Choose a "Premium" or "Private" safari — standard group safaris rush through activities. A private 4WD with a dedicated guide is worth the extra ₹1,500.',
+      },
+      {
+        name: 'Sheikh Zayed Grand Mosque, Abu Dhabi',
+        description: 'The largest mosque in the UAE and one of the most beautiful in the world — 82 white marble domes, 1,000 columns inlaid with mother-of-pearl, the world\'s largest hand-woven carpet (5,627 sq m), and 24-carat gold-plated chandeliers. Abu Dhabi is 1.5 hours from Dubai.',
+        image: 'https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=800&q=80',
+        type: 'landmark',
+        tip: 'Visit at sunset (approx 5:30pm in winter) when the white marble turns rose-gold and the mosque is less crowded than midday. Entry is free — modest dress required.',
+      },
+      {
+        name: 'Khasab Town & Friday Souk',
+        description: 'The capital of Musandam — a compact fishing town with a 17th-century Portuguese-built fort, a lively Friday market where Omani farmers sell fresh dates, dried fish, and spices, and a waterfront lined with traditional dhow boats.',
+        image: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=800&q=80',
+        type: 'experience',
+        tip: 'The Friday souk opens at 8am and closes by noon — go early for fresh dates, dried limes (loomi), and Omani halwa.',
+      },
+      {
+        name: 'Dubai Creek & Gold Souk',
+        description: 'The historic heart of old Dubai — cross by abra (water taxi, ₹15) from Deira to Bur Dubai, then walk to the Gold Souk (over 380 jewellery shops lining a covered arcade) and the Spice Souk (saffron, frankincense, cardamom, dried roses).',
+        image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80',
+        type: 'experience',
+        tip: 'Bargain in the Gold Souk — starting price is typically 15–20% above the real price. Always ask "best price" twice before agreeing.',
+      },
+    ],
+    activities: [
+      {
+        name: 'Full-Day Musandam Dhow Cruise',
+        description: 'Board a traditional wooden dhow for a full-day cruise through the Arabian fjords — narrow khors with 1,800m cliffs, spinner dolphin pods, snorkelling in clear water, a beach picnic lunch, and dramatic mountain scenery. The most unforgettable day trip from Dubai.',
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
+        duration: 'Full day (8am–5pm)',
+        cost: '₹3,500–5,500 per person',
+      },
+      {
+        name: 'Jebel Harim Mountain Drive',
+        description: 'Drive to the highest peak in Musandam (2,087m) through switchback mountain roads with views over the entire Strait of Hormuz. Ancient Bronze Age petroglyphs dot the rock faces near the summit. Requires a 4WD vehicle — hire locally in Khasab.',
+        image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80',
+        duration: '4–5 hours',
+        cost: '₹4,000–6,000 (4WD hire + guide)',
+      },
+      {
+        name: 'Snorkelling in Telegraph Island Bay',
+        description: 'A secluded bay accessible only by dhow — the former British telegraph relay station ruins on a tiny island, surrounded by coral gardens with parrotfish, angelfish, and sea turtles. The water clarity is exceptional — 15m visibility on a typical day.',
+        image: 'https://images.unsplash.com/photo-1544550285-f813152fb2fd?w=800&q=80',
+        duration: '1–2 hours at the bay',
+        cost: 'Included in dhow cruise',
+      },
+    ],
+    tips: [
+      'Carry your passport — you cross from UAE into Oman at the Tibat border checkpoint. Indian passport holders can get Oman visa on arrival (check current rules).',
+      'The drive from Dubai to Khasab (via Oman border) takes 2.5–3 hours including the border crossing — leave by 7am to catch the morning dhow cruise.',
+      'Book the dhow cruise from Dubai rather than Khasab — operators in Dubai offer better-organised tours with transport included.',
+      'Musandam is extremely hot May–September — the October–April window is ideal. Temperatures are 25–32°C with very low humidity.',
+      'Alcohol is available in Dubai but not in Musandam (Oman). Stock up if needed before crossing the border.',
+    ],
   },
   {
     slug: 'nusa-penida-bali',
@@ -495,6 +820,81 @@ const hiddenSpots: HiddenSpot[] = [
     coordinates: { lat: -8.7278, lng: 115.5444 },
     avgCost: '₹55,000–85,000 per person (7 nights Bali + Penida including flights from India)',
     featured: true,
+    mustVisitPlaces: [
+      {
+        name: 'Kelingking Beach — T-Rex Cliff Viewpoint',
+        description: 'The most dramatic viewpoint in Indonesia — a 200m limestone cliff shaped like a T-Rex head, rising from turquoise water. The view from the top is unreal. Descend the 45-minute near-vertical trail to reach a hidden beach with no facilities and near-empty sand.',
+        image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+        type: 'landmark',
+        tip: 'Start the descent by 7am — it takes 45 minutes down and 60 minutes back up in heat. Wear proper shoes (not sandals) and carry 2 litres of water.',
+      },
+      {
+        name: 'Ubud — Tegallalang Rice Terraces',
+        description: 'The iconic Balinese landscape — emerald rice terraces sculpted in concentric curves down a valley, irrigated by an 1,000-year-old subak water system. Walking through the terraces at dawn with mist in the valley below is one of Bali\'s finest moments. Ubud is 1.5 hours from Sanur.',
+        image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+        type: 'nature',
+        tip: 'Walk into the terraces from the upper road rather than paying the "selfie swing" cafes — the lower paths through the fields are free and more authentic.',
+      },
+      {
+        name: 'Tanah Lot — Cliff Temple at Sunset',
+        description: 'A 10th-century Hindu sea temple built on an offshore rock formation — at high tide it\'s an island, at low tide you can walk across and get blessed by the temple priest. The sunset from the cliff above is Bali\'s most photographed. Arrive 1 hour before sunset.',
+        image: 'https://images.unsplash.com/photo-1459767129954-1b1c1f9b9ace?w=800&q=80',
+        type: 'landmark',
+        tip: 'Skip Tanah Lot at high season weekends (crowds are immense) — go on a weekday in the late afternoon and walk the southern cliff path for quieter views.',
+      },
+      {
+        name: 'Uluwatu Cliff Temple & Kecak Fire Dance',
+        description: 'A 12th-century Hindu temple on a 70m sea cliff at Bali\'s southwestern tip — monkeys roam freely and the views of the Indian Ocean are spectacular. Every evening at sunset, the Kecak fire dance is performed in an open-air amphitheatre on the cliff edge.',
+        image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+        type: 'experience',
+        tip: 'Book Kecak dance tickets at the temple gate on arrival — they\'re priced at IDR 150,000 (₹750). Sit on the left side of the amphitheatre for the fire with the ocean behind.',
+      },
+      {
+        name: 'Seminyak Beach Club Sunset',
+        description: 'Bali\'s most stylish beach strip — Potato Head, Ku De Ta, and La Plancha beach clubs line Seminyak Beach with infinity pools, cocktails, live DJs, and sunset views. Most clubs allow non-members during the day for a minimum spend of IDR 150,000–300,000 (₹750–1,500).',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+        type: 'beach',
+        tip: 'La Plancha beach bar sets up coloured bean bags directly on the sand at no cover charge — the most democratic sunset spot on the strip.',
+      },
+    ],
+    activities: [
+      {
+        name: 'Manta Ray Snorkelling — Crystal Bay',
+        description: 'From July to October, oceanic manta rays (wingspan 3–5m) gather in Crystal Bay to feed on plankton. Snorkel or free-dive alongside them in gin-clear water — among the most reliable manta encounters in the world. Operators in Toya Pakeh village run half-day trips.',
+        image: 'https://images.unsplash.com/photo-1544550285-f813152fb2fd?w=800&q=80',
+        duration: 'Half day',
+        cost: '₹1,500–2,500 per person including snorkel gear',
+      },
+      {
+        name: 'Angel\'s Billabong & Broken Beach Circuit',
+        description: 'A 30-minute loop on the western tip of Nusa Penida — the natural infinity rock pool of Angel\'s Billabong (swimmable at low tide, dangerously surgy at high tide), then the 200m natural stone arch of Broken Beach above a circular enclosed bay. Best at 8–10am before day-trippers.',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+        duration: '2 hours',
+        cost: 'Free (₹500 parking)',
+      },
+      {
+        name: 'Sunrise at Kelingking Viewpoint',
+        description: 'Arrive at Kelingking at 5:30am before the tour groups to watch the cliff and bay emerge from darkness. The light on the T-Rex limestone at golden hour is extraordinary — and you\'ll have the viewpoint essentially to yourself for 30 minutes.',
+        image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+        duration: '1–2 hours',
+        cost: 'Free (hire scooter from Toya Pakeh ₹150/hour)',
+      },
+      {
+        name: 'Ubud Cooking Class',
+        description: 'Learn to make Balinese dishes — satay lilit (fish on lemongrass skewers), sate babi (pork satay), nasi goreng, and the ceremonial lawar salad. Morning market visit included. Ubud has the best cooking schools in Southeast Asia at fair prices.',
+        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+        duration: '4 hours',
+        cost: '₹2,500–4,000 per person',
+      },
+    ],
+    tips: [
+      'Hire a local driver (scooter: ₹500/day or car+driver: ₹2,500/day) on Nusa Penida — roads are steep, rough, and unmarked. Don\'t rent without confidence on mountain roads.',
+      'Check tide times before visiting Angel\'s Billabong — at high tide the pool is dangerous and swimming is not possible.',
+      'The fast boat from Sanur to Nusa Penida takes 45 min and costs ₹800–1,200 return. Buy a return ticket at the Sanur port jetty.',
+      'Carry cash (Indonesian Rupiah) on Nusa Penida — ATMs are limited and often empty on weekends.',
+      'For manta rays, visit July–October — the rest of the year sightings are possible but less consistent.',
+      'Combine 3 nights Seminyak/Ubud + 2 nights Nusa Penida for a perfect first Bali trip from India.',
+    ],
   },
   {
     slug: 'pai-thailand',
@@ -525,6 +925,80 @@ const hiddenSpots: HiddenSpot[] = [
     tripSearchQuery: 'Pai Thailand Chiang Mai hills',
     coordinates: { lat: 19.3583, lng: 98.4393 },
     avgCost: '₹35,000–55,000 per person (8 nights Thailand including flights from India)',
+    mustVisitPlaces: [
+      {
+        name: 'Pai Canyon (Yong Khao San)',
+        description: 'A miniature Badlands-style canyon 8km from Pai — narrow ochre ridges with 30m drops on both sides, best walked at sunset when the rock turns deep orange. The 20-minute ridge walk requires some nerve but no climbing equipment. Local food stalls set up at the viewpoint by 4pm.',
+        image: 'https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&q=80',
+        type: 'nature',
+        tip: 'Arrive 45 minutes before sunset — bring rubber-soled shoes as the red clay can be slippery after rain.',
+      },
+      {
+        name: 'Doi Suthep Temple, Chiang Mai',
+        description: 'The most sacred temple in northern Thailand — a golden chedi (stupa) visible from anywhere in Chiang Mai, perched at 1,073m on a mountain above the city. 306 serpent-guarded steps lead to the summit with views over the Ping River valley. Founded in 1383.',
+        image: 'https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?w=800&q=80',
+        type: 'landmark',
+        tip: 'Go at 7am for the monks\' morning alms round at the base of the stairs — a moving daily ritual that\'s over by 8am.',
+      },
+      {
+        name: 'White Temple (Wat Rong Khun), Chiang Rai',
+        description: 'A contemporary Buddhist temple covered entirely in white plaster and mirrored glass — the effect in morning light is blinding and beautiful. Designed by artist Chalermchai Kositpipat, it includes a mural hall with paintings of superheroes and astronauts alongside Buddhist imagery.',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
+        type: 'landmark',
+        tip: 'Visit before 9am — tour buses arrive from Chiang Mai around 10am. The golden building (Kositpipat\'s private art collection) on the right is worth 30 minutes.',
+      },
+      {
+        name: 'Chiang Mai Sunday Walking Street',
+        description: 'Every Sunday from 4pm, the entire Wualai Road fills with 500+ stalls selling silver jewellery (Chiang Mai is Thailand\'s silversmith capital), handmade textiles, woodcarvings, local food, and live music. The most authentic Thai night market experience in the north.',
+        image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80',
+        type: 'experience',
+        tip: 'Eat dinner at the market before shopping — khao soi (coconut curry noodles) from the silver pot stalls near the gate is the finest version in Chiang Mai.',
+      },
+      {
+        name: 'Ban Santichon — Yunnan Village',
+        description: 'A Yunnan Chinese hill tribe village 4km from Pai — descendants of KMT soldiers who settled here after 1949. Tea houses serve hand-ground Yunnan pu-erh, the hilltop cafe has 360° Mae Hong Son mountain views, and the village maintains its Yunnanese dialect and cooking.',
+        image: 'https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&q=80',
+        type: 'experience',
+        tip: 'Go in the morning when it\'s cool — the 15-minute walk from the village to the hilltop tea house rewards with unobstructed mountain views.',
+      },
+    ],
+    activities: [
+      {
+        name: 'Thermal Hot Springs Soak',
+        description: 'Pai\'s natural geothermal hot springs (Tha Pai Hot Springs, 8km from town) — the source bubbles at 80°C before cooling in large riverside pools to 38–42°C. Surrounding jungle, wooden walkways over the stream, and almost no crowds outside of December–January.',
+        image: 'https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?w=800&q=80',
+        duration: '1–2 hours',
+        cost: '₹200 entry (₹150 per person)',
+      },
+      {
+        name: 'Mae Hong Son Loop Motor-bike',
+        description: 'The classic northern Thailand motor-bike loop — 600km through Mae Hong Son, Pai, Mae Sariang, and back to Chiang Mai on mountain roads through jungle, hill tribe villages, and waterfalls. Typically done over 3–4 days. No experience needed on a 125cc automatic scooter.',
+        image: 'https://images.unsplash.com/photo-1558181304800-259b08848526?w=800&q=80',
+        duration: '3–4 days',
+        cost: '₹1,500 scooter hire + fuel (₹800 total for full loop)',
+      },
+      {
+        name: 'Ethical Elephant Sanctuary Visit',
+        description: 'Visit an ethical elephant sanctuary near Chiang Mai where rescued elephants live without performance or riding — feed, walk, and bathe with elephants in a river. Elephant Nature Park (Chang Chill day programme) is the gold standard for ethical elephant experiences in Thailand.',
+        image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
+        duration: 'Half day',
+        cost: '₹3,500–5,500 per person',
+      },
+      {
+        name: 'Pai Night Market Food Crawl',
+        description: 'Every evening, Pai\'s compact night market comes alive — try mango sticky rice, pad thai with fresh prawns, grilled corn with Thai spice, fresh coconut ice cream, and northern Thai sai oua (herbed sausage). Everything costs ₹40–150. The best food per rupee in Southeast Asia.',
+        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+        duration: '1–2 hours',
+        cost: '₹400–800 for a full dinner',
+      },
+    ],
+    tips: [
+      'Take a motion sickness tablet before the Chiang Mai–Pai minivan — the 762 curves will affect most first-timers. Book a window seat on the right side of the van.',
+      'Rent a scooter in Pai (₹300–500/day) — the hot springs, canyon, and surrounding villages are too spread out to walk.',
+      'Pai gets crowded December–January (Thai school holidays + cool season peak). Visit in March–April for lower prices and equally beautiful weather.',
+      'Khao soi — northern Thailand\'s coconut curry noodle soup — is the must-eat dish. The best bowls are at Khao Soi Lung Prakit Kad Kom in Chiang Mai.',
+      'A SIM card at Chiang Mai airport (AIS or DTAC) gives unlimited data for ₹350/15 days — essential for navigation on the mountain roads.',
+    ],
   },
   {
     slug: 'coron-philippines',
@@ -555,6 +1029,73 @@ const hiddenSpots: HiddenSpot[] = [
     tripSearchQuery: 'Coron Palawan Philippines wreck diving',
     coordinates: { lat: 11.9986, lng: 120.2043 },
     avgCost: '₹55,000–85,000 per person (7 nights Philippines including flights from India)',
+    mustVisitPlaces: [
+      {
+        name: 'Kayangan Lake',
+        description: 'The cleanest lake in Asia — a 10-minute climb over a limestone headland reveals a pristine freshwater lake of extraordinary turquoise clarity. Coral formations are visible at 20m depth. Swim across the lake to a second lagoon accessible through an underwater cave. Entry managed by the Tagbanua tribe.',
+        image: 'https://images.unsplash.com/photo-1544550285-f813152fb2fd?w=800&q=80',
+        type: 'nature',
+        tip: 'Go first on your island-hopping tour — Kayangan fills with boats by 10am. Arrive at 7:30am for 20 minutes of near-solitude.',
+      },
+      {
+        name: 'Twin Lagoon',
+        description: 'Two lagoons separated by a limestone cliff — swim or kayak through a low rock crevice to enter the inner lagoon, where warm freshwater floats above cold saltwater. The temperature shift is physically noticeable as you dive through the thermocline layer at 1.5m depth.',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+        type: 'nature',
+        tip: 'Visit at low tide — the passage between the outer and inner lagoon is passable without equipment. At high tide you need to dive under briefly.',
+      },
+      {
+        name: 'El Nido — Secret Lagoon & Shimizu Island',
+        description: 'From Coron, take a fast boat or plane-hop to El Nido — limestone karst islands enclosing turquoise lagoons. The Secret Lagoon (accessible by swimming through a narrow rock crevice) and Shimizu Island\'s coral garden are among the Philippines\' most beautiful sea environments.',
+        image: 'https://images.unsplash.com/photo-1544550285-f813152fb2fd?w=800&q=80',
+        type: 'beach',
+        tip: 'El Nido Tour A covers the best lagoons. Book early at your El Nido guesthouse — tours fill by 8am.',
+      },
+      {
+        name: 'Puerto Princesa Underground River',
+        description: 'A UNESCO World Heritage Site — a navigable underground river flowing 8.2km through a cathedral cave system, accessible only by paddle boat. One of the New Seven Wonders of Nature. Located 90km from Puerto Princesa, 2.5 hours from Coron by ferry.',
+        image: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&q=80',
+        type: 'landmark',
+        tip: 'Book the Underground River permit at least 2 days in advance — it\'s limited to 900 visitors per day and the Sabang van transfers book out fast.',
+      },
+      {
+        name: 'Coron Town Night Market',
+        description: 'Every evening along Coron\'s main road, vendors set up grills serving fresh-caught tuna, squid, and pork barbecue. Order by weight, choose a sauce, and eat at plastic tables on the pavement. Fresh seafood for ₹300–500 per person — the most genuine food experience in Palawan.',
+        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+        type: 'food',
+        tip: 'Order the fresh tuna belly (lomo) grilled over charcoal — it\'s caught that morning and far superior to anything in Manila at a fraction of the price.',
+      },
+    ],
+    activities: [
+      {
+        name: 'WWII Wreck Diving — Okikawa Maru',
+        description: 'The largest wreck in Coron — a 168m Japanese tanker lying at 10–48m depth, penetrable through its engine room, cargo holds, and crew quarters. Schools of jackfish circle the superstructure, and black coral gardens cover the hull. The most atmospheric wreck dive in Asia.',
+        image: 'https://images.unsplash.com/photo-1544550285-f813152fb2fd?w=800&q=80',
+        duration: '2 dives (half day)',
+        cost: '₹4,500–6,500 per person (including equipment)',
+      },
+      {
+        name: 'Island-Hopping Tour',
+        description: 'A full-day boat tour covering Kayangan Lake, Twin Lagoon, Barracuda Lake, coral gardens, and two lunch beaches — the standard Coron circuit and the best introduction to the islands. Well-organised operators in Coron town run daily departures with a packed lunch.',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+        duration: 'Full day (7am–5pm)',
+        cost: '₹1,800–2,800 per person including lunch',
+      },
+      {
+        name: 'Barracuda Lake Thermocline Dive',
+        description: 'A brackish lake with a dramatic thermocline at 15m where 28°C water meets 38°C water in an abrupt thermal boundary. Below the thermocline, visibility drops and the water is sharply warmer — a unique physiological experience. Barracudas rest in the warm layer below.',
+        image: 'https://images.unsplash.com/photo-1544550285-f813152fb2fd?w=800&q=80',
+        duration: '1 dive (1 hour)',
+        cost: '₹2,500–3,500 per person',
+      },
+    ],
+    tips: [
+      'Non-divers can do everything in Coron — island hopping, kayaking, swimming in Kayangan Lake and the lagoons. Scuba certification is only needed for the wrecks.',
+      'Book dive shops on arrival in Coron town rather than online — quality varies and in-person inspection of gear is important.',
+      'Coron has frequent power outages — charge all devices at your hotel during breakfast before the daily 6pm grid switch.',
+      'Fly Manila–Coron on Philippine Airlines (not Cebu Pacific) — the former has more reliable schedules and the 1.5-hr flight is worth the ₹500 premium.',
+      'Pack reef-safe sunscreen — the Tagbanua-managed lakes (Kayangan, Twin Lagoon) prohibit chemicals that damage coral. Buy Coral Guardian brand at Coron shops.',
+    ],
   },
   {
     slug: 'kampot-cambodia',
@@ -585,6 +1126,81 @@ const hiddenSpots: HiddenSpot[] = [
     tripSearchQuery: 'Kampot Cambodia pepper colonial',
     coordinates: { lat: 10.6100, lng: 104.1800 },
     avgCost: '₹28,000–48,000 per person (7 nights Cambodia including flights from India)',
+    mustVisitPlaces: [
+      {
+        name: 'Bokor Hill Station',
+        description: 'A 1920s French colonial hill resort abandoned mid-construction and reclaimed by jungle and fog. Explore the ghost casino, church ruins, and royal retreat while clouds swirl through empty marble halls at 1,080 m elevation.',
+        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+        type: 'landmark',
+        tip: 'Go at dawn — the fog is thickest and you\'ll have the ruins entirely to yourself before tour groups arrive by 10am.',
+      },
+      {
+        name: 'Kampot Pepper Farms — La Plantation',
+        description: 'Tour the red-soil pepper gardens where vines curl up tall wooden stakes producing EU-protected Kampot pepper — the world\'s most celebrated spice. Taste fresh green, dried black, and rare red peppercorns straight off the vine.',
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+        type: 'experience',
+        tip: 'Buy red Kampot pepper (only 5% of harvest) — it\'s unavailable outside Cambodia and sells for ₹4,000/100g at Michelin restaurants.',
+      },
+      {
+        name: 'Kep Crab Market & Crab Shacks',
+        description: 'A 17 km drive brings you to Kep\'s iconic shorefront crab shacks where fisherwomen grill whole mud crabs with local Kampot pepper right on the pier. One of Southeast Asia\'s most authentic seafood experiences.',
+        image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
+        type: 'food',
+        tip: 'Go for lunch (11am–1pm) when crabs are freshest. A whole crab with pepper sauce costs about ₹400–600. Skip the tourist restaurants on the main road.',
+      },
+      {
+        name: 'Kampot Salt Flats',
+        description: 'Between Kampot and Kep, vast geometric salt fields shimmer in pink and white as workers harvest sea salt the same way they have for centuries. Sunrise turns the water pools violet and gold — stunning photography.',
+        image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80',
+        type: 'nature',
+        tip: 'Harvest season (January–April) is the most photogenic. Workers start at 5am to beat the heat — arrive early to photograph them.',
+      },
+      {
+        name: 'Kampot Old Town French Quarter',
+        description: 'A riverside grid of crumbling pastel French colonial shophouses, Chinese merchant buildings, and lamp-lit cafes where time stopped in 1975. Walk Rue de la Poste at dusk when warm light catches the peeling paint perfectly.',
+        image: 'https://images.unsplash.com/photo-1496307653780-42ee777d4833?w=800&q=80',
+        type: 'landmark',
+        tip: 'Pick up a free walking map from a riverside cafe. Look for the old governor\'s mansion hidden behind bougainvillea on the northern end of town.',
+      },
+    ],
+    activities: [
+      {
+        name: 'Bioluminescent Plankton Kayaking',
+        description: 'Paddle the Kampot River after 9pm and trail electric-blue fire with every stroke — dinoflagellate plankton light up when disturbed, creating an otherworldly glowing wake around your kayak.',
+        image: 'https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?w=800&q=80',
+        duration: '2 hours (night)',
+        cost: '₹600–1,000',
+      },
+      {
+        name: 'Sunset River Cruise on Traditional Boat',
+        description: 'Float downstream on a longtail boat as the Kampot River turns amber, passing riverside salt warehouses, fishing villages, and mangrove-lined banks with cold Angkor beer in hand.',
+        image: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80',
+        duration: '2 hours',
+        cost: '₹500–800',
+      },
+      {
+        name: 'Cycling to Kampot Pepper Farms',
+        description: 'Rent a bicycle and follow dirt roads through coconut groves and rural Khmer villages to reach La Plantation and local pepper farms. Stop at roadside stalls for fresh coconut and local snacks.',
+        image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80',
+        duration: 'Half day',
+        cost: '₹150–250 bicycle rental',
+      },
+      {
+        name: 'Khmer Cooking Class',
+        description: 'Learn to make fish amok (Cambodia\'s national dish), Khmer red curry with Kampot pepper, and fresh spring rolls using farm-to-pot ingredients. Most classes include a market visit and a pepper farm stop.',
+        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
+        duration: '4 hours',
+        cost: '₹1,800–2,500',
+      },
+    ],
+    tips: [
+      'Visit November–April for dry weather; May–October brings heavy rain but far fewer tourists and 30% lower prices.',
+      'Hire a tuk-tuk driver for the full day (₹1,200–1,800) to cover Bokor + salt flats + Kep crab + pepper farms in one circuit.',
+      'Stay at a riverside guesthouse — breezes make it 4–5°C cooler and sunset views from your balcony are priceless.',
+      'Carry USD cash — Cambodia\'s dual currency (USD + Riel) means ATMs are scarce outside Phnom Penh; shops prefer exact change.',
+      'Combine with Phnom Penh (2 days) for cultural context before enjoying Kampot\'s peace.',
+      'The bioluminescence is best on moonless nights (new moon period) — check the lunar calendar before booking your kayak night.',
+    ],
   },
 ];
 

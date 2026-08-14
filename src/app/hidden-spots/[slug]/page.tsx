@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, MapPin, Clock, Calendar, Compass, CheckCircle2, AlertTriangle, MessageCircle, ChevronLeft } from 'lucide-react';
+import { ArrowUpRight, MapPin, Clock, Calendar, Compass, CheckCircle2, MessageCircle, ChevronLeft, Lightbulb, Activity, Star } from 'lucide-react';
 import hiddenSpots from '@/data/hiddenSpots';
 
 interface Props {
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: spot.description,
     alternates: { canonical: `https://www.ylootrips.com/hidden-spots/${spot.slug}` },
     openGraph: {
-      title: `${spot.name} — India's Hidden Gem`,
+      title: `${spot.name} — ${spot.isInternational ? 'Hidden Gem' : "India's Hidden Gem"}`,
       description: spot.tagline,
       images: [{ url: spot.imageUrl, width: 1200, height: 630 }],
     },
@@ -98,7 +98,7 @@ export default async function HiddenSpotPage({ params }: Props) {
 
           <div className="flex flex-wrap items-center gap-5 text-cream/55 text-sm">
             <span className="flex items-center gap-1.5">
-              <MapPin className="w-4 h-4" /> {spot.state}, India
+              <MapPin className="w-4 h-4" /> {spot.state}{spot.isInternational && spot.country ? `, ${spot.country}` : ', India'}
             </span>
             <span className="flex items-center gap-1.5">
               <Clock className="w-4 h-4" /> {spot.recommendedStay} recommended
@@ -191,13 +191,109 @@ export default async function HiddenSpotPage({ params }: Props) {
               )}
 
               {/* How to reach */}
-              <div>
+              <div className="mb-10">
                 <p className="text-caption uppercase tracking-[0.3em] text-secondary mb-3">How to Reach</p>
                 <div className="flex items-start gap-3 p-5 bg-cream-light border border-primary/8">
                   <MapPin className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
                   <p className="text-sm text-primary/70 leading-relaxed">{spot.howToReach}</p>
                 </div>
               </div>
+
+              {/* Must-Visit Places */}
+              {spot.mustVisitPlaces && spot.mustVisitPlaces.length > 0 && (
+                <div className="mb-12">
+                  <p className="text-caption uppercase tracking-[0.3em] text-secondary mb-2">Must-Visit Places</p>
+                  <h2 className="font-display text-2xl text-primary mb-6">Best spots near {spot.name}</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {spot.mustVisitPlaces.map((place) => {
+                      const typeBadge: Record<string, string> = {
+                        landmark: 'bg-blue-100 text-blue-800',
+                        activity: 'bg-purple-100 text-purple-800',
+                        food: 'bg-orange-100 text-orange-800',
+                        experience: 'bg-pink-100 text-pink-800',
+                        beach: 'bg-cyan-100 text-cyan-800',
+                        nature: 'bg-green-100 text-green-800',
+                      };
+                      return (
+                        <div key={place.name} className="bg-cream-light border border-primary/8 overflow-hidden group">
+                          <div className="relative h-48 overflow-hidden">
+                            <Image
+                              src={place.image}
+                              alt={place.name}
+                              fill
+                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                            <span className={`absolute top-3 left-3 text-[9px] uppercase tracking-widest px-2 py-1 font-bold ${typeBadge[place.type] ?? 'bg-white text-primary'}`}>
+                              {place.type}
+                            </span>
+                          </div>
+                          <div className="p-4">
+                            <h3 className="font-display text-lg text-primary mb-2">{place.name}</h3>
+                            <p className="text-primary/60 text-sm leading-relaxed mb-3">{place.description}</p>
+                            {place.tip && (
+                              <div className="flex items-start gap-2 bg-accent/10 border-l-2 border-accent p-3 mt-2">
+                                <Star className="w-3.5 h-3.5 text-secondary shrink-0 mt-0.5" />
+                                <p className="text-xs text-primary/65 leading-relaxed italic">{place.tip}</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Activities */}
+              {spot.activities && spot.activities.length > 0 && (
+                <div className="mb-12">
+                  <p className="text-caption uppercase tracking-[0.3em] text-secondary mb-2">What to Do</p>
+                  <h2 className="font-display text-2xl text-primary mb-6">Experiences in {spot.name}</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {spot.activities.map((act) => (
+                      <div key={act.name} className="bg-cream-light border border-primary/8 overflow-hidden group">
+                        <div className="relative h-40 overflow-hidden">
+                          <Image
+                            src={act.image}
+                            alt={act.name}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
+                        </div>
+                        <div className="p-4">
+                          <div className="flex items-start gap-2 mb-2">
+                            <Activity className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
+                            <h3 className="font-display text-base text-primary leading-tight">{act.name}</h3>
+                          </div>
+                          <p className="text-primary/60 text-sm leading-relaxed mb-3">{act.description}</p>
+                          <div className="flex items-center gap-4 text-[11px] uppercase tracking-widest text-primary/45">
+                            {act.duration && <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {act.duration}</span>}
+                            {act.cost && <span className="font-semibold text-secondary">{act.cost}</span>}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Travel Tips */}
+              {spot.tips && spot.tips.length > 0 && (
+                <div className="mb-6">
+                  <p className="text-caption uppercase tracking-[0.3em] text-secondary mb-2">Travel Tips</p>
+                  <h2 className="font-display text-2xl text-primary mb-5">Before you go</h2>
+                  <div className="space-y-3">
+                    {spot.tips.map((tip, i) => (
+                      <div key={i} className="flex items-start gap-3 p-4 bg-cream-light border border-primary/8">
+                        <Lightbulb className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                        <p className="text-sm text-primary/70 leading-relaxed">{tip}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Right — sidebar */}
