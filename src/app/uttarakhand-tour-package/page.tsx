@@ -115,6 +115,22 @@ export default async function UttarakhandPackagePage() {
       { question: 'Is white-water rafting safe in Rishikesh?', answer: 'Yes — Rishikesh rafting is internationally certified, the operators are experienced, and life jackets and helmets are mandatory. The Ganga water is cold but crystal clear in Rishikesh.' },
       { question: 'Can I do Char Dham on this package?', answer: 'Char Dham (Kedarnath, Badrinath, Gangotri, Yamunotri) requires 7–14 additional days. We offer dedicated Char Dham packages — WhatsApp us for details.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Rishikesh Ganga Aarti — Triveni Ghat', description: 'Every evening at 6pm, priests perform a mesmerizing fire aarti on the banks of the Ganga. Hundreds of oil lamps float downstream. One of North India\'s most spiritually powerful daily rituals.', image: 'https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=800&q=80', type: 'culture', tip: 'Arrive 30 minutes early to get a front-row spot on the steps. The most powerful experience is on Saturdays when more priests participate.' },
+      { name: 'Mussoorie — Kempty Falls & Mall Road', description: 'The "Queen of Hill Stations" at 2,005m above Dehradun — colonial-era Mall Road, viewpoints over the Doon Valley, and the cascading Kempty Falls 15km outside town.', image: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80', type: 'nature', tip: 'Visit Kempty Falls early morning before tour buses. The falls are best in September–October post-monsoon when volume is highest.' },
+      { name: 'Jim Corbett National Park', description: 'India\'s oldest national park (1936) and the best place in the world to see Bengal tigers in the wild. The Dhikala zone jeep safaris at dawn are the most successful tiger-sighting drives.', image: 'https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=800&q=80', type: 'nature', tip: 'Book Dhikala zone permits online 90 days in advance — it sells out completely. October–June is open; Dhikala zone opens November 15.' },
+    ],
+    packageActivities: [
+      { name: 'White-Water Rafting — Rishikesh', description: 'Raft the Ganga from Shivpuri to Rishikesh (16km, Grade 3–4) — internationally certified operators, crystal-clear glacial water, and spectacular gorge scenery. The most popular adventure in North India.', image: 'https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=800&q=80', duration: '3 hours on water', cost: 'Included in package' },
+      { name: 'Kedarnath Helicopter + Temple Visit', description: 'A 15-minute helicopter from Phata or Sirsi to Kedarnath (3,553m) — one of the 12 Jyotirlingas, high in the Garhwal Himalayas. Book 60 days ahead for May–June season.', image: 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=80', duration: 'Full day return', cost: '₹7,000–9,000 per person' },
+    ],
+    travelTips: [
+      'Rishikesh is a sacred town — alcohol and non-veg food are officially prohibited near the ghats and in the central market.',
+      'March–June and September–November are ideal. Monsoon (July–August) has heavy rain and landslides on mountain roads.',
+      'Kedarnath helicopter bookings open 60 days ahead — book immediately online through the IRCTC Yatra portal.',
+      'Rishikesh–Haridwar corridor is well-connected — trains from Delhi take 4–5 hours. Volvo buses are comfortable overnight options.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

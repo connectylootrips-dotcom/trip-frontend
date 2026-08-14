@@ -218,6 +218,70 @@ const pkg: PackageData = {
   bookingHref: '/contact?package=manali-tour-package',
 
   schemaHighlights: ['Rohtang Pass snow activities', 'Solang Valley zorbing and rope way', 'Beas River white-water rafting', 'Hadimba Devi Temple', 'Old Manali and Tibetan market'],
+
+  mustVisitPlaces: [
+    {
+      name: 'Rohtang Pass (3,978m)',
+      description: 'A high-altitude mountain pass on the Kullu–Lahaul divide, covered in snow year-round. The first glimpse of the moonscape Lahaul Valley from the pass top is one of the most dramatic transition points in the Himalayas.',
+      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
+      type: 'nature',
+      tip: 'Rohtang permit is mandatory (book online at rohtangpermits.nic.in, 2 days ahead). Petrol vehicles only until 10am. Start from Manali by 6:30am to cross before permit cutoff.',
+    },
+    {
+      name: 'Solang Valley',
+      description: '14km north of Manali, Solang is Manali\'s main adventure hub — zorbing, rope way, paragliding, skiing (winter), and snowmobiling in a dramatic bowl surrounded by Himalayan peaks.',
+      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
+      type: 'activity',
+      tip: 'Rope way (ropeway) tickets sell out by 11am in season — arrive at 9am. The top station (2,480m) has excellent views and snow year-round.',
+    },
+    {
+      name: 'Hadimba Devi Temple',
+      description: 'A 450-year-old wooden pagoda temple dedicated to Hadimba (from the Mahabharata), built directly over a cave and surrounded by ancient deodar cedar forest. One of Himachal\'s most architecturally unique religious sites.',
+      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
+      type: 'landmark',
+      tip: 'Visit early morning (8am) before the yak-photo touts and crowds arrive. The cedar forest behind the temple is peaceful and leads to a small hidden waterfall.',
+    },
+    {
+      name: 'Old Manali & Tibetan Market',
+      description: 'The older village above Mall Road has a completely different character — Israeli bakeries, Tibetan thangka shops, hemp cafes, and the original Manu Maharishi temple perched on a hillside with views over the Beas Valley.',
+      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
+      type: 'culture',
+      tip: 'Explore the Tibetan Refugee Market near the old bus stand for handmade woollen goods, prayer flags, and Tibetan jewellery at fraction of tourist shop prices.',
+    },
+  ],
+
+  packageActivities: [
+    {
+      name: 'Beas River White-Water Rafting',
+      description: 'Raft Grade 2–4 rapids on the Beas River through gorges and pine forests. The Pirdi–Jhiri stretch (14km) is the classic route — cold, clear glacial water and excellent riverside scenery.',
+      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
+      duration: '2 hours on water',
+      cost: 'Included in package',
+    },
+    {
+      name: 'Rohtang Snow Activities',
+      description: 'At Rohtang Pass — snow tubing, snowmobile rides, yak rides, and tobogganing on permanent snow slopes. Gear rental (snow suits, boots, gloves) available at the base.',
+      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
+      duration: 'Half day',
+      cost: 'Included in package',
+    },
+    {
+      name: 'Solang Valley Paragliding',
+      description: 'Tandem paraglide from the Solang Valley ridge with a certified pilot — a 10-minute flight over the valley with views of Deo Tibba and the Kullu peaks.',
+      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
+      duration: '10–15 minutes flight',
+      cost: '₹1,500–2,000',
+    },
+  ],
+
+  travelTips: [
+    'Best months: May–June (snow on Rohtang, green valley), September–October (clear skies, post-monsoon). July–August is monsoon — beautiful but landslides are common.',
+    'Rohtang Pass permit is mandatory — book at rohtangpermits.nic.in 2 days ahead. Only 1,200 petrol vehicles per day allowed (quota fills fast in May–June).',
+    'Manali is at 2,050m — some visitors get mild altitude headaches on the first day. Rest, hydrate, and avoid alcohol on arrival night.',
+    'Carry warm clothing even in summer — Rohtang Pass is 0–5°C, Solang Valley 10–15°C, and Manali town 15–25°C in the same day.',
+    'Mall Road has good ATMs but can be slow on weekends. Withdraw cash before the weekend rush.',
+    'The Volvo buses from Delhi to Manali (12 hrs overnight, ₹1,800–2,500) are comfortable and scenic. Or fly Delhi → Kullu (Bhuntar Airport, 1 hr), then 50km taxi to Manali.',
+  ],
 };
 
 export default async function ManaliTourPackagePage() {

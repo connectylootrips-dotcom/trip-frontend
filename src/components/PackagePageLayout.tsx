@@ -9,7 +9,7 @@ import {
   Clock, Users, Star, MapPin, Check, X, ChevronDown, Shield,
   RefreshCw, MessageCircle, Zap, Award, Eye, TrendingDown,
   Calendar, ChevronRight, Quote, Phone, CreditCard, Loader2,
-  CheckCircle, BadgePercent, ShieldCheck,
+  CheckCircle, BadgePercent, ShieldCheck, Lightbulb, Activity,
 } from 'lucide-react';
 import { TourJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd';
 import { useWallet } from '@/context/WalletContext';
@@ -104,6 +104,23 @@ export interface PackageData {
 
   // Schema
   schemaHighlights?: string[];
+
+  // Must-visit places, activities & tips (optional editorial content)
+  mustVisitPlaces?: {
+    name: string;
+    description: string;
+    image: string;
+    type: 'landmark' | 'activity' | 'food' | 'experience' | 'beach' | 'nature' | 'culture';
+    tip?: string;
+  }[];
+  packageActivities?: {
+    name: string;
+    description: string;
+    image: string;
+    duration?: string;
+    cost?: string;
+  }[];
+  travelTips?: string[];
 }
 
 /* ─────────────────────────────────────────────────────────────────── */
@@ -929,6 +946,93 @@ export default function PackagePageLayout({ pkg }: { pkg: PackageData }) {
                 </div>
               </div>
             </section>
+
+            {/* Must-Visit Places */}
+            {pkg.mustVisitPlaces && pkg.mustVisitPlaces.length > 0 && (
+              <section id="must-visit">
+                <h2 className="font-display text-3xl text-primary mb-2">Must-Visit Places</h2>
+                <p className="text-primary/50 text-sm mb-6">Top spots you cannot miss on this trip</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {pkg.mustVisitPlaces.map((place) => {
+                    const typeBadge: Record<string, string> = {
+                      landmark: 'bg-blue-100 text-blue-800',
+                      activity: 'bg-purple-100 text-purple-800',
+                      food: 'bg-orange-100 text-orange-800',
+                      experience: 'bg-pink-100 text-pink-800',
+                      beach: 'bg-cyan-100 text-cyan-800',
+                      nature: 'bg-green-100 text-green-800',
+                      culture: 'bg-amber-100 text-amber-800',
+                    };
+                    return (
+                      <div key={place.name} className="bg-cream-light border border-primary/8 rounded-2xl overflow-hidden group">
+                        <div className="relative h-48 overflow-hidden">
+                          <Image src={place.image} alt={place.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                          <span className={`absolute top-3 left-3 text-[9px] uppercase tracking-widest px-2 py-1 font-bold rounded ${typeBadge[place.type] ?? 'bg-white text-primary'}`}>
+                            {place.type}
+                          </span>
+                        </div>
+                        <div className="p-5">
+                          <h3 className="font-display text-lg text-primary mb-2">{place.name}</h3>
+                          <p className="text-primary/60 text-sm leading-relaxed mb-3">{place.description}</p>
+                          {place.tip && (
+                            <div className="flex items-start gap-2 bg-accent/10 border-l-2 border-accent p-3">
+                              <Star className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+                              <p className="text-xs text-primary/65 leading-relaxed italic">{place.tip}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+
+            {/* Activities */}
+            {pkg.packageActivities && pkg.packageActivities.length > 0 && (
+              <section id="activities">
+                <h2 className="font-display text-3xl text-primary mb-2">Experiences & Activities</h2>
+                <p className="text-primary/50 text-sm mb-6">What you&apos;ll do on this trip</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {pkg.packageActivities.map((act) => (
+                    <div key={act.name} className="bg-cream-light border border-primary/8 rounded-2xl overflow-hidden group">
+                      <div className="relative h-40 overflow-hidden">
+                        <Image src={act.image} alt={act.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                      </div>
+                      <div className="p-4">
+                        <div className="flex items-start gap-2 mb-2">
+                          <Activity className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
+                          <h3 className="font-semibold text-primary text-sm leading-tight">{act.name}</h3>
+                        </div>
+                        <p className="text-primary/60 text-sm leading-relaxed mb-3">{act.description}</p>
+                        <div className="flex items-center gap-4 text-[11px] uppercase tracking-widest text-primary/45">
+                          {act.duration && <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {act.duration}</span>}
+                          {act.cost && <span className="font-semibold text-secondary">{act.cost}</span>}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Travel Tips */}
+            {pkg.travelTips && pkg.travelTips.length > 0 && (
+              <section id="travel-tips">
+                <h2 className="font-display text-3xl text-primary mb-2">Travel Tips</h2>
+                <p className="text-primary/50 text-sm mb-6">Expert advice before you go</p>
+                <div className="space-y-3">
+                  {pkg.travelTips.map((tip, i) => (
+                    <div key={i} className="flex items-start gap-3 p-4 bg-cream-light border border-primary/8 rounded-xl">
+                      <Lightbulb className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                      <p className="text-sm text-primary/70 leading-relaxed">{tip}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Things to Carry */}
             {pkg.thingsToCarry && pkg.thingsToCarry.length > 0 && (

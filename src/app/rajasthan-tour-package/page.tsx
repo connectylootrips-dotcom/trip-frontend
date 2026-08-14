@@ -117,6 +117,22 @@ export default async function RajasthanPackagePage() {
       { question: 'Is the camel safari suitable for children?', answer: 'Yes — camel safaris at Sam Dunes are very gentle and suitable for all ages. The camels walk slowly across the dunes. Children love it.' },
       { question: 'Can I add more days for Pushkar or Ranthambore?', answer: 'Yes. Pushkar (camels, sacred lake, Brahma Temple) is 2 hours from Jaipur. Ranthambore (tigers) is 3 hours from Jaipur. We can extend your itinerary — WhatsApp us for a custom quote.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Amer Fort — Jaipur', description: 'A 16th-century Rajput hill fort above Maota Lake — a maze of ornate Diwan-i-Khas, Sheesh Mahal (Hall of Mirrors), and secret garden courtyards. The elephant ride up the ramp is controversial — opt for the Jeep instead.', image: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80', type: 'landmark', tip: 'Book the 6pm Amer Fort Light & Sound Show (₹200) for the most dramatic experience of the fort. Arrive 30 minutes early for the best seats on the forecourt steps.' },
+      { name: 'Jaisalmer Fort & Desert Camp', description: 'The world\'s only living fort-city — 5,000 people still live inside the 12th-century golden sandstone walls. The Sam Sand Dunes sunset camel safari and overnight desert camping are the iconic Rajasthan experience.', image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80', type: 'experience', tip: 'Stay inside the fort for at least one night — the views from the ramparts at dawn are extraordinary. The morning light turns the sandstone bright gold.' },
+      { name: 'Udaipur — Lake Palace & Pichola', description: 'The "City of Lakes" — the Lake Palace hotel floats on Lake Pichola, visible from the City Palace terraces. The evening boat ride on Pichola with the Monsoon Palace lit up on the hill behind is Udaipur\'s finest moment.', image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80', type: 'nature', tip: 'Take the sunset boat ride on Lake Pichola (₹300, departs 5pm) for the Lake Palace view. The Bagore ki Haveli cultural show at 7pm is the best traditional dance performance in Rajasthan.' },
+    ],
+    packageActivities: [
+      { name: 'Camel Safari — Sam Sand Dunes, Jaisalmer', description: 'Ride at sunset across the 30m-high Sam Sand Dunes with Thar Desert stretching to the Pakistan border — dunes turning orange, then crimson, then indigo as the sun sets.', image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80', duration: '2 hours', cost: 'Included in package' },
+      { name: 'Hot Air Balloon — Jaipur', description: 'A 1-hour sunrise balloon flight over Jaipur\'s pink palaces and the Aravalli Hills — one of India\'s best balloon experiences. Views of Amer Fort from 500 feet above are extraordinary.', image: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80', duration: '1 hour flight', cost: '₹8,000–12,000 per person' },
+    ],
+    travelTips: [
+      'October–March is ideal. April–June is 40–48°C — possible but demanding. Avoid if sensitive to heat.',
+      'Carry dupatta/scarf for women visiting temples. Shoulders and knees covered required at all religious sites.',
+      'Jaisalmer is 6 hours from Jodhpur by road or 4.5 hours by train — the Jodhpur–Jaisalmer railway through the Thar Desert is beautiful.',
+      'Most Rajasthan heritage havelis offer excellent home-cooked meals — always eat where your host family cooks, not at tourist restaurants.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

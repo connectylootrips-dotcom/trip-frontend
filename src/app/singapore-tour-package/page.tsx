@@ -218,6 +218,22 @@ const pkg: PackageData = {
   bookingHref: '/contact?package=singapore-tour-package',
 
   schemaHighlights: ['Gardens by the Bay Flower Dome & Cloud Forest', 'Universal Studios Singapore', 'Marina Bay Sands SkyPark', 'Sentosa Island & S.E.A. Aquarium', 'Singapore Tourist Visa included'],
+
+  mustVisitPlaces: [
+    { name: 'Gardens by the Bay — Supertree Grove', description: '18 tree-like vertical gardens standing 25–50m tall, with the Garden Rhapsody light-and-music show every night at 7:45pm and 8:45pm. The elevated OCBC Skyway connects the largest Supertrees.', image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80', type: 'experience', tip: 'The Supertree Grove light show is free (ground level). The Skyway (₹800) and Domes need paid entry. Arrive at 6:30pm for sunset plus the 7:45pm show in one trip.' },
+    { name: 'Marina Bay Sands SkyPark', description: 'The iconic 57th-floor infinity pool and observation deck spanning three towers above the Singapore skyline. The SkyPark observation deck is one of Asia\'s finest city panoramas.', image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80', type: 'landmark', tip: 'Non-hotel guests pay SGD 23 for SkyPark Observation Deck access. Hotel guests use the famous infinity pool. Go at sunset (6pm) for the best city and bay views.' },
+    { name: 'Chinatown & Hawker Centre Food Trail', description: 'Singapore\'s best street food is in its hawker centres — Maxwell Food Centre, Old Airport Road, and Tiong Bahru Market. Michelin-starred Hawker Chan and Liao Fan are both in Chinatown.', image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80', type: 'food', tip: 'Dinner at Maxwell Food Centre — arrive at 6:30pm when all stalls are open. Tian Tian Chicken Rice (the stall, not the restaurant) and the curry fish head stall opposite are must-tries.' },
+  ],
+  packageActivities: [
+    { name: 'Universal Studios Singapore', description: 'Hollywood-themed theme park with Transformers 3D, Jurassic World, Madagascar, and Minion Land. Singapore\'s version has several exclusive rides not available in Hollywood.', image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80', duration: 'Full day', cost: 'Included in package' },
+    { name: 'Night Safari — Mandai Wildlife Reserve', description: 'The world\'s first nocturnal zoo — a tram ride and walking trails through jungle habitat where 900 animals from 100 species are active after dark. The Creatures of the Night show is unmissable.', image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80', duration: '3 hours', cost: 'Included in package' },
+  ],
+  travelTips: [
+    'Singapore requires a tourist visa for Indians — SGD 30, apply online at ivac-in.com (2–3 business days). YlooTrips handles all visa documentation.',
+    'Singapore is extremely safe and clean — it\'s practically impossible to get lost. The MRT metro system is world-class and covers every major attraction.',
+    'Eat at hawker centres (not restaurants) — the same quality food costs 40% less. Hawker food is a UNESCO Heritage tradition.',
+    'Weather is hot and humid year-round (28–35°C) — carry light clothing, sunscreen, and a small umbrella for afternoon showers.',
+  ],
 };
 
 export default async function SingaporeTourPackagePage() {

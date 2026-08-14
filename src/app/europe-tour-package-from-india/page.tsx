@@ -120,6 +120,22 @@ export default async function EuropePackagePage() {
       { question: 'Is Europe safe for Indian tourists?', answer: 'Europe is very safe for tourists. The destinations on this itinerary (Paris, Rome, Barcelona, Amsterdam, Prague) are all heavily touristed — pickpocketing near major attractions is the main risk. Use money belts and avoid flashing expensive items in crowded areas.' },
       { question: 'Can I extend to Switzerland or Greece?', answer: 'Yes — we offer extended Europe packages that include Switzerland (Zurich, Interlaken, Jungfrau) and Greece (Athens, Santorini, Mykonos). WhatsApp us for a custom quote.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Eiffel Tower & Seine River Cruise — Paris', description: 'The world\'s most visited monument is non-negotiable. Book the summit elevator 60 days ahead. The 1-hour Seine cruise at night, with the Tower sparkling every hour on the hour, is Paris\'s finest experience.', image: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80', type: 'landmark', tip: 'Book Eiffel Tower summit tickets online at least 60 days ahead — walk-up tickets sell out. Evening visits (6–10pm) have shorter queues and more atmosphere.' },
+      { name: 'Colosseum & Roman Forum — Rome', description: 'The 2,000-year-old amphitheatre where gladiators fought to 50,000 spectators. The Roman Forum and Palatine Hill adjacent are included in the same ticket — 3 sites, 4 hours minimum.', image: 'https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=800&q=80', type: 'landmark', tip: 'Book Colosseum tickets at coopculture.it 2 months ahead. Go first thing (8:30am) or late afternoon (4pm) to avoid peak crowds. The underground Arena floor experience is worth the premium ticket.' },
+      { name: 'Sagrada Familia — Barcelona', description: 'Gaudí\'s unfinished masterpiece — a modernist basilica under construction since 1882 and scheduled for completion around 2026. The interior is one of Europe\'s most extraordinary spaces, with natural light filtered through stained glass into a forest of stone columns.', image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80', type: 'landmark', tip: 'Book tower access tickets 3 months ahead — they sell out weeks in advance. Morning light from the east towers is warmer; afternoon from the west.' },
+    ],
+    packageActivities: [
+      { name: 'Amsterdam Canal Boat Tour', description: 'A 1-hour glass-boat canal cruise through Amsterdam\'s UNESCO-listed canal ring — 165 canals, 1,281 bridges, and 17th-century merchant townhouses reflected in the still water.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', duration: '1 hour', cost: 'Included in package' },
+      { name: 'Prague Old Town Walking Tour', description: 'Walk through Central Europe\'s best-preserved medieval city — the astronomical clock, Charles Bridge at dawn, and the labyrinthine Old Town lanes untouched since the 14th century.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', duration: '3 hours', cost: 'Included in package' },
+    ],
+    travelTips: [
+      'Schengen visa for Indians takes 15 working days. Apply 6 weeks before travel. YlooTrips provides full documentation support.',
+      'September–October is ideal for Europe — pleasant weather, 30% cheaper hotels and flights vs July–August peak.',
+      'Get a 7-day Eurail pass if doing multiple countries — it covers trains across all Schengen countries. Book seat reservations in advance for high-speed trains.',
+      'Carry EUR 100 cash as backup — many smaller European businesses only accept contactless/chip cards. American-style magnetic strip cards often don\'t work.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

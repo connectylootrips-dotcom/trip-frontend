@@ -211,6 +211,70 @@ const pkg: PackageData = {
   bookingHref: '/contact?package=goa-tour-package',
 
   schemaHighlights: ['North Goa beaches and water sports', 'Dudhsagar Waterfall jeep safari', 'Old Goa UNESCO heritage churches', 'Mandovi River sunset cruise', 'South Goa Palolem beach'],
+
+  mustVisitPlaces: [
+    {
+      name: 'Baga & Calangute Beach',
+      description: 'North Goa\'s most famous beaches — Baga with its water sports and beach shacks, Calangute with its evening market and restaurants. The 7km stretch is the heart of Goa\'s beach culture.',
+      image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80',
+      type: 'beach',
+      tip: 'Hit the water sports at Baga by 9am before waves get rough. Sunset drinks at Tito\'s Lane or Britto\'s restaurant are the classic Goa ending.',
+    },
+    {
+      name: 'Dudhsagar Waterfall',
+      description: 'A 310-metre four-tiered waterfall plunging into an emerald pool inside the Bhagwan Mahavir Wildlife Sanctuary. The name means "Sea of Milk" — monsoon turns it into a roaring white cascade visible from 5km away.',
+      image: 'https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=800&q=80',
+      type: 'nature',
+      tip: 'The jeep safari trail (10km off-road) is only navigable in dry season (Oct–May). Monsoon visits are spectacular but the pool is too dangerous to swim in.',
+    },
+    {
+      name: 'Old Goa — Basilica of Bom Jesus',
+      description: 'A 1605 UNESCO World Heritage baroque church housing the mortal remains of St. Francis Xavier — the patron saint of Goa, whose body has been displayed publicly in a silver casket for 450+ years.',
+      image: 'https://images.unsplash.com/photo-1559592413-7cbb1a8d1b68?w=800&q=80',
+      type: 'landmark',
+      tip: 'The body is displayed publicly every 10 years (next in 2034). Year-round the casket is viewable through glass from the nave. Visit at 6am for the dawn mass.',
+    },
+    {
+      name: 'South Goa — Palolem Beach',
+      description: 'A crescent-shaped bay framed by two rocky headlands and framed with coconut palms — consistently voted one of India\'s most beautiful beaches. Far calmer, cleaner, and quieter than North Goa.',
+      image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=800&q=80',
+      type: 'beach',
+      tip: 'The hidden Cola Beach (7km from Palolem) has a freshwater lagoon meeting the sea — take a boat from Palolem or walk 30 minutes over the headland.',
+    },
+  ],
+
+  packageActivities: [
+    {
+      name: 'Baga Water Sports Package',
+      description: 'Jet ski, parasailing, banana boat, and bumper boat — all in one session at Baga Beach with certified operators. The parasailing 500-foot ascent over the Arabian Sea is the standout.',
+      image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80',
+      duration: '2–3 hours',
+      cost: 'Included in package',
+    },
+    {
+      name: 'Dudhsagar Jeep Safari',
+      description: 'A thrilling 4×4 off-road journey through 10km of jungle tracks inside the wildlife sanctuary, ending at the base of the 310m waterfall with a swim in the natural pool.',
+      image: 'https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=800&q=80',
+      duration: 'Full day (7am–5pm)',
+      cost: 'Included in package',
+    },
+    {
+      name: 'Goa Spice Plantation Tour (Optional)',
+      description: 'A guided walk through cardamom, vanilla, pepper, turmeric, and cashew trees, ending with a traditional Goan thali lunch under the plantation canopy. One of Goa\'s best non-beach experiences.',
+      image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80',
+      duration: '3–4 hours',
+      cost: '₹1,200/person add-on',
+    },
+  ],
+
+  travelTips: [
+    'November–February is peak season (best weather, all shacks open). March–May is warm but quieter. June–September monsoon — rough sea, dramatic rain, many shacks close.',
+    'Book Dudhsagar jeep safari from Oct 16 onwards when the sanctuary reopens after monsoon. The waterfall is fullest in this period.',
+    'Goa has no Uber/Ola — use Rapido bike taxis (fastest, cheapest), GoaMiles app, or pre-arranged hotel transfers.',
+    'The GoaPass (tourist transport card, ₹500/day) gives unlimited rides on Goa\'s electric bus network — excellent value for North Goa beach hopping.',
+    'Feni (cashew spirit) is Goa\'s signature alcohol — try it at a local bar, not the tourist restaurants. King\'s Beer is the local lager, made in Goa.',
+    'This is a group package (minimum 20 persons) — ideal for office trips, college reunions, and large family holidays. WhatsApp us to check if an existing group date suits you.',
+  ],
 };
 
 export default async function GoaTourPackagePage() {

@@ -115,6 +115,22 @@ export default async function SriLankaPackagePage() {
       { question: 'What is the best time to visit Sri Lanka?', answer: 'November–April is ideal for the west and south coast (Colombo, Kandy, Galle, Ella, Sigiriya). The east coast (Trincomalee, Arugam Bay) is best May–September. Most Indian tourists visit in the winter holiday season (December–January).' },
       { question: 'How close is Sri Lanka to India?', answer: 'Only 30 km of ocean separates India and Sri Lanka. Direct flights from Chennai take just 1 hour (the closest international destination from India). Delhi flights take 3.5–4 hours with most airlines.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Sigiriya Rock Fortress', description: 'A 200m vertical granite monolith with the ruins of a 5th-century royal palace on top. The famous mirror wall with ancient graffiti and the celestial fresco gallery of 21 "cloud maidens" are on the ascent.', image: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', type: 'landmark', tip: 'Climb before 8am — it\'s cooler, less crowded, and the morning light on the surrounding jungle is spectacular. The climb takes 40 minutes up.' },
+      { name: 'Ella — Nine Arch Bridge', description: 'A colonial-era stone railway viaduct in Ella\'s green hills — one of Sri Lanka\'s most photographed landmarks. The Kandy–Ella train ride itself is one of Asia\'s most scenic railway journeys.', image: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', type: 'landmark', tip: 'Time the Nine Arch Bridge at the train schedule (10:45am and 6pm are the best departures). The viewpoint is a 15-minute walk from Ella town.' },
+      { name: 'Galle Fort', description: 'A 17th-century Dutch colonial fort-city on Sri Lanka\'s south coast — UNESCO World Heritage. Pastel colonial buildings, rampart walls overlooking the Indian Ocean, boutique cafes, and independent jewellery shops.', image: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', type: 'culture', tip: 'Walk the full 1.3km rampart circuit at sunset. The lighthouse end gives the best views. The fort has some of Sri Lanka\'s finest restaurants inside the colonial walls.' },
+    ],
+    packageActivities: [
+      { name: 'Kandy–Ella Scenic Train Ride', description: 'A 7-hour train journey through tea country — arguably the most beautiful railway ride in Asia. Misty hills, waterfall gorges, and colonial-era tunnels from the 1800s.', image: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', duration: '7 hours', cost: '₹800–2,500 first class' },
+      { name: 'Whale Watching — Mirissa', description: 'Blue whale and sperm whale watching from Mirissa beach (November–April) — Sri Lanka has one of the world\'s highest blue whale sighting rates. Dolphins often ride the bow wave.', image: 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?w=800&q=80', duration: '4–6 hours', cost: '₹2,000–3,000' },
+    ],
+    travelTips: [
+      'Sri Lanka ETA (Electronic Travel Authorization) is currently free for Indians — apply at eta.gov.lk (3 business days processing).',
+      'Book the Kandy–Ella first-class train 3–4 weeks ahead — it sells out completely.',
+      'Sri Lankan cuisine is extraordinary — try kottu roti (chopped flatbread), hoppers (fermented rice crêpes), and the seafood curry in Galle. Carry antacid — the spice level is real.',
+      'Roads in Sri Lanka are slow — 300km can take 6–7 hours. Don\'t over-schedule driving days. Take the train wherever possible.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

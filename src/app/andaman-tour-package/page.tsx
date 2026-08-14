@@ -116,6 +116,22 @@ export default async function AndamanPackagePage() {
       { question: 'Do I need a permit for Andaman?', answer: 'No permit is required for Indian nationals visiting Port Blair, Havelock, and Neil Island. Certain tribal-protected areas (Jarawa Reserve) are accessible only on the highway — photography strictly prohibited.' },
       { question: 'Are ATMs available on the islands?', answer: 'Port Blair has reliable ATMs. Havelock has 1–2 ATMs that often run out of cash on weekends. Neil Island has very limited ATM access. Carry sufficient cash from Port Blair — we strongly recommend this.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Radhanagar Beach — Havelock Island', description: 'Consistently ranked Asia\'s best beach. A 2km crescent of powder-white sand with turquoise water, framed by dense rainforest. Almost no commercial activity on the beach itself.', image: 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=800&q=80', type: 'beach', tip: 'Arrive before 9am to have the beach nearly to yourself. The beach faces west — sunset from Radhanagar is one of the world\'s best.' },
+      { name: 'Cellular Jail — Port Blair', description: 'The former British colonial prison where freedom fighters were exiled. The 698-cell radial jail is now a national memorial. The nightly Sound and Light show is one of India\'s most moving heritage experiences.', image: 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=800&q=80', type: 'landmark', tip: 'Book the 7:15pm Sound & Light show in advance — it sells out. The performance is in Hindi and English alternately (check which night you visit).' },
+      { name: 'Neil Island — Natural Bridge & Bharatpur Beach', description: 'A smaller, quieter island with a stunning natural coral bridge at Laxmanpur Beach and the clearest water at Bharatpur. Cycling the whole island takes 2 hours.', image: 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=800&q=80', type: 'nature', tip: 'Rent a bicycle on Neil Island (₹150/day) — the island is small, traffic-free, and the coral bridge viewpoint is not accessible by vehicle.' },
+    ],
+    packageActivities: [
+      { name: 'Scuba Diving — Havelock', description: 'Discover scuba at Elephant Beach or Nemo Reef — no experience needed. Crystal visibility, coral gardens, and tropical fish in warm 28°C water. Certified divers can explore wrecks and deeper reefs.', image: 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=800&q=80', duration: '2 hours with briefing', cost: '₹3,500–5,000/person' },
+      { name: 'Snorkelling at Elephant Beach', description: 'A 20-min boat ride from Havelock brings you to Elephant Beach — the best snorkelling reef in the Andamans. Coral, sea turtles, clownfish, and parrotfish in 2–5m depth.', image: 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=800&q=80', duration: '2–3 hours', cost: '₹1,500 boat + gear' },
+    ],
+    travelTips: [
+      'Best season: October–May. June–September is monsoon — rough seas, most water activities suspended and ferries may be cancelled.',
+      'Inter-island ferries (Port Blair→Havelock→Neil) must be booked 2–4 weeks ahead in peak season (Dec–Feb). Book through Makruzz or Green Ocean ferry apps.',
+      'Carry sufficient cash from Port Blair. Havelock ATMs run out on weekends; Neil Island has almost no banking.',
+      'Private vehicles are not allowed on Neil Island (only bicycles and autos). Havelock allows bikes — rent rather than taking cabs.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

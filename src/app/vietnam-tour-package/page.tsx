@@ -116,6 +116,22 @@ export default async function VietnamPackagePage() {
       { question: 'Is Vietnamese food vegetarian-friendly?', answer: 'Vietnam is not traditionally very vegetarian-friendly — meat and seafood are central. However, most restaurants can accommodate vegetarians with advance notice. Hoi An has excellent vegetarian and vegan restaurants. We flag dietary requirements to all our accommodation and activity partners.' },
       { question: 'Can I extend to Cambodia (Angkor Wat)?', answer: 'Yes — Angkor Wat is 1 hour by plane from Ho Chi Minh City. We offer Vietnam + Cambodia combo packages (add 2–3 nights in Siem Reap). WhatsApp us for the combo quote.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Ha Long Bay Cruise', description: 'A UNESCO World Heritage seascape of 1,969 limestone karst islands rising from emerald water. An overnight cruise on a traditional junk boat is the classic experience — caves, kayaking, and floating fishing villages.', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', type: 'nature', tip: 'Choose a 2-night cruise over 1-night — the first evening gets the best sunset spots, the second morning you have the caves to yourself before day-cruise boats arrive at 10am.' },
+      { name: 'Hoi An Ancient Town', description: 'A 15th-century trading port perfectly preserved — yellow lantern-lit shophouses, Japanese covered bridge, tailor workshops, and the most extraordinary food scene in Vietnam.', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', type: 'culture', tip: 'Walk the ancient town at night when lanterns are lit. Get custom-tailored clothes (48-hour turnaround) — a suit costs ₹3,000–5,000 from quality tailors.' },
+      { name: 'Hoan Kiem Lake & Hanoi Old Quarter', description: 'Hanoi\'s spiritual centre — a jade-green lake in the city heart with the Turtle Tower and the red wooden Huc Bridge to Ngoc Son Temple. The surrounding Old Quarter\'s 36 trade streets are the best street food zone in Asia.', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', type: 'landmark', tip: 'Visit Ta Hien (Beer Street) in the Old Quarter on Friday evening — hundreds of plastic stools, craft beer at ₹50/glass, and the city\'s electric nightlife energy.' },
+    ],
+    packageActivities: [
+      { name: 'Hanoi Street Food Tour', description: 'A 3-hour walking tour through Hanoi\'s Old Quarter sampling pho, bun cha (grilled pork noodles, Obama\'s order here), banh mi, egg coffee, and fresh rice paper rolls from market vendors.', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', duration: '3 hours', cost: '₹1,500–2,000 including food' },
+      { name: 'Phong Nha Cave Expedition', description: 'The world\'s largest cave system — Paradise Cave\'s 31km illuminated interior, Phong Nha boat cave, and Dark Cave\'s zipline-abseiling-mud pool adventure.', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', duration: 'Full day', cost: 'Included in extended package' },
+    ],
+    travelTips: [
+      'Vietnam e-visa costs USD 25 for Indians — apply at evisa.xuatnhapcanh.gov.vn at least 5 days before travel (3 business day processing).',
+      'Grab (rideshare) works throughout Vietnam and is 50% cheaper than metered taxis. Download before arriving.',
+      'Vietnamese dong is the only currency accepted in most places. Exchange at banks or official moneychangers (not hotels). USD is accepted at tourist restaurants.',
+      'Traffic in Hanoi and Ho Chi Minh City is extremely dense — crossing the road requires stepping steadily and not stopping; the motorbikes will flow around you.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

@@ -136,6 +136,86 @@ const pkg: PackageData = {
   whatsappMsg: "Hi! I'm interested in the Bali Honeymoon Package (6 nights ₹52,499/person). Please share availability.",
   bookingHref: '/contact?package=bali-honeymoon-package',
   schemaHighlights: ['Tegalalang Rice Terrace sunrise', 'Private pool villa Ubud', 'Tanah Lot sunset dinner', 'Balinese couples spa', 'Uluwatu Kecak Fire Dance'],
+
+  mustVisitPlaces: [
+    {
+      name: 'Tegalalang Rice Terrace, Ubud',
+      description: 'UNESCO-listed rice terraces carved into steep jungle hillsides north of Ubud, illuminated by dawn light. The ancient subak irrigation system still runs through every terrace — farmers in conical hats working at sunrise makes for the most iconic Bali image.',
+      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+      type: 'nature',
+      tip: 'Arrive by 6:30am before the swing operators and selfie crowds. The terrace path going right (north) is quieter than the main swing area on the left.',
+    },
+    {
+      name: 'Tanah Lot Sea Temple at Sunset',
+      description: 'A 16th-century Hindu temple perched on a dramatic offshore rock, silhouetted against Bali\'s most spectacular sunsets. Sacred sea snakes guard the temple base. The sunset view from the clifftop cafe behind is unforgettable.',
+      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+      type: 'landmark',
+      tip: 'Arrive 1 hour before sunset and walk north along the cliff path for the best angle. The main viewing area gets very crowded — the clifftop above the temple is far better.',
+    },
+    {
+      name: 'Uluwatu Temple & Kecak Fire Dance',
+      description: 'A Shaivite sea temple on a 70m limestone cliff at the Bukit Peninsula\'s southern tip, above turquoise Indian Ocean. Every evening at 6pm, a 100-man Kecak Fire Dance is performed on the cliff edge against the sunset.',
+      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+      type: 'culture',
+      tip: 'Book Kecak seats (₹400) in advance through your hotel — it sells out daily. Sit on the left side of the open-air stage for the best sunset-and-dance composition.',
+    },
+    {
+      name: 'Seminyak & Potato Head Beach Club',
+      description: 'Bali\'s most beautiful beach club — a stunning curved architecture with infinity pools, sunbeds, world-class cocktails, and DJ sets as the sun sets over the Indian Ocean. Seminyak has Bali\'s finest dining and shopping nearby.',
+      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+      type: 'experience',
+      tip: 'Reserve a sunbed (minimum spend applies) by 10am — they\'re fully booked by noon in peak season. The restaurant\'s sunset cocktails are worth every rupiah.',
+    },
+    {
+      name: 'Sacred Monkey Forest, Ubud',
+      description: 'A 14-hectare ancient Hindu forest sanctuary with 1,200 free-roaming long-tailed macaques and three moss-covered pura (temples) dating to the 14th century. The roots of giant banyan trees engulf stone steps and statues.',
+      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+      type: 'nature',
+      tip: 'Don\'t carry food or wear anything shiny — monkeys will grab both. Morning visits (8–10am) have less tourist congestion and more active monkeys.',
+    },
+  ],
+
+  packageActivities: [
+    {
+      name: 'Private Couples Balinese Spa',
+      description: 'A 3-hour couples spa ritual in a private villa cabana — traditional Boreh body scrub with turmeric and ginger, 90-min four-hands Balinese massage, and a flower petal bath drawn by your therapist.',
+      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+      duration: '3 hours',
+      cost: 'Included in package',
+    },
+    {
+      name: 'White-Water Rafting — Ayung River',
+      description: 'Raft through 10km of Grade 2–3 rapids on the Ayung River, passing through dense tropical jungle, rice terraces, and hidden waterfalls. Guides navigate, you just paddle and scream.',
+      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+      duration: '2.5 hours on water',
+      cost: '₹2,000–3,000 per person',
+    },
+    {
+      name: 'Sunrise Mount Batur Trek',
+      description: 'Trek an active volcano (1,717m) in pitch darkness starting 3am, arriving at the summit for one of Southeast Asia\'s most breathtaking sunrises — the crater below glowing red, clouds far below, and the full Bali landscape emerging in first light.',
+      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+      duration: '5–6 hours (start 3am)',
+      cost: '₹2,500–3,500 per person with guide',
+    },
+    {
+      name: 'Jimbaran Seafood Beach Dinner',
+      description: 'Dinner on the sand at Jimbaran Bay as fishing boats come in at dusk. Tables set right at the water\'s edge, grilled fresh-catch seafood platter, and Bali\'s famous sunset light on the sea.',
+      image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80',
+      duration: '2 hours',
+      cost: '₹1,500–2,500 per person',
+    },
+  ],
+
+  travelTips: [
+    'Bali time zone is WITA (UTC+8) — 2.5 hours ahead of IST. No jet lag from India.',
+    'April–October is dry season (best for beaches). November–March is wet season — cheaper prices, green rice terraces, dramatic skies.',
+    'Visa on Arrival for Indian passport holders (30 days, $35 USD) — get it at Ngurah Rai Airport on arrival. Queue can be 45 mins.',
+    'Use Grab (rideshare app) instead of metered taxis — 50–70% cheaper. Works seamlessly across Bali.',
+    'Dress modestly at all temples — sarong and sash required (provided free at most temples). Shoulders and knees must be covered.',
+    'The Bali stomach (Bali belly) is real — eat at busy restaurants, avoid ice at street stalls, and drink only bottled water for the first 2 days.',
+    'Exchange USD cash at moneychangers in Seminyak or Ubud for the best rates (never at the airport). ₹1 = approx 165 IDR.',
+    'Traffic between Seminyak and Ubud (35km) can take 90 minutes in peak hours (4–7pm). Plan your day around it.',
+  ],
 };
 
 export default async function BaliHoneymoonPage() {

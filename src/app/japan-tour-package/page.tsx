@@ -175,6 +175,22 @@ export default async function JapanPackagePage() {
       { question: 'Is Japan expensive for Indian travelers?', answer: 'Japan is premium-priced but worth every rupee. Accommodation and transport (especially the Shinkansen) are the main costs. Street food (ramen, sushi conveyor belts, convenience stores) is affordable at ₹300–800 per meal. Our package price includes flights, hotels, and the Japan Rail Pass which covers all your bullet train travel.' },
       { question: 'Can vegetarians and Jains eat well in Japan?', answer: 'Japan can be challenging for strict vegetarians as dashi (fish stock) is used in many dishes. However, Kyoto has the best vegetarian options — shojin ryori (Buddhist temple cuisine, entirely plant-based) is exceptional. We flag dietary requirements to all restaurants and accommodations in advance. Convenience store onigiri, edamame, and vegetable tempura are widely available.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Fushimi Inari Shrine — Kyoto', description: '10,000 vermilion torii gates winding up the forested Mount Inari behind Kyoto. The famous tunnel of gates stretches 4km to the summit — most people only walk the first 30 minutes, missing the empty upper trails.', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80', type: 'landmark', tip: 'Arrive at 6am — the lower gates are already crowded by 8am. Hike to the top (90 minutes) for the empty upper trails and city views.' },
+      { name: 'Mt. Fuji — Hakone Viewpoint', description: 'Japan\'s iconic 3,776m perfectly-shaped volcanic cone — visible on clear days from Hakone\'s Owakudani valley, Lake Kawaguchi, and the Shinkansen. December–February gives the best visibility.', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80', type: 'nature', tip: 'Check the Fuji visibility forecast (fujisan.ne.jp) the night before — cloud cover hides the summit 60% of the time. Lake Kawaguchiko at dawn is the most iconic viewpoint.' },
+      { name: 'Shinjuku & Harajuku — Tokyo', description: 'Shinjuku\'s neon-lit nightlife streets, the incredible Shinjuku Gyoen garden, and Harajuku\'s Takeshita Street for Japan\'s famous youth fashion subcultures. The Meiji Shrine is 2 minutes from Harajuku station.', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80', type: 'culture', tip: 'Tokyo\'s convenience stores (7-Eleven, FamilyMart) have exceptional food — onigiri, katsu sandwiches, hot ramen. Some of Japan\'s best quick meals cost ₹100–200.' },
+    ],
+    packageActivities: [
+      { name: 'Tsukiji Outer Market Breakfast — Tokyo', description: 'The world\'s most famous fish market outer section — still operating daily. Ultra-fresh tuna sashimi, sea urchin, and tamagoyaki (egg rolls) for breakfast from stalls that open at 5am.', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80', duration: '2 hours', cost: '₹800–1,500 food' },
+      { name: 'Arashiyama Bamboo Grove — Kyoto', description: 'Walk through a towering grove of bamboo stalks that filter sunlight into an otherworldly green haze. Adjacent: the Tenryu-ji Zen garden (UNESCO) and the Okochi Sanso villa garden.', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80', duration: '3–4 hours', cost: '₹500 Tenryu-ji entry' },
+    ],
+    travelTips: [
+      'Japan tourist visa takes 5–7 working days — apply 4–6 weeks ahead. YlooTrips provides complete documentation support.',
+      'IC Card (Suica or Pasmo) for public transport — load ¥3,000 at the airport. Works on all Tokyo/Kyoto metro, buses, and convenience stores.',
+      'Japan Rail Pass (7 or 14 days) covers all Shinkansen travel — must be bought before arriving in Japan. YlooTrips includes this in package.',
+      'Cash is still widely used in Japan — carry ¥10,000–15,000 per day. Japan Post ATMs accept international Visa/Mastercard everywhere.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

@@ -117,6 +117,22 @@ export default async function LadakhPackagePage() {
       { question: 'Do I need a permit for Ladakh?', answer: 'Indian nationals need an Inner Line Permit (ILP) to visit Nubra Valley, Pangong Tso, and Tso Moriri. The ILP is obtained in Leh on arrival — we handle this for you. Foreign nationals need additional documentation.' },
       { question: 'Can I do this package on a motorbike?', answer: 'Yes — we offer a dedicated Ladakh bike trip package (Enfield/Himalayan rental included). WhatsApp us for the separate Ladakh Bike Trip quote.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Pangong Tso Lake', description: 'A 134km high-altitude salt lake at 4,350m, spanning India and China. The water changes colour from blue to green to violet as clouds move across it. The far bank is Chinese territory — visible clearly.', image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', type: 'nature', tip: 'Overnight camping at Pangong is the ultimate Ladakh experience — wake up to the lake at sunrise in total silence before day-trippers arrive at 9am.' },
+      { name: 'Khardung La Pass (5,359m)', description: 'One of the world\'s highest motorable passes — a Ladakh bucket list crossing. The plateau views of the Karakoram range and the descent into the Shyok Valley are extraordinary.', image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', type: 'experience', tip: 'Don\'t spend more than 20 minutes at the pass top — oxygen is very low. Just photo-stop and descend. Don\'t exert yourself.' },
+      { name: 'Nubra Valley & Diskit Monastery', description: 'The "Valley of Flowers" at 3,048m, accessed via Khardung La. Sand dunes with Bactrian (double-humped) camels, and the 32m Maitreya Buddha statue at Diskit Monastery overlooking the valley.', image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', type: 'culture', tip: 'The 6am morning prayers at Diskit Monastery with monks and butter lamps is one of Ladakh\'s most moving experiences. Ask your guesthouse to arrange a wake-up call.' },
+    ],
+    packageActivities: [
+      { name: 'Bactrian Camel Ride — Nubra Valley', description: 'Ride the rare double-humped Bactrian camels across the Hunder sand dunes in the Nubra Valley — the only place in India where these camels live naturally.', image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', duration: '30 minutes', cost: '₹400–600' },
+      { name: 'Tso Moriri Lake Camping', description: 'A remote high-altitude lake at 4,522m with virtually no tourists. Overnight camping by the lake shore with views of snow-capped Rupshu peaks reflecting in the still water.', image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', duration: 'Overnight', cost: 'Included in extended package' },
+    ],
+    travelTips: [
+      'Spend 2 nights in Leh (3,524m) before doing any high-altitude driving. Altitude sickness is real — rest, hydrate, avoid alcohol.',
+      'Take Diamox 250mg twice daily (consult doctor first). Start 1 day before arriving in Leh.',
+      'June–September: all roads open. October–May: Manali-Leh road closes; Leh airport operates year-round.',
+      'Inner Line Permits for Pangong and Nubra are now merged into a single e-permit — YlooTrips handles all permits for you.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

@@ -229,6 +229,70 @@ const pkg: PackageData = {
   bookingHref: '/contact?package=kerala-tour-package',
 
   schemaHighlights: ['Alleppey houseboat overnight in Kerala backwaters', 'Munnar tea gardens and Eravikulam', 'Thekkady Periyar Tiger Reserve boat safari', 'Kovalam beach and Ayurvedic massage', 'Return flights from Delhi'],
+
+  mustVisitPlaces: [
+    {
+      name: 'Alleppey Backwaters',
+      description: 'A 900km network of canals, lakes, and lagoons behind the Kerala coast — navigated by traditional rice boat houseboats through coconut-palm villages, duck farms, and lotus ponds. The most iconic Kerala experience.',
+      image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
+      type: 'experience',
+      tip: 'Insist on the narrow canal routes (not the open Vembanad Lake) — the 4-foot-wide waterway with village life on both banks is the real Kerala backwater experience.',
+    },
+    {
+      name: 'Munnar Tea Estates',
+      description: 'Rolling hills at 1,600m altitude carpeted in a perfect geometric grid of tea bushes — the Kannan Devan estate alone covers 25,000 acres. Eravikulam National Park (Nilgiri Tahr habitat) and Mattupetty Lake are nearby.',
+      image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
+      type: 'nature',
+      tip: 'Visit the KDHP Tea Museum in Munnar town for the fascinating manufacturing process. Buy single-origin Kannan Devan tea directly from the estate shop — far superior to hotel gift shops.',
+    },
+    {
+      name: 'Periyar Tiger Reserve — Thekkady',
+      description: 'A 777 sq km wildlife sanctuary around the Periyar Lake. Boat safaris cross the lake through submerged forest, watching elephants, gaur, and deer come to the water\'s edge at dawn.',
+      image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
+      type: 'nature',
+      tip: 'The 7am boat safari gives the best wildlife sightings. Book through the Forest Department (not private operators) for the official KTDC launch.',
+    },
+    {
+      name: 'Kovalam Beach — Lighthouse Beach',
+      description: 'Kerala\'s most popular beach — a crescent cove with a working lighthouse at the southern end. Calm waves, coconut-palm shaded sand, and Ayurvedic massage parlours lining the beach road.',
+      image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
+      type: 'beach',
+      tip: 'Swim only between the lifeguard flags — the northern end (Hawah Beach) has strong currents. The lighthouse climb (₹25) gives panoramic views over the whole crescent.',
+    },
+  ],
+
+  packageActivities: [
+    {
+      name: 'Overnight Houseboat — Alleppey',
+      description: 'Sleep on a traditional Kerala rice boat converted to a houseboat — with bedroom, sundeck, and a private chef cooking fresh Kerala seafood from the morning market.',
+      image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
+      duration: 'Overnight (check-in 12pm, checkout 9am)',
+      cost: 'Included in package',
+    },
+    {
+      name: 'Authentic Kerala Ayurveda Treatment',
+      description: 'A 90-minute Abhyanga (four-hands oil massage) and Shirodhara (continuous warm oil stream on forehead) session at a certified Ayurvedic centre — not a tourist spa.',
+      image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
+      duration: '90 minutes',
+      cost: 'Included in package',
+    },
+    {
+      name: 'Kathakali Dance Performance',
+      description: 'Watch Kerala\'s classical dance-drama live — performers in elaborate 3kg face paint and costumes re-enacting stories from the Mahabharata and Ramayana. Arrive 30 minutes early for the make-up demonstration.',
+      image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
+      duration: '1.5 hours',
+      cost: '₹300–500 per person',
+    },
+  ],
+
+  travelTips: [
+    'October–February is the best Kerala season (post-monsoon, clear skies, calm sea). June–September is monsoon — dramatic but some activities restricted.',
+    'Kerala cuisine is among India\'s finest — try sadya (banana-leaf feast), karimeen pollichathu (fish wrapped in banana leaf), prawn moilee, and puttu with kadala curry.',
+    'Kerala has India\'s best public transport — KSRTC buses connect all major towns efficiently and cheaply. Auto-rickshaws use meters here (unlike most Indian states).',
+    'Houseboats vary enormously — avoid the cheapest options (poor hygiene and food). Budget ₹8,000–15,000/night for a clean, well-maintained vessel.',
+    'The Periyar boat safari must be booked at the Forest Department counter the day before — it fills up by 6am on the day.',
+    'Kerala is India\'s most literate state with excellent English — communication is rarely a barrier anywhere.',
+  ],
 };
 
 export default async function KeralaToursPackagePage() {

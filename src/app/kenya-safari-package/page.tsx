@@ -177,6 +177,22 @@ export default async function KenyaSafariPackagePage() {
       { question: 'Is Kenya safe for Indian travelers?', answer: 'The main tourist areas of Kenya — Nairobi (tourist zones), Masai Mara, Amboseli, and Diani Beach — are very safe and well-established for international tourism. We use only professional licensed guides and reputable accommodation. The Kenyan Tourism Board actively ensures tourist safety in all major reserves.' },
       { question: 'What should I pack for a Kenya safari?', answer: 'Khaki and neutral-coloured clothing (avoid bright colours that startle wildlife), long sleeves for evening mosquito protection, comfortable walking shoes, sunscreen and insect repellent, a good camera with telephoto lens (200mm minimum), binoculars, and a light fleece (Masai Mara mornings are surprisingly cold). We send a full packing list after booking.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Masai Mara — Great Migration River Crossings', description: 'Over 1.5 million wildebeest cross the crocodile-filled Mara River in July–October. A river crossing is one of nature\'s greatest events — 10,000 animals in 20 minutes, with Nile crocodiles surging from the water.', image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80', type: 'nature', tip: 'August–September has the most river crossings. Position at the crossing point early morning (6am) with your guide and wait — crossings happen unpredictably but your guide can read the herd behaviour.' },
+      { name: 'Amboseli National Park — Kilimanjaro Views', description: 'A 392 sq km park at the foot of Mount Kilimanjaro — Africa\'s highest peak. Amboseli has the best elephant herds in Kenya (400+) and on a clear morning, elephants walk with Kilimanjaro\'s snow-capped summit behind.', image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80', type: 'nature', tip: 'Kilimanjaro is clearest at dawn before cloud builds (6–9am). Stay at the observation hill at sunrise for the classic elephant-Kilimanjaro photograph.' },
+      { name: 'Masai Village & Cultural Experience', description: 'Visit an authentic Masai boma (village) and meet warriors, women, and elders in traditional red shukas. Learn about cattle-centric culture, jumping dance, and the warrior rites of passage that still define Masai identity.', image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80', type: 'culture', tip: 'Ask the Masai elder about the morani (warrior) initiation process — it\'s not covered in the standard village tour but deeply fascinating if you ask directly.' },
+    ],
+    packageActivities: [
+      { name: 'Hot Air Balloon Safari — Masai Mara', description: 'Drift silently over the Mara at 500 feet as the sun rises — herds of zebra and wildebeest below, hippos in the river, and lions hunting at dawn. Ends with a champagne breakfast in the bush.', image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80', duration: '1 hour flight', cost: 'USD 450–500 per person' },
+      { name: 'Night Game Drive', description: 'An after-dark game drive with spotlight reveals Kenya\'s nocturnal wildlife — leopards, servals, aardvark, bushbaby, and hyenas that are invisible during day drives. Only available at private conservancies.', image: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80', duration: '3 hours', cost: 'Included in package (conservancy camps)' },
+    ],
+    travelTips: [
+      'July–October for the Great Migration (river crossings). January–February for calving season (fewer tourists, more predator action). Wildlife is excellent year-round.',
+      'Kenya ETA (USD 50) at etakenya.go.ke — apply 2 weeks ahead. Processing is 3–5 business days.',
+      'Malaria prophylaxis is essential for Kenya. Start 1–2 weeks before travel. Consult your doctor for the right medication (Malarone or Doxycycline).',
+      'Photography: 200mm telephoto minimum for wildlife close-ups. A Canon/Nikon 70-200mm f/4 or Sony 100-400mm gives excellent results from the vehicle.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

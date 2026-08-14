@@ -227,6 +227,22 @@ const pkg: PackageData = {
     'Private sandbank picnic excursion',
     'Full-board dining at 5-star resort',
   ],
+
+  mustVisitPlaces: [
+    { name: 'House Reef Snorkelling at Dawn', description: 'Every overwater villa resort has a private house reef 20 metres from the villa steps. Dawn snorkelling (6am) before other guests wake up is the Maldives\' most magical experience — turtles, rays, and reef sharks in perfect solitude.', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80', type: 'nature', tip: 'Ask your resort which direction the house reef is richest. Most drop steeply on the eastern side — the morning current brings nutrients and fish activity.' },
+    { name: 'Private Sandbank Picnic', description: 'Your resort arranges a dhoni boat to a private sandbank emerging from the lagoon — often just 100m long and 10m wide, surrounded by every shade of blue. Champagne, fresh fruit, and two hours with no other humans in sight.', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80', type: 'experience', tip: 'Book the sandbank excursion for late afternoon — the light is golden and the lagoon colours are at their most vivid before sunset. Bring snorkelling gear from the villa.' },
+    { name: 'Bioluminescence Walk — Night Beach', description: 'Certain Maldivian beaches glow electric blue at night — phytoplankton light up when disturbed by wave action. The most famous is Vaadhoo Island\'s "Sea of Stars" but most outer atolls have it.', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80', type: 'nature', tip: 'Ask your resort about bioluminescence visibility on your specific atoll. Best on moonless nights (new moon period). Walk barefoot on the shore at 9pm to see the glowing sand.' },
+  ],
+  packageActivities: [
+    { name: 'Manta Ray Snorkelling', description: 'Seasonal manta ray cleaning stations in the South Ari Atoll attract 3–4 metre wingspans. Snorkelling (not diving) with mantas at 5m depth as they circle the reef is one of the ocean\'s most breathtaking experiences.', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80', duration: '2 hours', cost: 'Included in package' },
+    { name: 'Sunset Dolphin Cruise — Dhoni Boat', description: 'A traditional wooden dhoni boat sails into the lagoon at sunset to find spinner dolphin pods that regularly gather in the channel between atolls. Hundreds of dolphins leaping alongside the boat as the sun sets.', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80', duration: '1.5 hours', cost: 'Included in package' },
+  ],
+  travelTips: [
+    'The Maldives is 100% visa-on-arrival for all nationalities (including Indians). No advance visa required.',
+    'Alcohol is only served at resort islands (not local islands). Keep this in mind if choosing between resort and guesthouse stays.',
+    'Seaplane transfers ($300–600 per person return) are an experience in themselves — 20 minutes above the atolls, watching islands and reefs from above.',
+    'The best snorkelling and diving is in the outer atolls (North Male, South Male, Ari Atoll). Inner Male Atoll resorts are older and the reef quality lower.',
+  ],
 };
 
 export default async function MaldivesLuxuryPackagePage() {

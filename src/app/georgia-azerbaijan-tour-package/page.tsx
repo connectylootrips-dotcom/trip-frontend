@@ -166,6 +166,22 @@ export default async function GeorgiaAzerbaijanPackagePage() {
       { question: 'What currency is used in Georgia and Azerbaijan?', answer: 'Georgia uses the Georgian Lari (GEL). Azerbaijan uses the Azerbaijani Manat (AZN). Both countries widely accept USD. Indian Rupees are not accepted — exchange USD or Euros locally. ATMs are widely available in both Tbilisi and Baku.' },
       { question: 'Is this a good trip for vegetarians?', answer: 'Georgia is excellent for vegetarians — khachapuri (cheese bread), lobiani (bean bread), pkhali (walnut-herb appetizers), and Adjarian khachapuri are all vegetarian. Azerbaijan has good vegetarian options too (dolma, gutab flatbreads with herbs). Both cuisines are very Indian-palette friendly.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Tbilisi Old Town & Narikala Fortress', description: 'Georgia\'s capital is one of Europe\'s most atmospheric cities — sulfur bath houses, twisted wrought-iron balconies, Orthodox churches beside Persian mosques, and the 5th-century Narikala Fortress above.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', type: 'landmark', tip: 'Take the cable car up to Narikala (₹100) at sunset for the best view over the old city. The sulfur bath district (Abanotubani) has baths from ₹300 — a must.' },
+      { name: 'Kazbegi (Stepantsminda) — Gergeti Trinity Church', description: 'A 14th-century church perched on a 2,170m cliff above the village of Kazbegi, with Mount Kazbek (5,047m) as the backdrop. One of the most dramatic church locations on earth.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', type: 'landmark', tip: 'Hike up rather than taking a 4WD — the 2.5-hour ascent through wildflower meadows is far more rewarding. Start at 7am to arrive before clouds.' },
+      { name: 'Baku Old City — Icheri Sheher', description: 'Azerbaijan\'s UNESCO World Heritage medieval inner city — the 12th-century Maiden Tower, Palace of the Shirvanshahs, and a labyrinth of caravanserai lanes. The contrast with the modern flame towers visible above the city walls is remarkable.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', type: 'culture', tip: 'Walk to the Flame Towers Viewpoint on Baku Boulevard at night — the towers are lit as moving LED flames and reflect off the Caspian Sea promenade.' },
+    ],
+    packageActivities: [
+      { name: 'Georgia Wine Tasting — Kakheti Valley', description: 'The birthplace of wine (8,000 years of winemaking). Taste amber (skin-contact) Rkatsiteli and Saperavi reds at a family winery in the Alazani valley — the world\'s oldest wine tradition explained by the winemaker himself.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', duration: '3 hours', cost: '₹1,500–2,500' },
+      { name: 'Baku Caspian Sea Sunset Cruise', description: 'A 1-hour cruise on the Caspian — the world\'s largest lake — with views of Baku\'s flame towers, Oil Rocks (Soviet offshore oil platform settlement), and the vast flat Caspian horizon.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', duration: '1 hour', cost: '₹800–1,500' },
+    ],
+    travelTips: [
+      'Georgia: No visa for Indians (visa-free for 365 days). Azerbaijan: e-visa at evisa.gov.az (USD 30, 3 business days).',
+      'Georgian cuisine is one of the world\'s most underrated. Try khinkali (soup dumplings), mtsvadi (skewered meat), and churchkhela (walnut-grape candy) from street stalls.',
+      'Both countries are extremely affordable — a full meal costs ₹300–600 in Tbilisi, and taxis are very cheap (₹50–150 for city journeys).',
+      'Currency: Georgia (GEL) and Azerbaijan (AZN) — exchange USD at local banks or moneychangers, not at airports.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

@@ -115,6 +115,22 @@ export default async function NepalPackagePage() {
       { question: 'Can I see Everest on this trip?', answer: 'Yes — from Nagarkot and Sarangkot viewpoints on clear days, Everest (8,849m) is visible in the distance. For close-up views, we offer a 1-hour mountain flight from Kathmandu that flies along the Himalayan range at close range. Everest Base Camp Trek is a separate 14-day adventure.' },
       { question: 'Is Nepal expensive?', answer: 'Nepal is one of the cheapest international destinations from India. Meals cost ₹150–400, local beer ₹200, and transport is very affordable. Trekking permits are the main added cost for those going to Annapurna or EBC.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Pashupatinath Temple', description: 'Nepal\'s holiest Hindu temple on the Bagmati River — ghats, cremation pyres, sadhus, and a 17th-century golden pagoda. One of South Asia\'s most spiritually intense experiences.', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80', type: 'landmark', tip: 'Visit at 6am for morning aarti. Non-Hindus enter the outer temple area — the ghats viewpoint across the river is fully accessible and equally powerful.' },
+      { name: 'Boudhanath Stupa', description: 'One of the world\'s largest stupas — 36m of whitewashed brick with all-seeing Buddha eyes. The Tibetan market lanes around it are full of monasteries and butter tea houses.', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80', type: 'culture', tip: 'Walk the kora (clockwise circuit) with Tibetan monks at 6am. The morning circumambulation with prayer wheels and chanting is deeply meditative.' },
+      { name: 'Pokhara & Phewa Lake', description: 'Nepal\'s lakeside city with the Annapurna massif reflecting in Phewa Lake. The World Peace Pagoda at dawn gives panoramic views of Annapurna, Dhaulagiri, and Machapuchare.', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80', type: 'nature', tip: 'Take a sunrise cable car to the Peace Pagoda for Annapurna views — on clear days (Oct–Nov, Mar–Apr) this is one of the Himalayan world\'s finest panoramas.' },
+    ],
+    packageActivities: [
+      { name: 'Everest Base Camp Mountain Flight', description: 'A 1-hour flight from Kathmandu along the Himalayan range — window seat views of Everest, Lhotse, Makalu, and the Khumbu Icefall. The closest most visitors get to the world\'s highest mountain.', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80', duration: '1 hour', cost: '₹7,000–10,000' },
+      { name: 'Chitwan Jungle Safari', description: 'Jeep and elephant-back safaris through Chitwan National Park — one of Asia\'s finest wildlife reserves. One-horned rhino, Bengal tiger (rare), sloth bear, and gharial crocodile.', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80', duration: 'Full day', cost: 'Included in extended package' },
+    ],
+    travelTips: [
+      'No visa needed for Indian passport holders — just carry your Indian passport. Aadhaar card accepted at land borders.',
+      'Indian rupees are accepted everywhere in Nepal. No need to exchange currency unless you want local Nepali rupees.',
+      'October–November is the absolute best time — crystal clear mountain views and the most pleasant weather.',
+      'Kathmandu traffic is chaotic — allow 2+ hours for airport transfers at rush hour. Book transfers through us.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

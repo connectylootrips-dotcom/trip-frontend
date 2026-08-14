@@ -116,6 +116,22 @@ export default async function SpitiPackagePage() {
       { question: 'Is this package for physically fit people only?', answer: 'You don\'t need to be an athlete, but basic fitness is required. The Dhankar Lake trek (1.5h) and walking at altitude (4,200m) requires comfort at high elevation. The driving is in rough terrain — be prepared for 8–10 hour driving days on some days.' },
       { question: 'Can I see a snow leopard in Spiti?', answer: 'Snow leopards live in Pin Valley National Park and the higher elevations of Spiti. Sightings are rare (about 10% chance in winter, near-zero in summer when they move higher). However, you\'ll likely see ibex, Tibetan wild ass (kiang), and Himalayan marmot.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Key Monastery', description: 'Spiti\'s oldest and largest monastery (founded 11th century) at 4,166m — a whitewashed fortress on a conical hill overlooking the Spiti Valley. The butter lamp-lit prayer hall and monks\' morning ritual are extraordinary.', image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', type: 'culture', tip: 'Arrive at 6am for morning prayers when monks chant in the dark by butter lamps. Photography allowed. Stay for the rooftop view at sunrise — one of Spiti\'s finest.' },
+      { name: 'Chandratal Lake (Moon Lake)', description: 'A crescent-shaped high-altitude lake at 4,300m, turquoise-blue and perfectly still in the early morning, reflecting the surrounding moraine peaks. Often inaccessible before June and after October.', image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', type: 'nature', tip: 'Camp overnight at Chandratal — the dawn and dusk colours on the water are unmissable. Campsite is 3km from the lake (vehicle access), then walk.' },
+      { name: 'Dhankar Village & Lake', description: 'A precariously perched ancient village and monastery on a 300m cliff above the confluence of the Spiti and Pin rivers. The 2-hour trek up to Dhankar Lake gives unobstructed views of the entire Pin-Spiti valley system.', image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', type: 'landmark', tip: 'The old Dhankar monastery (separate from the new one) is a crumbling 1,000-year-old structure on the absolute cliff edge — do not skip it.' },
+    ],
+    packageActivities: [
+      { name: 'Kaza Local Market & Fossil Hunt', description: 'Explore Kaza town\'s small market for dried apricots, sea buckthorn juice, and Spitian wool. The surrounding riverbed has 450-million-year-old marine fossils visible in the exposed limestone — free to examine.', image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', duration: '2–3 hours', cost: 'Free' },
+      { name: 'Langza Buddha & Fossil Village', description: 'A 2-hour drive from Kaza, Langza village has a giant 1,000-year-old Buddha statue overlooking the valley, and the surrounding hillside has ancient sea creature fossils exposed in the surface rock.', image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80', duration: 'Half day', cost: '₹500 jeep hire' },
+    ],
+    travelTips: [
+      'Acclimatise 1 full day in Manali or Shimla before entering Spiti — altitude sickness at 3,500–4,500m is serious.',
+      'Mobile signal is near-zero in Spiti. BSNL prepaid works in Kaza and a few villages. Download offline maps (Maps.me) before entering.',
+      'Petrol stations exist only in Kaza. Fill up completely before entering the valley — the next refuel may be 150km away.',
+      'The Manali–Kaza road crosses Kunzum Pass (4,590m) — only open June–October. Shimla–Kaza road (NH-505) is open longer but rougher.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

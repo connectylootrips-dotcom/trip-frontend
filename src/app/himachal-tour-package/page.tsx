@@ -117,6 +117,22 @@ export default async function HimachalPackagePage() {
       { question: 'Do I need to carry warm clothes?', answer: 'Yes, even in summer. Nights in Shimla, Kasol, and Manali drop to 8–12°C. Carry a light down jacket or heavy fleece, woollen socks, and a cap. For winter (Dec–Feb) bring thermal inners, heavy jacket, and gloves.' },
       { question: 'Can I extend to include Spiti Valley?', answer: 'Yes — Spiti Valley is one of India\'s most dramatic landscapes. We offer a separate Spiti extension (3 additional nights: Nako → Kaza → Chandratal Lake) — WhatsApp us for a custom quote.' },
     ],
+
+    mustVisitPlaces: [
+      { name: 'Shimla — Mall Road & Jakhu Temple', description: 'The former British summer capital with a charming Victorian Mall Road and the 2km ridge promenade. Jakhu Temple (2,455m) is a 1-hour trek above the Mall with a 33m Hanuman statue and panoramic valley views.', image: 'https://images.unsplash.com/photo-1598077540161-9218a1b26fb2?w=800&q=80', type: 'landmark', tip: 'Ride the historic Shimla toy train (narrow gauge) from Kalka — a UNESCO World Heritage railway with 102 tunnels through the Shivalik hills. Book ahead on IRCTC.' },
+      { name: 'Kasol & Kheerganga Trek', description: 'The hippie hamlet on the Parvati River, surrounded by pine forest and Himalayan peaks. The 13km trek to Kheerganga (2,950m) ends at natural hot springs overlooking a snow-capped panorama.', image: 'https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=800&q=80', type: 'nature', tip: 'Kheerganga hot spring is best visited early morning before trekkers arrive. Register at the Kasol forest office before trekking.' },
+      { name: 'McLeod Ganj & Dalai Lama Temple', description: 'The "Little Lhasa" — home of the Dalai Lama and the Tibetan government in exile. The Namgyal Monastery, Tibetan market, and the Triund trek are the main draws. The Friday Dalai Lama teaching (when in residence) is open to all.', image: 'https://images.unsplash.com/photo-1598077540161-9218a1b26fb2?w=800&q=80', type: 'culture', tip: 'Check the Dalai Lama\'s teaching schedule at dalailama.com. Pre-registration is required. The monastery prayer hall is open daily at 6am.' },
+    ],
+    packageActivities: [
+      { name: 'Triund Trek — McLeod Ganj', description: 'A 9km trek from McLeod Ganj to the Triund meadow at 2,842m — wide open views of the Kangra Valley on one side and the Dhauladhar snow ridge on the other. Overnight camping under the stars.', image: 'https://images.unsplash.com/photo-1598077540161-9218a1b26fb2?w=800&q=80', duration: '4–5 hours', cost: '₹300–500 guide + camping' },
+      { name: 'River Crossing & Rock Climbing — Kasol', description: 'Adventure activities on the Parvati River — river crossing, rappelling, and rock climbing with certified instructors. Suitable for beginners.', image: 'https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=800&q=80', duration: '3 hours', cost: '₹800–1,200' },
+    ],
+    travelTips: [
+      'October is the best Himachal month — crystal clear post-monsoon skies, snow-capped peaks visible, autumn colour in the forests.',
+      'Shimla Toy Train (Kalka–Shimla) must be booked 30 days ahead — it fills up in season. Book on IRCTC website.',
+      'Roads in Himachal are narrow and winding — motion sickness medication is essential for those prone to car sickness.',
+      'Mobile networks are patchy in valleys — BSNL works more widely than Jio/Airtel in remote areas. Download offline maps.',
+    ],
   };
 
   return <PackagePageLayout pkg={pkg} />;

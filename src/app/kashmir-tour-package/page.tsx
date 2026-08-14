@@ -229,6 +229,70 @@ const pkg: PackageData = {
   bookingHref: '/contact?package=kashmir-tour-package',
 
   schemaHighlights: ['Dal Lake houseboat and shikara ride', 'Gulmarg Gondola to 13,400 feet', 'Pahalgam Betaab Valley', 'Sonamarg Thajiwas Glacier', 'Land package — hotel and transfers included'],
+
+  mustVisitPlaces: [
+    {
+      name: 'Dal Lake & Shikara Ride',
+      description: 'The iconic jewel of Kashmir — a 22 sq km lake ringed by the Zabarwan mountains, its surface covered in lotus gardens and floating vegetable markets. A shikara ride at dawn or sunset is the definitive Kashmir experience.',
+      image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80',
+      type: 'nature',
+      tip: 'The 6am shikara ride catches the floating vegetable market vendors and morning mist on the lake. The sunset ride (5pm) catches the Pir Panjal mountains turning pink.',
+    },
+    {
+      name: 'Gulmarg Gondola (Phase I + II)',
+      description: 'One of the world\'s highest and longest cable cars, ascending to 13,400 feet at Apharwat Peak for jaw-dropping views of Nanga Parbat (8,126m) — the world\'s 9th highest mountain — and the entire Pir Panjal range.',
+      image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80',
+      type: 'experience',
+      tip: 'Book Phase II gondola (Apharwat) tickets online in advance — they sell out weeks ahead in season. Start early (8am) to avoid afternoon cloud cover.',
+    },
+    {
+      name: 'Pahalgam & Betaab Valley',
+      description: 'The "Valley of Shepherds" at 2,440m — a lush green valley where the Lidder River rushes over boulders through pine forests. Betaab Valley (named after a 1983 Bollywood film shot here) is the most photogenic stretch.',
+      image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80',
+      type: 'nature',
+      tip: 'Hire a local horse for the Baisaran meadow above Pahalgam (₹500–800) — it\'s called "Mini Switzerland" and offers views over the entire valley.',
+    },
+    {
+      name: 'Sonamarg & Thajiwas Glacier',
+      description: 'At 2,800m, Sonamarg ("Meadow of Gold") is a dramatic mountain valley with a glacier visible from the road. The 2km pony ride to Thajiwas Glacier crosses alpine meadows with Indian Army peaks in the background.',
+      image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80',
+      type: 'nature',
+      tip: 'Visit June–October when Sonamarg is accessible and glacier is blue. April–May it\'s buried under snow — beautiful but activities are limited.',
+    },
+  ],
+
+  packageActivities: [
+    {
+      name: 'Houseboat Stay on Dal Lake',
+      description: 'Spend a night on a traditional Kashmiri cedar houseboat — handcrafted woodwork interiors, a private front deck, and a shikara on call 24/7. Wake up to the lake at sunrise with breakfast served on water.',
+      image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80',
+      duration: '1–2 nights',
+      cost: 'Included in package (deluxe category)',
+    },
+    {
+      name: 'Snow Activities at Gulmarg',
+      description: 'Skiing, snowboarding, snow tubing, and snowmobile rides on the Himalayan slopes at Gulmarg Ski Resort (Oct–April). Asia\'s best snow terrain at an incredibly affordable price compared to Swiss or Austrian resorts.',
+      image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80',
+      duration: 'Full day',
+      cost: '₹1,500–3,000 depending on activity',
+    },
+    {
+      name: 'Srinagar Old City Heritage Walk',
+      description: 'Walk through the 700-year-old Jamia Masjid, Shah Hamdan shrine, and the historic Khanqah-e-Moula mosque — all in the old city\'s labyrinthine lanes, alongside artisans making Kashmir carpets and paper mache.',
+      image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80',
+      duration: '2–3 hours',
+      cost: '₹300–500 guide',
+    },
+  ],
+
+  travelTips: [
+    'Best months: April–June (tulips and spring), July–August (peak green), September–October (autumn gold). December–March for snow but Sonamarg/Pahalgam may be closed.',
+    'Gulmarg gondola tickets must be booked online (ski-india.com) 2–4 weeks in advance during peak season — they sell out completely.',
+    'Kashmir is safe for tourists — over 2 million domestic tourists visit annually. Exercise normal travel precautions and follow local guidance.',
+    'Houseboat rates are negotiable — always book through a registered houseboat owner (not touts at the shore). YlooTrips handles all booking.',
+    'Carry warm layers even in summer — Sonamarg and Gulmarg are cold at 2,800–4,000m. Nights even in July can drop to 8°C.',
+    'Local Kashmiri food is unmissable — try wazwan (30-course feast), rogan josh, yakhni, kahwa (saffron tea), and sheer chai (pink tea). These are best at local restaurants, not hotels.',
+  ],
 };
 
 export default async function KashmirTourPackagePage() {
