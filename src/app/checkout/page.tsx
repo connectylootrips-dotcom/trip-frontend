@@ -724,12 +724,61 @@ function CheckoutContent() {
                                     </div>
                                 )}
 
+                                {/* ── TRUST & LEGAL CLARITY (especially for international bookers) ── */}
+                                <section className="border border-primary/10 rounded-lg overflow-hidden text-sm">
+                                    <div className="bg-primary/5 px-4 py-3 flex items-center gap-2 border-b border-primary/10">
+                                        <Lock size={14} className="text-primary/60 shrink-0" />
+                                        <span className="font-semibold text-primary text-xs uppercase tracking-wider">Booking Protection & Legal Info</span>
+                                    </div>
+                                    <div className="bg-white divide-y divide-primary/8">
+                                        {/* Legal entity */}
+                                        <div className="flex items-start gap-3 px-4 py-3">
+                                            <span className="text-base shrink-0">🏢</span>
+                                            <div>
+                                                <p className="font-semibold text-primary text-xs">Operated by Ambe Enterprise</p>
+                                                <p className="text-primary/60 text-xs mt-0.5">MSME Registered · UDYAM-HR-05-0141455 · Haryana, India</p>
+                                                {visitor === 'foreigner' && (
+                                                    <p className="text-primary/60 text-xs mt-0.5">Serving travelers from USA, UK, Australia, Canada, Europe & 40+ countries since 2019.</p>
+                                                )}
+                                            </div>
+                                        </div>
+                                        {/* Refund policy */}
+                                        <div className="flex items-start gap-3 px-4 py-3">
+                                            <span className="text-base shrink-0">↩️</span>
+                                            <div>
+                                                <p className="font-semibold text-primary text-xs">Free Cancellation — up to 7 days before travel</p>
+                                                <p className="text-primary/60 text-xs mt-0.5">Cancel 7+ days before departure for a full refund. Cancellations within 7 days: ₹5,000 advance is non-refundable. No hidden charges.</p>
+                                                <a href="/cancellation-policy" target="_blank" className="text-amber-600 underline text-xs mt-1 inline-block">Full cancellation policy →</a>
+                                            </div>
+                                        </div>
+                                        {/* Low advance */}
+                                        <div className="flex items-start gap-3 px-4 py-3">
+                                            <span className="text-base shrink-0">💳</span>
+                                            <div>
+                                                <p className="font-semibold text-primary text-xs">Only ₹5,000 advance to confirm your booking</p>
+                                                <p className="text-primary/60 text-xs mt-0.5">We don't ask for 30–50% upfront like most agencies. Pay the balance closer to your travel date.</p>
+                                            </div>
+                                        </div>
+                                        {/* Support */}
+                                        <div className="flex items-start gap-3 px-4 py-3">
+                                            <span className="text-base shrink-0">💬</span>
+                                            <div>
+                                                <p className="font-semibold text-primary text-xs">24/7 WhatsApp support</p>
+                                                <p className="text-primary/60 text-xs mt-0.5">Questions before paying?{' '}
+                                                    <a href="https://wa.me/918427831127?text=Hi%2C%20I%20have%20a%20question%20before%20booking" target="_blank" rel="noopener noreferrer" className="text-green-600 underline font-medium">Chat with us on WhatsApp</a>
+                                                    {' '}— typically reply within 5 minutes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
                                 <div className="flex flex-col gap-4 pt-6 pb-28 sm:pb-6">
                                     <label className="flex items-start gap-3 cursor-pointer">
                                         <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-1 w-4 h-4 accent-amber-500" />
                                         <span className="text-xs text-gray-600">
                                             I agree to the <a href="/terms" target="_blank" className="text-amber-600 underline">Terms &amp; Conditions</a> and{' '}
-                                            <a href="/privacy" target="_blank" className="text-amber-600 underline">Privacy Policy</a>.
+                                            <a href="/privacy" target="_blank" className="text-amber-600 underline">Privacy Policy</a>{' '}of Ambe Enterprise (YlooTrips).
                                         </span>
                                     </label>
                                     {/* Desktop button */}
