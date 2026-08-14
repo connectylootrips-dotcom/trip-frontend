@@ -16,6 +16,8 @@ export default function Footer() {
       { name: 'All Destinations', href: '/destinations' },
       { name: 'The Journal', href: '/blogs' },
       { name: 'Group Travel', href: '/group-travel' },
+      { name: 'Corporate Travel', href: '/corporate-travel' },
+      { name: 'Refer & Earn ₹1,000', href: '/refer' },
       { name: 'Visa Guide', href: '/visa' },
       { name: 'Packing Checklist', href: '/packing-checklist' },
       { name: 'Best Time to Travel', href: '/best-time-to-travel' },
@@ -48,6 +50,8 @@ export default function Footer() {
     ],
     company: [
       { name: 'Our Story', href: '/about' },
+      { name: 'Corporate Travel', href: '/corporate-travel' },
+      { name: 'Refer & Earn ₹1,000', href: '/refer' },
       { name: 'Contact Us', href: '/contact' },
       { name: 'Careers', href: '/careers' },
       { name: 'Partnerships', href: '/partnerships' },

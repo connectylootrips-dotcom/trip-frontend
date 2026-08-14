@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
 import { OrganizationJsonLd } from "@/components/JsonLd";
 import LayoutWidgets from "@/components/LayoutWidgets";
+import ReferralCapture from "@/components/ReferralCapture";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -167,6 +168,10 @@ export default function RootLayout({
           <Footer />
           {/* Non-critical widgets lazy-loaded after main content */}
           <LayoutWidgets />
+          {/* Referral code capture — silent, no UI */}
+          <Suspense fallback={null}>
+            <ReferralCapture />
+          </Suspense>
         </Providers>
         <Analytics />
         <SpeedInsights />

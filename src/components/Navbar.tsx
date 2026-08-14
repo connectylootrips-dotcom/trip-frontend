@@ -48,9 +48,11 @@ export default function Navbar() {
         { name: 'International', href: '/destinations/international' },
         { name: 'Daycations ⚡', href: '/daycations' },
         { name: 'Flights', href: '/#flight-search' },
+        { name: 'Corporate', href: '/corporate-travel' },
         { name: 'Events', href: '/events' },
         { name: 'Blogs', href: '/blogs' },
         { name: 'WanderLoot 💸', href: '/cashback' },
+        { name: 'Refer & Earn 🎁', href: '/refer' },
         { name: 'About', href: '/about' },
         { name: 'Contact', href: '/contact' },
       ];
