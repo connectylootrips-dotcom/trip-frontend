@@ -4,7 +4,7 @@ import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
   title: 'Kerala Tour Package 2026 — 5 Nights Starting ₹15,999 | YlooTrips',
-  description: 'Book Kerala tour packages starting ₹15,999. 5 nights / 6 days — Munnar tea gardens, Alleppey houseboat, Kovalam beach, Thekkady wildlife. Flights + houseboat + hotel included.',s Own Country tour',
+  description: 'Book Kerala tour packages starting ₹15,999. 5 nights / 6 days — Munnar tea gardens, Alleppey houseboat, Kovalam beach, Thekkady wildlife. Flights + houseboat + hotel included.',
   openGraph: {
     title: 'Kerala Tour Package 2026 — 5 Nights Starting ₹15,999',
     description: 'All-inclusive Kerala holiday — Munnar tea gardens, Alleppey houseboat, Kovalam beach, Thekkady wildlife. Flights + houseboat + hotel included.',
