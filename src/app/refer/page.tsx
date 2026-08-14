@@ -50,12 +50,6 @@ export default function ReferPage() {
     setTimeout(() => setCopied(null), 2500);
   };
 
-  const copyMessage = async () => {
-    try { await navigator.clipboard.writeText(shareMessage); } catch { /* */ }
-    setCopied('msg');
-    setTimeout(() => setCopied(null), 2500);
-  };
-
   const whatsappShare = () => {
     window.open(`https://wa.me/?text=${encodeURIComponent(shareMessage)}`, '_blank');
   };
@@ -123,24 +117,28 @@ export default function ReferPage() {
 
       {/* ── Inbound referral banner ── */}
       {referredBy && !bonusClaimed && (
-        <div className="mx-5 mb-8 rounded-2xl p-5 text-center max-w-md mx-auto"
-          style={{ background: 'linear-gradient(135deg, rgba(201,169,110,0.15), rgba(226,198,143,0.08))', border: '1px solid rgba(201,169,110,0.3)' }}>
-          <p className="text-xs uppercase tracking-widest mb-2" style={{ color: 'rgba(201,169,110,0.6)' }}>You were referred!</p>
-          <p className="text-white font-semibold mb-1">Code: <strong style={{ color: GOLD }}>{referredBy}</strong></p>
-          <p className="text-white/50 text-sm mb-4">Book any trip and both of you earn ₹1,000 WanderLoot credit.</p>
-          <button onClick={handleClaimBonus}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold text-black text-sm"
-            style={{ background: `linear-gradient(135deg, ${GOLD}, #E2C68F)` }}>
-            <Gift size={14} /> Claim ₹1,000 Welcome Bonus
-          </button>
+        <div className="max-w-md mx-auto px-5 mb-8">
+          <div className="rounded-2xl p-5 text-center"
+            style={{ background: 'linear-gradient(135deg, rgba(201,169,110,0.15), rgba(226,198,143,0.08))', border: '1px solid rgba(201,169,110,0.3)' }}>
+            <p className="text-xs uppercase tracking-widest mb-2" style={{ color: 'rgba(201,169,110,0.6)' }}>You were referred!</p>
+            <p className="text-white font-semibold mb-1">Code: <strong style={{ color: GOLD }}>{referredBy}</strong></p>
+            <p className="text-white/50 text-sm mb-4">Book any trip and both of you earn ₹1,000 WanderLoot credit.</p>
+            <button onClick={handleClaimBonus}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold text-black text-sm"
+              style={{ background: `linear-gradient(135deg, ${GOLD}, #E2C68F)` }}>
+              <Gift size={14} /> Claim ₹1,000 Welcome Bonus
+            </button>
+          </div>
         </div>
       )}
 
       {bonusClaimed && (
-        <div className="mx-5 mb-8 rounded-2xl p-5 text-center max-w-md mx-auto"
-          style={{ background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.2)' }}>
-          <CheckCircle2 size={24} className="text-green-400 mx-auto mb-2" />
-          <p className="text-green-400 font-semibold">₹1,000 added to your WanderLoot wallet!</p>
+        <div className="max-w-md mx-auto px-5 mb-8">
+          <div className="rounded-2xl p-5 text-center"
+            style={{ background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.2)' }}>
+            <CheckCircle2 size={24} className="text-green-400 mx-auto mb-2" />
+            <p className="text-green-400 font-semibold">₹1,000 added to your WanderLoot wallet!</p>
+          </div>
         </div>
       )}
 
