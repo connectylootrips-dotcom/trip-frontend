@@ -4,7 +4,7 @@ import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
   title: 'Europe Tour Package from India 2026 — 10 Nights Starting ₹1,24,999 | YlooTrips',
-  description: 'Book Europe tour packages from India starting ₹1,24,999. Paris, Rome, Barcelona, Amsterdam, Prague — 10 nights / 11 days across Western Europe. Schengen visa, flights, hotels included.',
+  description: 'Book Europe tour packages from India starting ₹1,24,999. Paris, Rome, Barcelona, Amsterdam, Prague — 10 nights / 11 days across Western Europe. Hotels, transfers & Schengen visa support included. Flights not included.',
   openGraph: {
     title: 'Europe Tour Package from India 2026 — 10 Nights Starting ₹1,24,999',
     description: 'Paris, Rome, Barcelona, Amsterdam, Prague — 10 nights covering the best of Western Europe.',
@@ -78,9 +78,10 @@ export default async function EuropePackagePage() {
       { day: 11, title: 'Prague — Last Morning & Return to India', description: 'Final morning in Prague. Wenceslas Square and Narodni Trida (November 17 memorial). Shopping — Bohemian crystal, marionette puppets, and Becherovka are famous Czech exports. Transfer to Václav Havel Airport. Return flight to India via Frankfurt/Amsterdam.', meals: 'Breakfast', hotel: 'Departure', activities: ['Wenceslas Square', 'Prague souvenirs', 'Return flight to India'] },
     ],
 
+    priceNote: 'Land only · Flights not included',
+
     includes: [
-      'Return economy class flights India ↔ Europe (via connecting hub)',
-      'All inter-city travel within Europe (budget flights or trains)',
+      'All inter-city travel within Europe (trains recommended)',
       '10 nights in 3-star hotels (city centre locations)',
       'Daily breakfast throughout',
       'Seine River cruise, Paris',
@@ -91,6 +92,7 @@ export default async function EuropePackagePage() {
     ],
 
     excludes: [
+      'International flights India ↔ Europe (book separately)',
       'Schengen visa fee (EUR 80 / ~₹7,700)',
       'Louvre, Colosseum, Sagrada Família, Anne Frank House entry tickets',
       'Travel insurance with minimum EUR 30,000 cover (Schengen mandatory)',

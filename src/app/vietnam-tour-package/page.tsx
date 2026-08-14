@@ -74,9 +74,9 @@ export default async function VietnamPackagePage() {
       { day: 7, title: 'Ho Chi Minh City — War Museum & Departure', description: 'Morning: War Remnants Museum — one of the most powerful war museums in the world, documenting the American War (Vietnam War). Reunification Palace (where the war ended April 30, 1975). Ben Thanh Market for Vietnamese coffee, pho seasoning, and lacquerware. Saigon Central Post Office (French colonial, designed by Eiffel). Transfer to airport.', meals: 'Breakfast', hotel: 'Departure', activities: ['War Remnants Museum', 'Reunification Palace', 'Ben Thanh Market', 'Return flight to India'] },
     ],
 
+    priceNote: 'Land only · Flights not included',
+
     includes: [
-      'Return economy flights India ↔ Vietnam (with one stop)',
-      'Internal flights: Hanoi → Da Nang, Da Nang → Ho Chi Minh City',
       '6 nights accommodation: Hanoi (1N), Ha Long Bay cruise (1N), Hoi An (2N), HCMC (1N) + 1 bonus',
       'Ha Long Bay 1-night cruise (meals on board)',
       'Daily breakfast throughout',
@@ -87,6 +87,8 @@ export default async function VietnamPackagePage() {
     ],
 
     excludes: [
+      'International flights India ↔ Vietnam (book separately)',
+      'Internal flights Hanoi → Da Nang, Da Nang → Ho Chi Minh City (book separately)',
       'Vietnam e-visa fee (USD 25 / ~₹2,100)',
       'Cu Chi Tunnels entry (USD 12)',
       'My Son Sanctuary entry (USD 15)',

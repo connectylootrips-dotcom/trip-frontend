@@ -73,8 +73,9 @@ export default async function NepalPackagePage() {
       { day: 6, title: 'Chitwan → Kathmandu → Return to India', description: 'Early morning bird walk in the jungle — Chitwan has 544 species of birds. Canoe ride on the Rapti River — gharial crocodiles bask on the banks. Drive to Kathmandu Airport (200 km, 4.5 hours). Return flight to Delhi.', meals: 'Breakfast', hotel: 'Departure', activities: ['Dawn bird walk', 'Rapti River canoe ride', 'Drive to Kathmandu airport', 'Return flight to India'] },
     ],
 
+    priceNote: 'Land only · Flights not included',
+
     includes: [
-      'Return economy flights Delhi ↔ Kathmandu',
       '5 nights accommodation: Kathmandu (2N), Pokhara (2N), Chitwan Jungle Resort (1N)',
       'Daily breakfast + 3 dinners',
       'Nagarkot sunrise drive and viewpoint',
@@ -86,6 +87,7 @@ export default async function NepalPackagePage() {
     ],
 
     excludes: [
+      'Flights Delhi ↔ Kathmandu (book separately)',
       'No Nepal visa needed for Indians (enter with Aadhaar/Voter ID)',
       'Paragliding from Sarangkot (optional — ~₹7,000/person)',
       'Mountain flight (optional — Everest views by air, ~₹18,000)',

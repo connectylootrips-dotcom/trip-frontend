@@ -132,8 +132,9 @@ export default async function KenyaSafariPackagePage() {
       },
     ],
 
+    priceNote: 'Land only · Flights not included',
+
     includes: [
-      'Return economy flights India ↔ Nairobi (with stop)',
       '7 nights accommodation: Nairobi (1N), Masai Mara tented camp (2N), Amboseli lodge (2N), Diani Beach resort (2N)',
       'All meals at safari camps and Amboseli (full board)',
       'Breakfast + dinner at Diani Beach resort',
@@ -147,6 +148,7 @@ export default async function KenyaSafariPackagePage() {
     ],
 
     excludes: [
+      'International flights India ↔ Nairobi (book separately)',
       'Kenya e-visa (USD 50 / ~₹4,200)',
       'Hot air balloon safari (optional, ~₹25,000/person)',
       'Kisite Marine Park snorkelling fees (~₹2,500)',

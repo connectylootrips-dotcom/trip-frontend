@@ -124,8 +124,9 @@ export default async function GeorgiaAzerbaijanPackagePage() {
       },
     ],
 
+    priceNote: 'Land only · Flights not included',
+
     includes: [
-      'Return economy flights India ↔ Tbilisi (with stop)',
       'Tbilisi → Baku flight or transfer',
       '6 nights accommodation: Tbilisi (3N), Baku (3N)',
       'Daily breakfast throughout',
@@ -137,6 +138,7 @@ export default async function GeorgiaAzerbaijanPackagePage() {
     ],
 
     excludes: [
+      'International flights India ↔ Tbilisi (book separately)',
       'Azerbaijan e-visa (approx ₹2,500 for Indians)',
       'Georgia visa-free for Indians (no cost)',
       'Lunch and dinner except where specified',

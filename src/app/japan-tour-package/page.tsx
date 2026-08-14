@@ -132,8 +132,9 @@ export default async function JapanPackagePage() {
       },
     ],
 
+    priceNote: 'Land only · Flights not included',
+
     includes: [
-      'Return economy flights India ↔ Tokyo/Osaka (with one stop)',
       '7 nights accommodation: Tokyo (3N), Kyoto (2N), Osaka (2N)',
       'Daily breakfast throughout',
       'Shinkansen bullet train Tokyo → Kyoto (reserved seats)',
@@ -146,6 +147,7 @@ export default async function JapanPackagePage() {
     ],
 
     excludes: [
+      'International flights India ↔ Tokyo/Osaka (book separately)',
       'Japan tourist visa (₹4,500 approx, required for Indians)',
       'Lunch and dinner except where specified',
       'Entry fees to individual attractions',
@@ -172,7 +174,7 @@ export default async function JapanPackagePage() {
     faqs: [
       { question: 'Do Indians need a visa for Japan?', answer: 'Yes — Indian nationals require a Japan tourist visa. Apply at the Japanese Embassy or consulate in India. Required documents: passport, bank statements (6 months), ITR, employment letter, hotel bookings, and flight tickets. The visa typically takes 5–7 working days. We provide a complete documentation checklist and support throughout.' },
       { question: 'What is the best time to visit Japan?', answer: 'Cherry blossom season (late March–early April) is the most magical and popular. Autumn foliage (mid-October–November) is equally stunning. Spring and autumn are peak seasons. Summer (June–August) is hot and humid with typhoon risk. Winter is cold but beautiful with snow in Kyoto and Mt. Fuji views are often clearest December–February.' },
-      { question: 'Is Japan expensive for Indian travelers?', answer: 'Japan is premium-priced but worth every rupee. Accommodation and transport (especially the Shinkansen) are the main costs. Street food (ramen, sushi conveyor belts, convenience stores) is affordable at ₹300–800 per meal. Our package price includes flights, hotels, and the Japan Rail Pass which covers all your bullet train travel.' },
+      { question: 'Is Japan expensive for Indian travelers?', answer: 'Japan is premium-priced but worth every rupee. Accommodation and transport (especially the Shinkansen) are the main costs. Street food (ramen, sushi conveyor belts, convenience stores) is affordable at ₹300–800 per meal. Our package price includes hotels and the Japan Rail Pass which covers all your bullet train travel. Flights are not included — book separately for the best fares.' },
       { question: 'Can vegetarians and Jains eat well in Japan?', answer: 'Japan can be challenging for strict vegetarians as dashi (fish stock) is used in many dishes. However, Kyoto has the best vegetarian options — shojin ryori (Buddhist temple cuisine, entirely plant-based) is exceptional. We flag dietary requirements to all restaurants and accommodations in advance. Convenience store onigiri, edamame, and vegetable tempura are widely available.' },
     ],
 

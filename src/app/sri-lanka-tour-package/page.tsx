@@ -73,8 +73,9 @@ export default async function SriLankaPackagePage() {
       { day: 6, title: 'Galle — Beach & Return to Colombo', description: 'Morning: Hikkaduwa Beach (10 km from Galle) — good snorkelling directly from the beach with sea turtles in the surf zone. Galle Fort final morning walk. Drive to Colombo Airport (130 km, 2.5 hours). Return flight to India.', meals: 'Breakfast', hotel: 'Departure', activities: ['Hikkaduwa Beach & snorkelling', 'Final Galle Fort walk', 'Drive to Colombo Airport', 'Return flight to India'] },
     ],
 
+    priceNote: 'Land only · Flights not included',
+
     includes: [
-      'Return economy flights India ↔ Colombo',
       '5 nights accommodation (3-star): Kandy (2N), Ella (1N), Sigiriya (1N), Galle (1N)',
       'Daily breakfast throughout + 2 dinners',
       'Kandy → Ella scenic train tickets (2nd class reserved)',
@@ -86,6 +87,7 @@ export default async function SriLankaPackagePage() {
     ],
 
     excludes: [
+      'International flights India ↔ Colombo (book separately)',
       'Sri Lanka ETA visa (currently free, apply at eta.gov.lk)',
       'Yala National Park jeep safari (optional add-on, ₹3,500/person)',
       'Whale watching at Mirissa (optional, seasonal)',
