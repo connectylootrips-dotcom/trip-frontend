@@ -4,7 +4,7 @@ import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
   title: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999 | YlooTrips',
-  description: 'Book Goa tour packages starting ₹9,999 per person (group rate, land only). 3 nights / 4 days — North Goa beaches, South Goa, water sports, Dudhsagar Falls, Old Goa churches. Hotel + transfers included.',
+  description: 'Book Goa tour packages starting ₹9,999 per person (group rate, min 20 persons, land only). 3 nights / 4 days — North Goa beaches, water sports at Baga, Dudhsagar Falls. Hotel + transfers + 2 activities included.',
   openGraph: {
     title: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999',
     description: 'Goa group tour package — North Goa beaches, water sports, Dudhsagar Falls, South Goa, Old Goa churches. Hotel + transfers included. Land cost only.',
@@ -34,7 +34,7 @@ const pkg: PackageData = {
   tagline: 'India\'s Most Popular Beach Destination',
 
   duration: '3 Nights / 4 Days',
-  groupSize: 'Group (Min 6 persons)',
+  groupSize: 'Group (Min 20 persons)',
   difficulty: 'Easy (All Ages)',
   startLocation: 'Delhi / Mumbai → Goa (GOI/GOX)',
 
@@ -46,19 +46,19 @@ const pkg: PackageData = {
   overview: [
     'Goa — India\'s smallest state and its most famous beach destination — is a world unto itself. Portuguese colonial churches, golden beaches stretching for kilometres, coconut-fringed coastlines, spiced seafood, beach shacks serving cold beer at sunset, and a laid-back vibe that\'s impossible to replicate. Whether you\'re after relaxation, adventure, history, or nightlife, Goa delivers it all.',
     'Our 3-night Goa group package covers both the buzzing North and the serene South. Hit the famous North Goa beaches — Baga, Calangute, Anjuna — for water sports and beach shacks. Explore the baroque splendour of Old Goa\'s UNESCO World Heritage churches. Venture to the majestic Dudhsagar Waterfall — one of India\'s tallest at 310 metres. And unwind on the unspoilt white sands of South Goa\'s Palolem and Agonda beaches.',
-    'This is a land-only group package (minimum 6 persons) — flights to Goa are not included. Goa is extremely well-connected with direct flights from Delhi (2.5h), Mumbai (1h), Bangalore (1h), and most major Indian cities. Our package includes hotel, all Goa transfers, and all activities listed.',
+    'This is a land-only group package (minimum 20 persons) — flights to Goa are not included. Goa is extremely well-connected with direct flights from Delhi (2.5h), Mumbai (1h), Bangalore (1h), and most major Indian cities. Our package includes hotel, all Goa transfers, water sports, and Dudhsagar Falls jeep safari.',
     'Book with ₹2,500 advance. Free cancellation up to 10 days before departure.',
   ],
 
   highlights: [
-    'Land package (group rate) — hotel + all Goa transfers included',
+    'Land package (group rate, min 20 persons) — hotel + all Goa transfers included',
     'North Goa beaches — Baga, Calangute, Anjuna, Vagator',
-    'Water sports at Baga — jet ski, parasailing, banana boat, kayaking',
-    'Dudhsagar Waterfall jeep safari (310 m, one of India\'s tallest)',
-    'Old Goa UNESCO heritage — Basilica of Bom Jesus, Se Cathedral',
-    'South Goa — Palolem Beach, Colva Beach, Cola Beach',
-    'Sunset cruise on the Mandovi River with music and dinner',
-    'Spice plantation tour with Goan lunch',
+    'Water sports at Baga — jet ski, parasailing, banana boat, bumper boat (included)',
+    'Dudhsagar Waterfall jeep safari (310 m, one of India\'s tallest) — included',
+    'Optional add-on: Old Goa UNESCO heritage tour',
+    'Optional add-on: Mandovi River sunset cruise with dinner',
+    'Optional add-on: Spice plantation tour with Goan thali lunch',
+    'South Goa beaches — Palolem, Colva, Cola',
     'All transfers in Goa by private AC vehicle',
     '24/7 YlooTrips support throughout',
   ],
@@ -111,17 +111,17 @@ const pkg: PackageData = {
     'All transfers in Goa by private AC vehicle',
     'Water sports at Baga: jet ski, parasailing, banana boat, bumper boat',
     'Dudhsagar Waterfall jeep safari (includes entry + jeep)',
-    'Goa spice plantation tour with Goan thali lunch',
-    'Old Goa heritage tour (Basilica of Bom Jesus, Se Cathedral)',
-    'Mandovi River sunset cruise with dinner and live music',
     'Dedicated YlooTrips coordinator',
     '24/7 WhatsApp emergency support',
   ],
 
   excludes: [
     'Flights to/from Goa (book separately — IndiGo/Air India/SpiceJet)',
+    'Goa spice plantation tour (optional add-on — ₹1,200/person)',
+    'Old Goa heritage tour (optional add-on — ₹800/person)',
+    'Mandovi River sunset cruise with dinner (optional add-on — ₹1,500/person)',
     'Travel insurance (recommended — from ₹400/person)',
-    'Meals other than breakfast, plantation lunch, and cruise dinner',
+    'Meals other than daily breakfast',
     'Scuba diving (optional — approx. ₹3,500/person)',
     'Flyboard at Baga (optional — approx. ₹2,500/person)',
     'Anjuna Flea Market purchases',
@@ -179,7 +179,7 @@ const pkg: PackageData = {
     },
     {
       question: 'How much does a Goa trip cost from Delhi?',
-      answer: 'Our Goa group land package starts at ₹9,999 per person (minimum 6 persons) for 3 nights. This includes 3-star hotel, water sports, Dudhsagar jeep safari, Old Goa tour, spice plantation lunch, and sunset cruise. Flights to Goa are not included — book separately from Delhi/Mumbai/Bangalore. Budget ₹3,000–₹5,000 extra for flights, additional meals, beach shopping, feni, or nightlife.',
+      answer: 'Our Goa group land package starts at ₹9,999 per person (minimum 20 persons) for 3 nights. This includes 3-star hotel, water sports at Baga, and Dudhsagar jeep safari. Old Goa tour, spice plantation, and sunset cruise are optional add-ons. Flights to Goa are not included — book separately from Delhi/Mumbai/Bangalore. Budget ₹3,000–₹5,000 extra for flights, optional activities, meals, beach shopping, or nightlife.',
     },
     {
       question: 'Is Goa suitable for families with children?',
@@ -205,9 +205,9 @@ const pkg: PackageData = {
     { title: 'Bali Honeymoon Package — 6 Nights', href: '/bali-honeymoon-package', priceINR: 52499, image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80' },
   ],
 
-  priceNote: 'Group rate · Land only · Flights not included',
+  priceNote: 'Group rate · Min 20 persons · Land only · Flights not included',
 
-  whatsappMsg: "Hi! I'm interested in the Goa Group Tour Package (3 nights ₹9,999/person, land only). Please share availability and details.",
+  whatsappMsg: "Hi! I'm interested in the Goa Group Tour Package (3 nights ₹9,999/person, land only, min 20 persons). Please share availability and details.",
   bookingHref: '/contact?package=goa-tour-package',
 
   schemaHighlights: ['North Goa beaches and water sports', 'Dudhsagar Waterfall jeep safari', 'Old Goa UNESCO heritage churches', 'Mandovi River sunset cruise', 'South Goa Palolem beach'],
