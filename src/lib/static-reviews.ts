@@ -14,6 +14,19 @@ export interface StaticReview {
 
 export const staticReviews: StaticReview[] = [
   {
+    name: 'Deep Narashi',
+    flag: '🇮🇳',
+    country: 'Mumbai, Maharashtra',
+    rating: 5,
+    trip: 'Singapore Tour Package',
+    date: 'August 2026',
+    platform: 'Google',
+    avatar: '/reviews/deep-narashi-singapore-mbs.jpg',
+    tripPhoto: '/reviews/deep-narashi-singapore-mbs.jpg',
+    photoPosition: 'center 40%',
+    text: 'Fantastic Singapore trip with Ylootrips! Well-planned itinerary covering Gardens by the Bay, Sentosa, and Marina Bay Sands, smooth transfers, comfortable stay, and a responsive, professional team. Stress-free and memorable — highly recommend!',
+  },
+  {
     name: 'Himanshu',
     flag: '🇮🇳',
     country: 'Ambala, Haryana',
