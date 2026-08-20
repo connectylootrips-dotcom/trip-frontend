@@ -1,7 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Copy, Check, Gift, Users, Wallet, ArrowRight } from 'lucide-react';
+
+const BASE_URL = 'https://www.ylootrips.com';
+
+function getOrCreateCode(): string {
+  const saved = localStorage.getItem('ylootrips-my-ref-code');
+  if (saved) return saved;
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let s = 'YL';
+  for (let i = 0; i < 6; i++) s += chars[Math.floor(Math.random() * chars.length)];
+  localStorage.setItem('ylootrips-my-ref-code', s);
+  return s;
+}
 
 const steps = [
   { icon: '🔗', title: 'Share your link', desc: 'Send it to any friend planning a trip' },
@@ -11,10 +23,15 @@ const steps = [
 
 export default function ReferAndEarn() {
   const [copied, setCopied] = useState(false);
+  const [code, setCode] = useState('');
 
-  const referralLink = 'https://ylootrips.com';
+  useEffect(() => {
+    setCode(getOrCreateCode());
+  }, []);
+
+  const referralLink = code ? `${BASE_URL}/?ref=${code}` : BASE_URL;
   const whatsappMessage = encodeURIComponent(
-    "Hey! Found this amazing travel company — YlooTrips. Use my link to get ₹1,000 off your first trip: https://ylootrips.com 🌍"
+    `Hey! Found this amazing travel company — YlooTrips. Use my link to get ₹1,000 off your first trip: ${referralLink} 🌍`
   );
 
   const handleCopy = async () => {
@@ -117,7 +134,7 @@ export default function ReferAndEarn() {
               {/* Link display */}
               <div className="flex items-center gap-3 bg-cream/[0.06] border border-cream/10 rounded-2xl px-4 py-3.5 mb-5">
                 <span className="text-accent text-sm font-mono flex-1 truncate">
-                  ylootrips.com/ref/YOU
+                  ylootrips.com/?ref={code || '...'}
                 </span>
                 <button
                   onClick={handleCopy}

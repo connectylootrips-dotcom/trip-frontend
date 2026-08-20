@@ -465,10 +465,21 @@ export default function HomeClient({ content, destinations }: HomeClientProps) {
   const { currency } = useCurrency();
   const fp = (p: number) => formatPriceWithCurrency(p, currency);
   const [referralCopied, setReferralCopied] = useState(false);
+  const [referralCode, setReferralCode] = useState('');
 
-  const referralLink = 'https://ylootrips.com';
+  useEffect(() => {
+    const saved = localStorage.getItem('ylootrips-my-ref-code');
+    if (saved) { setReferralCode(saved); return; }
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let s = 'YL';
+    for (let i = 0; i < 6; i++) s += chars[Math.floor(Math.random() * chars.length)];
+    localStorage.setItem('ylootrips-my-ref-code', s);
+    setReferralCode(s);
+  }, []);
+
+  const referralLink = referralCode ? `https://www.ylootrips.com/?ref=${referralCode}` : 'https://www.ylootrips.com';
   const whatsappMsg = encodeURIComponent(
-    "Hey! Found this amazing travel company — YlooTrips. Use my link to get ₹1,000 off your first trip: https://ylootrips.com 🌍"
+    `Hey! Found this amazing travel company — YlooTrips. Use my link to get ₹1,000 off your first trip: ${referralLink} 🌍`
   );
   const handleReferralCopy = async () => {
     try { await navigator.clipboard.writeText(referralLink); } catch {
@@ -824,7 +835,7 @@ export default function HomeClient({ content, destinations }: HomeClientProps) {
             <div className="w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col gap-3 lg:min-w-[280px]">
               {/* Copy link */}
               <div className="flex items-center gap-2 bg-white/15 border border-white/25 rounded-xl px-3 py-2.5 flex-1">
-                <span className="text-white text-xs font-mono flex-1 truncate opacity-80">ylootrips.com</span>
+                <span className="text-white text-xs font-mono flex-1 truncate opacity-80">ylootrips.com/?ref={referralCode || '...'}</span>
                 <button
                   onClick={handleReferralCopy}
                   className={`shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
