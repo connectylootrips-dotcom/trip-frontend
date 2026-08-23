@@ -267,8 +267,9 @@ Generate:
         return NextResponse.json({ error: `Unknown task: ${task}` }, { status: 400 });
     }
   } catch (err) {
-    console.error('[vera]', err);
-    return NextResponse.json({ error: 'Vera encountered an error. Please try again.' }, { status: 500 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('[vera]', msg);
+    return NextResponse.json({ error: 'Vera encountered an error. Please try again.', debug: msg }, { status: 500 });
   }
 }
 
