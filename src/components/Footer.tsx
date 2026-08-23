@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ArrowUpRight, Instagram, Facebook, ShieldCheck, Lock, Star, Phone, Mail, MapPin } from 'lucide-react';
 import AdminLoginModal from './AdminLoginModal';
@@ -81,7 +82,7 @@ export default function Footer() {
             {/* Brand column */}
             <div className="lg:col-span-4 space-y-5">
               <Link href="/" className="inline-block">
-                <img src="/logo.png" alt="YlooTrips — India Travel Experts" className="h-12 w-auto object-contain brightness-0 invert" />
+                <Image src="/logo.png" alt="YlooTrips — India Travel Experts" width={180} height={48} className="h-12 w-auto object-contain brightness-0 invert" />
               </Link>
               <p className="text-white/80 text-sm leading-relaxed">
                 India&apos;s trusted travel partner — safe, affordable trips to 50+ destinations. From Kashmir to Bali, trusted by 25,000+ happy travelers.

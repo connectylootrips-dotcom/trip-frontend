@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Menu, X, Sparkles, Ticket, ChevronRight, Heart } from 'lucide-react';
@@ -51,9 +52,12 @@ export default function Header() {
                     <div className="flex justify-between items-center">
                         {/* Logo */}
                         <Link href="/" className="relative z-10 group">
-                            <img
+                            <Image
                                 src="/logo.png"
                                 alt="YlooTrips"
+                                width={160}
+                                height={44}
+                                priority
                                 className={`h-9 md:h-11 w-auto object-contain transition-all duration-500 group-hover:scale-105 ${
                                     hasHero && !isScrolled && !isMobileMenuOpen ? 'brightness-0 invert dark:brightness-100 dark:invert-0' : ''
                                 }`}
@@ -139,7 +143,7 @@ export default function Header() {
                         {/* Top bar — logo + close */}
                         <div className="flex items-center justify-between mb-8">
                             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                                <img src="/logo.png" alt="YlooTrips" className="h-8 w-auto object-contain" />
+                                <Image src="/logo.png" alt="YlooTrips" width={120} height={32} className="h-8 w-auto object-contain" />
                             </Link>
                             <button onClick={() => setIsMobileMenuOpen(false)}
                                 className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors active:scale-90">

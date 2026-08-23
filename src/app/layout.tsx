@@ -29,8 +29,8 @@ const GA_ID = 'G-QE08T7YJFS';
 
 export const metadata: Metadata = {
   title: {
-    default: "YlooTrips — Safe, Budget & Luxury India Tour Packages | Domestic & International Trips",
-    template: "%s | YlooTrips — India Travel Experts"
+    default: "YlooTrips — India Tour Packages | Budget & Luxury Trips",
+    template: "%s | YlooTrips"
   },
   description: "YlooTrips — Book safe, affordable & luxury India tour packages. Budget trips from ₹9,999. Luxury packages with 5★ hotels. Manali, Goa, Kashmir, Kerala, Bali, Dubai, Maldives & more. 4.9★ rated · 25,000+ travelers · MSME certified.",
   openGraph: {
@@ -99,12 +99,6 @@ export const metadata: Metadata = {
   // GEO: help AI engines understand the site content and purpose
   other: {
     'ai-content-declaration': 'human-authored',
-    'revisit-after': '3 days',
-    'rating': 'general',
-    'geo.region': 'IN-DL',
-    'geo.placename': 'New Delhi, India',
-    'geo.position': '28.6139;77.2090',
-    'ICBM': '28.6139, 77.2090',
   },
 };
 

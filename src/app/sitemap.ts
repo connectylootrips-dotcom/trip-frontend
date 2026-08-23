@@ -111,6 +111,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/georgia-azerbaijan-tour-package`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
     { url: `${BASE_URL}/kenya-safari-package`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
 
+    // Business & referral pages
+    { url: `${BASE_URL}/corporate-travel`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
+    { url: `${BASE_URL}/refer`, lastModified: now, changeFrequency: 'monthly', priority: 0.72 },
+    { url: `${BASE_URL}/event-management`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
+    { url: `${BASE_URL}/luxury-international-packages`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
+
     // Feature pages
     { url: `${BASE_URL}/group-travel`, lastModified: now, changeFrequency: 'monthly', priority: 0.88 },
     { url: `${BASE_URL}/travel-insurance`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },

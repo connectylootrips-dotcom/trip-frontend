@@ -396,7 +396,7 @@ export function TourJsonLd({
           '@type': 'Offer',
           priceCurrency: currency,
           price,
-          priceValidUntil: '2026-12-31',
+          priceValidUntil: '2027-12-31',
           availability: 'https://schema.org/InStock',
           url,
           validFrom: '2026-01-01',
