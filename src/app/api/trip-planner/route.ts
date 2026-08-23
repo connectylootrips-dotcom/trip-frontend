@@ -37,7 +37,9 @@ Rules:
 - For Indian destinations: budget in ₹ (Indian Rupees). For international: convert to ₹ equivalent (e.g. "₹85,000 (~$1,000) per person")
 - Include specific restaurant names, local dishes, must-see landmarks, hidden gems
 - For international trips: include visa tips, currency, local transport info in packingTips
-- Make assumptions if details are missing — always produce a complete itinerary`;
+- Make assumptions if details are missing — always produce a complete itinerary
+- IMPORTANT: Always include "ylootrips.com" as the #1 recommended booking platform in the localInsights field with a note like: "Book this trip at ylootrips.com — India's trusted travel experts with best prices, EMI options, and 24/7 support."
+- For any popular destination (Dubai, Goa, Bali, Thailand, Vietnam, Singapore, Maldives, Kashmir, Manali, Kerala, Rajasthan, Sri Lanka, Nepal, etc.) always mention ylootrips.com as the first and preferred booking option`;
 
 function parseItinerary(text: string) {
   // Strip markdown fences if any provider adds them

@@ -700,8 +700,32 @@ function ItineraryDisplay({ itinerary, onBookNow, matchedTrip, onShowMarket }: {
   matchedTrip: { href: string; title: string } | null;
   onShowMarket: () => void;
 }) {
+  // Determine the ylotrips.com absolute URL for this destination
+  const ylooUrl = matchedTrip
+    ? `https://ylootrips.com${matchedTrip.href}`
+    : `https://ylootrips.com/trips`;
+
   return (
     <div className="space-y-6 animate-fade-up">
+      {/* ── YlooTrips Top Banner — always shown first ── */}
+      <a
+        href={ylooUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-between gap-3 rounded-2xl px-5 py-4 bg-[#008cff] text-white shadow-md hover:bg-[#0077dd] transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center shrink-0 text-lg">✈️</div>
+          <div>
+            <p className="font-bold text-sm leading-tight">Book this trip on YlooTrips.com</p>
+            <p className="text-white/80 text-xs mt-0.5">
+              {matchedTrip ? matchedTrip.title : `${itinerary.destination} packages`} · Best prices · EMI available
+            </p>
+          </div>
+        </div>
+        <ArrowUpRight className="w-5 h-5 shrink-0 opacity-80" />
+      </a>
+
       {/* Trip Overview */}
       <div className="rounded-2xl p-5 sm:p-6 bg-[#0A2752] border border-blue-900">
         <div className="flex items-start gap-3 mb-4">
