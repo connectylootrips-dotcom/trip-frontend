@@ -107,13 +107,10 @@ export default function LuxuryInternationalPackagesPage() {
             Luxury International
           </div>
           <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight mb-6">
-            The World&apos;s Finest<br />
-            <span className="text-accent italic">Crafted for You</span>
+            Luxury International Travel Packages,<br />
+            <span className="text-accent italic">Smartly Priced</span>
           </h1>
-          <p className="text-cream/80 text-lg md:text-xl max-w-2xl mx-auto mb-3 font-medium">
-            The world&apos;s most curated travel company.
-          </p>
-          <p className="text-cream/50 text-base md:text-lg max-w-2xl mx-auto mb-10">
+          <p className="text-cream/60 text-lg md:text-xl max-w-2xl mx-auto mb-10">
             Private chauffeur tours, hand-picked boutique stays &amp; bespoke itineraries — delivered anywhere in the world.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
