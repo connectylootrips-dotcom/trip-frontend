@@ -13,35 +13,68 @@ import { SEO_KEYWORDS, VERA_SYSTEM_PROMPT } from '@/lib/vera';
 import Groq from 'groq-sdk';
 
 async function callAI(prompt: string): Promise<string> {
+  // Provider 1: Groq
   if (process.env.GROQ_API_KEY) {
-    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-    const res = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
-      messages: [
-        { role: 'system', content: VERA_SYSTEM_PROMPT },
-        { role: 'user', content: prompt },
-      ],
-      temperature: 0.5,
-      max_tokens: 3000,
-    });
-    return res.choices[0]?.message?.content ?? '';
-  }
-  if (process.env.OPENAI_API_KEY) {
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
+    try {
+      const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+      const res = await groq.chat.completions.create({
+        model: 'llama-3.3-70b-versatile',
         messages: [
           { role: 'system', content: VERA_SYSTEM_PROMPT },
           { role: 'user', content: prompt },
         ],
         temperature: 0.5,
         max_tokens: 3000,
-      }),
-    });
-    const data = await res.json();
-    return data.choices[0]?.message?.content ?? '';
+      });
+      const text = res.choices[0]?.message?.content ?? '';
+      if (text) return text;
+    } catch (err) {
+      console.warn('[seo/optimize] Groq failed:', err instanceof Error ? err.message : err);
+    }
+  }
+  // Provider 2: OpenAI
+  if (process.env.OPENAI_API_KEY) {
+    try {
+      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            { role: 'system', content: VERA_SYSTEM_PROMPT },
+            { role: 'user', content: prompt },
+          ],
+          temperature: 0.5,
+          max_tokens: 3000,
+        }),
+      });
+      const data = await res.json();
+      const text = data.choices?.[0]?.message?.content ?? '';
+      if (text) return text;
+    } catch (err) {
+      console.warn('[seo/optimize] OpenAI failed:', err instanceof Error ? err.message : err);
+    }
+  }
+  // Provider 3: Gemini
+  if (process.env.GEMINI_API_KEY) {
+    try {
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: `${VERA_SYSTEM_PROMPT}\n\n${prompt}` }] }],
+            generationConfig: { temperature: 0.5, maxOutputTokens: 3000 },
+          }),
+        }
+      );
+      const data = await res.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+      if (text) return text;
+    } catch (err) {
+      console.warn('[seo/optimize] Gemini failed:', err instanceof Error ? err.message : err);
+    }
   }
   throw new Error('No AI provider configured');
 }
