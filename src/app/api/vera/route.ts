@@ -276,7 +276,7 @@ Generate:
 export async function GET() {
   return NextResponse.json({
     name: 'Vera — YlooTrips AI Marketing Agent',
-    version: '1.0.0',
+    version: '1.0.1',
     tasks: [
       'campaign_analysis',
       'generate_creative',
@@ -287,5 +287,10 @@ export async function GET() {
       'ctwa_setup',
     ],
     status: 'active',
+    providers: {
+      groq: !!process.env.GROQ_API_KEY,
+      openai: !!process.env.OPENAI_API_KEY,
+      gemini: !!process.env.GEMINI_API_KEY,
+    },
   });
 }
