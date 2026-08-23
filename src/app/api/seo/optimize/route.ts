@@ -25,6 +25,7 @@ async function callAI(prompt: string): Promise<string> {
         ],
         temperature: 0.5,
         max_tokens: 3000,
+        response_format: { type: 'json_object' },
       });
       const text = res.choices[0]?.message?.content ?? '';
       if (text) return text;
