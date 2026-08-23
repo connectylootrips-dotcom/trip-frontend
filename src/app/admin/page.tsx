@@ -9,7 +9,8 @@ import {
     MessageSquare, BookOpen, Settings, LogOut, ChevronRight,
     Save, RefreshCw, Plus, Trash2, Eye, ChevronDown, ChevronUp,
     ShoppingBag, CheckCircle, XCircle, Clock, Mail, User, Calendar, Phone,
-    Megaphone, Star, Activity, Upload, Copy, Link2, X, ExternalLink, Zap, Tag, Gift, CreditCard
+    Megaphone, Star, Activity, Upload, Copy, Link2, X, ExternalLink, Zap, Tag, Gift, CreditCard,
+    Bot, TrendingUp, Search, Lightbulb, Target, Send
 } from 'lucide-react';
 import { api } from '@/lib/api';
 import ImagePreview from '@/components/ImagePreview';
@@ -1068,6 +1069,7 @@ export default function AdminDashboard() {
         { id: 'health', icon: Activity, label: 'Website Health', href: '/admin/health' },
         { id: 'inquiries', icon: Mail, label: 'Inquiries' },
         { id: 'ads', icon: Megaphone, label: 'Ads' },
+        { id: 'vera', icon: Bot, label: 'Vera AI' },
     ];
 
     if (loading) {
@@ -4598,8 +4600,407 @@ export default function AdminDashboard() {
                         </div>
                     )}
 
+                    {/* ── Vera AI Tab ─────────────────────────────────────────── */}
+                    {activeTab === 'vera' && <VeraTab />}
+
                 </div>
             </main>
+        </div>
+    );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Vera AI Dashboard — standalone component
+───────────────────────────────────────────────────────────── */
+function VeraTab() {
+    const [status, setStatus] = useState<any>(null);
+    const [activeSection, setActiveSection] = useState('overview');
+
+    // Lead Qualify
+    const [leadForm, setLeadForm] = useState({ name: '', phone: '', message: '' });
+    const [leadResult, setLeadResult] = useState<any>(null);
+    const [leadLoading, setLeadLoading] = useState(false);
+
+    // Campaign Analysis
+    const [campForm, setCampForm] = useState({ destination: 'Dubai', spend: '', leads: '', conversions: '', cpl: '' });
+    const [campResult, setCampResult] = useState('');
+    const [campLoading, setCampLoading] = useState(false);
+
+    // SEO Optimize
+    const [seoForm, setSeoForm] = useState({ destination: 'Dubai', pageType: 'package page' });
+    const [seoResult, setSeoResult] = useState<any>(null);
+    const [seoLoading, setSeoLoading] = useState(false);
+
+    // Creative Generator
+    const [creativeForm, setCreativeForm] = useState({ destination: 'Dubai', type: 'Facebook', tone: 'exciting and trustworthy' });
+    const [creativeResult, setCreativeResult] = useState('');
+    const [creativeLoading, setCreativeLoading] = useState(false);
+
+    // Weekly Content
+    const [weeklyDest, setWeeklyDest] = useState('Dubai');
+    const [weeklyResult, setWeeklyResult] = useState('');
+    const [weeklyLoading, setWeeklyLoading] = useState(false);
+
+    useEffect(() => {
+        fetch('/api/vera').then(r => r.json()).then(setStatus).catch(() => {});
+    }, []);
+
+    const qualifyLead = async () => {
+        setLeadLoading(true); setLeadResult(null);
+        try {
+            const r = await fetch('/api/leads/qualify', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...leadForm, source: 'admin' }),
+            });
+            setLeadResult(await r.json());
+        } finally { setLeadLoading(false); }
+    };
+
+    const analyseCampaign = async () => {
+        setCampLoading(true); setCampResult('');
+        try {
+            const r = await fetch('/api/vera', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ task: 'campaign_analysis', context: { ...campForm, spend: Number(campForm.spend), leads: Number(campForm.leads), conversions: Number(campForm.conversions), cpl: Number(campForm.cpl) } }),
+            });
+            const d = await r.json();
+            setCampResult(d.result || JSON.stringify(d));
+        } finally { setCampLoading(false); }
+    };
+
+    const optimiseSEO = async () => {
+        setSeoLoading(true); setSeoResult(null);
+        try {
+            const r = await fetch('/api/seo/optimize', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(seoForm),
+            });
+            setSeoResult(await r.json());
+        } finally { setSeoLoading(false); }
+    };
+
+    const generateCreative = async () => {
+        setCreativeLoading(true); setCreativeResult('');
+        try {
+            const r = await fetch('/api/vera', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ task: 'generate_creative', context: creativeForm }),
+            });
+            const d = await r.json();
+            setCreativeResult(d.result || JSON.stringify(d));
+        } finally { setCreativeLoading(false); }
+    };
+
+    const generateWeekly = async () => {
+        setWeeklyLoading(true); setWeeklyResult('');
+        try {
+            const r = await fetch('/api/vera', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ task: 'weekly_content', context: { focusDestination: weeklyDest } }),
+            });
+            const d = await r.json();
+            setWeeklyResult(d.result || JSON.stringify(d));
+        } finally { setWeeklyLoading(false); }
+    };
+
+    const DESTINATIONS = ['Dubai', 'Bali', 'Thailand', 'Kashmir', 'Goa', 'Maldives', 'Vietnam', 'Singapore'];
+
+    const sections = [
+        { id: 'overview', label: 'Overview', icon: Bot },
+        { id: 'leads', label: 'Lead Qualifier', icon: Target },
+        { id: 'campaign', label: 'Campaign Analysis', icon: TrendingUp },
+        { id: 'seo', label: 'SEO Optimizer', icon: Search },
+        { id: 'creative', label: 'Ad Creative', icon: Lightbulb },
+        { id: 'weekly', label: 'Weekly Content', icon: Send },
+    ];
+
+    const tierColor = (tier: string) => tier === 'hot' ? 'bg-red-100 text-red-700' : tier === 'warm' ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700';
+
+    return (
+        <div className="p-6 max-w-5xl mx-auto">
+            {/* Header */}
+            <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center">
+                    <Bot className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                    <h2 className="text-xl font-bold text-primary">Vera AI Marketing Agent</h2>
+                    <p className="text-sm text-primary/50">Your AI-powered marketing & SEO brain</p>
+                </div>
+                {status && (
+                    <div className="ml-auto flex gap-2">
+                        {Object.entries(status.providers || {}).map(([k, v]) => (
+                            <span key={k} className={`text-xs px-2 py-1 rounded-full font-medium ${v ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-400'}`}>
+                                {k} {v ? '✓' : '✗'}
+                            </span>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            {/* Section Nav */}
+            <div className="flex gap-2 mb-6 flex-wrap">
+                {sections.map(s => {
+                    const Icon = s.icon;
+                    return (
+                        <button key={s.id} onClick={() => setActiveSection(s.id)}
+                            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors ${activeSection === s.id ? 'bg-indigo-600 text-white' : 'bg-white text-primary/70 hover:bg-indigo-50'}`}>
+                            <Icon className="w-4 h-4" /> {s.label}
+                        </button>
+                    );
+                })}
+            </div>
+
+            {/* ── Overview ── */}
+            {activeSection === 'overview' && (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {[
+                        { label: 'Lead Qualifier', desc: 'Score & route inbound leads instantly', icon: Target, color: 'bg-red-50 text-red-600' },
+                        { label: 'Campaign Analysis', desc: 'Analyse your Facebook/Instagram CTWA spend', icon: TrendingUp, color: 'bg-blue-50 text-blue-600' },
+                        { label: 'SEO Optimizer', desc: 'AI meta, FAQs, schema for every destination', icon: Search, color: 'bg-green-50 text-green-600' },
+                        { label: 'Ad Creative', desc: 'Generate headlines, copy & audience targeting', icon: Lightbulb, color: 'bg-yellow-50 text-yellow-600' },
+                        { label: 'Weekly Content', desc: 'Instagram, Facebook, GMB & WhatsApp posts', icon: Send, color: 'bg-purple-50 text-purple-600' },
+                        { label: 'CTWA Webhook', desc: 'Auto-qualifies leads from FB/IG ads', icon: Bot, color: 'bg-indigo-50 text-indigo-600' },
+                    ].map(card => {
+                        const Icon = card.icon;
+                        return (
+                            <div key={card.label} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+                                <div className={`w-9 h-9 rounded-xl ${card.color} flex items-center justify-center mb-3`}>
+                                    <Icon className="w-4 h-4" />
+                                </div>
+                                <p className="font-semibold text-sm text-primary">{card.label}</p>
+                                <p className="text-xs text-primary/50 mt-1">{card.desc}</p>
+                            </div>
+                        );
+                    })}
+                    <div className="col-span-2 md:col-span-3 bg-indigo-50 rounded-2xl p-5 border border-indigo-100">
+                        <p className="text-sm font-semibold text-indigo-800 mb-1">Cron Job — Weekly Posts</p>
+                        <p className="text-xs text-indigo-600">Runs every <strong>Monday 9 AM IST</strong> automatically. Posts to Google My Business &amp; sends WhatsApp broadcast to team. Destination rotates weekly across 8 destinations.</p>
+                    </div>
+                </div>
+            )}
+
+            {/* ── Lead Qualifier ── */}
+            {activeSection === 'leads' && (
+                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                    <h3 className="font-semibold text-primary mb-4">Test Lead Qualifier</h3>
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Name</label>
+                            <input className="w-full border rounded-lg px-3 py-2 text-sm" placeholder="Rahul Sharma"
+                                value={leadForm.name} onChange={e => setLeadForm(p => ({ ...p, name: e.target.value }))} />
+                        </div>
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Phone</label>
+                            <input className="w-full border rounded-lg px-3 py-2 text-sm" placeholder="9876543210"
+                                value={leadForm.phone} onChange={e => setLeadForm(p => ({ ...p, phone: e.target.value }))} />
+                        </div>
+                    </div>
+                    <div className="mb-4">
+                        <label className="text-xs font-medium text-primary/60 mb-1 block">Message (from WhatsApp / form)</label>
+                        <textarea className="w-full border rounded-lg px-3 py-2 text-sm" rows={3}
+                            placeholder="I want Dubai package for 2 people in December, budget 80000"
+                            value={leadForm.message} onChange={e => setLeadForm(p => ({ ...p, message: e.target.value }))} />
+                    </div>
+                    <button onClick={qualifyLead} disabled={leadLoading || !leadForm.message}
+                        className="bg-indigo-600 text-white px-5 py-2 rounded-xl text-sm font-medium disabled:opacity-50 flex items-center gap-2">
+                        {leadLoading ? <><RefreshCw className="w-4 h-4 animate-spin" /> Qualifying…</> : <><Target className="w-4 h-4" /> Qualify Lead</>}
+                    </button>
+
+                    {leadResult && (
+                        <div className="mt-5 space-y-3">
+                            <div className="flex items-center gap-3">
+                                <span className={`text-xs font-bold px-3 py-1 rounded-full uppercase ${tierColor(leadResult.tier)}`}>{leadResult.tier}</span>
+                                <span className="text-sm font-semibold">Score: {leadResult.score}/100</span>
+                                <span className="text-sm text-primary/60">{leadResult.destination}</span>
+                            </div>
+                            <div className="bg-gray-50 rounded-xl p-4 text-xs space-y-1">
+                                <p><strong>Intent:</strong> {leadResult.intent}</p>
+                                <p><strong>Budget:</strong> {leadResult.budget}</p>
+                                <p><strong>Travel Date:</strong> {leadResult.travelDate || 'Not specified'}</p>
+                                <p><strong>Action:</strong> {leadResult.suggestedAction}</p>
+                            </div>
+                            <div className="bg-indigo-50 rounded-xl p-4">
+                                <p className="text-xs font-semibold text-indigo-700 mb-1">Auto WhatsApp Reply:</p>
+                                <p className="text-sm text-indigo-900">{leadResult.whatsappReply}</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* ── Campaign Analysis ── */}
+            {activeSection === 'campaign' && (
+                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                    <h3 className="font-semibold text-primary mb-4">Campaign Analysis</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Destination</label>
+                            <select className="w-full border rounded-lg px-3 py-2 text-sm"
+                                value={campForm.destination} onChange={e => setCampForm(p => ({ ...p, destination: e.target.value }))}>
+                                {DESTINATIONS.map(d => <option key={d}>{d}</option>)}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Total Spend (₹)</label>
+                            <input type="number" className="w-full border rounded-lg px-3 py-2 text-sm" placeholder="5000"
+                                value={campForm.spend} onChange={e => setCampForm(p => ({ ...p, spend: e.target.value }))} />
+                        </div>
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Leads</label>
+                            <input type="number" className="w-full border rounded-lg px-3 py-2 text-sm" placeholder="33"
+                                value={campForm.leads} onChange={e => setCampForm(p => ({ ...p, leads: e.target.value }))} />
+                        </div>
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Conversions (bookings)</label>
+                            <input type="number" className="w-full border rounded-lg px-3 py-2 text-sm" placeholder="3"
+                                value={campForm.conversions} onChange={e => setCampForm(p => ({ ...p, conversions: e.target.value }))} />
+                        </div>
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Cost Per Lead (₹)</label>
+                            <input type="number" className="w-full border rounded-lg px-3 py-2 text-sm" placeholder="151"
+                                value={campForm.cpl} onChange={e => setCampForm(p => ({ ...p, cpl: e.target.value }))} />
+                        </div>
+                    </div>
+                    <button onClick={analyseCampaign} disabled={campLoading}
+                        className="bg-indigo-600 text-white px-5 py-2 rounded-xl text-sm font-medium disabled:opacity-50 flex items-center gap-2">
+                        {campLoading ? <><RefreshCw className="w-4 h-4 animate-spin" /> Analysing…</> : <><TrendingUp className="w-4 h-4" /> Analyse Campaign</>}
+                    </button>
+                    {campResult && (
+                        <div className="mt-5 bg-gray-50 rounded-xl p-4">
+                            <pre className="text-xs text-primary/80 whitespace-pre-wrap font-sans">{campResult}</pre>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* ── SEO Optimizer ── */}
+            {activeSection === 'seo' && (
+                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                    <h3 className="font-semibold text-primary mb-4">SEO Optimizer</h3>
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Destination</label>
+                            <select className="w-full border rounded-lg px-3 py-2 text-sm"
+                                value={seoForm.destination} onChange={e => setSeoForm(p => ({ ...p, destination: e.target.value }))}>
+                                {DESTINATIONS.map(d => <option key={d}>{d}</option>)}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Page Type</label>
+                            <select className="w-full border rounded-lg px-3 py-2 text-sm"
+                                value={seoForm.pageType} onChange={e => setSeoForm(p => ({ ...p, pageType: e.target.value }))}>
+                                {['package page', 'honeymoon package', 'family package', 'group tour', 'luxury package'].map(t => <option key={t}>{t}</option>)}
+                            </select>
+                        </div>
+                    </div>
+                    <button onClick={optimiseSEO} disabled={seoLoading}
+                        className="bg-indigo-600 text-white px-5 py-2 rounded-xl text-sm font-medium disabled:opacity-50 flex items-center gap-2">
+                        {seoLoading ? <><RefreshCw className="w-4 h-4 animate-spin" /> Optimising…</> : <><Search className="w-4 h-4" /> Generate SEO</>}
+                    </button>
+
+                    {seoResult?.seo && (
+                        <div className="mt-5 space-y-4">
+                            <div className="bg-green-50 rounded-xl p-4">
+                                <p className="text-xs font-semibold text-green-700 mb-1">Meta Title</p>
+                                <p className="text-sm font-medium text-green-900">{seoResult.seo.metaTitle}</p>
+                                <p className="text-xs font-semibold text-green-700 mt-3 mb-1">Meta Description</p>
+                                <p className="text-sm text-green-900">{seoResult.seo.metaDescription}</p>
+                            </div>
+                            <div className="bg-gray-50 rounded-xl p-4">
+                                <p className="text-xs font-semibold text-primary/60 mb-2">Primary Keywords</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {(seoResult.seo.primaryKeywords || []).map((k: string) => (
+                                        <span key={k} className="bg-white border text-xs px-2 py-1 rounded-full">{k}</span>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="bg-gray-50 rounded-xl p-4">
+                                <p className="text-xs font-semibold text-primary/60 mb-2">FAQs (Schema Ready)</p>
+                                {(seoResult.seo.faqs || []).map((faq: any, i: number) => (
+                                    <div key={i} className="mb-3">
+                                        <p className="text-xs font-semibold text-primary">{faq.q}</p>
+                                        <p className="text-xs text-primary/60 mt-0.5">{faq.a}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="bg-blue-50 rounded-xl p-4">
+                                <p className="text-xs font-semibold text-blue-700 mb-2">AI Search Keywords (ChatGPT/Gemini)</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {(seoResult.seo.aiSearchKeywords || []).map((k: string) => (
+                                        <span key={k} className="bg-white border border-blue-200 text-xs px-2 py-1 rounded-full text-blue-700">{k}</span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* ── Ad Creative ── */}
+            {activeSection === 'creative' && (
+                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                    <h3 className="font-semibold text-primary mb-4">Ad Creative Generator</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Destination</label>
+                            <select className="w-full border rounded-lg px-3 py-2 text-sm"
+                                value={creativeForm.destination} onChange={e => setCreativeForm(p => ({ ...p, destination: e.target.value }))}>
+                                {DESTINATIONS.map(d => <option key={d}>{d}</option>)}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Ad Type</label>
+                            <select className="w-full border rounded-lg px-3 py-2 text-sm"
+                                value={creativeForm.type} onChange={e => setCreativeForm(p => ({ ...p, type: e.target.value }))}>
+                                {['Facebook', 'Instagram', 'carousel ad', 'Reel', 'Story'].map(t => <option key={t}>{t}</option>)}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Tone</label>
+                            <select className="w-full border rounded-lg px-3 py-2 text-sm"
+                                value={creativeForm.tone} onChange={e => setCreativeForm(p => ({ ...p, tone: e.target.value }))}>
+                                {['exciting and trustworthy', 'luxurious', 'budget-friendly', 'family-friendly', 'romantic'].map(t => <option key={t}>{t}</option>)}
+                            </select>
+                        </div>
+                    </div>
+                    <button onClick={generateCreative} disabled={creativeLoading}
+                        className="bg-indigo-600 text-white px-5 py-2 rounded-xl text-sm font-medium disabled:opacity-50 flex items-center gap-2">
+                        {creativeLoading ? <><RefreshCw className="w-4 h-4 animate-spin" /> Generating…</> : <><Lightbulb className="w-4 h-4" /> Generate Creative</>}
+                    </button>
+                    {creativeResult && (
+                        <div className="mt-5 bg-gray-50 rounded-xl p-4">
+                            <pre className="text-sm text-primary/80 whitespace-pre-wrap font-sans">{creativeResult}</pre>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* ── Weekly Content ── */}
+            {activeSection === 'weekly' && (
+                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                    <h3 className="font-semibold text-primary mb-1">Weekly Content Generator</h3>
+                    <p className="text-xs text-primary/50 mb-4">Same content that runs automatically every Monday. Generate on-demand for any destination.</p>
+                    <div className="flex gap-4 items-end mb-4">
+                        <div>
+                            <label className="text-xs font-medium text-primary/60 mb-1 block">Destination</label>
+                            <select className="border rounded-lg px-3 py-2 text-sm"
+                                value={weeklyDest} onChange={e => setWeeklyDest(e.target.value)}>
+                                {DESTINATIONS.map(d => <option key={d}>{d}</option>)}
+                            </select>
+                        </div>
+                        <button onClick={generateWeekly} disabled={weeklyLoading}
+                            className="bg-indigo-600 text-white px-5 py-2 rounded-xl text-sm font-medium disabled:opacity-50 flex items-center gap-2">
+                            {weeklyLoading ? <><RefreshCw className="w-4 h-4 animate-spin" /> Generating…</> : <><Send className="w-4 h-4" /> Generate This Week</>}
+                        </button>
+                    </div>
+                    {weeklyResult && (
+                        <div className="bg-gray-50 rounded-xl p-4">
+                            <pre className="text-sm text-primary/80 whitespace-pre-wrap font-sans">{weeklyResult}</pre>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 }
