@@ -169,13 +169,23 @@ Generate a complete SEO package as JSON:
   try {
     const raw = await callAI(prompt);
 
-    // Parse JSON from AI response
-    const cleaned = raw.replace(/```json\n?/gi, '').replace(/```\n?/gi, '').trim();
+    // Parse JSON from AI response — try multiple extraction strategies
     let seoData: Record<string, unknown> = {};
-    try {
-      seoData = JSON.parse(cleaned);
-    } catch {
-      // Return raw if JSON parse fails
+    const strategies = [
+      // 1. Direct clean (strip markdown fences)
+      () => raw.replace(/```json\n?/gi, '').replace(/```\n?/gi, '').trim(),
+      // 2. Extract first {...} block
+      () => { const m = raw.match(/\{[\s\S]*\}/); return m ? m[0] : ''; },
+      // 3. Extract after first { up to last }
+      () => raw.slice(raw.indexOf('{'), raw.lastIndexOf('}') + 1),
+    ];
+    for (const strategy of strategies) {
+      try {
+        const candidate = strategy();
+        if (candidate) { seoData = JSON.parse(candidate); break; }
+      } catch { /* try next */ }
+    }
+    if (!seoData || Object.keys(seoData).length === 0) {
       return NextResponse.json({ destination, raw, schemas: {} });
     }
 
