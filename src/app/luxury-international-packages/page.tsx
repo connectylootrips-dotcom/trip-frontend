@@ -110,8 +110,11 @@ export default function LuxuryInternationalPackagesPage() {
             The World&apos;s Finest<br />
             <span className="text-accent italic">Crafted for You</span>
           </h1>
-          <p className="text-cream/60 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-            Overwater villas, private guided tours, 5-star restaurants, and butlers on speed dial. Handcrafted luxury international packages from India — because some trips deserve to be extraordinary.
+          <p className="text-cream/80 text-lg md:text-xl max-w-2xl mx-auto mb-3 font-medium">
+            The world&apos;s most curated travel company.
+          </p>
+          <p className="text-cream/50 text-base md:text-lg max-w-2xl mx-auto mb-10">
+            Private chauffeur tours, hand-picked boutique stays &amp; bespoke itineraries across Asia, Africa &amp; Europe.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
