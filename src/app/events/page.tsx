@@ -504,15 +504,25 @@ export default function EventsPage() {
                         <span className="text-xs text-cream/50 flex items-center gap-1"><UtensilsCrossed className="w-3 h-3" /> food &amp; drinks incl.</span>
                       </div>
                     </div>
-                    <a
-                      href={`https://wa.me/918427831127?text=${encodeURIComponent(party.whatsapp)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-100 text-gray-900 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-200 shadow-lg shadow-black/20"
-                    >
-                      <Sparkles className="w-3.5 h-3.5" />
-                      Pre-Book
-                    </a>
+                    {party.id === 'house-party' ? (
+                      <Link
+                        href="/events/house-party"
+                        className="flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-100 text-gray-900 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-200 shadow-lg shadow-black/20"
+                      >
+                        <Sparkles className="w-3.5 h-3.5" />
+                        Book Now
+                      </Link>
+                    ) : (
+                      <a
+                        href={`https://wa.me/918427831127?text=${encodeURIComponent(party.whatsapp)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-100 text-gray-900 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-200 shadow-lg shadow-black/20"
+                      >
+                        <Sparkles className="w-3.5 h-3.5" />
+                        Pre-Book
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
