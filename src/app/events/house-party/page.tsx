@@ -55,10 +55,10 @@ const TICKET_CONFIG: Record<string, {
 const TICKET_ORDER = ['female', 'single', 'couple'];
 
 const REVIEWS = [
-  { name: 'Aanya S.', ig: '@aanya.roams', rating: 5, text: 'Literally the best night of 2024. The vibe was IMMACULATE. Made 6 new travel bestiesss!!', avatar: 'AS', color: 'from-pink-400 to-rose-500' },
-  { name: 'Rohan M.', ig: '@rohan.goes', rating: 5, text: 'Came alone, left with a whole squad planning Bali. The music was different level fr fr 🔥', avatar: 'RM', color: 'from-indigo-400 to-purple-500' },
-  { name: 'Sneha K.', ig: '@sneha.exp', rating: 5, text: 'The pool + party combo was ELITE. No boring crowd — only travel people. Already booked next one ngl', avatar: 'SK', color: 'from-violet-400 to-purple-500' },
-  { name: 'Dev P.', ig: '@dev.wanders', rating: 5, text: 'The BYOB policy was such a vibe — brought my fave whisky, made cocktails with the bar setup. W event 🙌', avatar: 'DP', color: 'from-amber-400 to-orange-500' },
+  { name: 'Jatin Balani', ig: '@jatin___balani__', rating: 5, text: 'Literally the best night of 2024. The vibe was IMMACULATE. Made 6 new travel bestiesss!!', avatar: 'JB', color: 'from-pink-400 to-rose-500' },
+  { name: 'Sagar Wadhwa', ig: '@wadhwa.sagar', rating: 5, text: 'Came alone, left with a whole squad planning Bali. The music was different level fr fr 🔥', avatar: 'SW', color: 'from-indigo-400 to-purple-500' },
+  { name: 'Deepak Bargali', ig: '@pahadi_fitnesss', rating: 5, text: 'The pool + party combo was ELITE. No boring crowd — only travel people. Already booked next one ngl', avatar: 'DB', color: 'from-violet-400 to-purple-500' },
+  { name: 'Manvi Saroya', ig: '@a_tallgirl__', rating: 5, text: 'The BYOB policy was such a vibe — brought my fave whisky, made cocktails with the bar setup. W event 🙌', avatar: 'MS', color: 'from-amber-400 to-orange-500' },
 ];
 
 /* ── Booking Modal ────────────────────────────────────────────── */
