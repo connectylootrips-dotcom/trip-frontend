@@ -76,6 +76,9 @@ export default function AdminDashboard() {
     const [packagePrices, setPackagePrices] = useState<Record<string, unknown>[]>([]);
     const [savingPrice, setSavingPrice] = useState<string | null>(null);
     const [priceEdits, setPriceEdits] = useState<Record<string, { priceINR: string; originalPriceINR: string }>>({});
+    const [housePartyPrices, setHousePartyPrices] = useState<{ id: string; label: string; note: string; price: number; defaultPrice: number; updatedAt: string | null }[]>([]);
+    const [hpPriceEdits, setHpPriceEdits] = useState<Record<string, string>>({});
+    const [savingHpPrice, setSavingHpPrice] = useState<string | null>(null);
     const [uploadingImage, setUploadingImage] = useState(false);
     const [uploadFile, setUploadFile] = useState<File | null>(null);
     const [uploadFolder, setUploadFolder] = useState('admin');
@@ -285,6 +288,14 @@ export default function AdminDashboard() {
                         };
                     });
                     setPriceEdits(edits);
+                    // Also load house party prices
+                    const hpRes = await fetch('/api/admin/house-party-prices');
+                    const hpJson = await hpRes.json();
+                    const hpPrices = Array.isArray(hpJson.data) ? hpJson.data : [];
+                    setHousePartyPrices(hpPrices);
+                    const hpEdits: Record<string, string> = {};
+                    hpPrices.forEach((p: { id: string; price: number }) => { hpEdits[p.id] = String(p.price); });
+                    setHpPriceEdits(hpEdits);
                     break;
                 }
             }
@@ -3956,6 +3967,85 @@ export default function AdminDashboard() {
                                         <p>Loading package prices...</p>
                                     </div>
                                 )}
+                            </div>
+
+                            {/* ── House Party Ticket Prices ── */}
+                            <div className="mt-10">
+                                <div className="mb-4">
+                                    <h2 className="text-xl font-medium text-primary flex items-center gap-2">
+                                        <span className="text-lg">🏠</span> House Party Ticket Prices
+                                    </h2>
+                                    <p className="text-sm text-primary/50 mt-1">
+                                        Update ticket prices for <a href="/events/house-party" target="_blank" className="text-amber-600 hover:underline">ylootrips.com/events/house-party</a>. Changes go live immediately.
+                                    </p>
+                                </div>
+                                <div className="grid gap-4">
+                                    {housePartyPrices.map(ticket => {
+                                        const currentEdit = hpPriceEdits[ticket.id] ?? String(ticket.price);
+                                        const BADGE_COLOR: Record<string, string> = {
+                                            female: 'bg-pink-100 text-pink-700',
+                                            single: 'bg-indigo-100 text-indigo-700',
+                                            couple: 'bg-amber-100 text-amber-700',
+                                        };
+                                        return (
+                                            <div key={ticket.id} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                                                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                                                    <div className="flex-1">
+                                                        <div className="flex items-center gap-2 mb-1">
+                                                            <span className={`text-xs font-bold px-2 py-0.5 rounded-full capitalize ${BADGE_COLOR[ticket.id] || 'bg-gray-100 text-gray-600'}`}>
+                                                                {ticket.label}
+                                                            </span>
+                                                            <span className="text-xs text-gray-400">{ticket.note}</span>
+                                                        </div>
+                                                        <p className="text-xs text-gray-400 mt-0.5">Default: ₹{ticket.defaultPrice.toLocaleString('en-IN')}</p>
+                                                    </div>
+                                                    <div className="flex items-end gap-3">
+                                                        <div>
+                                                            <label className="text-xs text-gray-500 font-medium block mb-1">Ticket Price (₹)</label>
+                                                            <input
+                                                                type="number"
+                                                                value={currentEdit}
+                                                                onChange={e => setHpPriceEdits(prev => ({ ...prev, [ticket.id]: e.target.value }))}
+                                                                className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-32 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                                                            />
+                                                        </div>
+                                                        <button
+                                                            disabled={savingHpPrice === ticket.id}
+                                                            onClick={async () => {
+                                                                setSavingHpPrice(ticket.id);
+                                                                try {
+                                                                    const res = await fetch('/api/admin/house-party-prices', {
+                                                                        method: 'PUT',
+                                                                        headers: { 'Content-Type': 'application/json', 'x-admin-token': 'admin' },
+                                                                        body: JSON.stringify({ id: ticket.id, price: Number(currentEdit) }),
+                                                                    });
+                                                                    if (res.ok) {
+                                                                        setMessage({ type: 'success', text: `${ticket.label} ticket price updated to ₹${Number(currentEdit).toLocaleString('en-IN')}` });
+                                                                        setHousePartyPrices(prev => prev.map(t => t.id === ticket.id ? { ...t, price: Number(currentEdit), updatedAt: new Date().toISOString() } : t));
+                                                                    } else {
+                                                                        setMessage({ type: 'error', text: 'Failed to update price' });
+                                                                    }
+                                                                } catch {
+                                                                    setMessage({ type: 'error', text: 'Network error' });
+                                                                }
+                                                                setSavingHpPrice(null);
+                                                            }}
+                                                            className="px-4 py-2 bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-white text-sm font-semibold rounded-lg transition-colors flex items-center gap-2 whitespace-nowrap"
+                                                        >
+                                                            {savingHpPrice === ticket.id ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+                                                            Save
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                {ticket.updatedAt && (
+                                                    <p className="text-xs text-gray-400 mt-3 pt-3 border-t border-gray-100">
+                                                        Last updated: {new Date(ticket.updatedAt).toLocaleString('en-IN')}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </div>
                     )}

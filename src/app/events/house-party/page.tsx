@@ -1,52 +1,56 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
   MapPin, Calendar, Clock, Users, Star, Instagram,
   CheckCircle, X, Loader2, ChevronLeft, Sparkles,
-  Music, Camera, UtensilsCrossed, Gift, Shield, Zap
+  Music, Camera, UtensilsCrossed, Gift, Shield, Zap,
+  Smartphone
 } from 'lucide-react';
 import Link from 'next/link';
 
-/* ── Ticket Tiers ─────────────────────────────────────────────── */
-const TICKETS = [
-  {
-    id: 'female',
-    label: 'Female',
-    price: 499,
+/* ── Types ────────────────────────────────────────────────────── */
+interface TicketTier {
+  id: string;
+  label: string;
+  note: string;
+  price: number;
+  defaultPrice: number;
+  updatedAt: string | null;
+}
+
+/* ── Static ticket UI config ─────────────────────────────────── */
+const TICKET_CONFIG: Record<string, {
+  badge: string; badgeColor: string; highlight: boolean;
+  perks: string[]; borderCls: string;
+}> = {
+  female: {
     badge: 'Best Deal',
     badgeColor: 'bg-pink-500',
-    color: 'border-pink-400 bg-pink-50',
     highlight: false,
-    note: 'Limited time offer',
-    perks: ['Entry for 1 female', 'Welcome drink', 'Goodie bag', 'Photo booth access'],
+    borderCls: 'border-white/10 bg-white/5 hover:border-white/20',
+    perks: ['Entry for 1 female', 'Welcome drink', 'Craft cocktails & mocktails'],
   },
-  {
-    id: 'single',
-    label: 'Single',
-    price: 999,
+  single: {
     badge: 'Early Bird',
     badgeColor: 'bg-indigo-500',
-    color: 'border-indigo-400 bg-indigo-50',
     highlight: true,
-    note: 'Early bird offer',
-    perks: ['Entry for 1 person', 'Welcome drink', 'Goodie bag', 'Photo booth access', 'Travel buddy mixer'],
+    borderCls: 'border-indigo-500 bg-indigo-950/60 shadow-lg shadow-indigo-900/40',
+    perks: ['Entry for 1 person', 'Welcome drink', 'Craft cocktails & mocktails', 'Travel buddy mixer'],
   },
-  {
-    id: 'couple',
-    label: 'Couple / Friends',
-    price: 1499,
+  couple: {
     badge: '2 People',
     badgeColor: 'bg-amber-500',
-    color: 'border-amber-400 bg-amber-50',
     highlight: false,
-    note: 'For 2 people',
-    perks: ['Entry for 2 people', '2 Welcome drinks', '2 Goodie bags', 'Photo booth access', 'Priority seating'],
+    borderCls: 'border-white/10 bg-white/5 hover:border-white/20',
+    perks: ['Entry for 2 people', '2 Welcome drinks', 'Craft cocktails & mocktails', 'Priority seating'],
   },
-];
+};
 
-/* ── Gallery Photos ───────────────────────────────────────────── */
+const TICKET_ORDER = ['female', 'single', 'couple'];
+
+/* ── Gallery ─────────────────────────────────────────────────── */
 const GALLERY = [
   { src: 'https://images.unsplash.com/photo-1574270981993-49ccc2e7f63e?w=600&q=80', label: 'House Party Vibes' },
   { src: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80', label: 'Pool Party Fun' },
@@ -58,90 +62,46 @@ const GALLERY = [
   { src: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80', label: 'Party Crowd' },
 ];
 
-/* ── Reviews ──────────────────────────────────────────────────── */
+/* ── Reviews ─────────────────────────────────────────────────── */
 const REVIEWS = [
-  {
-    name: 'Priya Sharma',
-    ig: '@priya.travels',
-    rating: 5,
-    text: 'Best house party I have ever attended! The vibe was electric, food was amazing, and I made so many new travel friends. Totally worth it!',
-    tag: 'House Party',
-    avatar: 'PS',
-    avatarColor: 'bg-pink-200 text-pink-700',
-  },
-  {
-    name: 'Arjun Mehta',
-    ig: '@arjun.wanderer',
-    rating: 5,
-    text: 'Ylootrips knows how to throw a party. The DJ set was fire, cocktails were top-notch, and the instagram-worthy setup was absolutely stunning.',
-    tag: 'Pool Party',
-    avatar: 'AM',
-    avatarColor: 'bg-blue-200 text-blue-700',
-  },
-  {
-    name: 'Sneha Kapoor',
-    ig: '@sneha.adventures',
-    rating: 5,
-    text: 'Came alone, left with 10 new friends planning our next trip together! The travel mixer concept is genius. Already booked the next one.',
-    tag: 'Singles Night',
-    avatar: 'SK',
-    avatarColor: 'bg-purple-200 text-purple-700',
-  },
-  {
-    name: 'Rahul Verma',
-    ig: '@rahul.onthego',
-    rating: 5,
-    text: 'Pool party + house party combo was incredible. Limited seats meant it was never crowded. Chef-made finger food was absolutely delicious.',
-    tag: 'Pool Party',
-    avatar: 'RV',
-    avatarColor: 'bg-green-200 text-green-700',
-  },
+  { name: 'Priya Sharma', ig: '@priya.travels', rating: 5, text: 'Best house party I have ever attended! The vibe was electric, food was amazing, and I made so many new travel friends. Totally worth it!', tag: 'House Party', avatar: 'PS', avatarColor: 'bg-pink-200 text-pink-700' },
+  { name: 'Arjun Mehta', ig: '@arjun.wanderer', rating: 5, text: 'Ylootrips knows how to throw a party. The DJ set was fire, cocktails were top-notch, and the instagram-worthy setup was absolutely stunning.', tag: 'Pool Party', avatar: 'AM', avatarColor: 'bg-blue-200 text-blue-700' },
+  { name: 'Sneha Kapoor', ig: '@sneha.adventures', rating: 5, text: 'Came alone, left with 10 new friends planning our next trip together! The travel mixer concept is genius. Already booked the next one.', tag: 'Singles Night', avatar: 'SK', avatarColor: 'bg-purple-200 text-purple-700' },
+  { name: 'Rahul Verma', ig: '@rahul.onthego', rating: 5, text: 'Pool party + house party combo was incredible. Limited seats meant it was never crowded. Chef-made finger food was absolutely delicious.', tag: 'Pool Party', avatar: 'RV', avatarColor: 'bg-green-200 text-green-700' },
 ];
 
-/* ── Perks ────────────────────────────────────────────────────── */
+/* ── Perks ───────────────────────────────────────────────────── */
 const EVENT_PERKS = [
   { icon: Music, label: 'DJ + Curated Playlist', desc: 'Live DJ set all night long' },
   { icon: UtensilsCrossed, label: 'Chef-made Food', desc: 'Finger food & desserts included' },
-  { icon: Camera, label: 'Instagram-worthy Setup', desc: 'Photo booth & aesthetic decor' },
-  { icon: Gift, label: 'Goodie Bag on Entry', desc: 'Surprise goodies for all guests' },
+  { icon: Camera, label: 'Instagram-worthy Setup', desc: 'Aesthetic decor & party lighting' },
   { icon: Users, label: 'Travel Mixer', desc: 'Meet fellow travellers' },
   { icon: Sparkles, label: 'Craft Cocktails', desc: 'Artisan cocktails & mocktails' },
+  { icon: Zap, label: 'Surprise DJ Set', desc: 'Curated music all night' },
 ];
 
-/* ── Booking Modal ────────────────────────────────────────────── */
-function BookingModal({
-  ticket,
-  onClose,
-}: {
-  ticket: typeof TICKETS[0];
-  onClose: () => void;
-}) {
-  const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    instagram: '',
-    qty: 1,
-  });
+/* ── Booking Modal — UPI ONLY ─────────────────────────────────── */
+function BookingModal({ ticket, onClose }: { ticket: TicketTier; onClose: () => void }) {
+  const cfg = TICKET_CONFIG[ticket.id];
+  const [form, setForm] = useState({ name: '', phone: '', email: '', instagram: '', qty: 1 });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const totalAmount = ticket.price * (ticket.id === 'couple' ? 1 : form.qty);
-  const guests = ticket.id === 'couple' ? 2 * form.qty : form.qty;
+  const guests = ticket.id === 'couple' ? form.qty * 2 : form.qty;
+  const totalAmount = ticket.price * form.qty;
 
   const handlePay = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
     const phone = form.phone.replace(/\D/g, '');
-    if (phone.length !== 10) { setError('Enter a valid 10-digit phone number'); return; }
+    if (phone.length !== 10) { setError('Enter a valid 10-digit WhatsApp number'); return; }
     if (!form.email.includes('@')) { setError('Enter a valid email address'); return; }
 
     setLoading(true);
     try {
-      const bookingRef = `HP-${Date.now()}-${Math.random().toString(36).substring(2, 5).toUpperCase()}`;
+      const bookingRef = `HP-${ticket.id.toUpperCase()}-${Date.now()}-${Math.random().toString(36).substring(2, 5).toUpperCase()}`;
 
-      // Store instagram + guest info in udf fields via Easebuzz
       const res = await fetch('/api/payment/initiate-partial', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -152,24 +112,24 @@ function BookingModal({
           customerName: form.name,
           customerEmail: form.email,
           customerPhone: form.phone,
-          tripTitle: `House Party Ticket — ${ticket.label} x${ticket.id === 'couple' ? form.qty * 2 : form.qty} (${form.instagram || 'no-ig'})`,
-          paymentMethod: 'upi',
+          // Instagram ID stored in product info so it shows in Easebuzz dashboard
+          tripTitle: `House Party — ${ticket.label} x${guests}${form.instagram ? ` (IG:${form.instagram})` : ''}`,
+          paymentMethod: 'upi',   // ← UPI only
         }),
       });
 
       const data = await res.json();
-      if (!res.ok) { setError(data.error || 'Payment initiation failed'); return; }
+      if (!res.ok) { setError(data.error || 'Payment initiation failed. Try WhatsApp.'); return; }
 
-      // Redirect to Easebuzz
       if (data.redirectUrl) {
         window.location.href = data.redirectUrl;
       } else if (data.html) {
         document.open(); document.write(data.html); document.close();
       } else {
-        setError('Could not initiate payment. Please try WhatsApp.');
+        setError('Could not start payment. Please use WhatsApp to book.');
       }
     } catch {
-      setError('Network error. Please try again.');
+      setError('Network error. Please try again or use WhatsApp.');
     } finally {
       setLoading(false);
     }
@@ -177,117 +137,129 @@ function BookingModal({
 
   return (
     <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center">
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl flex flex-col"
-        style={{ maxHeight: 'min(96dvh, 96vh)', overflow: 'hidden' }}>
-
+      <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" onClick={onClose} />
+      <div
+        className="relative w-full sm:max-w-md bg-[#0f0f1e] border border-white/10 rounded-t-3xl sm:rounded-2xl shadow-2xl flex flex-col"
+        style={{ maxHeight: 'min(96dvh, 96vh)', overflow: 'hidden' }}
+      >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 shrink-0">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
           <div>
-            <h3 className="font-bold text-gray-900 text-base">Book Your Ticket</h3>
-            <p className="text-xs text-gray-500 mt-0.5">
-              {ticket.label} — <span className="font-semibold text-gray-700">&#8377;{ticket.price.toLocaleString('en-IN')}</span>{ticket.id !== 'couple' ? ' per person' : ' for 2'}
+            <h3 className="font-bold text-white text-base">Book Your Ticket</h3>
+            <p className="text-xs text-white/50 mt-0.5">
+              {ticket.label} ·{' '}
+              <span className="font-semibold text-white">&#8377;{ticket.price.toLocaleString('en-IN')}</span>
+              {ticket.id === 'couple' ? ' for 2' : ' / person'}
             </p>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-full hover:bg-gray-100 text-gray-500"><X size={18} /></button>
+          <button onClick={onClose} className="p-1.5 rounded-full hover:bg-white/10 text-white/60"><X size={18} /></button>
         </div>
 
-        {/* Form */}
+        {/* Body */}
         <div className="overflow-y-auto flex-1 overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
           <form onSubmit={handlePay} className="p-5 space-y-4 pb-8">
 
             {/* Qty */}
-            {ticket.id !== 'couple' && (
-              <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">Number of Tickets</label>
-                <div className="flex items-center gap-3">
-                  <button type="button" onClick={() => setForm(f => ({ ...f, qty: Math.max(1, f.qty - 1) }))}
-                    className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center font-bold text-gray-700 hover:bg-gray-50">−</button>
-                  <span className="font-bold text-lg text-gray-900 w-6 text-center">{form.qty}</span>
-                  <button type="button" onClick={() => setForm(f => ({ ...f, qty: Math.min(10, f.qty + 1) }))}
-                    className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center font-bold text-gray-700 hover:bg-gray-50">+</button>
-                  <span className="text-sm text-gray-500 ml-1">= {guests} {guests === 1 ? 'guest' : 'guests'}</span>
-                </div>
+            <div>
+              <label className="block text-xs font-semibold text-white/60 mb-2">
+                {ticket.id === 'couple' ? 'Number of Pairs' : 'Number of Tickets'}
+              </label>
+              <div className="flex items-center gap-3">
+                <button type="button" onClick={() => setForm(f => ({ ...f, qty: Math.max(1, f.qty - 1) }))}
+                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center font-bold text-white hover:bg-white/10">−</button>
+                <span className="font-bold text-lg text-white w-6 text-center">{form.qty}</span>
+                <button type="button" onClick={() => setForm(f => ({ ...f, qty: Math.min(10, f.qty + 1) }))}
+                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center font-bold text-white hover:bg-white/10">+</button>
+                <span className="text-sm text-white/40 ml-1">= {guests} {guests === 1 ? 'guest' : 'guests'}</span>
               </div>
-            )}
+            </div>
 
             {/* Name */}
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Full Name *</label>
+              <label className="block text-xs font-semibold text-white/60 mb-1">Full Name *</label>
               <input required type="text" placeholder="Your name" maxLength={80}
                 value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                className="w-full px-3 py-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-indigo-400 placeholder:text-gray-400" />
+                className="w-full px-3 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white outline-none focus:border-indigo-400 placeholder:text-white/30" />
             </div>
 
             {/* Phone */}
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">WhatsApp Number *</label>
+              <label className="block text-xs font-semibold text-white/60 mb-1">WhatsApp Number *</label>
               <div className="flex">
-                <span className="px-3 py-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-xl text-sm text-gray-500">+91</span>
+                <span className="px-3 py-3 bg-white/5 border border-r-0 border-white/10 rounded-l-xl text-sm text-white/50">+91</span>
                 <input required type="tel" placeholder="10-digit number" maxLength={10}
                   value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value.replace(/\D/g, '') }))}
-                  className="flex-1 px-3 py-3 border border-gray-200 rounded-r-xl text-sm outline-none focus:border-indigo-400 placeholder:text-gray-400" />
+                  className="flex-1 px-3 py-3 bg-white/5 border border-white/10 rounded-r-xl text-sm text-white outline-none focus:border-indigo-400 placeholder:text-white/30" />
               </div>
             </div>
 
             {/* Email */}
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Email *</label>
+              <label className="block text-xs font-semibold text-white/60 mb-1">Email *</label>
               <input required type="email" placeholder="your@email.com"
                 value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                className="w-full px-3 py-3 border border-gray-200 rounded-xl text-sm outline-none focus:border-indigo-400 placeholder:text-gray-400" />
+                className="w-full px-3 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white outline-none focus:border-indigo-400 placeholder:text-white/30" />
             </div>
 
             {/* Instagram */}
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">
-                Instagram ID <span className="text-gray-400 font-normal">(optional but recommended)</span>
+              <label className="block text-xs font-semibold text-white/60 mb-1">
+                Instagram ID <span className="text-white/30 font-normal">(optional)</span>
               </label>
               <div className="flex">
-                <span className="px-3 py-3 bg-gray-50 border border-r-0 border-gray-200 rounded-l-xl text-sm text-gray-500">
-                  <Instagram size={15} className="text-pink-500" />
+                <span className="px-3 py-3 bg-white/5 border border-r-0 border-white/10 rounded-l-xl flex items-center">
+                  <Instagram size={15} className="text-pink-400" />
                 </span>
                 <input type="text" placeholder="@yourhandle"
                   value={form.instagram} onChange={e => setForm(f => ({ ...f, instagram: e.target.value }))}
-                  className="flex-1 px-3 py-3 border border-gray-200 rounded-r-xl text-sm outline-none focus:border-pink-400 placeholder:text-gray-400" />
+                  className="flex-1 px-3 py-3 bg-white/5 border border-white/10 rounded-r-xl text-sm text-white outline-none focus:border-pink-400 placeholder:text-white/30" />
               </div>
-              <p className="text-xs text-gray-400 mt-1">We tag guests in party photos after the event</p>
+              <p className="text-xs text-white/30 mt-1">We tag you in party photos after the event</p>
+            </div>
+
+            {/* UPI Badge */}
+            <div className="flex items-center gap-2 bg-indigo-950/60 border border-indigo-500/30 rounded-xl px-4 py-3">
+              <Smartphone size={16} className="text-indigo-400 shrink-0" />
+              <div>
+                <p className="text-xs font-semibold text-indigo-300">Payment via UPI</p>
+                <p className="text-xs text-white/40 mt-0.5">Google Pay · PhonePe · Paytm · BHIM · Any UPI app</p>
+              </div>
             </div>
 
             {/* Summary */}
-            <div className="bg-gray-50 rounded-xl p-4 space-y-1">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">{ticket.label} ticket × {ticket.id === 'couple' ? form.qty * 2 : form.qty}</span>
-                <span className="font-semibold">&#8377;{totalAmount.toLocaleString('en-IN')}</span>
+            <div className="bg-white/5 rounded-xl p-4 space-y-1.5 border border-white/10">
+              <div className="flex justify-between text-sm text-white/70">
+                <span>{ticket.label} × {form.qty} {ticket.id === 'couple' ? '(pairs)' : ''}</span>
+                <span className="font-semibold text-white">&#8377;{totalAmount.toLocaleString('en-IN')}</span>
               </div>
-              <div className="flex justify-between text-xs text-gray-400">
-                <span>Food & drinks included</span>
-                <span className="text-green-600 font-medium">Incl.</span>
+              <div className="flex justify-between text-xs text-white/40">
+                <span>Food, drinks & goodie bag</span>
+                <span className="text-green-400">Included</span>
               </div>
-              <div className="border-t border-gray-200 mt-2 pt-2 flex justify-between font-bold text-gray-900">
-                <span>Total payable</span>
+              <div className="border-t border-white/10 pt-2 flex justify-between font-bold text-white">
+                <span>Total</span>
                 <span>&#8377;{totalAmount.toLocaleString('en-IN')}</span>
               </div>
             </div>
 
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">{error}</div>
+              <div className="bg-red-950/60 border border-red-500/30 rounded-xl px-4 py-3 text-sm text-red-300">{error}</div>
             )}
 
             <button type="submit" disabled={loading}
-              className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-colors">
-              {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Processing…</> : <>
-                <Shield className="w-4 h-4" /> Pay &#8377;{totalAmount.toLocaleString('en-IN')} Securely
-              </>}
+              className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-colors">
+              {loading
+                ? <><Loader2 className="w-4 h-4 animate-spin" /> Opening UPI payment…</>
+                : <><Shield className="w-4 h-4" /> Pay &#8377;{totalAmount.toLocaleString('en-IN')} via UPI</>}
             </button>
 
-            <div className="flex items-center justify-center gap-4 text-xs text-gray-400">
+            <div className="flex items-center justify-center gap-4 text-xs text-white/30">
               <span className="flex items-center gap-1"><CheckCircle size={12} className="text-green-500" /> Easebuzz secured</span>
-              <span className="flex items-center gap-1"><CheckCircle size={12} className="text-green-500" /> UPI / Card / NetBanking</span>
+              <span className="flex items-center gap-1"><CheckCircle size={12} className="text-green-500" /> UPI only</span>
             </div>
 
-            <p className="text-xs text-center text-gray-400">
-              Venue shared on WhatsApp after payment · 48-hr cancellation policy
+            <p className="text-xs text-center text-white/30">
+              Venue disclosed on WhatsApp after payment · 48-hr cancellation policy
             </p>
           </form>
         </div>
@@ -298,27 +270,37 @@ function BookingModal({
 
 /* ── Main Page ────────────────────────────────────────────────── */
 export default function HousePartyPage() {
-  const [selectedTicket, setSelectedTicket] = useState<typeof TICKETS[0] | null>(null);
+  const [tickets, setTickets] = useState<TicketTier[]>([]);
+  const [loadingPrices, setLoadingPrices] = useState(true);
+  const [selectedTicket, setSelectedTicket] = useState<TicketTier | null>(null);
+
+  useEffect(() => {
+    fetch('/api/admin/house-party-prices')
+      .then(r => r.json())
+      .then(d => { if (d.data) setTickets(d.data); })
+      .catch(() => {})
+      .finally(() => setLoadingPrices(false));
+  }, []);
+
+  const orderedTickets = TICKET_ORDER.map(id => tickets.find(t => t.id === id)).filter(Boolean) as TicketTier[];
 
   return (
     <div className="min-h-screen bg-[#0a0a14] text-white">
 
-      {/* Back nav */}
+      {/* Back */}
       <div className="absolute top-4 left-4 z-10">
         <Link href="/events" className="flex items-center gap-1.5 text-white/70 hover:text-white text-sm bg-white/10 backdrop-blur px-3 py-1.5 rounded-full transition-colors">
           <ChevronLeft size={16} /> Events
         </Link>
       </div>
 
-      {/* ── Hero ──────────────────────────────────────────────── */}
+      {/* ── Hero ── */}
       <div className="relative h-[85vh] min-h-[600px] flex items-end">
         <Image
           src="https://images.unsplash.com/photo-1574270981993-49ccc2e7f63e?w=1400&q=85"
-          alt="House Party Vibes"
-          fill className="object-cover opacity-50"
-          priority
+          alt="House Party Vibes — YlooTrips"
+          fill className="object-cover opacity-50" priority
         />
-        {/* gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-[#0a0a14]/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a14]/60 to-transparent" />
 
@@ -345,70 +327,78 @@ export default function HousePartyPage() {
         </div>
       </div>
 
-      {/* ── Ticket Section ─────────────────────────────────────── */}
+      {/* ── Tickets ── */}
       <div className="bg-[#0a0a14] px-5 py-16 max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <p className="text-indigo-400 text-xs font-bold tracking-widest uppercase mb-2">Entry Charges</p>
           <h2 className="text-3xl sm:text-4xl font-black">Choose Your Ticket</h2>
-          <p className="text-white/50 mt-2">All tickets include food, drinks & goodie bag</p>
+          <p className="text-white/40 mt-2 text-sm">All tickets include food, drinks & goodie bag · Pay via UPI</p>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-5">
-          {TICKETS.map(ticket => (
-            <div key={ticket.id}
-              className={`relative rounded-2xl p-6 border-2 transition-all cursor-pointer ${
-                ticket.highlight
-                  ? 'border-indigo-500 bg-indigo-950/60 shadow-lg shadow-indigo-900/40'
-                  : 'border-white/10 bg-white/5 hover:border-white/20'
-              }`}
-              onClick={() => setSelectedTicket(ticket)}>
+        {loadingPrices ? (
+          <div className="flex justify-center py-16">
+            <Loader2 className="w-8 h-8 animate-spin text-indigo-400" />
+          </div>
+        ) : (
+          <div className="grid sm:grid-cols-3 gap-5">
+            {orderedTickets.map(ticket => {
+              const cfg = TICKET_CONFIG[ticket.id];
+              return (
+                <div key={ticket.id}
+                  className={`relative rounded-2xl p-6 border-2 transition-all cursor-pointer ${cfg.borderCls}`}
+                  onClick={() => setSelectedTicket(ticket)}>
 
-              {ticket.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
+                  {cfg.highlight && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <span className="bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
+                    </div>
+                  )}
+
+                  <span className={`inline-block text-white text-xs font-bold px-2.5 py-1 rounded-full mb-4 ${cfg.badgeColor}`}>
+                    {cfg.badge}
+                  </span>
+
+                  <h3 className="text-xl font-black mb-1">{ticket.label}</h3>
+                  <p className="text-white/40 text-xs mb-4">{ticket.note}</p>
+
+                  <div className="flex items-end gap-1 mb-5">
+                    <span className="text-white/50 text-lg">&#8377;</span>
+                    <span className="text-4xl font-black">{ticket.price.toLocaleString('en-IN')}</span>
+                    <span className="text-white/40 text-sm mb-1">{ticket.id === 'couple' ? '/ 2 people' : '/ person'}</span>
+                  </div>
+
+                  <ul className="space-y-2 mb-5">
+                    {cfg.perks.map(p => (
+                      <li key={p} className="flex items-center gap-2 text-sm text-white/70">
+                        <CheckCircle size={14} className="text-green-400 shrink-0" /> {p}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* UPI badge on ticket */}
+                  <div className="flex items-center gap-1.5 text-xs text-indigo-300 bg-indigo-950/50 rounded-lg px-3 py-1.5 mb-4 border border-indigo-500/20">
+                    <Smartphone size={12} /> Pay via UPI
+                  </div>
+
+                  <button
+                    onClick={e => { e.stopPropagation(); setSelectedTicket(ticket); }}
+                    className={`w-full py-3 rounded-xl font-bold text-sm transition-colors ${
+                      cfg.highlight ? 'bg-indigo-600 hover:bg-indigo-500 text-white' : 'bg-white/10 hover:bg-white/20 text-white'
+                    }`}>
+                    Book Now — &#8377;{ticket.price.toLocaleString('en-IN')}
+                  </button>
                 </div>
-              )}
+              );
+            })}
+          </div>
+        )}
 
-              <span className={`inline-block text-white text-xs font-bold px-2.5 py-1 rounded-full mb-4 ${ticket.badgeColor}`}>
-                {ticket.badge}
-              </span>
-
-              <h3 className="text-xl font-black mb-1">{ticket.label}</h3>
-              <p className="text-white/40 text-xs mb-4">{ticket.note}</p>
-
-              <div className="flex items-end gap-1 mb-5">
-                <span className="text-white/50 text-lg">&#8377;</span>
-                <span className="text-4xl font-black">{ticket.price.toLocaleString('en-IN')}</span>
-                <span className="text-white/40 text-sm mb-1">{ticket.id === 'couple' ? '/ 2 people' : '/ person'}</span>
-              </div>
-
-              <ul className="space-y-2 mb-6">
-                {ticket.perks.map(p => (
-                  <li key={p} className="flex items-center gap-2 text-sm text-white/70">
-                    <CheckCircle size={14} className="text-green-400 shrink-0" /> {p}
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                onClick={e => { e.stopPropagation(); setSelectedTicket(ticket); }}
-                className={`w-full py-3 rounded-xl font-bold text-sm transition-colors ${
-                  ticket.highlight
-                    ? 'bg-indigo-600 hover:bg-indigo-500 text-white'
-                    : 'bg-white/10 hover:bg-white/20 text-white'
-                }`}>
-                Book Now — &#8377;{ticket.price.toLocaleString('en-IN')}
-              </button>
-            </div>
-          ))}
-        </div>
-
-        <p className="text-center text-white/30 text-xs mt-6">
-          Secure payment via Easebuzz · UPI, Card, Net Banking accepted · Venue disclosed after booking
+        <p className="text-center text-white/25 text-xs mt-6">
+          Secure payment via Easebuzz · UPI (GPay, PhonePe, Paytm, BHIM) · Venue disclosed after booking
         </p>
       </div>
 
-      {/* ── What's Included ────────────────────────────────────── */}
+      {/* ── What's Included ── */}
       <div className="bg-white/5 px-5 py-16">
         <div className="max-w-5xl mx-auto">
           <p className="text-indigo-400 text-xs font-bold tracking-widest uppercase mb-2 text-center">What's Included</p>
@@ -430,15 +420,15 @@ export default function HousePartyPage() {
         </div>
       </div>
 
-      {/* ── Photo Gallery ──────────────────────────────────────── */}
+      {/* ── Gallery ── */}
       <div className="px-5 py-16 max-w-5xl mx-auto">
         <p className="text-pink-400 text-xs font-bold tracking-widest uppercase mb-2 text-center">Gallery</p>
         <h2 className="text-3xl font-black text-center mb-3">Pool Party & House Party Pics</h2>
         <p className="text-white/40 text-sm text-center mb-10">From our previous events — tag us @ylootrips</p>
-
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {GALLERY.map((img, i) => (
-            <div key={i} className={`relative rounded-2xl overflow-hidden ${i === 0 || i === 5 ? 'sm:col-span-2 sm:row-span-2' : ''}`}
+            <div key={i}
+              className={`relative rounded-2xl overflow-hidden ${i === 0 || i === 5 ? 'sm:col-span-2 sm:row-span-2' : ''}`}
               style={{ aspectRatio: i === 0 || i === 5 ? '1/1' : '4/3' }}>
               <Image src={img.src} alt={img.label} fill className="object-cover hover:scale-105 transition-transform duration-500" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -448,16 +438,15 @@ export default function HousePartyPage() {
         </div>
       </div>
 
-      {/* ── Reviews ────────────────────────────────────────────── */}
+      {/* ── Reviews ── */}
       <div className="bg-white/5 px-5 py-16">
         <div className="max-w-5xl mx-auto">
           <p className="text-amber-400 text-xs font-bold tracking-widest uppercase mb-2 text-center">Reviews</p>
           <h2 className="text-3xl font-black text-center mb-2">What Guests Say</h2>
           <div className="flex items-center justify-center gap-1 mb-10">
             {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="#f59e0b" className="text-amber-400" />)}
-            <span className="text-white/60 text-sm ml-2">4.9 · 200+ reviews</span>
+            <span className="text-white/50 text-sm ml-2">4.9 · 200+ reviews</span>
           </div>
-
           <div className="grid sm:grid-cols-2 gap-4">
             {REVIEWS.map((r, i) => (
               <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5">
@@ -468,9 +457,7 @@ export default function HousePartyPage() {
                   <div>
                     <p className="font-bold text-sm">{r.name}</p>
                     <div className="flex items-center gap-2">
-                      <span className="text-pink-400 text-xs flex items-center gap-1">
-                        <Instagram size={10} /> {r.ig}
-                      </span>
+                      <span className="text-pink-400 text-xs flex items-center gap-1"><Instagram size={10} /> {r.ig}</span>
                       <span className="text-white/30 text-xs">·</span>
                       <span className="text-xs text-white/40 bg-white/10 px-2 py-0.5 rounded-full">{r.tag}</span>
                     </div>
@@ -486,34 +473,34 @@ export default function HousePartyPage() {
         </div>
       </div>
 
-      {/* ── CTA Strip ──────────────────────────────────────────── */}
+      {/* ── Bottom CTA ── */}
       <div className="px-5 py-16 max-w-5xl mx-auto text-center">
         <div className="bg-gradient-to-r from-indigo-900/60 to-pink-900/60 border border-white/10 rounded-3xl p-10">
           <Zap className="w-10 h-10 text-amber-400 mx-auto mb-4" />
           <h2 className="text-3xl font-black mb-2">Limited Seats Left</h2>
-          <p className="text-white/60 mb-8 max-w-md mx-auto">
-            Pre-registration required. Venue shared only with confirmed guests. Book now before it sells out.
+          <p className="text-white/50 mb-8 max-w-md mx-auto">
+            Pre-registration required. Venue shared only with confirmed guests.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            {TICKETS.map(t => (
-              <button key={t.id} onClick={() => setSelectedTicket(t)}
-                className="px-6 py-3 bg-white text-gray-900 font-bold rounded-xl text-sm hover:bg-gray-100 transition-colors">
-                {t.label} — &#8377;{t.price.toLocaleString('en-IN')}
-              </button>
-            ))}
-          </div>
+          {!loadingPrices && (
+            <div className="flex flex-wrap gap-4 justify-center mb-5">
+              {orderedTickets.map(t => (
+                <button key={t.id} onClick={() => setSelectedTicket(t)}
+                  className="px-6 py-3 bg-white text-gray-900 font-bold rounded-xl text-sm hover:bg-gray-100 transition-colors">
+                  {t.label} — &#8377;{t.price.toLocaleString('en-IN')}
+                </button>
+              ))}
+            </div>
+          )}
           <a href="https://wa.me/918427831127?text=Hi!%20I%20want%20to%20book%20the%20House%20Party%20ticket."
             target="_blank" rel="noopener noreferrer"
-            className="mt-5 inline-block text-sm text-green-400 hover:text-green-300 underline underline-offset-2">
-            Or WhatsApp us: +91 84278 31127
+            className="text-sm text-green-400 hover:text-green-300 underline underline-offset-2">
+            Or WhatsApp: +91 84278 31127
           </a>
         </div>
       </div>
 
-      {/* ── Booking Modal ─────────────────────────────────────── */}
-      {selectedTicket && (
-        <BookingModal ticket={selectedTicket} onClose={() => setSelectedTicket(null)} />
-      )}
+      {/* Booking Modal */}
+      {selectedTicket && <BookingModal ticket={selectedTicket} onClose={() => setSelectedTicket(null)} />}
     </div>
   );
 }
