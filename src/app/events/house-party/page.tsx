@@ -56,16 +56,16 @@ const TICKET_ORDER = ['female', 'single', 'couple'];
 
 /* ── Pool + House Party gallery (two categories) ─────────────── */
 const POOL_PICS = [
-  'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=700&q=85',
-  'https://images.unsplash.com/photo-1597544338545-bcd4fb5dc1f7?w=700&q=85',
+  'https://images.unsplash.com/photo-1530549387789-4c1017266635?w=800&q=85',
+  'https://images.unsplash.com/photo-1499678329028-101435549a4e?w=700&q=85',
   'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&q=85',
-  'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=85',
+  'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?w=700&q=85',
 ];
 const PARTY_PICS = [
-  'https://images.unsplash.com/photo-1574270981993-49ccc2e7f63e?w=700&q=85',
-  'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=700&q=85',
-  'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=85',
-  'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=700&q=85',
+  'https://images.unsplash.com/photo-1574270981993-49ccc2e7f63e?w=800&q=85',
+  'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=85',
+  'https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=700&q=85',
+  'https://images.unsplash.com/photo-1543332164-6e82f355badc?w=700&q=85',
 ];
 
 const REVIEWS = [
@@ -521,29 +521,31 @@ export default function HousePartyPage() {
             ))}
           </div>
 
-          {/* Gallery grid — left big image + right 3-column stack */}
-          <div className="flex gap-2.5" style={{ height: '360px' }}>
-            {/* Big left image */}
-            <div className="relative rounded-2xl overflow-hidden flex-shrink-0" style={{ width: '50%' }}>
+          {/* Gallery — left big + right 3 stacked */}
+          <div className="flex gap-2.5" style={{ height: '380px' }}>
+            {/* Big left image — explicit height so fill works */}
+            <div className="relative rounded-2xl overflow-hidden flex-shrink-0" style={{ width: '50%', height: '380px' }}>
               <Image
                 src={(galleryTab === 'pool' ? POOL_PICS : PARTY_PICS)[0]}
-                alt="Party"
+                alt={galleryTab === 'pool' ? 'Pool party' : 'House party'}
                 fill
+                sizes="(max-width:768px) 50vw, 400px"
                 className="object-cover hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.45) 0%,transparent 60%)' }} />
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.4) 0%,transparent 55%)' }} />
             </div>
-            {/* Right 3 images stacked */}
+            {/* Right 3 stacked — each with explicit height */}
             <div className="flex flex-col gap-2.5 flex-1">
-              {(galleryTab === 'pool' ? POOL_PICS : PARTY_PICS).slice(1).map((src) => (
-                <div key={src} className="relative rounded-2xl overflow-hidden flex-1">
+              {(galleryTab === 'pool' ? POOL_PICS : PARTY_PICS).slice(1).map((src, i) => (
+                <div key={src} className="relative rounded-2xl overflow-hidden" style={{ height: '116px' }}>
                   <Image
                     src={src}
-                    alt="Party"
+                    alt={galleryTab === 'pool' ? `Pool party ${i + 2}` : `House party ${i + 2}`}
                     fill
+                    sizes="(max-width:768px) 50vw, 300px"
                     className="object-cover hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.35) 0%,transparent 60%)' }} />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.35) 0%,transparent 55%)' }} />
                 </div>
               ))}
             </div>
