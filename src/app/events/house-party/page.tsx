@@ -238,19 +238,25 @@ function BookingModal({ ticket, onClose }: { ticket: TicketTier; onClose: () => 
   );
 }
 
+/* ── Hardcoded fallback prices (used if API unavailable) ─────── */
+const FALLBACK_TICKETS: TicketTier[] = [
+  { id: 'female', label: 'Female', note: 'Ladies special', price: 499,  defaultPrice: 499,  updatedAt: null },
+  { id: 'single', label: 'Stag (Men)', note: 'Single entry',  price: 1999, defaultPrice: 1999, updatedAt: null },
+  { id: 'couple', label: 'Couple',    note: 'For 2 people',   price: 1999, defaultPrice: 1999, updatedAt: null },
+];
+
 /* ── Page ─────────────────────────────────────────────────────── */
 export default function HousePartyPage() {
-  const [tickets, setTickets] = useState<TicketTier[]>([]);
-  const [loadingPrices, setLoadingPrices] = useState(true);
+  const [tickets, setTickets] = useState<TicketTier[]>(FALLBACK_TICKETS);
+  const [loadingPrices, setLoadingPrices] = useState(false);
   const [selected, setSelected] = useState<TicketTier | null>(null);
   const [galleryTab, setGalleryTab] = useState<'pool' | 'party'>('party');
 
   useEffect(() => {
     fetch('/api/admin/house-party-prices')
-      .then(r => r.json())
-      .then(d => { if (d.data) setTickets(d.data); })
-      .catch(() => {})
-      .finally(() => setLoadingPrices(false));
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d?.data?.length) setTickets(d.data); })
+      .catch(() => {});
   }, []);
 
   const orderedTickets = TICKET_ORDER.map(id => tickets.find(t => t.id === id)).filter(Boolean) as TicketTier[];
