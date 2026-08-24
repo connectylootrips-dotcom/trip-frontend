@@ -298,7 +298,7 @@ export default function HousePartyPage() {
           </div>
 
           {/* headline */}
-          <h1 className="font-black leading-none mb-4" style={{ fontSize: 'clamp(3rem,10vw,5.5rem)' }}>
+          <h1 className="font-black leading-none mb-5" style={{ fontSize: 'clamp(3rem,10vw,5.5rem)' }}>
             <span style={{ background: 'linear-gradient(135deg,#fff 30%,rgba(255,255,255,0.5))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               House Party
             </span>
@@ -308,9 +308,22 @@ export default function HousePartyPage() {
             </span>
           </h1>
 
-          <p className="text-white/55 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-            Pool access. DJ all night. Chef food. Meet your next travel gang.
-            Come alone — leave with a whole squad.
+          {/* Tagline */}
+          <div className="mb-6">
+            <p className="font-black text-white mb-1" style={{ fontSize: 'clamp(1.3rem,4vw,2rem)', letterSpacing: '-0.02em' }}>
+              Come Single.{' '}
+              <span style={{ background: 'linear-gradient(135deg,#ec4899,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                Go Mingle.
+              </span>
+            </p>
+            <p className="text-white/40 text-sm font-medium tracking-wide">
+              A night where strangers become your travel squad — and maybe something more&nbsp;😉
+            </p>
+          </div>
+
+          <p className="text-white/50 text-sm sm:text-base max-w-lg mx-auto mb-8 leading-relaxed">
+            Pool access · DJ all night · Chef food · BYOB welcome<br />
+            <span className="text-white/30">Come alone — leave with a whole crew.</span>
           </p>
 
           {/* event info pills */}
