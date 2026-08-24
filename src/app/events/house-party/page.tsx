@@ -508,19 +508,32 @@ export default function HousePartyPage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-            {/* Big feature image */}
-            <div className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden" style={{ height: '340px' }}>
-              <Image src={(galleryTab === 'pool' ? POOL_PICS : PARTY_PICS)[0]} alt="Party" fill className="object-cover hover:scale-105 transition-transform duration-700" />
+          {/* Gallery grid — left big image + right 3-column stack */}
+          <div className="flex gap-2.5" style={{ height: '360px' }}>
+            {/* Big left image */}
+            <div className="relative rounded-2xl overflow-hidden flex-shrink-0" style={{ width: '50%' }}>
+              <Image
+                src={(galleryTab === 'pool' ? POOL_PICS : PARTY_PICS)[0]}
+                alt="Party"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-700"
+              />
               <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.45) 0%,transparent 60%)' }} />
             </div>
-            {/* Smaller grid images */}
-            {(galleryTab === 'pool' ? POOL_PICS : PARTY_PICS).slice(1).map((src) => (
-              <div key={src} className="relative rounded-2xl overflow-hidden" style={{ height: '160px' }}>
-                <Image src={src} alt="Party" fill className="object-cover hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.35) 0%,transparent 60%)' }} />
-              </div>
-            ))}
+            {/* Right 3 images stacked */}
+            <div className="flex flex-col gap-2.5 flex-1">
+              {(galleryTab === 'pool' ? POOL_PICS : PARTY_PICS).slice(1).map((src) => (
+                <div key={src} className="relative rounded-2xl overflow-hidden flex-1">
+                  <Image
+                    src={src}
+                    alt="Party"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.35) 0%,transparent 60%)' }} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
