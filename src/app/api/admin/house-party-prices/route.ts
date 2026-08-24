@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/firestore';
 
 const DEFAULTS = {
-  female: { label: 'Female', price: 499, note: 'Limited time offer' },
-  single: { label: 'Single', price: 999, note: 'Early bird offer' },
-  couple: { label: 'Couple / Friends', price: 1499, note: 'For 2 people' },
+  female: { label: 'Female', price: 499, note: 'Ladies special' },
+  single: { label: 'Stag (Men)', price: 1999, note: 'Single entry' },
+  couple: { label: 'Couple', price: 1999, note: 'For 2 people' },
 };
 
 export async function GET() {

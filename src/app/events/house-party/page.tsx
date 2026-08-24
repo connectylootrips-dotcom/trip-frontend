@@ -2,15 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   MapPin, Calendar, Clock, Users, Star, Instagram,
-  CheckCircle, X, Loader2, ChevronLeft, Sparkles,
-  Music, Camera, UtensilsCrossed, Gift, Shield, Zap,
-  Smartphone
+  CheckCircle, X, Loader2, ChevronLeft, Shield,
+  Smartphone, Wine, Music2, Flame, PartyPopper, ChevronRight
 } from 'lucide-react';
-import Link from 'next/link';
 
-/* ── Types ────────────────────────────────────────────────────── */
 interface TicketTier {
   id: string;
   label: string;
@@ -20,67 +18,64 @@ interface TicketTier {
   updatedAt: string | null;
 }
 
-/* ── Static ticket UI config ─────────────────────────────────── */
 const TICKET_CONFIG: Record<string, {
-  badge: string; badgeColor: string; highlight: boolean;
-  perks: string[]; borderCls: string;
+  emoji: string;
+  gradient: string;
+  ring: string;
+  highlight: boolean;
+  perks: string[];
+  tag: string;
 }> = {
   female: {
-    badge: 'Best Deal',
-    badgeColor: 'bg-pink-500',
+    emoji: '👑',
+    gradient: 'from-pink-500/20 to-rose-500/10',
+    ring: 'ring-pink-500/50',
     highlight: false,
-    borderCls: 'border-white/10 bg-white/5 hover:border-white/20',
-    perks: ['Entry for 1 female', 'Welcome drink', 'Craft cocktails & mocktails'],
+    tag: 'Ladies Special',
+    perks: ['Solo female entry', 'Welcome drink on arrival', 'Craft mocktails bar access', 'Meet & mingle with travellers'],
   },
   single: {
-    badge: 'Early Bird',
-    badgeColor: 'bg-indigo-500',
+    emoji: '🔥',
+    gradient: 'from-indigo-500/20 to-purple-500/10',
+    ring: 'ring-indigo-500/60',
     highlight: true,
-    borderCls: 'border-indigo-500 bg-indigo-950/60 shadow-lg shadow-indigo-900/40',
-    perks: ['Entry for 1 person', 'Welcome drink', 'Craft cocktails & mocktails', 'Travel buddy mixer'],
+    tag: 'Stag Entry',
+    perks: ['Solo male entry', 'Welcome drink on arrival', 'DJ + dance floor access', 'Travel tribe mixer'],
   },
   couple: {
-    badge: '2 People',
-    badgeColor: 'bg-amber-500',
+    emoji: '💫',
+    gradient: 'from-amber-500/20 to-orange-500/10',
+    ring: 'ring-amber-500/50',
     highlight: false,
-    borderCls: 'border-white/10 bg-white/5 hover:border-white/20',
-    perks: ['Entry for 2 people', '2 Welcome drinks', 'Craft cocktails & mocktails', 'Priority seating'],
+    tag: 'Couple / Friends',
+    perks: ['Entry for 2 people', '2 welcome drinks', 'Priority zone access', 'Couples photo spot'],
   },
 };
 
 const TICKET_ORDER = ['female', 'single', 'couple'];
 
-/* ── Gallery ─────────────────────────────────────────────────── */
-const GALLERY = [
-  { src: 'https://images.unsplash.com/photo-1574270981993-49ccc2e7f63e?w=600&q=80', label: 'House Party Vibes' },
-  { src: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80', label: 'Pool Party Fun' },
-  { src: 'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&q=80', label: 'DJ Night' },
-  { src: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80', label: 'Chef-made Food' },
-  { src: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600&q=80', label: 'Cocktail Bar' },
-  { src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80', label: 'Dance Floor' },
-  { src: 'https://images.unsplash.com/photo-1597544338545-bcd4fb5dc1f7?w=600&q=80', label: 'Pool Hangout' },
-  { src: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80', label: 'Party Crowd' },
+/* ── Pool + House Party gallery (two categories) ─────────────── */
+const POOL_PICS = [
+  'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=700&q=85',
+  'https://images.unsplash.com/photo-1597544338545-bcd4fb5dc1f7?w=700&q=85',
+  'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&q=85',
+  'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=85',
+];
+const PARTY_PICS = [
+  'https://images.unsplash.com/photo-1574270981993-49ccc2e7f63e?w=700&q=85',
+  'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=700&q=85',
+  'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=85',
+  'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=700&q=85',
 ];
 
-/* ── Reviews ─────────────────────────────────────────────────── */
 const REVIEWS = [
-  { name: 'Priya Sharma', ig: '@priya.travels', rating: 5, text: 'Best house party I have ever attended! The vibe was electric, food was amazing, and I made so many new travel friends. Totally worth it!', tag: 'House Party', avatar: 'PS', avatarColor: 'bg-pink-200 text-pink-700' },
-  { name: 'Arjun Mehta', ig: '@arjun.wanderer', rating: 5, text: 'Ylootrips knows how to throw a party. The DJ set was fire, cocktails were top-notch, and the instagram-worthy setup was absolutely stunning.', tag: 'Pool Party', avatar: 'AM', avatarColor: 'bg-blue-200 text-blue-700' },
-  { name: 'Sneha Kapoor', ig: '@sneha.adventures', rating: 5, text: 'Came alone, left with 10 new friends planning our next trip together! The travel mixer concept is genius. Already booked the next one.', tag: 'Singles Night', avatar: 'SK', avatarColor: 'bg-purple-200 text-purple-700' },
-  { name: 'Rahul Verma', ig: '@rahul.onthego', rating: 5, text: 'Pool party + house party combo was incredible. Limited seats meant it was never crowded. Chef-made finger food was absolutely delicious.', tag: 'Pool Party', avatar: 'RV', avatarColor: 'bg-green-200 text-green-700' },
+  { name: 'Aanya S.', ig: '@aanya.roams', rating: 5, text: 'Literally the best night of 2024. The vibe was IMMACULATE. Made 6 new travel bestiesss!!', avatar: 'AS', color: 'from-pink-400 to-rose-500' },
+  { name: 'Rohan M.', ig: '@rohan.goes', rating: 5, text: 'Came alone, left with a whole squad planning Bali. The music was different level fr fr 🔥', avatar: 'RM', color: 'from-indigo-400 to-purple-500' },
+  { name: 'Sneha K.', ig: '@sneha.exp', rating: 5, text: 'The pool + party combo was ELITE. No boring crowd — only travel people. Already booked next one ngl', avatar: 'SK', color: 'from-violet-400 to-purple-500' },
+  { name: 'Dev P.', ig: '@dev.wanders', rating: 5, text: 'The BYOB policy was such a vibe — brought my fave whisky, made cocktails with the bar setup. W event 🙌', avatar: 'DP', color: 'from-amber-400 to-orange-500' },
 ];
 
-/* ── Perks ───────────────────────────────────────────────────── */
-const EVENT_PERKS = [
-  { icon: Music, label: 'DJ + Curated Playlist', desc: 'Live DJ set all night long' },
-  { icon: UtensilsCrossed, label: 'Chef-made Food', desc: 'Finger food & desserts included' },
-  { icon: Camera, label: 'Instagram-worthy Setup', desc: 'Aesthetic decor & party lighting' },
-  { icon: Users, label: 'Travel Mixer', desc: 'Meet fellow travellers' },
-  { icon: Sparkles, label: 'Craft Cocktails', desc: 'Artisan cocktails & mocktails' },
-  { icon: Zap, label: 'Surprise DJ Set', desc: 'Curated music all night' },
-];
-
-/* ── Booking Modal — UPI ONLY ─────────────────────────────────── */
+/* ── Booking Modal ────────────────────────────────────────────── */
 function BookingModal({ ticket, onClose }: { ticket: TicketTier; onClose: () => void }) {
   const cfg = TICKET_CONFIG[ticket.id];
   const [form, setForm] = useState({ name: '', phone: '', email: '', instagram: '', qty: 1 });
@@ -88,179 +83,154 @@ function BookingModal({ ticket, onClose }: { ticket: TicketTier; onClose: () => 
   const [error, setError] = useState('');
 
   const guests = ticket.id === 'couple' ? form.qty * 2 : form.qty;
-  const totalAmount = ticket.price * form.qty;
+  const total = ticket.price * form.qty;
 
-  const handlePay = async (e: React.FormEvent) => {
+  const pay = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
-    const phone = form.phone.replace(/\D/g, '');
-    if (phone.length !== 10) { setError('Enter a valid 10-digit WhatsApp number'); return; }
-    if (!form.email.includes('@')) { setError('Enter a valid email address'); return; }
-
+    if (form.phone.replace(/\D/g, '').length !== 10) { setError('Enter valid 10-digit number'); return; }
+    if (!form.email.includes('@')) { setError('Enter valid email'); return; }
     setLoading(true);
     try {
-      const bookingRef = `HP-${ticket.id.toUpperCase()}-${Date.now()}-${Math.random().toString(36).substring(2, 5).toUpperCase()}`;
-
+      const ref = `HP-${ticket.id.toUpperCase()}-${Date.now()}-${Math.random().toString(36).slice(2, 5).toUpperCase()}`;
       const res = await fetch('/api/payment/initiate-partial', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          bookingReference: bookingRef,
-          chargeNow: totalAmount,
-          totalAmount,
+          bookingReference: ref,
+          chargeNow: total,
+          totalAmount: total,
           customerName: form.name,
           customerEmail: form.email,
           customerPhone: form.phone,
-          // Instagram ID stored in product info so it shows in Easebuzz dashboard
-          tripTitle: `House Party — ${ticket.label} x${guests}${form.instagram ? ` (IG:${form.instagram})` : ''}`,
-          paymentMethod: 'upi',   // ← UPI only
+          tripTitle: `House Party — ${ticket.label} x${guests}${form.instagram ? ` IG:${form.instagram}` : ''}`,
+          paymentMethod: 'upi',
         }),
       });
-
       const data = await res.json();
-      if (!res.ok) { setError(data.error || 'Payment initiation failed. Try WhatsApp.'); return; }
-
-      if (data.redirectUrl) {
-        window.location.href = data.redirectUrl;
-      } else if (data.html) {
-        document.open(); document.write(data.html); document.close();
-      } else {
-        setError('Could not start payment. Please use WhatsApp to book.');
-      }
-    } catch {
-      setError('Network error. Please try again or use WhatsApp.');
-    } finally {
-      setLoading(false);
-    }
+      if (!res.ok) { setError(data.error || 'Payment failed. Try WhatsApp.'); return; }
+      if (data.redirectUrl) window.location.href = data.redirectUrl;
+      else if (data.html) { document.open(); document.write(data.html); document.close(); }
+      else setError('Could not start payment. WhatsApp us to book.');
+    } catch { setError('Network error. Try again.'); }
+    finally { setLoading(false); }
   };
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center">
-      <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" onClick={onClose} />
-      <div
-        className="relative w-full sm:max-w-md bg-[#0f0f1e] border border-white/10 rounded-t-3xl sm:rounded-2xl shadow-2xl flex flex-col"
-        style={{ maxHeight: 'min(96dvh, 96vh)', overflow: 'hidden' }}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
-          <div>
-            <h3 className="font-bold text-white text-base">Book Your Ticket</h3>
-            <p className="text-xs text-white/50 mt-0.5">
-              {ticket.label} ·{' '}
-              <span className="font-semibold text-white">&#8377;{ticket.price.toLocaleString('en-IN')}</span>
-              {ticket.id === 'couple' ? ' for 2' : ' / person'}
-            </p>
+    <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={onClose} />
+      <div className="relative w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl overflow-hidden flex flex-col"
+        style={{ maxHeight: 'min(96dvh,96vh)', background: 'linear-gradient(135deg,#0d0d1f 0%,#130d1f 100%)', border: '1px solid rgba(255,255,255,0.08)' }}>
+
+        {/* glow top */}
+        <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${cfg.gradient.replace('/20', '').replace('/10', '')}`} style={{ background: ticket.id === 'female' ? 'linear-gradient(90deg,#ec4899,#f43f5e)' : ticket.id === 'single' ? 'linear-gradient(90deg,#6366f1,#a855f7)' : 'linear-gradient(90deg,#f59e0b,#f97316)' }} />
+
+        <div className="flex items-center justify-between px-5 py-4 border-b border-white/8 shrink-0">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">{cfg.emoji}</span>
+            <div>
+              <p className="font-black text-white text-sm">{ticket.label} Ticket</p>
+              <p className="text-xs text-white/40">&#8377;{ticket.price.toLocaleString('en-IN')} {ticket.id === 'couple' ? '/ 2 people' : '/ person'}</p>
+            </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-full hover:bg-white/10 text-white/60"><X size={18} /></button>
+          <button onClick={onClose} className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:bg-white/20"><X size={16} /></button>
         </div>
 
-        {/* Body */}
-        <div className="overflow-y-auto flex-1 overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
-          <form onSubmit={handlePay} className="p-5 space-y-4 pb-8">
+        <div className="overflow-y-auto flex-1" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
+          <form onSubmit={pay} className="p-5 space-y-4 pb-10">
 
-            {/* Qty */}
-            <div>
-              <label className="block text-xs font-semibold text-white/60 mb-2">
-                {ticket.id === 'couple' ? 'Number of Pairs' : 'Number of Tickets'}
-              </label>
-              <div className="flex items-center gap-3">
-                <button type="button" onClick={() => setForm(f => ({ ...f, qty: Math.max(1, f.qty - 1) }))}
-                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center font-bold text-white hover:bg-white/10">−</button>
-                <span className="font-bold text-lg text-white w-6 text-center">{form.qty}</span>
-                <button type="button" onClick={() => setForm(f => ({ ...f, qty: Math.min(10, f.qty + 1) }))}
-                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center font-bold text-white hover:bg-white/10">+</button>
-                <span className="text-sm text-white/40 ml-1">= {guests} {guests === 1 ? 'guest' : 'guests'}</span>
+            {ticket.id !== 'couple' && (
+              <div>
+                <p className="text-xs font-bold text-white/50 uppercase tracking-wider mb-2">Tickets</p>
+                <div className="flex items-center gap-3">
+                  <button type="button" onClick={() => setForm(f => ({ ...f, qty: Math.max(1, f.qty - 1) }))}
+                    className="w-9 h-9 rounded-full bg-white/10 text-white font-bold hover:bg-white/20 flex items-center justify-center">−</button>
+                  <span className="text-xl font-black text-white w-8 text-center">{form.qty}</span>
+                  <button type="button" onClick={() => setForm(f => ({ ...f, qty: Math.min(10, f.qty + 1) }))}
+                    className="w-9 h-9 rounded-full bg-white/10 text-white font-bold hover:bg-white/20 flex items-center justify-center">+</button>
+                  <span className="text-sm text-white/40">{guests} {guests === 1 ? 'guest' : 'guests'}</span>
+                </div>
+              </div>
+            )}
+
+            <div className="space-y-3">
+              <div>
+                <label className="text-xs font-bold text-white/40 uppercase tracking-wider block mb-1.5">Your Name *</label>
+                <input required placeholder="Full name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                  className="w-full px-4 py-3 rounded-2xl text-sm text-white placeholder:text-white/25 outline-none focus:ring-1 focus:ring-indigo-500"
+                  style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }} />
+              </div>
+              <div>
+                <label className="text-xs font-bold text-white/40 uppercase tracking-wider block mb-1.5">WhatsApp *</label>
+                <div className="flex">
+                  <span className="px-3 py-3 text-sm text-white/40 rounded-l-2xl flex-shrink-0"
+                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRight: 0 }}>+91</span>
+                  <input required type="tel" maxLength={10} placeholder="10-digit number" value={form.phone}
+                    onChange={e => setForm(f => ({ ...f, phone: e.target.value.replace(/\D/g, '') }))}
+                    className="flex-1 px-4 py-3 rounded-r-2xl text-sm text-white placeholder:text-white/25 outline-none focus:ring-1 focus:ring-indigo-500"
+                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }} />
+                </div>
+              </div>
+              <div>
+                <label className="text-xs font-bold text-white/40 uppercase tracking-wider block mb-1.5">Email *</label>
+                <input required type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                  className="w-full px-4 py-3 rounded-2xl text-sm text-white placeholder:text-white/25 outline-none focus:ring-1 focus:ring-indigo-500"
+                  style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }} />
+              </div>
+              <div>
+                <label className="text-xs font-bold text-white/40 uppercase tracking-wider block mb-1.5">
+                  Instagram <span className="normal-case text-white/25 font-normal">(optional — we'll tag you in pics)</span>
+                </label>
+                <div className="flex">
+                  <span className="px-3 py-3 flex items-center rounded-l-2xl"
+                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRight: 0 }}>
+                    <Instagram size={14} className="text-pink-400" />
+                  </span>
+                  <input type="text" placeholder="@yourhandle" value={form.instagram} onChange={e => setForm(f => ({ ...f, instagram: e.target.value }))}
+                    className="flex-1 px-4 py-3 rounded-r-2xl text-sm text-white placeholder:text-white/25 outline-none focus:ring-1 focus:ring-pink-500"
+                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }} />
+                </div>
               </div>
             </div>
 
-            {/* Name */}
-            <div>
-              <label className="block text-xs font-semibold text-white/60 mb-1">Full Name *</label>
-              <input required type="text" placeholder="Your name" maxLength={80}
-                value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                className="w-full px-3 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white outline-none focus:border-indigo-400 placeholder:text-white/30" />
-            </div>
-
-            {/* Phone */}
-            <div>
-              <label className="block text-xs font-semibold text-white/60 mb-1">WhatsApp Number *</label>
-              <div className="flex">
-                <span className="px-3 py-3 bg-white/5 border border-r-0 border-white/10 rounded-l-xl text-sm text-white/50">+91</span>
-                <input required type="tel" placeholder="10-digit number" maxLength={10}
-                  value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value.replace(/\D/g, '') }))}
-                  className="flex-1 px-3 py-3 bg-white/5 border border-white/10 rounded-r-xl text-sm text-white outline-none focus:border-indigo-400 placeholder:text-white/30" />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-xs font-semibold text-white/60 mb-1">Email *</label>
-              <input required type="email" placeholder="your@email.com"
-                value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                className="w-full px-3 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white outline-none focus:border-indigo-400 placeholder:text-white/30" />
-            </div>
-
-            {/* Instagram */}
-            <div>
-              <label className="block text-xs font-semibold text-white/60 mb-1">
-                Instagram ID <span className="text-white/30 font-normal">(optional)</span>
-              </label>
-              <div className="flex">
-                <span className="px-3 py-3 bg-white/5 border border-r-0 border-white/10 rounded-l-xl flex items-center">
-                  <Instagram size={15} className="text-pink-400" />
-                </span>
-                <input type="text" placeholder="@yourhandle"
-                  value={form.instagram} onChange={e => setForm(f => ({ ...f, instagram: e.target.value }))}
-                  className="flex-1 px-3 py-3 bg-white/5 border border-white/10 rounded-r-xl text-sm text-white outline-none focus:border-pink-400 placeholder:text-white/30" />
-              </div>
-              <p className="text-xs text-white/30 mt-1">We tag you in party photos after the event</p>
-            </div>
-
-            {/* UPI Badge */}
-            <div className="flex items-center gap-2 bg-indigo-950/60 border border-indigo-500/30 rounded-xl px-4 py-3">
+            {/* UPI note */}
+            <div className="flex items-center gap-2.5 rounded-2xl px-4 py-3" style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.25)' }}>
               <Smartphone size={16} className="text-indigo-400 shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-indigo-300">Payment via UPI</p>
-                <p className="text-xs text-white/40 mt-0.5">Google Pay · PhonePe · Paytm · BHIM · Any UPI app</p>
+                <p className="text-xs font-bold text-indigo-300">UPI Payment Only</p>
+                <p className="text-xs text-white/35 mt-0.5">GPay · PhonePe · Paytm · BHIM · Any UPI app</p>
               </div>
             </div>
 
             {/* Summary */}
-            <div className="bg-white/5 rounded-xl p-4 space-y-1.5 border border-white/10">
-              <div className="flex justify-between text-sm text-white/70">
-                <span>{ticket.label} × {form.qty} {ticket.id === 'couple' ? '(pairs)' : ''}</span>
-                <span className="font-semibold text-white">&#8377;{totalAmount.toLocaleString('en-IN')}</span>
+            <div className="rounded-2xl p-4 space-y-2" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div className="flex justify-between text-sm">
+                <span className="text-white/60">{ticket.label} × {form.qty}</span>
+                <span className="text-white font-bold">&#8377;{total.toLocaleString('en-IN')}</span>
               </div>
-              <div className="flex justify-between text-xs text-white/40">
-                <span>Food, drinks & goodie bag</span>
-                <span className="text-green-400">Included</span>
+              <div className="flex justify-between text-xs text-white/35">
+                <span>Food & welcome drink incl.</span>
+                <span className="text-green-400">✓ Included</span>
               </div>
-              <div className="border-t border-white/10 pt-2 flex justify-between font-bold text-white">
+              <div className="flex justify-between text-xs text-white/35">
+                <span>BYOB allowed</span>
+                <span className="text-green-400">✓ Welcome</span>
+              </div>
+              <div className="pt-2 border-t border-white/8 flex justify-between font-black text-white">
                 <span>Total</span>
-                <span>&#8377;{totalAmount.toLocaleString('en-IN')}</span>
+                <span>&#8377;{total.toLocaleString('en-IN')}</span>
               </div>
             </div>
 
-            {error && (
-              <div className="bg-red-950/60 border border-red-500/30 rounded-xl px-4 py-3 text-sm text-red-300">{error}</div>
-            )}
+            {error && <p className="text-sm text-red-400 text-center">{error}</p>}
 
             <button type="submit" disabled={loading}
-              className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-colors">
-              {loading
-                ? <><Loader2 className="w-4 h-4 animate-spin" /> Opening UPI payment…</>
-                : <><Shield className="w-4 h-4" /> Pay &#8377;{totalAmount.toLocaleString('en-IN')} via UPI</>}
+              className="w-full py-4 rounded-2xl font-black text-sm flex items-center justify-center gap-2 transition-all"
+              style={{ background: ticket.id === 'female' ? 'linear-gradient(135deg,#ec4899,#f43f5e)' : ticket.id === 'single' ? 'linear-gradient(135deg,#6366f1,#a855f7)' : 'linear-gradient(135deg,#f59e0b,#f97316)', opacity: loading ? 0.7 : 1 }}>
+              {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Opening UPI…</> : <><Shield size={15} /> Pay &#8377;{total.toLocaleString('en-IN')} via UPI</>}
             </button>
 
-            <div className="flex items-center justify-center gap-4 text-xs text-white/30">
-              <span className="flex items-center gap-1"><CheckCircle size={12} className="text-green-500" /> Easebuzz secured</span>
-              <span className="flex items-center gap-1"><CheckCircle size={12} className="text-green-500" /> UPI only</span>
-            </div>
-
-            <p className="text-xs text-center text-white/30">
-              Venue disclosed on WhatsApp after payment · 48-hr cancellation policy
-            </p>
+            <p className="text-xs text-center text-white/25">Venue disclosed on WhatsApp after payment · 48-hr cancellation policy</p>
           </form>
         </div>
       </div>
@@ -268,11 +238,12 @@ function BookingModal({ ticket, onClose }: { ticket: TicketTier; onClose: () => 
   );
 }
 
-/* ── Main Page ────────────────────────────────────────────────── */
+/* ── Page ─────────────────────────────────────────────────────── */
 export default function HousePartyPage() {
   const [tickets, setTickets] = useState<TicketTier[]>([]);
   const [loadingPrices, setLoadingPrices] = useState(true);
-  const [selectedTicket, setSelectedTicket] = useState<TicketTier | null>(null);
+  const [selected, setSelected] = useState<TicketTier | null>(null);
+  const [galleryTab, setGalleryTab] = useState<'pool' | 'party'>('party');
 
   useEffect(() => {
     fetch('/api/admin/house-party-prices')
@@ -285,222 +256,335 @@ export default function HousePartyPage() {
   const orderedTickets = TICKET_ORDER.map(id => tickets.find(t => t.id === id)).filter(Boolean) as TicketTier[];
 
   return (
-    <div className="min-h-screen bg-[#0a0a14] text-white">
+    <div className="min-h-screen text-white" style={{ background: '#07070f' }}>
 
-      {/* Back */}
-      <div className="absolute top-4 left-4 z-10">
-        <Link href="/events" className="flex items-center gap-1.5 text-white/70 hover:text-white text-sm bg-white/10 backdrop-blur px-3 py-1.5 rounded-full transition-colors">
-          <ChevronLeft size={16} /> Events
+      {/* back */}
+      <div className="fixed top-4 left-4 z-20">
+        <Link href="/events" className="flex items-center gap-1.5 text-white/60 hover:text-white text-xs font-bold px-3 py-2 rounded-full backdrop-blur-md transition-all"
+          style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
+          <ChevronLeft size={14} /> EVENTS
         </Link>
       </div>
 
-      {/* ── Hero ── */}
-      <div className="relative h-[85vh] min-h-[600px] flex items-end">
-        <Image
-          src="https://images.unsplash.com/photo-1574270981993-49ccc2e7f63e?w=1400&q=85"
-          alt="House Party Vibes — YlooTrips"
-          fill className="object-cover opacity-50" priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a14] via-[#0a0a14]/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a14]/60 to-transparent" />
+      {/* ═══════════════════════════════════════ HERO ══ */}
+      <section className="relative min-h-screen flex flex-col justify-end overflow-hidden">
+        {/* bg image */}
+        <Image src="https://images.unsplash.com/photo-1574270981993-49ccc2e7f63e?w=1600&q=90"
+          alt="House Party" fill className="object-cover" priority style={{ opacity: 0.35 }} />
 
-        <div className="relative z-10 px-5 pb-14 max-w-2xl">
-          <div className="flex gap-2 mb-4 flex-wrap">
-            <span className="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">House Party</span>
-            <span className="bg-pink-500/80 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Pool Party</span>
-            <span className="bg-amber-500/80 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Limited Seats</span>
+        {/* animated gradient overlays */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #07070f 30%, transparent 80%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 120%, rgba(99,102,241,0.25) 0%, transparent 60%)' }} />
+
+        {/* neon glow orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(236,72,153,0.08)' }} />
+        <div className="absolute top-1/3 right-1/4 w-72 h-72 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(99,102,241,0.1)' }} />
+
+        <div className="relative z-10 px-5 pb-20 pt-28 max-w-3xl mx-auto w-full text-center">
+          {/* tag pills */}
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
+            {['Delhi NCR', '5 Sept', 'Limited Seats', 'BYOB'].map(tag => (
+              <span key={tag} className="text-xs font-bold px-3 py-1 rounded-full"
+                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.7)' }}>
+                {tag}
+              </span>
+            ))}
           </div>
-          <h1 className="text-5xl sm:text-6xl font-black leading-tight mb-4">
-            House Party<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Vibes</span>
+
+          {/* headline */}
+          <h1 className="font-black leading-none mb-4" style={{ fontSize: 'clamp(3rem,10vw,5.5rem)' }}>
+            <span style={{ background: 'linear-gradient(135deg,#fff 30%,rgba(255,255,255,0.5))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              House Party
+            </span>
+            <br />
+            <span style={{ background: 'linear-gradient(135deg,#ec4899,#a855f7,#6366f1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              Vibes ✦
+            </span>
           </h1>
-          <p className="text-white/80 text-lg max-w-lg mb-6">
-            Intimate yet electric — curated house party with pool access, chef-crafted finger food,
-            artisan cocktails, and a surprise DJ set. Come alone, leave with new travel friends.
+
+          <p className="text-white/55 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+            Pool access. DJ all night. Chef food. Meet your next travel gang.
+            Come alone — leave with a whole squad.
           </p>
-          <div className="flex flex-wrap gap-4 text-sm text-white/70">
-            <span className="flex items-center gap-1.5"><Calendar size={14} className="text-indigo-400" /> 5 September 2026</span>
-            <span className="flex items-center gap-1.5"><Clock size={14} className="text-pink-400" /> 8:30 PM onwards</span>
-            <span className="flex items-center gap-1.5"><MapPin size={14} className="text-amber-400" /> Gurgaon / Noida (shared on booking)</span>
-            <span className="flex items-center gap-1.5"><Users size={14} className="text-green-400" /> Limited seats only</span>
+
+          {/* event info pills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-10 text-sm">
+            {[
+              { icon: Calendar, text: '5 September 2026', color: '#a855f7' },
+              { icon: Clock, text: '8:30 PM onwards', color: '#ec4899' },
+              { icon: MapPin, text: 'Gurgaon / Noida', color: '#f59e0b' },
+              { icon: Users, text: 'Limited seats', color: '#22c55e' },
+            ].map(({ icon: Icon, text, color }) => (
+              <span key={text} className="flex items-center gap-1.5 text-white/60 text-xs font-medium">
+                <Icon size={13} style={{ color }} /> {text}
+              </span>
+            ))}
           </div>
+
+          <button onClick={() => { const el = document.getElementById('tickets'); el?.scrollIntoView({ behavior: 'smooth' }); }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm transition-all hover:scale-105 active:scale-95"
+            style={{ background: 'linear-gradient(135deg,#6366f1,#a855f7,#ec4899)', boxShadow: '0 0 40px rgba(168,85,247,0.4)' }}>
+            <PartyPopper size={16} /> Grab Your Spot
+          </button>
         </div>
-      </div>
 
-      {/* ── Tickets ── */}
-      <div className="bg-[#0a0a14] px-5 py-16 max-w-5xl mx-auto">
-        <div className="text-center mb-10">
-          <p className="text-indigo-400 text-xs font-bold tracking-widest uppercase mb-2">Entry Charges</p>
-          <h2 className="text-3xl sm:text-4xl font-black">Choose Your Ticket</h2>
-          <p className="text-white/40 mt-2 text-sm">All tickets include food, drinks & goodie bag · Pay via UPI</p>
+        {/* scroll indicator */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
+          <span className="text-xs text-white/50 font-medium">scroll</span>
+          <ChevronRight size={16} className="text-white rotate-90 animate-bounce" />
         </div>
+      </section>
 
-        {loadingPrices ? (
-          <div className="flex justify-center py-16">
-            <Loader2 className="w-8 h-8 animate-spin text-indigo-400" />
-          </div>
-        ) : (
-          <div className="grid sm:grid-cols-3 gap-5">
-            {orderedTickets.map(ticket => {
-              const cfg = TICKET_CONFIG[ticket.id];
-              return (
-                <div key={ticket.id}
-                  className={`relative rounded-2xl p-6 border-2 transition-all cursor-pointer ${cfg.borderCls}`}
-                  onClick={() => setSelectedTicket(ticket)}>
-
-                  {cfg.highlight && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <span className="bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</span>
-                    </div>
-                  )}
-
-                  <span className={`inline-block text-white text-xs font-bold px-2.5 py-1 rounded-full mb-4 ${cfg.badgeColor}`}>
-                    {cfg.badge}
-                  </span>
-
-                  <h3 className="text-xl font-black mb-1">{ticket.label}</h3>
-                  <p className="text-white/40 text-xs mb-4">{ticket.note}</p>
-
-                  <div className="flex items-end gap-1 mb-5">
-                    <span className="text-white/50 text-lg">&#8377;</span>
-                    <span className="text-4xl font-black">{ticket.price.toLocaleString('en-IN')}</span>
-                    <span className="text-white/40 text-sm mb-1">{ticket.id === 'couple' ? '/ 2 people' : '/ person'}</span>
-                  </div>
-
-                  <ul className="space-y-2 mb-5">
-                    {cfg.perks.map(p => (
-                      <li key={p} className="flex items-center gap-2 text-sm text-white/70">
-                        <CheckCircle size={14} className="text-green-400 shrink-0" /> {p}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* UPI badge on ticket */}
-                  <div className="flex items-center gap-1.5 text-xs text-indigo-300 bg-indigo-950/50 rounded-lg px-3 py-1.5 mb-4 border border-indigo-500/20">
-                    <Smartphone size={12} /> Pay via UPI
-                  </div>
-
-                  <button
-                    onClick={e => { e.stopPropagation(); setSelectedTicket(ticket); }}
-                    className={`w-full py-3 rounded-xl font-bold text-sm transition-colors ${
-                      cfg.highlight ? 'bg-indigo-600 hover:bg-indigo-500 text-white' : 'bg-white/10 hover:bg-white/20 text-white'
-                    }`}>
-                    Book Now — &#8377;{ticket.price.toLocaleString('en-IN')}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        <p className="text-center text-white/25 text-xs mt-6">
-          Secure payment via Easebuzz · UPI (GPay, PhonePe, Paytm, BHIM) · Venue disclosed after booking
-        </p>
-      </div>
-
-      {/* ── What's Included ── */}
-      <div className="bg-white/5 px-5 py-16">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-indigo-400 text-xs font-bold tracking-widest uppercase mb-2 text-center">What's Included</p>
-          <h2 className="text-3xl font-black text-center mb-10">What's Waiting for You</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            {EVENT_PERKS.map(perk => {
-              const Icon = perk.icon;
-              return (
-                <div key={perk.label} className="bg-white/5 rounded-2xl p-5 border border-white/10">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-600/20 flex items-center justify-center mb-3">
-                    <Icon size={20} className="text-indigo-400" />
-                  </div>
-                  <p className="font-bold text-sm">{perk.label}</p>
-                  <p className="text-white/40 text-xs mt-1">{perk.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* ── Gallery ── */}
-      <div className="px-5 py-16 max-w-5xl mx-auto">
-        <p className="text-pink-400 text-xs font-bold tracking-widest uppercase mb-2 text-center">Gallery</p>
-        <h2 className="text-3xl font-black text-center mb-3">Pool Party & House Party Pics</h2>
-        <p className="text-white/40 text-sm text-center mb-10">From our previous events — tag us @ylootrips</p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {GALLERY.map((img, i) => (
-            <div key={i}
-              className={`relative rounded-2xl overflow-hidden ${i === 0 || i === 5 ? 'sm:col-span-2 sm:row-span-2' : ''}`}
-              style={{ aspectRatio: i === 0 || i === 5 ? '1/1' : '4/3' }}>
-              <Image src={img.src} alt={img.label} fill className="object-cover hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              <span className="absolute bottom-3 left-3 text-xs font-semibold text-white/80">{img.label}</span>
+      {/* ═══════════════════════════════ BYOB SECTION ══ */}
+      <section className="py-14 px-5">
+        <div className="max-w-2xl mx-auto">
+          <div className="rounded-3xl p-7 text-center" style={{ background: 'linear-gradient(135deg,rgba(245,158,11,0.1),rgba(249,115,22,0.08))', border: '1px solid rgba(245,158,11,0.2)' }}>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Wine size={28} className="text-amber-400" />
+              <h2 className="text-2xl font-black text-white">BYOB Policy</h2>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Reviews ── */}
-      <div className="bg-white/5 px-5 py-16">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-amber-400 text-xs font-bold tracking-widest uppercase mb-2 text-center">Reviews</p>
-          <h2 className="text-3xl font-black text-center mb-2">What Guests Say</h2>
-          <div className="flex items-center justify-center gap-1 mb-10">
-            {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="#f59e0b" className="text-amber-400" />)}
-            <span className="text-white/50 text-sm ml-2">4.9 · 200+ reviews</span>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {REVIEWS.map((r, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm shrink-0 ${r.avatarColor}`}>
-                    {r.avatar}
-                  </div>
-                  <div>
-                    <p className="font-bold text-sm">{r.name}</p>
-                    <div className="flex items-center gap-2">
-                      <span className="text-pink-400 text-xs flex items-center gap-1"><Instagram size={10} /> {r.ig}</span>
-                      <span className="text-white/30 text-xs">·</span>
-                      <span className="text-xs text-white/40 bg-white/10 px-2 py-0.5 rounded-full">{r.tag}</span>
-                    </div>
-                  </div>
-                  <div className="ml-auto flex gap-0.5">
-                    {[...Array(r.rating)].map((_, j) => <Star key={j} size={12} fill="#f59e0b" className="text-amber-400" />)}
-                  </div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
+              style={{ background: 'rgba(245,158,11,0.15)', border: '1px solid rgba(245,158,11,0.3)' }}>
+              <span className="text-amber-400 font-black text-sm">B · Y · O · B</span>
+            </div>
+            <p className="text-white font-bold text-lg mb-2">Bring Your Own Bottle / Beer / Booze / Beverage</p>
+            <p className="text-white/55 text-sm leading-relaxed max-w-lg mx-auto mb-5">
+              We keep things real — the venue won't provide alcohol. Bring your own drink of choice
+              and we'll provide the ice, mixers, glasses & vibe. Welcome drinks & mocktails are on us for everyone.
+            </p>
+            <div className="grid grid-cols-3 gap-3 text-sm">
+              {['Whisky & Rum', 'Beer & Wine', 'Anything 🎉'].map(item => (
+                <div key={item} className="rounded-xl py-2.5 px-3 text-amber-300 font-semibold text-xs"
+                  style={{ background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.15)' }}>
+                  {item}
                 </div>
-                <p className="text-white/70 text-sm leading-relaxed">"{r.text}"</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════ TICKETS ══ */}
+      <section id="tickets" className="py-14 px-5">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-xs font-black tracking-[0.3em] text-indigo-400 uppercase mb-3">Entry Charges</p>
+            <h2 className="font-black text-white mb-2" style={{ fontSize: 'clamp(1.8rem,5vw,3rem)' }}>
+              Choose Your Vibe
+            </h2>
+            <p className="text-white/40 text-sm">All tickets include food + welcome drink · BYOB welcome · Pay via UPI</p>
+          </div>
+
+          {loadingPrices ? (
+            <div className="flex justify-center py-16"><Loader2 className="w-8 h-8 animate-spin text-indigo-400" /></div>
+          ) : (
+            <div className="grid sm:grid-cols-3 gap-4">
+              {orderedTickets.map(ticket => {
+                const cfg = TICKET_CONFIG[ticket.id];
+                const gradientBg = ticket.id === 'female'
+                  ? 'linear-gradient(135deg,rgba(236,72,153,0.12),rgba(244,63,94,0.06))'
+                  : ticket.id === 'single'
+                  ? 'linear-gradient(135deg,rgba(99,102,241,0.15),rgba(168,85,247,0.08))'
+                  : 'linear-gradient(135deg,rgba(245,158,11,0.12),rgba(249,115,22,0.06))';
+                const borderColor = ticket.id === 'female' ? 'rgba(236,72,153,0.35)' : ticket.id === 'single' ? 'rgba(99,102,241,0.45)' : 'rgba(245,158,11,0.35)';
+                const glowColor = ticket.id === 'female' ? 'rgba(236,72,153,0.2)' : ticket.id === 'single' ? 'rgba(99,102,241,0.25)' : 'rgba(245,158,11,0.2)';
+                const btnGradient = ticket.id === 'female' ? 'linear-gradient(135deg,#ec4899,#f43f5e)' : ticket.id === 'single' ? 'linear-gradient(135deg,#6366f1,#a855f7)' : 'linear-gradient(135deg,#f59e0b,#f97316)';
+
+                return (
+                  <div key={ticket.id} className="relative rounded-3xl p-6 cursor-pointer transition-all hover:-translate-y-1"
+                    style={{ background: gradientBg, border: `1px solid ${borderColor}`, boxShadow: cfg.highlight ? `0 0 40px ${glowColor}` : 'none' }}
+                    onClick={() => setSelected(ticket)}>
+
+                    {cfg.highlight && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                        <span className="text-white text-xs font-black px-4 py-1 rounded-full"
+                          style={{ background: 'linear-gradient(135deg,#6366f1,#a855f7)' }}>
+                          🔥 Most Popular
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="flex items-start justify-between mb-4">
+                      <span className="text-3xl">{cfg.emoji}</span>
+                      <span className="text-xs font-bold px-2.5 py-1 rounded-full"
+                        style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.6)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                        {cfg.tag}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-black text-white mb-1">{ticket.label}</h3>
+                    <p className="text-white/35 text-xs mb-4">{ticket.note}</p>
+
+                    <div className="mb-5">
+                      <span className="text-white/40 text-base">₹</span>
+                      <span className="text-5xl font-black text-white">{ticket.price.toLocaleString('en-IN')}</span>
+                      <span className="text-white/35 text-sm ml-1">{ticket.id === 'couple' ? '/ 2 people' : '/ person'}</span>
+                    </div>
+
+                    <ul className="space-y-2 mb-6">
+                      {cfg.perks.map(p => (
+                        <li key={p} className="flex items-center gap-2 text-sm text-white/65">
+                          <CheckCircle size={14} className="text-green-400 shrink-0" /> {p}
+                        </li>
+                      ))}
+                      <li className="flex items-center gap-2 text-sm text-amber-300/80">
+                        <Wine size={14} className="shrink-0" /> BYOB welcome
+                      </li>
+                    </ul>
+
+                    <button onClick={e => { e.stopPropagation(); setSelected(ticket); }}
+                      className="w-full py-3.5 rounded-2xl font-black text-sm text-white transition-all hover:opacity-90 active:scale-95"
+                      style={{ background: btnGradient }}>
+                      Book Now — ₹{ticket.price.toLocaleString('en-IN')}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          <p className="text-center text-white/20 text-xs mt-6">
+            Secure payment via Easebuzz · UPI only · Venue address shared on WhatsApp after booking
+          </p>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════ VIBES ══ */}
+      <section className="py-14 px-5">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs font-black tracking-[0.3em] text-pink-400 uppercase mb-3 text-center">What's the vibe</p>
+          <h2 className="text-center font-black text-white mb-10" style={{ fontSize: 'clamp(1.6rem,4vw,2.5rem)' }}>A night you won't forget</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { icon: Music2, label: 'DJ All Night', desc: 'Live DJ + curated playlist', color: '#a855f7' },
+              { icon: Flame, label: 'Chef Food', desc: 'Finger food & desserts', color: '#f43f5e' },
+              { icon: Wine, label: 'BYOB Friendly', desc: 'Bring your own drinks', color: '#f59e0b' },
+              { icon: Instagram, label: 'Aesthetic Setup', desc: 'Perfect for the gram', color: '#ec4899' },
+              { icon: Users, label: 'Travel Tribe', desc: 'Meet your next trip squad', color: '#22c55e' },
+              { icon: PartyPopper, label: 'Surprise Acts', desc: 'Something special every time', color: '#6366f1' },
+            ].map(item => {
+              const Icon = item.icon;
+              return (
+                <div key={item.label} className="rounded-2xl p-5 group hover:-translate-y-0.5 transition-all"
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3"
+                    style={{ background: `${item.color}18` }}>
+                    <Icon size={20} style={{ color: item.color }} />
+                  </div>
+                  <p className="font-bold text-sm text-white">{item.label}</p>
+                  <p className="text-white/40 text-xs mt-0.5">{item.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════ GALLERY ══ */}
+      <section className="py-14 px-5">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs font-black tracking-[0.3em] text-indigo-400 uppercase mb-3 text-center">From Previous Events</p>
+          <h2 className="text-center font-black text-white mb-2" style={{ fontSize: 'clamp(1.6rem,4vw,2.5rem)' }}>
+            Pics don't lie 📸
+          </h2>
+          <p className="text-center text-white/35 text-sm mb-8">Tag us @ylootrips when you attend</p>
+
+          {/* Tab switch */}
+          <div className="flex justify-center gap-2 mb-6">
+            {(['party', 'pool'] as const).map(tab => (
+              <button key={tab} onClick={() => setGalleryTab(tab)}
+                className="px-5 py-2.5 rounded-full font-bold text-sm transition-all capitalize"
+                style={galleryTab === tab
+                  ? { background: 'linear-gradient(135deg,#6366f1,#a855f7)', color: '#fff' }
+                  : { background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                {tab === 'party' ? '🏠 House Party' : '🏊 Pool Party'}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            {(galleryTab === 'pool' ? POOL_PICS : PARTY_PICS).map((src, i) => (
+              <div key={src} className={`relative rounded-2xl overflow-hidden ${i === 0 ? 'sm:col-span-2 sm:row-span-2' : ''}`}
+                style={{ aspectRatio: i === 0 ? '1/1' : '4/3' }}>
+                <Image src={src} alt="Party pic" fill className="object-cover hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.4) 0%,transparent 60%)' }} />
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ── Bottom CTA ── */}
-      <div className="px-5 py-16 max-w-5xl mx-auto text-center">
-        <div className="bg-gradient-to-r from-indigo-900/60 to-pink-900/60 border border-white/10 rounded-3xl p-10">
-          <Zap className="w-10 h-10 text-amber-400 mx-auto mb-4" />
-          <h2 className="text-3xl font-black mb-2">Limited Seats Left</h2>
-          <p className="text-white/50 mb-8 max-w-md mx-auto">
-            Pre-registration required. Venue shared only with confirmed guests.
-          </p>
-          {!loadingPrices && (
-            <div className="flex flex-wrap gap-4 justify-center mb-5">
-              {orderedTickets.map(t => (
-                <button key={t.id} onClick={() => setSelectedTicket(t)}
-                  className="px-6 py-3 bg-white text-gray-900 font-bold rounded-xl text-sm hover:bg-gray-100 transition-colors">
-                  {t.label} — &#8377;{t.price.toLocaleString('en-IN')}
-                </button>
-              ))}
-            </div>
-          )}
-          <a href="https://wa.me/918427831127?text=Hi!%20I%20want%20to%20book%20the%20House%20Party%20ticket."
-            target="_blank" rel="noopener noreferrer"
-            className="text-sm text-green-400 hover:text-green-300 underline underline-offset-2">
-            Or WhatsApp: +91 84278 31127
-          </a>
+      {/* ══════════════════════════════════ REVIEWS ══ */}
+      <section className="py-14 px-5">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xs font-black tracking-[0.3em] text-amber-400 uppercase mb-3 text-center">Real people, real vibes</p>
+          <h2 className="text-center font-black text-white mb-2" style={{ fontSize: 'clamp(1.6rem,4vw,2.5rem)' }}>
+            What they said
+          </h2>
+          <div className="flex justify-center items-center gap-1 mb-10">
+            {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="#f59e0b" className="text-amber-400" />)}
+            <span className="text-white/40 text-sm ml-2">4.9 avg · 200+ attendees</span>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            {REVIEWS.map((r, i) => (
+              <div key={i} className="rounded-2xl p-5 transition-all hover:-translate-y-0.5"
+                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white shrink-0"
+                    style={{ background: `linear-gradient(135deg,${r.color})` }}>
+                    {r.avatar}
+                  </div>
+                  <div>
+                    <p className="font-bold text-sm text-white">{r.name}</p>
+                    <span className="text-pink-400 text-xs flex items-center gap-1"><Instagram size={10} /> {r.ig}</span>
+                  </div>
+                  <div className="ml-auto flex gap-0.5">
+                    {[...Array(r.rating)].map((_, j) => <Star key={j} size={11} fill="#f59e0b" className="text-amber-400" />)}
+                  </div>
+                </div>
+                <p className="text-white/60 text-sm leading-relaxed">"{r.text}"</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Booking Modal */}
-      {selectedTicket && <BookingModal ticket={selectedTicket} onClose={() => setSelectedTicket(null)} />}
+      {/* ══════════════════════════════ FINAL CTA ══ */}
+      <section className="py-20 px-5">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="relative rounded-3xl overflow-hidden p-10"
+            style={{ background: 'linear-gradient(135deg,rgba(99,102,241,0.2),rgba(236,72,153,0.15))', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%,rgba(168,85,247,0.2),transparent 70%)' }} />
+            <p className="text-4xl mb-4">🎉</p>
+            <h2 className="font-black text-white text-3xl mb-3">Don't sleep on this.</h2>
+            <p className="text-white/50 mb-8 text-sm leading-relaxed">
+              Seats are going fast. Once it's sold out, it's sold out. <br />No walk-ins. No excuses.
+            </p>
+            {!loadingPrices && (
+              <div className="flex flex-wrap gap-3 justify-center mb-6">
+                {orderedTickets.map(t => {
+                  const gradient = t.id === 'female' ? 'linear-gradient(135deg,#ec4899,#f43f5e)' : t.id === 'single' ? 'linear-gradient(135deg,#6366f1,#a855f7)' : 'linear-gradient(135deg,#f59e0b,#f97316)';
+                  return (
+                    <button key={t.id} onClick={() => setSelected(t)}
+                      className="px-5 py-3 rounded-2xl font-black text-sm text-white transition-all hover:scale-105 active:scale-95"
+                      style={{ background: gradient }}>
+                      {TICKET_CONFIG[t.id].emoji} {t.label} — ₹{t.price.toLocaleString('en-IN')}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+            <a href="https://wa.me/918427831127?text=Hi!%20I%20want%20to%20book%20the%20House%20Party%20ticket."
+              target="_blank" rel="noopener noreferrer"
+              className="text-xs text-green-400 hover:text-green-300 underline underline-offset-4">
+              or WhatsApp us: +91 84278 31127
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {selected && <BookingModal ticket={selected} onClose={() => setSelected(null)} />}
     </div>
   );
 }
