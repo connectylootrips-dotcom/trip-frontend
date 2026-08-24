@@ -55,12 +55,6 @@ const TICKET_CONFIG: Record<string, {
 const TICKET_ORDER = ['female', 'single', 'couple'];
 
 /* ── Pool + House Party gallery (two categories) ─────────────── */
-const POOL_PICS = [
-  'https://images.unsplash.com/photo-1530549387789-4c1017266635?w=800&q=85',
-  'https://images.unsplash.com/photo-1499678329028-101435549a4e?w=700&q=85',
-  'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&q=85',
-  'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?w=700&q=85',
-];
 const PARTY_PICS = [
   'https://images.unsplash.com/photo-1574270981993-49ccc2e7f63e?w=800&q=85',
   'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=85',
@@ -250,7 +244,6 @@ export default function HousePartyPage() {
   const [tickets, setTickets] = useState<TicketTier[]>(FALLBACK_TICKETS);
   const [loadingPrices, setLoadingPrices] = useState(false);
   const [selected, setSelected] = useState<TicketTier | null>(null);
-  const [galleryTab, setGalleryTab] = useState<'pool' | 'party'>('party');
 
   useEffect(() => {
     fetch('/api/admin/house-party-prices')
@@ -508,39 +501,26 @@ export default function HousePartyPage() {
           </h2>
           <p className="text-center text-white/35 text-sm mb-8">Tag us @ylootrips when you attend</p>
 
-          {/* Tab switch */}
-          <div className="flex justify-center gap-2 mb-6">
-            {(['party', 'pool'] as const).map(tab => (
-              <button key={tab} onClick={() => setGalleryTab(tab)}
-                className="px-5 py-2.5 rounded-full font-bold text-sm transition-all capitalize"
-                style={galleryTab === tab
-                  ? { background: 'linear-gradient(135deg,#6366f1,#a855f7)', color: '#fff' }
-                  : { background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                {tab === 'party' ? '🏠 House Party' : '🏊 Pool Party'}
-              </button>
-            ))}
-          </div>
-
           {/* Gallery — left big + right 3 stacked */}
           <div className="flex gap-2.5" style={{ height: '380px' }}>
-            {/* Big left image — explicit height so fill works */}
+            {/* Big left image */}
             <div className="relative rounded-2xl overflow-hidden flex-shrink-0" style={{ width: '50%', height: '380px' }}>
               <Image
-                src={(galleryTab === 'pool' ? POOL_PICS : PARTY_PICS)[0]}
-                alt={galleryTab === 'pool' ? 'Pool party' : 'House party'}
+                src={PARTY_PICS[0]}
+                alt="House party"
                 fill
                 sizes="(max-width:768px) 50vw, 400px"
                 className="object-cover hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.4) 0%,transparent 55%)' }} />
             </div>
-            {/* Right 3 stacked — each with explicit height */}
+            {/* Right 3 stacked */}
             <div className="flex flex-col gap-2.5 flex-1">
-              {(galleryTab === 'pool' ? POOL_PICS : PARTY_PICS).slice(1).map((src, i) => (
+              {PARTY_PICS.slice(1).map((src, i) => (
                 <div key={src} className="relative rounded-2xl overflow-hidden" style={{ height: '116px' }}>
                   <Image
                     src={src}
-                    alt={galleryTab === 'pool' ? `Pool party ${i + 2}` : `House party ${i + 2}`}
+                    alt={`House party ${i + 2}`}
                     fill
                     sizes="(max-width:768px) 50vw, 300px"
                     className="object-cover hover:scale-105 transition-transform duration-700"
