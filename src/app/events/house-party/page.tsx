@@ -54,14 +54,6 @@ const TICKET_CONFIG: Record<string, {
 
 const TICKET_ORDER = ['female', 'single', 'couple'];
 
-/* ── Pool + House Party gallery (two categories) ─────────────── */
-const PARTY_PICS = [
-  'https://images.unsplash.com/photo-1574270981993-49ccc2e7f63e?w=800&q=85',
-  'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=85',
-  'https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=700&q=85',
-  'https://images.unsplash.com/photo-1543332164-6e82f355badc?w=700&q=85',
-];
-
 const REVIEWS = [
   { name: 'Aanya S.', ig: '@aanya.roams', rating: 5, text: 'Literally the best night of 2024. The vibe was IMMACULATE. Made 6 new travel bestiesss!!', avatar: 'AS', color: 'from-pink-400 to-rose-500' },
   { name: 'Rohan M.', ig: '@rohan.goes', rating: 5, text: 'Came alone, left with a whole squad planning Bali. The music was different level fr fr 🔥', avatar: 'RM', color: 'from-indigo-400 to-purple-500' },
@@ -488,47 +480,6 @@ export default function HousePartyPage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════ GALLERY ══ */}
-      <section className="py-14 px-5">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs font-black tracking-[0.3em] text-indigo-400 uppercase mb-3 text-center">From Previous Events</p>
-          <h2 className="text-center font-black text-white mb-2" style={{ fontSize: 'clamp(1.6rem,4vw,2.5rem)' }}>
-            Pics don't lie 📸
-          </h2>
-          <p className="text-center text-white/35 text-sm mb-8">Tag us @ylootrips when you attend</p>
-
-          {/* Gallery — left big + right 3 stacked */}
-          <div className="flex gap-2.5" style={{ height: '380px' }}>
-            {/* Big left image */}
-            <div className="relative rounded-2xl overflow-hidden flex-shrink-0" style={{ width: '50%', height: '380px' }}>
-              <Image
-                src={PARTY_PICS[0]}
-                alt="House party"
-                fill
-                sizes="(max-width:768px) 50vw, 400px"
-                className="object-cover hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.4) 0%,transparent 55%)' }} />
-            </div>
-            {/* Right 3 stacked */}
-            <div className="flex flex-col gap-2.5 flex-1">
-              {PARTY_PICS.slice(1).map((src, i) => (
-                <div key={src} className="relative rounded-2xl overflow-hidden" style={{ height: '116px' }}>
-                  <Image
-                    src={src}
-                    alt={`House party ${i + 2}`}
-                    fill
-                    sizes="(max-width:768px) 50vw, 300px"
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.35) 0%,transparent 55%)' }} />
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
