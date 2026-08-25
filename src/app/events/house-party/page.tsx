@@ -6,7 +6,8 @@ import Link from 'next/link';
 import {
   MapPin, Calendar, Clock, Users, Star, Instagram,
   CheckCircle, X, Loader2, ChevronLeft, Shield,
-  Smartphone, Wine, Music2, Flame, PartyPopper, ChevronRight
+  Smartphone, Wine, Music2, Flame, PartyPopper, ChevronRight,
+  BadgeCheck, AlertTriangle, RefreshCw
 } from 'lucide-react';
 
 interface TicketTier {
@@ -55,7 +56,7 @@ const TICKET_CONFIG: Record<string, {
 const TICKET_ORDER = ['female', 'single', 'couple'];
 
 const REVIEWS = [
-  { name: 'Jatin Balani', ig: '@jatin___balani__', rating: 5, text: 'Literally the best night of 2024. The vibe was IMMACULATE. Made 6 new travel bestiesss!!', avatar: 'JB', color: 'from-pink-400 to-rose-500' },
+  { name: 'Jatin Balani', ig: '@jatin___balani__', rating: 5, text: 'Literally the best night of my life. The vibe was IMMACULATE. Made 6 new travel bestiesss!!', avatar: 'JB', color: 'from-pink-400 to-rose-500' },
   { name: 'Sagar Wadhwa', ig: '@wadhwa.sagar', rating: 5, text: 'Came alone, left with a whole squad planning Bali. The music was different level fr fr 🔥', avatar: 'SW', color: 'from-indigo-400 to-purple-500' },
   { name: 'Deepak Bargali', ig: '@pahadi_fitnesss', rating: 5, text: 'The pool + party combo was ELITE. No boring crowd — only travel people. Already booked next one ngl', avatar: 'DB', color: 'from-violet-400 to-purple-500' },
   { name: 'Manvi Saroya', ig: '@a_tallgirl__', rating: 5, text: 'The BYOB policy was such a vibe — brought my fave whisky, made cocktails with the bar setup. W event 🙌', avatar: 'MS', color: 'from-amber-400 to-orange-500' },
@@ -216,7 +217,7 @@ function BookingModal({ ticket, onClose }: { ticket: TicketTier; onClose: () => 
               {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Opening UPI…</> : <><Shield size={15} /> Pay &#8377;{total.toLocaleString('en-IN')} via UPI</>}
             </button>
 
-            <p className="text-xs text-center text-white/25">Venue disclosed on WhatsApp after payment · 48-hr cancellation policy</p>
+            <p className="text-xs text-center text-white/25">Gurugram venue · Exact address on WhatsApp 24-48h before event · Full refund if cancelled 48h+ early</p>
           </form>
         </div>
       </div>
@@ -274,9 +275,9 @@ export default function HousePartyPage() {
         <div className="relative z-10 px-5 pb-20 pt-28 max-w-3xl mx-auto w-full text-center">
           {/* tag pills */}
           <div className="flex flex-wrap justify-center gap-2 mb-6">
-            {['Delhi NCR', '5 Sept', 'Limited Seats', 'BYOB'].map(tag => (
+            {['Delhi NCR', '5 Sept', 'Limited Seats', 'BYOB', '21+ Only'].map(tag => (
               <span key={tag} className="text-xs font-bold px-3 py-1 rounded-full"
-                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.7)' }}>
+                style={{ background: tag === '21+ Only' ? 'rgba(239,68,68,0.15)' : 'rgba(255,255,255,0.08)', border: tag === '21+ Only' ? '1px solid rgba(239,68,68,0.4)' : '1px solid rgba(255,255,255,0.15)', color: tag === '21+ Only' ? '#f87171' : 'rgba(255,255,255,0.7)' }}>
                 {tag}
               </span>
             ))}
@@ -312,17 +313,23 @@ export default function HousePartyPage() {
           </p>
 
           {/* event info pills */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10 text-sm">
+          <div className="flex flex-wrap justify-center gap-3 mb-4 text-sm">
             {[
               { icon: Calendar, text: '5 September 2026', color: '#a855f7' },
               { icon: Clock, text: '8:30 PM onwards', color: '#ec4899' },
-              { icon: MapPin, text: 'Gurgaon / Noida', color: '#f59e0b' },
+              { icon: MapPin, text: 'Gurugram, Delhi NCR', color: '#f59e0b' },
               { icon: Users, text: 'Limited seats', color: '#22c55e' },
             ].map(({ icon: Icon, text, color }) => (
               <span key={text} className="flex items-center gap-1.5 text-white/60 text-xs font-medium">
                 <Icon size={13} style={{ color }} /> {text}
               </span>
             ))}
+          </div>
+          {/* Venue transparency note */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 text-xs"
+            style={{ background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.25)' }}>
+            <Shield size={12} className="text-indigo-400" />
+            <span className="text-white/50">Exact venue address confirmed via WhatsApp 24-48h before event — standard for all our private parties</span>
           </div>
 
           <button onClick={() => { const el = document.getElementById('tickets'); el?.scrollIntoView({ behavior: 'smooth' }); }}
@@ -364,6 +371,39 @@ export default function HousePartyPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════ SAFETY ══ */}
+      <section className="py-10 px-5">
+        <div className="max-w-2xl mx-auto">
+          <div className="rounded-3xl p-7" style={{ background: 'linear-gradient(135deg,rgba(34,197,94,0.08),rgba(16,185,129,0.05))', border: '1px solid rgba(34,197,94,0.2)' }}>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'rgba(34,197,94,0.15)' }}>
+                <Shield size={20} className="text-green-400" />
+              </div>
+              <div>
+                <h2 className="text-lg font-black text-white">Your Safety, Our Priority</h2>
+                <p className="text-xs text-white/40">Every YLOO event follows a strict safety protocol</p>
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                { icon: BadgeCheck, text: 'ID verified entry — Aadhaar or DL checked at door' },
+                { icon: Shield, text: 'Security personnel on-site throughout the event' },
+                { icon: Users, text: 'Female safety coordinator present all night' },
+                { icon: AlertTriangle, text: 'Zero harassment policy — violators removed immediately' },
+                { icon: BadgeCheck, text: '21+ only event — age strictly enforced at entry' },
+                { icon: Smartphone, text: 'Emergency WhatsApp contact shared post-booking' },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-start gap-2.5">
+                  <Icon size={14} className="text-green-400 mt-0.5 shrink-0" />
+                  <p className="text-white/60 text-xs leading-relaxed">{text}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-white/25 text-xs mt-4 text-center">Questions? WhatsApp us at +91 84278 31127 before booking</p>
           </div>
         </div>
       </section>
@@ -448,8 +488,32 @@ export default function HousePartyPage() {
           )}
 
           <p className="text-center text-white/20 text-xs mt-6">
-            Secure payment via Easebuzz · UPI only · Venue address shared on WhatsApp after booking
+            Secure payment via Easebuzz · UPI only · Venue address shared on WhatsApp 24-48h before event
           </p>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════ CANCELLATION POLICY ══ */}
+      <section className="py-6 px-5">
+        <div className="max-w-3xl mx-auto">
+          <div className="rounded-2xl p-5" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
+            <p className="text-xs font-black text-white/50 uppercase tracking-widest mb-4 text-center">Cancellation & Refund Policy</p>
+            <div className="grid sm:grid-cols-3 gap-3">
+              {[
+                { icon: CheckCircle, color: '#22c55e', title: 'Full Refund', sub: 'Cancel 48h+ before the event' },
+                { icon: AlertTriangle, color: '#f59e0b', title: 'No Refund', sub: 'Within 48h of the event start' },
+                { icon: RefreshCw, color: '#6366f1', title: 'Free Transfer', sub: 'Event postponed → shift to next date' },
+              ].map(({ icon: Icon, color, title, sub }) => (
+                <div key={title} className="flex items-center gap-3 rounded-xl p-3" style={{ background: 'rgba(255,255,255,0.03)' }}>
+                  <Icon size={18} style={{ color }} className="shrink-0" />
+                  <div>
+                    <p className="text-white text-xs font-bold">{title}</p>
+                    <p className="text-white/35 text-xs">{sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
