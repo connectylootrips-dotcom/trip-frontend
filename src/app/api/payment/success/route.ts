@@ -184,12 +184,13 @@ export async function POST(request: NextRequest) {
       } catch { /* fall through to regular event success */ }
     }
 
-    // House party bookings — show entry pass
-    if (txnid.startsWith('HP-')) {
+    // House party bookings — detect via udf1 (our bookingReference) since Easebuzz txnid is TRP-xxx
+    const hpRef = hashParams.udf1 || '';
+    if (hpRef.startsWith('HP-') || txnid.startsWith('HP-')) {
       const hpSuccessUrl = new URL('/events/house-party/success', baseUrl);
-      hpSuccessUrl.searchParams.set('txnid', txnid);
+      hpSuccessUrl.searchParams.set('txnid', txnid); // Easebuzz TRP-xxx (session storage key)
+      hpSuccessUrl.searchParams.set('ref', hpRef);   // our HP-xxx ref
       hpSuccessUrl.searchParams.set('status', status);
-      if (easepayid) hpSuccessUrl.searchParams.set('easepayid', easepayid);
       return NextResponse.redirect(hpSuccessUrl, { status: 303 });
     }
 

@@ -96,8 +96,8 @@ function BookingModal({ ticket, onClose }: { ticket: TicketTier; onClose: () => 
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error || 'Payment failed. Try WhatsApp.'); return; }
-      // Save entry pass data before leaving — read back on success page
-      sessionStorage.setItem(`hp-entry-${ref}`, JSON.stringify({
+      // Save entry pass data — keyed by our HP- ref AND the Easebuzz txnid (TRP-xxx)
+      const entryData = {
         ref,
         name: form.name,
         email: form.email,
@@ -110,8 +110,12 @@ function BookingModal({ ticket, onClose }: { ticket: TicketTier; onClose: () => 
         date: '5 September 2026',
         venue: 'Gurugram, Delhi NCR',
         bookedAt: new Date().toISOString(),
-      }));
-      if (data.redirectUrl) window.location.href = data.redirectUrl;
+      };
+      sessionStorage.setItem(`hp-entry-${ref}`, JSON.stringify(entryData));
+      // Also save under the Easebuzz txnid so success page can find it
+      if (data.txnid) sessionStorage.setItem(`hp-entry-${data.txnid}`, JSON.stringify(entryData));
+      const goUrl = data.paymentUrl || data.redirectUrl;
+      if (goUrl) window.location.href = goUrl;
       else if (data.html) { document.open(); document.write(data.html); document.close(); }
       else setError('Could not start payment. WhatsApp us to book.');
     } catch { setError('Network error. Try again.'); }

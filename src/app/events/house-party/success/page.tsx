@@ -70,13 +70,15 @@ function EntryPassContent() {
   const [copied, setCopied] = useState(false);
   const [showPass, setShowPass] = useState(false);
 
-  const txnid = searchParams?.get('txnid') || (typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('txnid') : null);
+  const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  const txnid = searchParams?.get('txnid') || params?.get('txnid') || null;
+  const hpRef = searchParams?.get('ref') || params?.get('ref') || null;
 
   useEffect(() => {
-    if (!txnid) return;
+    if (!txnid && !hpRef) return;
 
-    // Read booking data saved before payment redirect
-    const raw = sessionStorage.getItem(`hp-entry-${txnid}`);
+    // Try txnid first (TRP-xxx saved under that key), then HP- ref
+    const raw = sessionStorage.getItem(`hp-entry-${txnid}`) || sessionStorage.getItem(`hp-entry-${hpRef}`);
     if (raw) {
       try {
         const data = JSON.parse(raw) as EntryPassData;
@@ -94,8 +96,9 @@ function EntryPassContent() {
   }, [txnid]);
 
   const copy = () => {
-    if (!pass?.ref) return;
-    navigator.clipboard.writeText(pass.ref).then(() => {
+    const id = hpRef || pass?.ref || txnid || '';
+    if (!id) return;
+    navigator.clipboard.writeText(id).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -218,7 +221,7 @@ function EntryPassContent() {
               <div className="rounded-2xl p-4 mt-2" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
                 <p className="text-white/35 text-xs mb-1.5 uppercase tracking-widest">Booking ID</p>
                 <div className="flex items-center justify-between gap-2">
-                  <p className="font-mono font-black text-white text-sm tracking-wider break-all">{txnid || pass?.ref || '—'}</p>
+                  <p className="font-mono font-black text-white text-sm tracking-wider break-all">{hpRef || pass?.ref || txnid || '—'}</p>
                   <button onClick={copy} className="shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all hover:bg-white/20"
                     style={{ background: 'rgba(255,255,255,0.08)' }}>
                     {copied ? <CheckCircle size={14} className="text-green-400" /> : <Copy size={14} className="text-white/60" />}
@@ -245,13 +248,13 @@ function EntryPassContent() {
         {/* Action buttons */}
         <div className={`mt-6 space-y-3 transition-all duration-700 delay-400 ${showPass ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
 
-          <button onClick={() => router.push(`/my-booking?ref=${txnid || pass?.ref}`)}
+          <button onClick={() => router.push(`/my-booking?ref=${hpRef || pass?.ref || txnid}`)}
             className="w-full py-4 rounded-2xl font-black text-sm text-white flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-95"
             style={{ background: 'linear-gradient(135deg,#6366f1,#a855f7)', boxShadow: '0 0 30px rgba(99,102,241,0.3)' }}>
             <Ticket size={16} /> View My Booking <ArrowRight size={16} />
           </button>
 
-          <a href={`https://wa.me/918427831127?text=Hi!%20I%20just%20booked%20a%20House%20Party%20ticket.%20My%20Booking%20ID%20is%20${encodeURIComponent(txnid || pass?.ref || '')}.%20Please%20confirm%20venue%20details.`}
+          <a href={`https://wa.me/918427831127?text=Hi!%20I%20just%20booked%20a%20House%20Party%20ticket.%20My%20Booking%20ID%20is%20${encodeURIComponent(hpRef || pass?.ref || txnid || '')}.%20Please%20confirm%20venue%20details.`}
             target="_blank" rel="noopener noreferrer"
             className="w-full py-3.5 rounded-2xl font-black text-sm flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-95"
             style={{ background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.3)', color: '#4ade80' }}>
