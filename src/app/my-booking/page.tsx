@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import {
   Search, CheckCircle, Clock, Plane, Calendar, Users,
   MapPin, Ticket, Copy, MessageCircle, ArrowLeft, AlertCircle,
@@ -768,6 +768,11 @@ function BookingSearchSheet({ onClose, onResult }: {
     setLoading(true); setError(null);
     const ref = reference.trim().toUpperCase();
     try {
+      if (ref.startsWith('HP-')) {
+        // House party bookings → entry pass page
+        window.location.href = `/events/house-party/success?ref=${encodeURIComponent(ref)}`;
+        return;
+      }
       if (ref.startsWith('FLT-')) {
         const res = await fetch(`/api/admin/flight-bookings?txnid=${encodeURIComponent(ref)}`);
         const json = await res.json();
@@ -1022,7 +1027,15 @@ function ProfilePage({ onOpenSearch, onOpenClientLogin }: { onOpenSearch: () => 
 /* ─── Main Content ─── */
 function MyBookingContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const prefillRef = searchParams.get('ref') || '';
+
+  // House party bookings live on the entry pass page, not here
+  useEffect(() => {
+    if (prefillRef.toUpperCase().startsWith('HP-')) {
+      router.replace(`/events/house-party/success?ref=${encodeURIComponent(prefillRef)}`);
+    }
+  }, [prefillRef, router]);
 
   const [showSearch, setShowSearch] = useState(!!prefillRef);
   const [showClientLogin, setShowClientLogin] = useState(false);
