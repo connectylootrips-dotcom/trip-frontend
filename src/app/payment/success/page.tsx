@@ -82,6 +82,14 @@ function PaymentSuccessContent() {
 
             const { txnid: urlTxnid, status, type } = getUrlParams();
 
+            // House party bookings: ref=HP-xxx (old surl format) or txnid=HP-xxx
+            const refParam = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('ref') : null;
+            const hpRef = refParam?.startsWith('HP-') ? refParam : (urlTxnid?.startsWith('HP-') ? urlTxnid : null);
+            if (hpRef) {
+                window.location.replace(`/events/house-party/success?ref=${encodeURIComponent(hpRef)}&txnid=${encodeURIComponent(urlTxnid || hpRef)}&status=${status || 'success'}`);
+                return;
+            }
+
             if (!urlTxnid) {
                 setError('Invalid payment response. Missing transaction ID.');
                 setLoading(false);
