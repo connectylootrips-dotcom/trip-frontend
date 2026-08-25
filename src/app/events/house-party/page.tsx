@@ -96,6 +96,21 @@ function BookingModal({ ticket, onClose }: { ticket: TicketTier; onClose: () => 
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error || 'Payment failed. Try WhatsApp.'); return; }
+      // Save entry pass data before leaving — read back on success page
+      sessionStorage.setItem(`hp-entry-${ref}`, JSON.stringify({
+        ref,
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        instagram: form.instagram,
+        ticketType: ticket.label,
+        ticketId: ticket.id,
+        guests,
+        total,
+        date: '5 September 2026',
+        venue: 'Gurugram, Delhi NCR',
+        bookedAt: new Date().toISOString(),
+      }));
       if (data.redirectUrl) window.location.href = data.redirectUrl;
       else if (data.html) { document.open(); document.write(data.html); document.close(); }
       else setError('Could not start payment. WhatsApp us to book.');

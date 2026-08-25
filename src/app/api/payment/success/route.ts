@@ -184,6 +184,15 @@ export async function POST(request: NextRequest) {
       } catch { /* fall through to regular event success */ }
     }
 
+    // House party bookings — show entry pass
+    if (txnid.startsWith('HP-')) {
+      const hpSuccessUrl = new URL('/events/house-party/success', baseUrl);
+      hpSuccessUrl.searchParams.set('txnid', txnid);
+      hpSuccessUrl.searchParams.set('status', status);
+      if (easepayid) hpSuccessUrl.searchParams.set('easepayid', easepayid);
+      return NextResponse.redirect(hpSuccessUrl, { status: 303 });
+    }
+
     const successUrl = new URL(`/payment/success`, baseUrl);
     successUrl.searchParams.set('txnid', txnid);
     successUrl.searchParams.set('status', status);
