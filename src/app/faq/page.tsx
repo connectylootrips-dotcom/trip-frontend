@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FaqJsonLd, BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Travel FAQ — YlooTrips | Common Questions About India Tours',
+  title: 'Travel FAQ — Common Questions About India Tours',
   description: 'Answers to the most common questions about booking India tour packages with YlooTrips — pricing, safety, cancellation, group tours, visa, and more.',
   alternates: { canonical: 'https://www.ylootrips.com/faq' },
   openGraph: {
