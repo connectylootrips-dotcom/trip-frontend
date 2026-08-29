@@ -45,7 +45,7 @@ const nextConfig: NextConfig = {
       {
         source: '/trips',
         destination: '/destinations/domestic',
-        permanent: false,
+        permanent: true,
       },
       {
         source: '/:path*',
