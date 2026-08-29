@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { Calendar, ChevronRight, Sun, Snowflake, Cloud } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Best Time to Travel in India — Month-by-Month Travel Guide 2026 | YlooTrips',
+  title: 'Best Time to Travel in India — Month-by-Month Travel Guide 2026',
   description: 'Complete month-by-month travel guide for India and international destinations. Where to go in January, February, March, and every month of the year. Best weather, festivals, and deals.',
   openGraph: {
-    title: 'Best Time to Travel — Month-by-Month Guide | YlooTrips',
+    title: 'Best Time to Travel — Month-by-Month Guide',
     description: 'Where to go every month of the year — weather, festivals, and deals for India and beyond.',
     url: 'https://www.ylootrips.com/best-time-to-travel',
   },

@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { Shield, Check, X, Phone, MessageCircle, Star, ChevronRight, AlertTriangle, Plane, Hospital, Luggage, Clock } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Travel Insurance for India & International Trips 2026 | YlooTrips',
+  title: 'Travel Insurance for India & International Trips 2026',
   description: 'Get travel insurance from ₹399/trip. Covers trip cancellation, medical emergencies, flight delay, baggage loss, and adventure activities. Instant policy, 24/7 claim support.',
   openGraph: {
-    title: 'Travel Insurance — From ₹399/Trip | YlooTrips',
+    title: 'Travel Insurance — From ₹399/Trip',
     description: 'Trip cancellation, medical emergencies, flight delays, baggage loss. Instant policy online. Covers India and 150+ countries.',
     url: 'https://www.ylootrips.com/travel-insurance',
     type: 'website',

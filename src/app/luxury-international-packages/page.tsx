@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Luxury International Tour Packages from India — 5★ Hotels & Private Transfers',
   description: 'Book premium luxury international tour packages from India. Maldives overwater villas, Bali private pool resorts, Europe first class, Dubai 5★ stays. Handcrafted itineraries with private guides and transfers. Starting ₹45,000.',
   openGraph: {
-    title: 'Luxury International Packages from India — Maldives, Bali, Europe & More | YlooTrips',
+    title: 'Luxury International Packages from India — Maldives, Bali, Europe & More',
     description: 'Premium holidays with 5★ hotels, private transfers, and dedicated concierge. Maldives, Bali, Europe, Dubai, Japan. Handcrafted by YlooTrips.',
     url: 'https://www.ylootrips.com/luxury-international-packages',
     type: 'website',

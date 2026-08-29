@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { FileText, Clock, Check, MessageCircle, ChevronRight, Globe } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Visa Guide for Indian Travelers 2026 — Requirements, Fees & Processing | YlooTrips',
+  title: 'Visa Guide for Indian Travelers 2026 — Requirements, Fees & Processing',
   description: 'Complete visa guide for Indian passport holders. Visa on arrival, e-visa, and embassy visa requirements for Bali, Dubai, Thailand, Singapore, Europe, USA, and 50+ countries. Updated for 2026.',
   openGraph: {
-    title: 'Visa Guide for Indian Travelers 2026 | YlooTrips',
+    title: 'Visa Guide for Indian Travelers 2026',
     description: 'Visa requirements, fees, and processing times for 50+ countries. Updated for 2026.',
     url: 'https://www.ylootrips.com/visa',
     type: 'website',

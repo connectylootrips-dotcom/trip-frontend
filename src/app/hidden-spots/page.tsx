@@ -5,7 +5,7 @@ import { ArrowUpRight, MapPin, Clock, Compass, Calendar, Navigation, CreditCard,
 import hiddenSpots from '@/data/hiddenSpots';
 
 export const metadata: Metadata = {
-  title: 'Hidden Gems — India & International Secret Destinations | YlooTrips',
+  title: 'Hidden Gems — India & International Secret Destinations',
   description: 'Discover hidden gems all over India & around the world — Chopta, Majuli, Dawki, Phong Nha Vietnam, Ella Sri Lanka, Nusa Penida Bali, Musandam Oman, Coron Philippines and more. Book on EMI with YlooTrips.',
   alternates: { canonical: 'https://www.ylootrips.com/hidden-spots' },
 };

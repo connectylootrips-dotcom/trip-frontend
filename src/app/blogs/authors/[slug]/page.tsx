@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const author = AUTHORS[slug];
   if (!author) return {};
   return {
-    title: `${author.name} — ${author.role} | YlooTrips`,
+    title: `${author.name} — ${author.role}`,
     description: author.bio.slice(0, 160),
     openGraph: {
       title: `${author.name} | YlooTrips Travel Writers`,

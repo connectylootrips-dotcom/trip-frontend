@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Maldives Luxury Package from India — ₹89,999 Onwards | YlooTrips',
+    title: 'Maldives Luxury Package from India — ₹89,999 Onwards',
     description: 'Overwater Bungalow + Snorkeling + Dolphin Cruise + Spa. Book now with ₹10,000 advance.',
     images: ['https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1200&q=80'],
   },

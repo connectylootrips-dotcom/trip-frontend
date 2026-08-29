@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'India Travel Blog — Tips, Guides & Inspiration | YlooTrips',
+  title: 'India Travel Blog — Tips, Guides & Inspiration',
   description: 'Expert India travel guides and articles — best time to visit, safety tips, budget breakdowns, destination comparisons, and insider knowledge from 25,000+ trips. Written by YlooTrips travel experts.',
   openGraph: {
     title: 'India Travel Blog | YlooTrips — India Travel Experts',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'India Travel Blog | YlooTrips',
+    title: 'India Travel Blog',
     description: 'Expert India travel guides — tips, safety, budget and destination inspiration.',
     images: ['https://www.ylootrips.com/og-image.jpg'],
   },

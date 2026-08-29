@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Ladakh Tour Package 2026 — 6 Nights Starting ₹22,999 | YlooTrips',
+  title: 'Ladakh Tour Package 2026 — 6 Nights Starting ₹22,999',
   description: 'Book Ladakh tour packages starting ₹22,999. Leh, Pangong Lake, Nubra Valley, Khardung La, Tso Moriri. 6 nights / 7 days — high-altitude adventure in the Himalayas.',
   openGraph: {
     title: 'Ladakh Tour Package 2026 — 6 Nights Starting ₹22,999',

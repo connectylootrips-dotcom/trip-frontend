@@ -353,7 +353,7 @@ export async function generateMetadata({ params }: { params: Promise<{ month: st
   const data = MONTHS[month];
   if (!data) return {};
   return {
-    title: `Best Places to Visit in ${data.name} 2026 — India & International | YlooTrips`,
+    title: `Best Places to Visit in ${data.name} 2026 — India & International`,
     description: `Where to travel in ${data.name}: ${data.domesticPicks.map(d => d.dest).join(', ')}. ${data.summary.slice(0, 100)}...`,
     alternates: { canonical: `https://www.ylootrips.com/best-time-to-travel/${month}` },
     openGraph: {

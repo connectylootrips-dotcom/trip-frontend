@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Sri Lanka Tour Package from India 2026 — 5 Nights Starting ₹28,999 | YlooTrips',
+  title: 'Sri Lanka Tour Package from India 2026 — 5 Nights Starting ₹28,999',
   description: 'Book Sri Lanka tour packages from India starting ₹28,999. Colombo, Kandy, Ella, Sigiriya, Galle. 5 nights / 6 days — temples, tea estates, ancient ruins, and golden beaches.',
   openGraph: {
     title: 'Sri Lanka Tour Package from India 2026 — 5 Nights Starting ₹28,999',

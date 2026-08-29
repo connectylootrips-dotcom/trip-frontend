@@ -5,7 +5,7 @@ import { ChevronRight, ArrowRight, MessageCircle, MapPin, Clock, Utensils, Star 
 import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Thailand Itinerary 5 Days 2026 — Bangkok to Phuket Perfect Plan | YlooTrips',
+  title: 'Thailand Itinerary 5 Days 2026 — Bangkok to Phuket Perfect Plan',
   description: 'Best 5-day Thailand itinerary for Indians in 2026. Day-by-day Bangkok + Phuket plan — temples, Phi Phi Islands, floating market, nightlife. Budget breakdown included.',
   openGraph: {
     title: 'Thailand Itinerary 5 Days 2026 — Bangkok to Phuket Perfect Plan',

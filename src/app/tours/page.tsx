@@ -5,7 +5,7 @@ import { ArrowUpRight, Star, Clock, Users, MapPin, CheckCircle2, Shield, Award, 
 import curatedTours from '@/data/curatedTours';
 
 export const metadata: Metadata = {
-  title: 'Curated India Tours for International Travelers | YlooTrips',
+  title: 'Curated India Tours for International Travelers',
   description: 'Private guided tours of India crafted for international travelers. Golden Triangle, Kerala, Rajasthan — 4-star hotels, expert guides, all-inclusive packages from $950.',
   alternates: { canonical: 'https://www.ylootrips.com/tours' },
   openGraph: {

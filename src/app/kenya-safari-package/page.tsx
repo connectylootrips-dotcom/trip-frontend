@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Kenya Safari Package from India 2026 — 7 Nights Starting ₹2,24,999 | YlooTrips',
+  title: 'Kenya Safari Package from India 2026 — 7 Nights Starting ₹2,24,999',
   description: 'Book Kenya safari packages from India starting ₹2,24,999. Masai Mara, Amboseli, Nairobi, Diani Beach. 7 nights / 8 days — Big Five game drives, Great Migration, and Kilimanjaro views.',
   openGraph: {
     title: 'Kenya Safari Package from India 2026 — 7 Nights Starting ₹2,24,999',

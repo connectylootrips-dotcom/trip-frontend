@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Vietnam Tour Package from India 2026 — 6 Nights Starting ₹38,999 | YlooTrips',
+  title: 'Vietnam Tour Package from India 2026 — 6 Nights Starting ₹38,999',
   description: 'Book Vietnam tour packages from India starting ₹38,999. Hanoi, Ha Long Bay, Hoi An, Ho Chi Minh City. 6 nights / 7 days — UNESCO heritage, street food, and Southeast Asia at its best.',
   openGraph: {
     title: 'Vietnam Tour Package from India 2026 — 6 Nights Starting ₹38,999',

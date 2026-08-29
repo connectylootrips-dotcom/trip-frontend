@@ -3,11 +3,11 @@ import { Suspense } from 'react';
 import HotelSearch from '@/components/HotelSearch';
 
 export const metadata: Metadata = {
-  title: 'Hotel Search — Live Rates for India | YlooTrips',
+  title: 'Hotel Search — Live Rates for India',
   description:
     'Search live hotel rates across India. Compare prices, amenities, and ratings — then book through YlooTrips for the best deal.',
   openGraph: {
-    title: 'Find Hotels in India — Live Rates | YlooTrips',
+    title: 'Find Hotels in India — Live Rates',
     description: 'Compare live hotel prices across India. Powered by Google Hotels.',
     url: 'https://www.ylootrips.com/hotels',
   },

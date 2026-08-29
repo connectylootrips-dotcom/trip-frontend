@@ -53,7 +53,7 @@ export async function generateMetadata({
     title: blog.title,
     description: description.length > 160 ? description.slice(0, 157) + '...' : description,
     openGraph: {
-      title: `${blog.title} | YlooTrips`,
+      title: `${blog.title}`,
       description,
       url,
       type: 'article',
@@ -68,7 +68,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${blog.title} | YlooTrips`,
+      title: `${blog.title}`,
       description,
       images: [image],
     },

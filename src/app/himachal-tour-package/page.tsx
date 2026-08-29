@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Himachal Pradesh Tour Package 2026 — 5 Nights Starting ₹13,999 | YlooTrips',
+  title: 'Himachal Pradesh Tour Package 2026 — 5 Nights Starting ₹13,999',
   description: 'Book Himachal Pradesh tour packages starting ₹13,999. Manali, Shimla, Kasol, Spiti Valley, Dharamsala. 5 nights / 6 days — mountains, snow, rivers, and monasteries. Flights optional.',
   openGraph: {
     title: 'Himachal Pradesh Tour Package 2026 — 5 Nights Starting ₹13,999',

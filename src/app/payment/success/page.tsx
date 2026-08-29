@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { CheckCircle, XCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, XCircle, Loader2, Copy } from 'lucide-react';
 import { api } from '@/lib/api';
 import { formatPriceWithCurrency } from '@/lib/utils';
 import { useCurrency } from '@/context/CurrencyContext';
@@ -21,6 +21,7 @@ function PaymentSuccessContent() {
     const [notFound, setNotFound] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [txnid, setTxnid] = useState<string | null>(null);
+    const [copied, setCopied] = useState(false);
 
     // Get URL params - handle both Next.js searchParams and window.location for external redirects
     const getUrlParams = () => {
@@ -333,6 +334,28 @@ function PaymentSuccessContent() {
                 <p className="text-body-lg text-text-secondary mb-8">
                     Your booking has been confirmed. You will receive a confirmation email shortly.
                 </p>
+
+                {booking?.bookingReference && (
+                    <div className="bg-white/80 backdrop-blur-sm border-2 border-green-200 rounded-2xl p-6 mb-6 text-left">
+                        <p className="text-xs font-bold text-green-600 uppercase tracking-widest mb-2">Your Booking ID</p>
+                        <div className="flex items-center justify-between gap-3">
+                            <p className="font-mono font-black text-2xl text-gray-900 tracking-wider break-all">{booking.bookingReference}</p>
+                            <button
+                                onClick={() => {
+                                    navigator.clipboard.writeText(booking.bookingReference).then(() => {
+                                        setCopied(true);
+                                        setTimeout(() => setCopied(false), 2000);
+                                    });
+                                }}
+                                className="shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl bg-green-50 hover:bg-green-100 text-green-700 font-semibold text-sm transition-colors border border-green-200"
+                            >
+                                {copied ? <CheckCircle size={14} className="text-green-500" /> : <Copy size={14} />}
+                                {copied ? 'Copied!' : 'Copy'}
+                            </button>
+                        </div>
+                        <p className="text-xs text-gray-400 mt-2">Save this ID to track your booking anytime</p>
+                    </div>
+                )}
 
                 {booking && (
                     <div className="bg-white/60 backdrop-blur-sm p-8 border border-primary/10 rounded-xl mb-8 text-left">

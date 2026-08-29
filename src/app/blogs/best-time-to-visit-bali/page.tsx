@@ -5,7 +5,7 @@ import { ChevronRight, ArrowRight, MessageCircle, Calendar, Sun, CloudRain, Star
 import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Best Time to Visit Bali 2026 — Month-by-Month Guide | YlooTrips',
+  title: 'Best Time to Visit Bali 2026 — Month-by-Month Guide',
   description: 'When is the best time to visit Bali? Complete 2026 month-by-month guide covering weather, festivals, crowds, and prices. Find your perfect Bali travel window.',
   openGraph: {
     title: 'Best Time to Visit Bali 2026 — Month-by-Month Guide',

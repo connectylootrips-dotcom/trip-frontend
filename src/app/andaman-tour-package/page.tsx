@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Andaman Tour Package 2026 — 4 Nights Starting ₹24,999 | YlooTrips',
+  title: 'Andaman Tour Package 2026 — 4 Nights Starting ₹24,999',
   description: 'Book Andaman tour packages starting ₹24,999. Port Blair, Havelock Island (Radhanagar Beach), Neil Island, Cellular Jail. 4 nights / 5 days — scuba diving, snorkelling, and pristine beaches.',
   openGraph: {
     title: 'Andaman Tour Package 2026 — 4 Nights Starting ₹24,999',

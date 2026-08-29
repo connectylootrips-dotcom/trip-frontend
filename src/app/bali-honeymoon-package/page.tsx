@@ -3,17 +3,17 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Bali Honeymoon Package 2026 — 6 Nights Starting ₹52,499 | YlooTrips',
+  title: 'Bali Honeymoon Package 2026 — 6 Nights Starting ₹52,499',
   description: 'Romantic Bali honeymoon packages from India starting ₹52,499 for 2. 6 nights in Ubud + Seminyak — private villa, rice terraces, temple tours, sunset dinner. Hotel + transfers + activities included.',
   openGraph: {
-    title: 'Bali Honeymoon Package 2026 — ₹52,499 Per Person | YlooTrips',
+    title: 'Bali Honeymoon Package 2026 — ₹52,499 Per Person',
     description: 'Romantic Bali honeymoon — private villa in Ubud, sunrise at Tegalalang, couples spa, sunset at Tanah Lot. Visa free for Indians.',
     url: 'https://www.ylootrips.com/bali-honeymoon-package',
     images: [{ url: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80', width: 1200, height: 630, alt: 'Bali honeymoon package rice terraces Ubud Indonesia' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bali Honeymoon Package 2026 — ₹52,499 Per Person | YlooTrips',
+    title: 'Bali Honeymoon Package 2026 — ₹52,499 Per Person',
     description: 'Private villa · Rice terraces · Couples spa · Tanah Lot sunset. Book your Bali honeymoon now.',
     images: ['https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80'],
   },

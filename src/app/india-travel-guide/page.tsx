@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "India Travel Guide 2026 | YlooTrips",
+    title: "India Travel Guide 2026",
     description: "Visa, safety, health, packing, currency — the complete India guide for international visitors.",
     images: ["https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&q=80"],
   },

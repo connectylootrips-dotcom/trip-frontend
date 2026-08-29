@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Manali Tour Package 2026 — 4 Nights Starting ₹12,999 | YlooTrips',
+  title: 'Manali Tour Package 2026 — 4 Nights Starting ₹12,999',
   description: 'Book Manali tour packages starting ₹12,999. 4 nights / 5 days — Rohtang Pass, Solang Valley, Old Manali, Hadimba Temple. Volvo bus or flights + hotel + transfers included.',
   openGraph: {
     title: 'Manali Tour Package 2026 — 4 Nights Starting ₹12,999',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Manali Tour Package — ₹12,999 Onwards | YlooTrips',
+    title: 'Manali Tour Package — ₹12,999 Onwards',
     description: 'Rohtang Pass + Solang Valley + River Rafting + Snow Activities. Volvo + hotel included.',
     images: ['https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80'],
   },

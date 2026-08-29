@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Event Management Company India — Corporate Events, Team Outings & Weddings',
   description: 'YlooTrips is a full-service event management company in India. We plan corporate events, team outings, destination weddings, product launches, and MICE travel. GST invoicing. Get a free quote.',
   openGraph: {
-    title: 'Event Management in India — Corporate, Wedding & MICE Events | YlooTrips',
+    title: 'Event Management in India — Corporate, Wedding & MICE Events',
     description: 'Corporate events, team outings, destination weddings, product launches, and incentive travel — all planned end-to-end by YlooTrips. GST-compliant. 4-hour quote.',
     url: 'https://www.ylootrips.com/event-management',
     type: 'website',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Event Management India — Corporate & Wedding Events | YlooTrips',
+    title: 'Event Management India — Corporate & Wedding Events',
     description: 'End-to-end event planning: corporate events, team outings, destination weddings, MICE. Get a free quote in 4 hours.',
     images: ['https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=80'],
   },

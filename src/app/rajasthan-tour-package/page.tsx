@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Rajasthan Tour Package 2026 — 6 Nights Starting ₹14,999 | YlooTrips',
+  title: 'Rajasthan Tour Package 2026 — 6 Nights Starting ₹14,999',
   description: 'Book Rajasthan tour packages starting ₹14,999. Jaipur, Jodhpur, Jaisalmer, Udaipur — 6 nights / 7 days of forts, palaces, desert safaris, and lake city romance.',
   openGraph: {
     title: 'Rajasthan Tour Package 2026 — 6 Nights Starting ₹14,999',

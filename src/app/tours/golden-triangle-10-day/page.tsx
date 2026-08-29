@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "10-Day Golden Triangle Tour — Delhi, Agra & Jaipur",
   description: "Explore India's iconic Golden Triangle in 10 days. Visit the Taj Mahal, Red Fort, Amber Fort, Hawa Mahal & more. Private guided tour with handpicked hotels. Get a custom quote.",
   openGraph: {
-    title: "10-Day Golden Triangle Tour — Delhi, Agra & Jaipur | YlooTrips",
+    title: "10-Day Golden Triangle Tour — Delhi, Agra & Jaipur",
     description: "Experience India's most iconic landmarks — Taj Mahal, Red Fort, and Amber Fort — in 10 days. Private guide, handpicked hotels, seamless logistics.",
     url: "https://www.ylootrips.com/tours/golden-triangle-10-day",
     images: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "10-Day Golden Triangle Tour — Delhi, Agra & Jaipur | YlooTrips",
+    title: "10-Day Golden Triangle Tour — Delhi, Agra & Jaipur",
     description: "Taj Mahal, Red Fort, and Amber Fort in 10 days. Private guide, handpicked hotels.",
     images: ["https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1200&q=80"],
   },

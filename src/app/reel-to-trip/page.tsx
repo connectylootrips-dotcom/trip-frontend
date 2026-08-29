@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import ReelToTrip from '@/components/ReelToTrip';
 
 export const metadata: Metadata = {
-  title: 'Reel to Trip — Turn Instagram Reels into Itineraries | YlooTrips',
+  title: 'Reel to Trip — Turn Instagram Reels into Itineraries',
   description: 'Paste any Instagram travel reel or describe what you saw — our AI instantly generates a full 5-day itinerary with costs, activities, and booking options.',
   openGraph: {
     title: 'Turn any travel reel into a real trip — YlooTrips',

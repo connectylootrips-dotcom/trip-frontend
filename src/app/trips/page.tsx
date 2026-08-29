@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'India Trip Packages | YlooTrips',
+    title: 'India Trip Packages',
     description: '150+ curated India tours. 4.9★ rated. Book online with instant confirmation.',
     images: ['https://www.ylootrips.com/og-image.jpg'],
   },

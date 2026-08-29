@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Europe Tour Package from India 2026 — 10 Nights Starting ₹1,24,999 | YlooTrips',
+  title: 'Europe Tour Package from India 2026 — 10 Nights Starting ₹1,24,999',
   description: 'Book Europe tour packages from India starting ₹1,24,999. Paris, Rome, Barcelona, Amsterdam, Prague — 10 nights / 11 days across Western Europe. Hotels, transfers & Schengen visa support included. Flights not included.',
   openGraph: {
     title: 'Europe Tour Package from India 2026 — 10 Nights Starting ₹1,24,999',

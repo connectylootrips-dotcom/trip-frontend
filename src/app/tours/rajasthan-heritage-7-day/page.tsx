@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "7-Day Rajasthan Heritage Tour | YlooTrips",
+    title: "7-Day Rajasthan Heritage Tour",
     description: "Royal forts, camel safaris, and palace hotels — Rajasthan in 7 days.",
     images: ["https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&q=80"],
   },

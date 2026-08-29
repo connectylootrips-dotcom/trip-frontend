@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Nepal Tour Package from India 2026 — 5 Nights Starting ₹18,999 | YlooTrips',
+  title: 'Nepal Tour Package from India 2026 — 5 Nights Starting ₹18,999',
   description: 'Book Nepal tour packages from India starting ₹18,999. Kathmandu, Pokhara, Chitwan, Nagarkot. 5 nights / 6 days — Everest views, temples, wildlife safaris, and Himalayan lakes.',
   openGraph: {
     title: 'Nepal Tour Package from India 2026 — 5 Nights Starting ₹18,999',

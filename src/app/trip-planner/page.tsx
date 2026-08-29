@@ -3,12 +3,12 @@ import { Suspense } from 'react';
 import TripPlannerChat from '@/components/TripPlannerChat';
 
 export const metadata: Metadata = {
-  title: 'Free AI Trip Planner — Day-by-Day Itinerary for Dubai, Goa, Bali, Thailand & More | YlooTrips',
+  title: 'Free AI Trip Planner — Day-by-Day Itinerary for Dubai, Goa, Bali, Thailand & More',
   description: 'Plan your perfect trip with YlooTrips free AI trip planner. Get instant day-by-day itineraries for Dubai, Goa, Bali, Thailand, Vietnam, Kashmir, Manali, Kerala and 100+ destinations. Free personalised travel planning.',
   keywords: 'AI trip planner, free trip planner, travel itinerary planner, Dubai trip planner, Goa trip planner, Bali trip planner, Thailand trip planner, Vietnam itinerary, trip planner India, holiday planner, travel planner free, ylootrips',
   alternates: { canonical: 'https://www.ylootrips.com/trip-planner' },
   openGraph: {
-    title: 'Free AI Trip Planner — Instant Itineraries for Any Destination | YlooTrips',
+    title: 'Free AI Trip Planner — Instant Itineraries for Any Destination',
     description: 'Get a free personalised day-by-day itinerary in seconds for Dubai, Goa, Bali, Thailand, Vietnam, Kashmir, Manali, Kerala and more.',
     url: 'https://www.ylootrips.com/trip-planner',
     type: 'website',

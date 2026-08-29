@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'India Domestic Destinations | YlooTrips',
+    title: 'India Domestic Destinations',
     description: 'Explore India — Rajasthan, Kerala, Goa, Himalayas and beyond. Expert-curated by YlooTrips.',
     images: ['https://www.ylootrips.com/og-image.jpg'],
   },

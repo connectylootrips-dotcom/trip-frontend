@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Georgia & Azerbaijan Tour Package from India 2026 — 6 Nights Starting ₹54,999 | YlooTrips',
+  title: 'Georgia & Azerbaijan Tour Package from India 2026 — 6 Nights Starting ₹54,999',
   description: 'Book Georgia & Azerbaijan tour packages from India starting ₹54,999. Tbilisi, Kazbegi, Baku, Gabala. 6 nights / 7 days — Caucasus mountains, ancient churches, Baku flame towers.',
   openGraph: {
     title: 'Georgia & Azerbaijan Tour Package from India 2026 — 6 Nights Starting ₹54,999',

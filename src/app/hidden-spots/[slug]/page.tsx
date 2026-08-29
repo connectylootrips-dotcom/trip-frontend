@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const spot = hiddenSpots.find((s) => s.slug === slug);
   if (!spot) return {};
   return {
-    title: `${spot.name} — Hidden Gem | YlooTrips`,
+    title: `${spot.name} — Hidden Gem`,
     description: spot.description,
     alternates: { canonical: `https://www.ylootrips.com/hidden-spots/${spot.slug}` },
     openGraph: {

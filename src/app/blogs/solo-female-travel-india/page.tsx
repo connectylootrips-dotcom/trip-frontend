@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Solo Female Travel in India: Complete Safety Guide 2026",
   description: "Is India safe for solo female travelers in 2026? Complete guide: safest cities, transport tips, what to wear, best accommodation, and expert tips from 25,000+ trips. Updated May 2026.",
   openGraph: {
-    title: "Solo Female Travel in India: Honest Safety Guide 2026 | YlooTrips",
+    title: "Solo Female Travel in India: Honest Safety Guide 2026",
     description: "An honest guide to solo female travel in India — practical safety tips, best cities for women, and how to have an extraordinary trip.",
     url: "https://www.ylootrips.com/blogs/solo-female-travel-india",
     type: "article",

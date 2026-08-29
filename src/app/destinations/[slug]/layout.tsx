@@ -71,7 +71,7 @@ export async function generateMetadata({
     title: `${dest.name} — ${dest.country} Destination Guide`,
     description: `Explore ${dest.name}, ${dest.country} with YlooTrips. ${truncatedDesc}${bestTime}`.slice(0, 160),
     openGraph: {
-      title: `${dest.name}, ${dest.country} — Travel Guide | YlooTrips`,
+      title: `${dest.name}, ${dest.country} — Travel Guide`,
       description: `Discover ${dest.name} — expert travel guide covering highlights, best time to visit, activities, culture and cuisine.`,
       url,
       images: [
@@ -85,7 +85,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${dest.name} Travel Guide | YlooTrips`,
+      title: `${dest.name} Travel Guide`,
       description: `Discover ${dest.name}, ${dest.country} — highlights, best time to visit, and expert tips.`,
       images: [image],
     },

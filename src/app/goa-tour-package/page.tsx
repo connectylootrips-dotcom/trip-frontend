@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999 | YlooTrips',
+  title: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999',
   description: 'Book Goa tour packages starting ₹9,999 per person (group rate, min 20 persons, land only). 3 nights / 4 days — North Goa beaches, water sports at Baga, Dudhsagar Falls. Hotel + transfers + 2 activities included.',
   openGraph: {
     title: 'Goa Tour Package 2026 — 3 Nights Starting ₹9,999',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Goa Tour Package — ₹9,999 Onwards | YlooTrips',
+    title: 'Goa Tour Package — ₹9,999 Onwards',
     description: 'North Goa beaches + Water Sports + Dudhsagar Falls + South Goa. Hotel + transfers included. Group rate, land only.',
     images: ['https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80'],
   },

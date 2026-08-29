@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Japan Tour Package from India 2026 — 7 Nights Starting ₹1,72,799 | YlooTrips',
+  title: 'Japan Tour Package from India 2026 — 7 Nights Starting ₹1,72,799',
   description: 'Book Japan tour packages from India starting ₹1,72,799. Tokyo, Kyoto, Osaka, Nara, Mt. Fuji. 7 nights / 8 days — cherry blossoms, bullet trains, ancient temples & world-class food.',
   openGraph: {
     title: 'Japan Tour Package from India 2026 — 7 Nights Starting ₹1,72,799',

@@ -3,17 +3,17 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Thailand Budget Trip 2026 — 5 Nights from ₹49,499 | YlooTrips',
+  title: 'Thailand Budget Trip 2026 — 5 Nights from ₹49,499',
   description: 'Cheapest Thailand tour packages from India starting ₹49,499. 5 nights Bangkok + Phuket — temples, street food, islands, nightlife. Hotels + transfers + activities included.',
   openGraph: {
-    title: 'Thailand Budget Trip 2026 — ₹49,499 Per Person | YlooTrips',
+    title: 'Thailand Budget Trip 2026 — ₹49,499 Per Person',
     description: 'Bangkok temples, Phi Phi islands, floating markets, street food, nightlife. All-inclusive Thailand on a budget from India.',
     url: 'https://www.ylootrips.com/thailand-budget-trip',
     images: [{ url: 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=1200&q=80', width: 1200, height: 630, alt: 'Thailand Bangkok temple Wat Phra Kaew budget trip from India' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Thailand Budget Trip 2026 — ₹49,499 | YlooTrips',
+    title: 'Thailand Budget Trip 2026 — ₹49,499',
     description: 'Bangkok + Phuket on a budget. Temples, islands, street food, nightlife. Book with ₹5,000 advance.',
     images: ['https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=1200&q=80'],
   },

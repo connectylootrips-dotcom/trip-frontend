@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'India Hotels & Stays | YlooTrips',
+    title: 'India Hotels & Stays',
     description: 'Handpicked hotels across India — from palace havelis to houseboat stays.',
     images: ['https://www.ylootrips.com/og-image.jpg'],
   },

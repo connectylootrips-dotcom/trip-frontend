@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "India vs Thailand: Which Should You Visit First?",
   description: "Comparing India and Thailand for international travelers. Cost, safety, food, culture, beaches, and which destination is right for first-time Asia visitors.",
   openGraph: {
-    title: "India vs Thailand: Which Should You Visit First? | YlooTrips",
+    title: "India vs Thailand: Which Should You Visit First?",
     description: "An honest comparison of India and Thailand — cost, culture, safety, food, and which one is right for your travel style.",
     url: "https://www.ylootrips.com/blogs/india-vs-thailand",
     type: "article",

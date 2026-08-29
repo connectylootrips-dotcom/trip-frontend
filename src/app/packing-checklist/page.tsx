@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { Package, ChevronRight, Mountain, Waves, TreePine, Building2, Snowflake, Sun } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Travel Packing Checklist 2026 — What to Pack for Every Destination | YlooTrips',
+  title: 'Travel Packing Checklist 2026 — What to Pack for Every Destination',
   description: 'Free travel packing checklists for every destination — Manali, Goa, Kashmir, Bali, Dubai, Europe, and more. Never forget essentials again. Updated for 2026.',
   openGraph: {
-    title: 'Travel Packing Checklist — Every Destination | YlooTrips',
+    title: 'Travel Packing Checklist — Every Destination',
     description: 'Destination-specific packing lists for mountains, beaches, deserts, cities, and international trips.',
     url: 'https://www.ylootrips.com/packing-checklist',
   },

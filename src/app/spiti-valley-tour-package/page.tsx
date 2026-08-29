@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Spiti Valley Tour Package 2026 — 7 Nights Starting ₹19,999 | YlooTrips',
+  title: 'Spiti Valley Tour Package 2026 — 7 Nights Starting ₹19,999',
   description: 'Book Spiti Valley tour packages starting ₹19,999. Kaza, Key Monastery, Chandratal Lake, Kunzum Pass, Chitkul. 7 nights / 8 days — one of the most dramatic landscapes in India.',
   openGraph: {
     title: 'Spiti Valley Tour Package 2026 — 7 Nights Starting ₹19,999',

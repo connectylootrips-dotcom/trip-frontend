@@ -21,11 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tour = curatedTours.find((t) => t.slug === slug);
   if (!tour) return {};
   return {
-    title: `${tour.name} — India Tour from $${tour.priceUSD} | YlooTrips`,
+    title: `${tour.name} — India Tour from $${tour.priceUSD}`,
     description: tour.tagline,
     alternates: { canonical: `https://www.ylootrips.com/tours/${tour.slug}` },
     openGraph: {
-      title: `${tour.name} | YlooTrips`,
+      title: `${tour.name}`,
       description: tour.tagline,
       images: [{ url: tour.heroImage, width: 1200, height: 630 }],
     },

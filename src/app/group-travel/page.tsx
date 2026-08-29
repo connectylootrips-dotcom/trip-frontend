@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Users, Star, Shield, Zap, Phone, MessageCircle, Check, ChevronRight, Award, MapPin, Calendar } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Group Tour Packages India 2026 — 4+ People Get 20% Off | YlooTrips',
+  title: 'Group Tour Packages India 2026 — 4+ People Get 20% Off',
   description: 'Plan group trips across India and abroad. Corporate outings, college trips, family reunions, friends getaways. 4+ people get 20% off. Custom itineraries, dedicated coordinator, group discounts.',
   openGraph: {
     title: 'Group Tour Packages India 2026 — 20% Off for Groups of 4+',

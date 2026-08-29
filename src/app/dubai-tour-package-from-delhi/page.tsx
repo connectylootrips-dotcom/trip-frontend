@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dubai Tour Package from Delhi — ₹36,499 Onwards | YlooTrips',
+    title: 'Dubai Tour Package from Delhi — ₹36,499 Onwards',
     description: 'Hotel + Visa + Burj Khalifa + Desert Safari. Book now with ₹5,000 advance.',
     images: ['https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80'],
   },

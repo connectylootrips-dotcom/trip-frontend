@@ -3,7 +3,7 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { CheckCircle, Plane, Mail, Phone, Clock, Home, QrCode } from 'lucide-react';
+import { CheckCircle, Plane, Mail, Phone, Clock, Home, QrCode, Copy, MapPin } from 'lucide-react';
 
 function fmt(n: number) { return new Intl.NumberFormat('en-IN').format(n); }
 
@@ -41,6 +41,7 @@ function SuccessContent() {
 
     const [booking, setBooking] = useState<FlightBooking | null>(null);
     const [emailSent, setEmailSent] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
@@ -67,14 +68,40 @@ function SuccessContent() {
     if (!booking) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
-                <div className="text-center">
+                <div className="text-center max-w-sm w-full">
                     <CheckCircle size={60} className="text-green-500 mx-auto mb-4" />
                     <h1 className="text-2xl font-bold text-gray-900 mb-2">Payment Successful!</h1>
-                    <p className="text-gray-500 mb-2">Booking Reference: <strong>{txnid}</strong></p>
+                    {txnid && (
+                        <div className="bg-white rounded-2xl border-2 border-green-200 p-4 mb-4 text-left">
+                            <p className="text-xs font-bold text-green-600 uppercase tracking-widest mb-1">Booking ID</p>
+                            <div className="flex items-center justify-between gap-2">
+                                <p className="font-mono font-black text-gray-900 text-sm tracking-wider break-all">{txnid}</p>
+                                <button
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(txnid).then(() => {
+                                            setCopied(true);
+                                            setTimeout(() => setCopied(false), 2000);
+                                        });
+                                    }}
+                                    className="shrink-0 p-1.5 rounded-lg bg-green-50 hover:bg-green-100 text-green-600 border border-green-200 transition-colors"
+                                >
+                                    {copied ? <CheckCircle size={13} /> : <Copy size={13} />}
+                                </button>
+                            </div>
+                        </div>
+                    )}
                     <p className="text-gray-500 mb-6">Our team will send your e-ticket within 30 minutes.</p>
-                    <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 text-white font-bold rounded-xl hover:bg-amber-600 transition-colors">
-                        <Home size={16} /> Back to Home
-                    </Link>
+                    <div className="flex flex-col gap-3">
+                        {txnid && (
+                            <Link href={`/my-booking?ref=${encodeURIComponent(txnid)}`}
+                                className="flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors">
+                                <MapPin size={16} /> Track My Booking
+                            </Link>
+                        )}
+                        <Link href="/" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-amber-500 text-white font-bold rounded-xl hover:bg-amber-600 transition-colors">
+                            <Home size={16} /> Back to Home
+                        </Link>
+                    </div>
                 </div>
             </div>
         );
@@ -107,6 +134,32 @@ function SuccessContent() {
                     <p className="text-green-100 text-sm mt-1">
                         {emailSent ? `Confirmation sent to ${contact.email}` : 'Sending confirmation email...'}
                     </p>
+                </div>
+
+                {/* Booking ID Card */}
+                <div className="bg-white rounded-2xl border-2 border-green-200 shadow-sm overflow-hidden">
+                    <div className="bg-green-500 px-6 py-3 flex items-center justify-between">
+                        <p className="text-xs font-bold text-green-100 uppercase tracking-wider">Your Booking ID</p>
+                        <CheckCircle size={16} className="text-green-200" />
+                    </div>
+                    <div className="px-6 py-4 flex items-center justify-between gap-3">
+                        <div>
+                            <p className="text-xl font-black tracking-widest text-gray-900 font-mono">{booking.txnid}</p>
+                            <p className="text-xs text-gray-400 mt-1">Save this ID to track your booking</p>
+                        </div>
+                        <button
+                            onClick={() => {
+                                navigator.clipboard.writeText(booking.txnid).then(() => {
+                                    setCopied(true);
+                                    setTimeout(() => setCopied(false), 2000);
+                                });
+                            }}
+                            className="shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl bg-green-50 hover:bg-green-100 text-green-700 font-semibold text-sm transition-colors border border-green-200"
+                        >
+                            {copied ? <CheckCircle size={14} className="text-green-500" /> : <Copy size={14} />}
+                            {copied ? 'Copied!' : 'Copy'}
+                        </button>
+                    </div>
                 </div>
 
                 {/* PNR Card */}
@@ -231,6 +284,10 @@ function SuccessContent() {
 
                 {/* Action buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
+                    <Link href={`/my-booking?ref=${encodeURIComponent(booking.txnid)}`}
+                        className="flex-1 flex items-center justify-center gap-2 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-colors">
+                        <MapPin size={16} /> Track My Booking
+                    </Link>
                     <Link href={checkinUrl}
                         className="flex-1 flex items-center justify-center gap-2 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl transition-colors">
                         <Plane size={16} /> Web Check-in

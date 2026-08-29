@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'India Events & Experiences | YlooTrips',
+    title: 'India Events & Experiences',
     description: 'Corporate offsites, destination weddings, and group adventures across India. 500+ events delivered.',
     images: ['https://www.ylootrips.com/og-image.jpg'],
   },

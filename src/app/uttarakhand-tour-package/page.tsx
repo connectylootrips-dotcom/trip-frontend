@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Uttarakhand Tour Package 2026 — 5 Nights Starting ₹11,999 | YlooTrips',
+  title: 'Uttarakhand Tour Package 2026 — 5 Nights Starting ₹11,999',
   description: 'Book Uttarakhand tour packages starting ₹11,999. Rishikesh, Haridwar, Mussoorie, Nainital, Valley of Flowers. 5 nights / 6 days — rivers, yoga, treks, and sacred temples.',
   openGraph: {
     title: 'Uttarakhand Tour Package 2026 — 5 Nights Starting ₹11,999',

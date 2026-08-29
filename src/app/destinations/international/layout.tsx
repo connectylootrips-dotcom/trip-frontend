@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'International Destinations | YlooTrips',
+    title: 'International Destinations',
     description: 'Expertly curated international tours — Asia, Europe, Africa and beyond.',
     images: ['https://www.ylootrips.com/og-image.jpg'],
   },

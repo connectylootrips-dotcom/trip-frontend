@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'India Destinations | YlooTrips',
+    title: 'India Destinations',
     description: 'Explore 150+ India destinations — Rajasthan, Kerala, Himalaya, Goa and beyond.',
     images: ['https://www.ylootrips.com/og-image.jpg'],
   },

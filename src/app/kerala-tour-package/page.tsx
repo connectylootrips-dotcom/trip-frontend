@@ -3,7 +3,7 @@ import PackagePageLayout, { type PackageData } from '@/components/PackagePageLay
 import { getPackagePrice } from '@/lib/packagePrices';
 
 export const metadata: Metadata = {
-  title: 'Kerala Tour Package 2026 — 5 Nights Starting ₹15,999 | YlooTrips',
+  title: 'Kerala Tour Package 2026 — 5 Nights Starting ₹15,999',
   description: 'Book Kerala tour packages starting ₹15,999. 5 nights / 6 days — Munnar tea gardens, Alleppey houseboat, Kovalam beach, Thekkady wildlife. Flights + houseboat + hotel included.',
   openGraph: {
     title: 'Kerala Tour Package 2026 — 5 Nights Starting ₹15,999',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kerala Tour Package — ₹15,999 Onwards | YlooTrips',
+    title: 'Kerala Tour Package — ₹15,999 Onwards',
     description: 'Munnar + Alleppey Houseboat + Kovalam Beach + Thekkady. Flights + houseboat + hotel included.',
     images: ['https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&q=80'],
   },

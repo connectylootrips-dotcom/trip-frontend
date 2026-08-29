@@ -68,7 +68,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${trip.title} | YlooTrips`,
+      title: `${trip.title}`,
       description: ogDesc,
       images: [image],
     },

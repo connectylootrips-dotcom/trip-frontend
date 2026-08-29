@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Corporate Travel Management — Group Bookings & MICE | YlooTrips',
+  title: 'Corporate Travel Management — Group Bookings & MICE',
   description: 'YlooTrips handles corporate travel, team outings, MICE trips, and incentive tours across India & abroad. GST invoicing, dedicated account manager, volume discounts for 10+ employees. Get a quote in 4 hours.',
   openGraph: {
-    title: 'Corporate Travel Management — GST Invoicing & Group Discounts | YlooTrips',
+    title: 'Corporate Travel Management — GST Invoicing & Group Discounts',
     description: 'Team outings, incentive trips, MICE events, and corporate holidays. GST-compliant invoicing, volume discounts, dedicated account manager. 25,000+ travelers served.',
     url: 'https://www.ylootrips.com/corporate-travel',
     type: 'website',

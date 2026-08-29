@@ -695,7 +695,7 @@ export async function generateMetadata({ params }: { params: Promise<{ destinati
   const checklist = CHECKLISTS[destination];
   if (!checklist) return {};
   return {
-    title: `${checklist.name} Packing List 2026 — Complete Checklist | YlooTrips`,
+    title: `${checklist.name} Packing List 2026 — Complete Checklist`,
     description: `Complete packing checklist for ${checklist.name}. Climate: ${checklist.climate}. Best months: ${checklist.bestMonths}. Everything you need to pack for a perfect trip.`,
     alternates: { canonical: `https://www.ylootrips.com/packing-checklist/${destination}` },
   };

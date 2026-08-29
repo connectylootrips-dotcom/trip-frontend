@@ -656,7 +656,7 @@ export async function generateMetadata({ params }: { params: Promise<{ destinati
   const info = VISA_DATA[destination];
   if (!info) return {};
   return {
-    title: `${info.name} Visa for Indians 2026 — Requirements & Process | YlooTrips`,
+    title: `${info.name} Visa for Indians 2026 — Requirements & Process`,
     description: `${info.name} visa guide for Indian passport holders. Type: ${info.type}. Fee: ${info.fee}. Processing: ${info.processingTime}. Documents required and tips from experts.`,
     alternates: { canonical: `https://www.ylootrips.com/visa/${destination}` },
     openGraph: {

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "14-Day Kerala & South India Tour | YlooTrips",
+    title: "14-Day Kerala & South India Tour",
     description: "Kerala backwaters, Munnar tea estates, and a houseboat cruise. The ultimate South India experience.",
     images: ["https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&q=80"],
   },
