@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'India Destinations — Explore Rajasthan, Kerala, Himalayas & More',
+  title: {
+    default: 'India Destinations — Explore Rajasthan, Kerala, Himalayas & More',
+    template: '%s | YlooTrips',
+  },
   description: 'Discover 150+ India travel destinations — Rajasthan palaces, Kerala backwaters, Himalayan treks, Goa beaches, and cultural hubs. Plan your perfect India journey with YlooTrips.',
   openGraph: {
     title: 'India Destinations | YlooTrips — India Travel Experts',

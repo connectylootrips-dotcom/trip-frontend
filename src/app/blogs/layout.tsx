@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'India Travel Blog — Tips, Guides & Inspiration',
+  title: {
+    default: 'India Travel Blog — Tips, Guides & Inspiration',
+    template: '%s | YlooTrips',
+  },
   description: 'Expert India travel guides and articles — best time to visit, safety tips, budget breakdowns, destination comparisons, and insider knowledge from 25,000+ trips. Written by YlooTrips travel experts.',
   openGraph: {
     title: 'India Travel Blog | YlooTrips — India Travel Experts',

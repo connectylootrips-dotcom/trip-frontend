@@ -39,7 +39,7 @@ export async function generateMetadata({
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
       .join(' ');
     return {
-      title: `${name} | YlooTrips — India Travel Experts`,
+      title: `${name}`,
       description: 'Read expert India travel articles and destination guides from the YlooTrips editorial team.',
       alternates: { canonical: `https://www.ylootrips.com/blogs/${slug}` },
     };

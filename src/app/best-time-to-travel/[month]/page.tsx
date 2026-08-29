@@ -357,7 +357,7 @@ export async function generateMetadata({ params }: { params: Promise<{ month: st
     description: `Where to travel in ${data.name}: ${data.domesticPicks.map(d => d.dest).join(', ')}. ${data.summary.slice(0, 100)}...`,
     alternates: { canonical: `https://www.ylootrips.com/best-time-to-travel/${month}` },
     openGraph: {
-      title: `Best Places to Visit in ${data.name} — YlooTrips`,
+      title: `Best Places to Visit in ${data.name}`,
       description: `Complete travel guide for ${data.name}. Weather, destinations, festivals, and expert tips.`,
       url: `https://www.ylootrips.com/best-time-to-travel/${month}`,
     },

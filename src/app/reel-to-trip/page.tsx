@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Reel to Trip — Turn Instagram Reels into Itineraries',
   description: 'Paste any Instagram travel reel or describe what you saw — our AI instantly generates a full 5-day itinerary with costs, activities, and booking options.',
   openGraph: {
-    title: 'Turn any travel reel into a real trip — YlooTrips',
+    title: 'Turn any travel reel into a real trip',
     description: 'Describe a travel Instagram reel and get a complete 5-day itinerary with costs in seconds.',
     url: 'https://www.ylootrips.com/reel-to-trip',
   },
