@@ -153,14 +153,23 @@ export default function AdminAppPage() {
 
   const load = useCallback(async () => {
     setLoading(true);
-    const res = await fetch('/api/admin/app-config', { headers: adminHeaders() });
-    if (res.status === 401) { router.replace('/admin'); return; }
-    const { data } = await res.json();
-    setConfig(prev => ({ ...prev, ...data }));
-    setLoading(false);
+    try {
+      const res = await fetch('/api/admin/app-config', { headers: adminHeaders() });
+      if (res.status === 401) { router.replace('/admin'); return; }
+      const { data } = await res.json();
+      if (data) setConfig(prev => ({ ...prev, ...data }));
+    } catch (e) {
+      console.error('Failed to load app config', e);
+    } finally {
+      setLoading(false);
+    }
   }, [router]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
+    if (!token) { router.replace('/admin'); return; }
+    load();
+  }, [load, router]);
 
   const save = async () => {
     setSaving(true);
