@@ -10,7 +10,7 @@ import {
     Save, RefreshCw, Plus, Trash2, Eye, ChevronDown, ChevronUp,
     ShoppingBag, CheckCircle, XCircle, Clock, Mail, User, Calendar, Phone,
     Megaphone, Star, Activity, Upload, Copy, Link2, X, ExternalLink, Zap, Tag, Gift, CreditCard,
-    Bot, TrendingUp, Search, Lightbulb, Target, Send
+    Bot, TrendingUp, Search, Lightbulb, Target, Send, Smartphone
 } from 'lucide-react';
 import { api } from '@/lib/api';
 import ImagePreview from '@/components/ImagePreview';
@@ -1081,6 +1081,7 @@ export default function AdminDashboard() {
         { id: 'inquiries', icon: Mail, label: 'Inquiries' },
         { id: 'ads', icon: Megaphone, label: 'Ads' },
         { id: 'vera', icon: Bot, label: 'Vera AI' },
+        { id: 'app', icon: Smartphone, label: 'App Config', href: '/admin/app' },
     ];
 
     if (loading) {
