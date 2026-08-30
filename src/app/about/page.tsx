@@ -150,7 +150,7 @@ export default function AboutPage() {
                     {/* REPLACE with actual founder photo: /founder.jpg */}
                     <Image
                       src="/founder.jpg"
-                      alt="Vinay Arora — Founder & CEO, YlooTrips"
+                      alt="Ravinder Arora — Co-Founder, YlooTrips"
                       fill
                       className="object-cover object-top"
                       priority
@@ -158,7 +158,7 @@ export default function AboutPage() {
                   </div>
                   {/* Badge */}
                   <div className="absolute -bottom-4 -right-4 bg-gray-900 text-white rounded-2xl px-4 py-2 shadow-lg">
-                    <p className="text-xs font-black uppercase tracking-wider">Founder & CEO</p>
+                    <p className="text-xs font-black uppercase tracking-wider">Co-Founder</p>
                   </div>
                 </div>
               </div>
@@ -167,13 +167,13 @@ export default function AboutPage() {
               <div className="text-white">
                 <p className="text-xs font-bold uppercase tracking-widest text-white/50 mb-3">Meet the Founder</p>
                 <h2 className="font-display text-3xl md:text-4xl lg:text-5xl leading-tight mb-2">
-                  Vinay Arora
+                  Ravinder Arora
                 </h2>
-                <p className="text-white/60 font-semibold text-lg mb-6">Founder & CEO, YlooTrips</p>
+                <p className="text-white/60 font-semibold text-lg mb-6">Co-Founder, YlooTrips | MBA, Business Analysis</p>
 
                 <div className="space-y-4 text-gray-300 text-base leading-relaxed">
                   <p>
-                    Vinay started YlooTrips after experiencing firsthand how broken India&apos;s travel industry was — opaque pricing, unreliable operators, and zero post-booking support. He believed technology could fix this.
+                    Ravinder co-founded YlooTrips after seeing firsthand how broken India&apos;s travel industry was — opaque pricing, unreliable operators, and zero post-booking support. With an MBA in Business Analysis and deep experience in start-up ventures, he brings strategic insight and entrepreneurial acumen to scale the platform.
                   </p>
                   <p>
                     &ldquo;I want every Indian to travel more. Not less. And to do that, we need to make the experience trustworthy, affordable, and genuinely exciting — from the moment you search to the moment you return home.&rdquo;
@@ -184,7 +184,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex flex-wrap gap-3 mt-8">
-                  {['New Delhi, India', 'Travel Tech', 'Ex-Traveler Turned Builder'].map((tag) => (
+                  {['Gurugram, Haryana', 'Travel Tech', 'MBA · Business Analysis'].map((tag) => (
                     <span key={tag} className="bg-white/5 border border-white/10 text-white/70 text-xs font-medium px-3 py-1.5 rounded-full">
                       {tag}
                     </span>
